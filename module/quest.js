@@ -8,7 +8,6 @@
  */
 
 // Import Modules
-import { Quest } from "./config.js";
 import { registerSystemSettings } from "./settings.js";
 import { CharacterQuest } from "./actor/entity.js";
 import { CharacterSheetQuest } from "./actor/sheets/character.js";

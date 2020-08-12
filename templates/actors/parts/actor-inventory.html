@@ -1,12 +1,8 @@
 <div class="inventory-list">
     <h1>Inventory</h1>
-    <div class="adder">
-        <input type="text" class="item-add" placeholder="Add item">
-        <span class="add">+</span>
-    </div>
     <ul id="inventory-list">
         {{#each data.inventory as |item index| }}
-            <li class="inventory-item draggable" draggable=true><span class="item-slot">{{ index }}</span> {{ item }}</li>
+            <li class="inventory-item draggable" draggable=true><span class="item-slot">{{ index }}</span> <input name="data.inventory" type="text" value="{{item}}" /> <span class="item-delete"><i class="fas fa-times"></i></span></li>
         {{/each}}
     </ul>
 </div>

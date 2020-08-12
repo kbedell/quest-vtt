@@ -37,4 +37,29 @@ export class CharacterQuest extends Actor {
 
   // TODO: Add token - based modifications
 
+  /* -------------------------------------------- */
+  /*  Rolls                                       */
+  /* -------------------------------------------- */
+
+ /**
+   * Perform a generic roll, rolling a d20
+   * @return {Promise<Roll|null>}   A Promise which resolves to the Roll instance
+   */
+  async rollGeneric() {
+
+    // Execute the d20 roll dialog
+    const speaker = ChatMessage.getSpeaker({actor: this});
+    const roll = await Dice5e.d20Roll({
+      event: options.event,
+      parts: parts,
+      data: {saveBonus: parseInt(bonus)},
+      title: `Death Saving Throw`,
+      speaker: speaker,
+    });
+    if ( !roll ) return null;
+
+    // Return the rolled result
+    return roll;
+  }
+
 }

@@ -27,6 +27,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
    * @type {String}
    */
   get template() {
+    if ( !game.user.isGM && this.actor.limited ) return "systems/quest/templates/actors/limited-sheet.html";
     return "systems/quest/templates/actors/character-sheet.html";
   }
 
@@ -43,7 +44,27 @@ export class CharacterSheetQuest extends ActorSheetQuest {
   activateListeners(html) {
     super.activateListeners(html);
     if (!this.options.editable) return;
+
+    html.find('.roll-generic').click(this._rollGeneric(this));
+
+    let handler = ev => this._onDragItemStart(ev);
+    html.find('li.inventory-item').each((i, li) => {
+      li.setAttribute('draggable', true);
+      li.addEventListener("dragstart", handler, false);
+    });
+
+    super.activateListeners(html);
   }
 
   /* -------------------------------------------- */
+
+  /**
+   * Handle rolling a generic for the Character
+   * @param {MouseEvent} event    The originating click event
+   * @private
+   */
+  _rollGeneric(event) {
+    event.preventDefault();
+    return this.actor.rollGeneric({event: event});
+  }
 }

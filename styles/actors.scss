@@ -7,14 +7,9 @@
 /*  Inventory Styles                         */
 /* ----------------------------------------- */
 .quest.character{
-    .item-add {
-        font-family: $fontFamily;
-    }
-
     ul {
         .draggable {
             will-change: transform;
-            font-family: $fontFamily;
             list-style-type: none;
         }
     }

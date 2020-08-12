@@ -1,4 +1,9 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
+    {{!-- Sheet header --}}
+    <div class="sheet-header flexrow">
+        <h1>QUEST</h1>
+        <span class="roll-generic"><i class="fas fa-dice-d20"></i></span>
+    </div>
     {{!-- Character Summary --}}
     <div class="sheet-madlibs flexcol">
         {{> "systems/quest/templates/actors/parts/actor-madlibs.html" sections="madlibs" }}
