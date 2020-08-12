@@ -9,6 +9,7 @@
 
 // Import Modules
 import { registerSystemSettings } from "./settings.js";
+import { preloadHandlebarsTemplates } from "./module/templates.js";
 import { CharacterQuest } from "./actor/entity.js";
 import { CharacterSheetQuest } from "./actor/sheets/character.js";
 
