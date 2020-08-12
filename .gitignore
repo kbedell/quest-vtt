@@ -1,0 +1,6 @@
+#ide
+.idea/
+.vs/
+
+#styles
+./styles/*.scss

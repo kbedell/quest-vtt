@@ -1,0 +1,23 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+    {{!-- Character Summary --}}
+    <div class="sheet-madlibs flexcol">
+        {{> "systems/quest/templates/actors/parts/actor-madlibs.html" sections="madlibs" }}
+    </div>
+    
+    {{!-- Inventory/Spells --}}
+    <div class="sheet-abilities flexcol">
+        <div class="sheet-nav flexrow">
+            {{!-- NPC Sheet Navigation --}}
+            <nav class="sheet-navigation tabs" data-group="primary">
+                <a class="item active" data-tab="inventory">{{localize "QUEST.Inventory"}}</a>
+                <a class="item" data-tab="abilities">{{localize "QUEST.Abilities"}}</a>
+            </nav>
+        </div>
+        <div class="tab inventory" data-group="primary" data-tab="inventory">
+            {{> "systems/quest/templates/actors/parts/actor-inventory.html" sections=inventory  }}
+        </div>
+        <div class="tab abilities" data-group="primary" data-tab="abilities">
+            {{> "systems/quest/templates/actors/parts/actor-abilities.html" sections=abilities  }}
+        </div>
+    </div>
+</form>

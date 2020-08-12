@@ -1,0 +1,12 @@
+<div class="inventory-list">
+    <h1>Inventory</h1>
+    <div class="adder">
+        <input type="text" class="item-add" placeholder="Add item">
+        <span class="add">+</span>
+    </div>
+    <ul id="inventory-list">
+        {{#each data.inventory as |item index| }}
+            <li class="inventory-item draggable" draggable=true><span class="item-slot">{{ index }}</span> {{ item }}</li>
+        {{/each}}
+    </ul>
+</div>

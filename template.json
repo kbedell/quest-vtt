@@ -1,0 +1,44 @@
+{
+    "Actor": {
+        "types": [
+            "character",
+            "npc"
+        ],
+        "templates": {
+            "description": {
+                "name": "",
+                "alias": "",
+                "age": "",
+                "height": "",
+                "role": "",
+                "trait-1": "",
+                "trait-2": "",
+                "trait-3": "",
+                "clothing-1": "",
+                "clothing-2": "",
+                "movement": "",
+                "origin": "",
+                "heritage": "",
+                "belief": "",
+                "flaw": "",
+                "dream": ""
+            }
+        },
+        "character": {
+            "templates": [
+                "description"
+            ],
+            "class": "",
+            "hitpoints": {
+                "value": 10,
+                "max": 10
+            },
+            "actionpoints": 0,
+            "inventory": {
+                "contents":[],
+                "max": 12
+            },
+            "abilities": []
+        }
+    }
+}
