@@ -1,0 +1,17 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+    {{!-- Ability Header --}}
+    <header class="ability-header">
+        <h1 class="header">
+            <input name="name" class="ability-name" type="text" value="{{item.name}}"
+                placeholder="{{localize 'QUEST.AbilityName'}}" />
+        </h1>
+    </header>
+    {{!-- Ability Body --}}
+    <div class="ability-body flexcol">
+        <label class="label" for="data.description.value">Description</label>
+        <textarea name="data.description.value" class="description" placeholder="Description">{{data.description.value}}</textarea>
+        <label class="label" for="data.description.chat">Chat Text</label>
+        <textarea name="data.description.chat" class="chat" placeholder="Chat Text">{{data.description.chat}}</textarea>
+        
+    </div>
+</form>

@@ -12,7 +12,7 @@ export class DiceQuest {
    static async d20Roll({event={}, title=null, speaker=null, flavor=null}) {
        flavor = flavor || title;
        speaker = speaker || ChatMessage.getSpeaker();
-       let rollMode = game.settings.get("core", "rollmode");
+       let rollMode = "roll";
        let rolled = false;
 
        const _roll = function(form) {
@@ -23,14 +23,13 @@ export class DiceQuest {
            } else if (roll.total < 20 && roll.total > 10) {
                flavor = `${flavor} (Success)`;
            } else if (roll.total < 11 && roll.total > 5) {
-               flavor = `${flavor} (Tought Choice)`;
+               flavor = `${flavor} (Tough Choice)`;
            } else if (roll.total < 6 && roll.total > 1) {
                flavor = `${flavor} (Failure)`;
            } else if (roll.total === 1) {
                flavor = `${flavor} (Catastrophe)`;
            }
 
-           rollMode = form ? form.rollMode.value : rollMode;
            roll.toMessage({
                speaker: speaker,
                flavor: flavor

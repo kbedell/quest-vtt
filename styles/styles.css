@@ -2,45 +2,188 @@
 /*  Sheet Styles                             */
 /* ----------------------------------------- */
 /* ----------------------------------------- */
-/*  Flexbox                                  */
+/*  Actor Styles                             */
 /* ----------------------------------------- */
-.flexrow {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start; }
+/* ----------------------------------------- */
+/*  Sheet Styles                             */
+/* ----------------------------------------- */
+@import url("https://fonts.googleapis.com/css?family=Ovo:400");
+@import url("https://fonts.googleapis.com/css?family=Alegreya+Sans:400,700");
+@import url("https://fonts.googleapis.com/css?family=Ovo:400");
+@import url("https://fonts.googleapis.com/css?family=Alegreya+Sans:400,700");
+.quest.character, .quest.item {
+  font-family: "Ovo", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px; }
 
-.flexrow > * {
-  flex: 1; }
+.quest.character img.profile {
+  flex: 0 0 150px;
+  max-width: 150px;
+  height: 150px; }
 
-.flexrow .flex1 {
-  flex: 1; }
+/* ----------------------------------------- */
+/*  Character Styles                         */
+/* ----------------------------------------- */
+.quest.character {
+  min-width: 830px;
+  min-height: 690px; }
+  .quest.character .quest-sheet > * {
+    flex: 1 100%; }
+  .quest.character .sheet-head, .quest.character .sheet-stats, .quest.character .sheet-navigation {
+    flex: 0 0 30px; }
+  .quest.character .sheet-madlibs {
+    flex: 1.75 1 0;
+    order: 1;
+    border-right: 2px groove;
+    padding-right: 5px; }
+  .quest.character .sheet-stats {
+    border-bottom: 2px groove;
+    margin-bottom: 5px; }
+  .quest.character .label {
+    max-width: fit-content; }
+  .quest.character .hp, .quest.character .ap {
+    background: none;
+    min-width: 20px;
+    height: 24px;
+    border: 1px solid #7a7971;
+    border-radius: 3px; }
+  .quest.character .sheet-abilities {
+    flex: 1 1 0;
+    order: 2; }
+  .quest.character ul .draggable {
+    will-change: transform;
+    list-style-type: none; }
+  .quest.character .madlib-upper {
+    margin-left: 10px; }
+  .quest.character .madlib-lower {
+    margin-top: 5px; }
+  .quest.character .madlib-section {
+    flex: 0 0 150px; }
+  .quest.character .char {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    padding: 10px; }
+  .quest.character .char.name, .quest.character .char.alias, .quest.character .char.clothing, .quest.character .char.heritage, .quest.character .char.flaw, .quest.character .char.movement {
+    width: 65%; }
+  .quest.character .char.age, .quest.character .char.height, .quest.character .char.trait, .quest.character .char.role, .quest.character .char.clothing {
+    width: 40%; }
+  .quest.character .char.role {
+    width: 95%; }
+  .quest.character .char.belief {
+    width: 80%; }
+  .quest.character .char.origin {
+    width: 55%; }
 
-.flexrow .flex2 {
-  flex: 2; }
+/* ----------------------------------------- */
+/*  Inventory Styles                         */
+/* ----------------------------------------- */
+.quest.character .content ul#inventory-list {
+  margin: 0px;
+  padding: 0px; }
 
-.flexrow .flex3 {
-  flex: 3; }
+.quest.character .content .inventory-item {
+  margin-bottom: 5px; }
+  .quest.character .content .inventory-item :last-child {
+    margin-bottom: 0px; }
 
-.flexrow .flex4 {
-  flex: 4; }
+.quest.character .content .inventory-item > .item-slot {
+  flex: 0 0 auto;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #000;
+  color: #fff;
+  font-weight: 700;
+  margin: 0px 5px 5px 5px;
+  height: 28px;
+  width: 28px;
+  line-height: 18px;
+  text-align: center; }
 
-.flexcol {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap; }
+.quest.character .content .inventory-item > .inventory-value {
+  flex: 0 0 75%; }
 
-.flexcol > * {
-  flex: 1; }
+.quest.character .content .inventory-item > .item-delete {
+  flex: 0 0 auto;
+  margin: 0px 5px; }
 
-.flexcol .flex1 {
-  flex: 1; }
+.quest.character .content .sort {
+  text-align: center; }
 
-.flexcol .flex2 {
-  flex: 2; }
+/* ----------------------------------------- */
+/*  Item Styles                              */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+/*  Sheet Styles                             */
+/* ----------------------------------------- */
+.quest.character, .quest.item {
+  font-family: "Ovo", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px; }
 
-.flexcol .flex3 {
-  flex: 3; }
+.quest.character img.profile {
+  flex: 0 0 150px;
+  max-width: 150px;
+  height: 150px; }
 
-.flexcol .flex4 {
-  flex: 4; }
+.quest.item .item-header {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  padding-bottom: 5px;
+  flex: 0 0 auto; }
+
+.quest.item h1 > input[type="text"] {
+  height: 30px; }
+
+.quest.item input[type="number"] {
+  background: none;
+  min-width: 20px;
+  height: 24px;
+  border: 1px solid #7a7971;
+  border-radius: 3px; }
+
+.quest.item .label {
+  flex: 0 0 auto;
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700; }
+
+.quest.item .item-group {
+  margin-top: 10px; }
+
+.quest.item .maximum, .quest.item .minimum {
+  margin-left: 10px; }
+
+/* ----------------------------------------- */
+/*  Range Styles                             */
+/* ----------------------------------------- */
+.quest.item.range {
+  min-width: 580px;
+  min-height: 440px; }
+  .quest.item.range .range-value {
+    margin-left: 10px; }
+  .quest.item.range .minimum, .quest.item.range .maximum {
+    margin-left: 0px;
+    padding-left: 10px; }
+
+/* ----------------------------------------- */
+/*  Effect Styles                            */
+/* ----------------------------------------- */
+.quest.item.effect {
+  min-width: 460px;
+  min-height: 520px; }
+  .quest.item.effect .label {
+    margin-right: 10px; }
+  .quest.item.effect .item-ranges {
+    padding: 0px 0px 0px 5px;
+    margin-top: -10px; }
+  .quest.item.effect .adder {
+    padding: 10px;
+    line-height: 30px;
+    border: 1px solid #000;
+    list-style: dot;
+    flex: 0 0 30px; }
+  .quest.item.effect .hover {
+    box-shadow: 0px 0px 5px red; }
+  .quest.item.effect .options {
+    text-align: right; }

@@ -8,10 +8,14 @@
  */
 
 // Import Modules
+import { QUEST } from "./config.js";
 import { registerSystemSettings } from "./settings.js";
-import { preloadHandlebarsTemplates } from "./module/templates.js";
-import { CharacterQuest } from "./actor/entity.js";
+import { preloadHandlebarsTemplates } from "./templates.js";
+import { ActorQuest } from "./actor/entity.js";
 import { CharacterSheetQuest } from "./actor/sheets/character.js";
+import { ItemQuest } from "./item/entity.js";
+import { EffectSheetQuest } from "./item/sheets/effect.js";
+import { RangeSheetQuest} from "./item/sheets/range.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -22,12 +26,14 @@ Hooks.once("init", function () {
   
     // Create a Quest namespace within the game global
     game.quest = {
-      CharacterQuest
+      ActorQuest,
+      ItemQuest
     };
   
     // Record Configuration Values
     CONFIG.QUEST = QUEST;
-    CONFIG.Actor.entityClass = CharacterQuest;
+    CONFIG.Actor.entityClass = ActorQuest;
+    CONFIG.Item.entityClass = ItemQuest;
   
     // Register System Settings
     registerSystemSettings();
@@ -35,7 +41,29 @@ Hooks.once("init", function () {
     // Register sheet application classes
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("quest", CharacterSheetQuest, { types: ["character"], makeDefault: true });
+    Items.unregisterSheet("core", ItemSheet);
+    Items.registerSheet("quest", EffectSheetQuest, { types: ["effect"], makeDefault: true});
+    Items.registerSheet("quest", RangeSheetQuest, { types: ["range"], makeDefault: true});
   
     // Preload Handlebars Templates
     preloadHandlebarsTemplates();
   });
+
+/* -------------------------------------------- */
+/*  Foundry VTT Setup                           */
+/* -------------------------------------------- */
+
+/**
+ * This function runs after game data has been requested and loaded from the servers, so entities exist
+ */
+Hooks.once("setup", function() {
+
+  // Localize CONFIG objects once up-front
+  const toLocalize = [];
+  for ( let o of toLocalize ) {
+    CONFIG.QUEST[o] = Object.entries(CONFIG.QUEST[o]).reduce((obj, e) => {
+      obj[e[0]] = game.i18n.localize(e[1]);
+      return obj;
+    }, {});
+  }
+});

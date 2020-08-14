@@ -10,6 +10,15 @@ export class ActorSheetQuest extends ActorSheet {
   }
 
   /* -------------------------------------------- */
+  
+  /** @override */
+  static get defaultOptions() {
+    return mergeObject(super.defaultOptions, {
+      tabs: [{navSelector: ".tabs", contentSelector: ".content", initial: "inventory"}]
+    });
+  }
+
+  /* -------------------------------------------- */
 
   /** @override */
   getData() {
@@ -28,6 +37,7 @@ export class ActorSheetQuest extends ActorSheet {
 
     // The Actor and its Items
     data.actor = duplicate(this.actor.data);
+    data.data = data.actor.data;
 
     // Return data to the sheet
     return data;
@@ -35,7 +45,7 @@ export class ActorSheetQuest extends ActorSheet {
 
   /* -------------------------------------------- */
 
-  /** @override */
+  // /** @override */
   setPosition(options = {}) {
     const position = super.setPosition(options);
     const sheetBody = this.element.find(".sheet-body");

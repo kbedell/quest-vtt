@@ -1,9 +1,23 @@
 /* ----------------------------------------- */
 /*  Sheet Styles                             */
 /* ----------------------------------------- */
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,800');
-$fontFamily: 'Raleway', sans-serif;
+@import url("https://fonts.googleapis.com/css?family=Ovo:400");
+@import url("https://fonts.googleapis.com/css?family=Alegreya+Sans:400,700");
+$fontFamily: "Ovo", sans-serif;
+$fontEmphasis: "Alegreya Sans", sans-serif;
+
+.quest.character, .quest.item {
+  font-family: $fontFamily;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+}
 
 .quest.character {
-    font-family: $fontFamily;
+  // Character Profile image (larger than usual)
+  img.profile {
+    flex: 0 0 150px;
+    max-width: 150px;
+    height: 150px;
+  }
 }

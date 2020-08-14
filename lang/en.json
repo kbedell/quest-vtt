@@ -1,0 +1,15 @@
+{
+    "QUEST.System.Title": "Quest: The Roleplaying Game",
+    "QUEST.System.Description": "A system for playing Quest the roleplaying game in the Foundry VTT environment.",
+
+    "SETTINGS.Quirks": "Quirks",
+    "SETTINGS.Quirks.Description": "Advanced rules for allowing players to select a skill from another class",
+    "SETTINGS.Dualrole": "Dual Role",
+    "SETTINGS.Dualrole.Description": "Advanced rules for allowing players to select from two roles",
+    "SETTINGS.Noroles": "No Roles",
+    "SETTINGS.Noroles.Description": "Advanced rules for allowing players to pick and choose any skill path from any other class.",
+
+    "QUEST.Character.Name": "Name",
+    "QUEST.Inventory": "Inventory",
+    "QUEST.Abilities": "Abilities"
+}

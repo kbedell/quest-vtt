@@ -1,28 +1,36 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
     {{!-- Sheet header --}}
-    <div class="sheet-header flexrow">
+    <div class="sheet-head flexrow">
         <h1>QUEST</h1>
-        <span class="roll-generic"><i class="fas fa-dice-d20"></i></span>
+        <div class="roll-generic"><i class="fas fa-dice-d20"></i></div>
     </div>
-    {{!-- Character Summary --}}
-    <div class="sheet-madlibs flexcol">
-        {{> "systems/quest/templates/actors/parts/actor-madlibs.html" sections="madlibs" }}
+    <div class="sheet-stats flexrow">
+        <label class="label" for="hitpoints.value">HP</label>
+        <input type="number" class="char hp" name="hitpoints.value" value="{{data.hitpoints.value}}"> / {{ data.hitpoints.max }}
+
+        <label class="label" for="hitpoints.value">AP</label>
+        <input type="number" class="char ap" name="actionpoints" value="{{data.actionpoints}}">
     </div>
-    
-    {{!-- Inventory/Spells --}}
-    <div class="sheet-abilities flexcol">
-        <div class="sheet-nav flexrow">
+    {{!-- Character Body --}}
+    <div class="character flexrow flex2">
+        {{!-- Character Summary --}}
+        {{> "systems/quest/templates/actors/parts/actor-madlibs.html" }}
+        
+        {{!-- Inventory/Spells --}}
+        <div class="sheet-abilities flexcol flex1">
             {{!-- NPC Sheet Navigation --}}
             <nav class="sheet-navigation tabs" data-group="primary">
-                <a class="item active" data-tab="inventory">{{localize "QUEST.Inventory"}}</a>
-                <a class="item" data-tab="abilities">{{localize "QUEST.Abilities"}}</a>
+                <a class="item active" data-tab="inventory">{{localize 'QUEST.Inventory'}}</a>
+                <a class="item" data-tab="abilities">{{localize 'QUEST.Abilities'}}</a>
             </nav>
-        </div>
-        <div class="tab inventory" data-group="primary" data-tab="inventory">
-            {{> "systems/quest/templates/actors/parts/actor-inventory.html" sections=inventory  }}
-        </div>
-        <div class="tab abilities" data-group="primary" data-tab="abilities">
-            {{> "systems/quest/templates/actors/parts/actor-abilities.html" sections=abilities  }}
+            <section class="content">
+                <div class="tab inventory flexcol" data-group="primary" data-tab="inventory">
+                    {{> "systems/quest/templates/actors/parts/actor-inventory.html" }}
+                </div>
+                <div class="tab abilities flexcol" data-group="primary" data-tab="abilities">
+                    {{> "systems/quest/templates/actors/parts/actor-abilities.html" }}
+                </div>
+            </section>
         </div>
     </div>
 </form>

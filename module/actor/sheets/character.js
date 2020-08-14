@@ -1,4 +1,4 @@
-import { ActorSheetQuest } from "./base.js";
+import {ActorSheetQuest} from "./base.js";
 
 /**
  * An Actor sheet for player character type actors in the Quest system.
@@ -13,8 +13,8 @@ export class CharacterSheetQuest extends ActorSheetQuest {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["quest", "sheet", "actor", "character"],
-      width: 672,
-      height: 736,
+      width: 830,
+      height: 690
     });
   }
 
@@ -45,15 +45,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     super.activateListeners(html);
     if (!this.options.editable) return;
 
-    html.find('.roll-generic').click(this._rollGeneric(this));
-
-    let handler = ev => this._onDragItemStart(ev);
-    html.find('li.inventory-item').each((i, li) => {
-      li.setAttribute('draggable', true);
-      li.addEventListener("dragstart", handler, false);
-    });
-
-    super.activateListeners(html);
+    html.find('.roll-generic').click(this._rollGeneric.bind(this));
   }
 
   /* -------------------------------------------- */

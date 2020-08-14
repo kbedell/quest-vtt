@@ -6,7 +6,6 @@
         ],
         "templates": {
             "description": {
-                "name": "",
                 "alias": "",
                 "age": "",
                 "height": "",
@@ -28,17 +27,99 @@
             "templates": [
                 "description"
             ],
-            "class": "",
+            "roles": [],
             "hitpoints": {
                 "value": 10,
                 "max": 10
             },
             "actionpoints": 0,
             "inventory": {
-                "contents":[],
+                "contents":[
+                    {
+                        "label": 1,
+                        "value": ""
+                    },
+                    {
+                        "label": 2,
+                        "value": ""
+                    },
+                    {
+                        "label": 3,
+                        "value": ""
+                    },
+                    {
+                        "label": 4,
+                        "value": ""
+                    },
+                    {
+                        "label": 5,
+                        "value": ""
+                    },
+                    {
+                        "label": 6,
+                        "value": ""
+                    },
+                    {
+                        "label": 7,
+                        "value": ""
+                    },
+                    {
+                        "label": 8,
+                        "value": ""
+                    },
+                    {
+                        "label": 9,
+                        "value": ""
+                    },
+                    {
+                        "label": 10,
+                        "value": ""
+                    },
+                    {
+                        "label": 11,
+                        "value": ""
+                    },
+                    {
+                        "label": 12,
+                        "value": ""
+                    }
+                ],
                 "max": 12
             },
             "abilities": []
+        }
+    },
+    "Item":
+    {
+        "types": ["role", "tree", "range", "effect", "ability"],
+        "templates": {
+            "itemDescription": {
+                "value": "",
+                "chat": ""
+            }
+        },
+        "role": {
+            "templates": ["itemDescription"],
+            "trees": []
+        },
+        "tree": {
+            "abilities": []
+        },
+        "range": {
+            "templates": ["itemDescription"],
+            "min": 0,
+            "max": 20
+        },
+        "effect": {
+            "templates": ["itemDescription"],
+            "spellcost": 0,
+            "ranges": []
+        },
+        "ability": {
+            "templates": ["itemDescription"],
+            "legendary": false,
+            "roles": [],
+            "effects": []
         }
     }
 }

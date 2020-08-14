@@ -1,7 +1,9 @@
+import { DiceQuest } from "../dice.js";
+
 /**
  * Extend the base Actor class to implement additional logic specialized for Quest.
  */
-export class CharacterQuest extends Actor {
+export class ActorQuest extends Actor {
     /**
      * Augment the basic actor data with additional dynamic data.
      */
@@ -14,6 +16,24 @@ export class CharacterQuest extends Actor {
         // Prepare based on actor type
         if (actorData.type === "character") this._prepareCharacterData(actorData);
         else if (actorData.type === "npc") this._prepareNPCData(actorData);
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Prepare Character type specific data
+     */
+    _prepareCharacterData(actorData) {
+      const data = actorData.data;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Prepare NPC type specific data
+     */
+    _prepareNPCData(actorData) {
+      const data = actorData.data;
     }
 
     /* -------------------------------------------- */
@@ -45,15 +65,13 @@ export class CharacterQuest extends Actor {
    * Perform a generic roll, rolling a d20
    * @return {Promise<Roll|null>}   A Promise which resolves to the Roll instance
    */
-  async rollGeneric() {
+  async rollGeneric(options={}) {
 
     // Execute the d20 roll dialog
     const speaker = ChatMessage.getSpeaker({actor: this});
-    const roll = await Dice5e.d20Roll({
+    const roll = await DiceQuest.d20Roll({
       event: options.event,
-      parts: parts,
-      data: {saveBonus: parseInt(bonus)},
-      title: `Death Saving Throw`,
+      title: `Tempting the fates:`,
       speaker: speaker,
     });
     if ( !roll ) return null;

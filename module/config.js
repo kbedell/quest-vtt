@@ -1,13 +1,2 @@
-export const registerSystemSettings = function() {
-
-    /**
-     * Track the system version upon which point a migration was last applied
-     */
-    game.settings.register("quest", "systemMigrationVersion", {
-      name: "System Migration Version",
-      scope: "world",
-      config: false,
-      type: Number,
-      default: 0
-    });
-}  
+// Namespace Quest Configuration Values
+export const QUEST = {};

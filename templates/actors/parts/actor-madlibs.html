@@ -1,59 +1,56 @@
-<div class="madlibs flexrow">
-    <p class="madlib-section">
-        Hi, my name is
-        <input name="data.description.name" type="text" value="{{data.description.name}}" placeholder="Name" />
-        (<input name="data.description.alias" type="text" value="{{data.description.alias}}" placeholder="Alias" />).
-    </p>
+<div class="sheet-madlibs flexcol flex1">
+    <div class="madlib-section flexrow">
+        <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
 
-    <p class="madlib-section">
-        I'm
-        <input name="data.description.age" type="text" value="{{data.description.age}}" placeholder="Age" />
-        years old and stand
-        <input name="data.description.height" type="text" value="{{data.description.height}}" placeholder="height" />
-        tall.
-    </p>
-
-    <p class="madlib-section">
-        I'm the party's
-        <input name="data.description.role" type="text" value="{{data.description.role}}" placeholder="Role" />.
-    </p>
-
-    <p class="madlib-section">
+        <div class="madlib-upper flexcol">
+            <div class="madlib-section-upper">
+                Hi, my name is <input name="name" type="text" value="{{actor.name}}" class="char name" placeholder="Name"/> <br/> (<input name="data.description.alias" type="text" class="char alias" value="{{data.description.alias}}" placeholder="Alias" />).
+            </div>
+            <div class="madlib-section-upper">
+                I'm <input name="data.description.age" type="text" class="char age" value="{{data.description.age}}" placeholder="Age" /> years old and stand <input name="data.description.height" type="text" class="char height" value="{{data.description.height}}" placeholder="height" /> tall.
+            </div>
+            <div class="madlib-section-upper">
+                I'm the party's
+                <input name="data.description.role" type="text" class="char role" value="{{data.description.role}}" placeholder="Role" />.
+            </div>
+        </div>
+    </div>
+    <div class="madlib-section-lower">
         When people see me they first notice my
-        <input name="data.description.trait-1" type="text" value="{{data.description.trait-1}}" placeholder="Trait" />,
-        <input name="data.description.trait-2" type="text" value="{{data.description.trait-2}}" placeholder="Trait" />,
+        <input name="data.description.trait-1" type="text" class="char trait" value="{{data.description.trait-1}}" placeholder="Trait" />,
+        <input name="data.description.trait-2" type="text" class="char trait" value="{{data.description.trait-2}}" placeholder="Trait" />,
         and
-        <input name="data.description.trait-3" type="text" value="{{data.description.trait-3}}" placeholder="Trait" />.
-    </p>
+        <input name="data.description.trait-3" type="text" class="char trait" value="{{data.description.trait-3}}" placeholder="Trait" />.
+    </div>
 
-    <p class="madlib-section">
+    <div class="madlib-section-lower">
         I wear
-        <input name="data.description.clothing-1" type="text" value="{{data.description.clothing-1}}"
+        <input name="data.description.clothing-1" type="text" class="char clothing" value="{{data.description.clothing-1}}"
             placeholder="Outfit" />,
-        <input name="data.description.clothing-2" type="text" value="{{data.description.clothing-2}}"
+        <input name="data.description.clothing-2" type="text" class="char clothing" value="{{data.description.clothing-2}}"
             placeholder="Outfit" />, and move with
-        <input name="data.description.movement" type="text" value="{{data.description.movement}}"
+        <input name="data.description.movement" type="text" class="char movement" value="{{data.description.movement}}"
             placeholder="Movement" />.
-    </p>
+    </div>
 
-    <p class="madlib-section">
+    <div class="madlib-section-lower">
         I'm from
-        <input name="data.description.origin" type="text" value="{{data.description.origin}}" placeholder="Origin" />
+        <input name="data.description.origin" type="text" class="char origin" value="{{data.description.origin}}" placeholder="Origin" />
         where my people are known for
-        <input name="data.description.heritage" type="text" value="{{data.description.heritage}}"
+        <input name="data.description.heritage" type="text" class="char heritage" value="{{data.description.heritage}}"
             placeholder="Heritage" />.
-    </p>
+    </div>
 
-    <p class="madlib-section">
+    <div class="madlib-section-lower">
         I believe in
-        <input name="data.description.belief" type="text" value="{{data.description.belief}}" placeholder="Belief" />,
+        <input name="data.description.belief" type="text" class="char belief" value="{{data.description.belief}}" placeholder="Belief" />,
         but my
-        <input name="data.description.flaw" type="text" value="{{data.description.flaw}}" placeholder="Flaw" />
+        <input name="data.description.flaw" type="text" class="char flaw" value="{{data.description.flaw}}" placeholder="Flaw" />
         side can get in my way.
-    </p>
+    </div>
 
-    <p class="madlib-section">
+    <div class="madlib-section-lower">
         I dream of
-        <input name="data.description.dream" type="text" value="{{data.description.dream}}" placeholder="Dream" />
-    </p>
+        <textarea name="data.description.dream" class="char dream" placeholder="Dream">{{data.description.dream}}</textarea>
+    </div>
 </div>

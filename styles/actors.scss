@@ -4,17 +4,137 @@
 @import 'sheet';
 
 /* ----------------------------------------- */
-/*  Inventory Styles                         */
+/*  Character Styles                         */
 /* ----------------------------------------- */
 .quest.character{
+    min-width: 830px;
+    min-height: 690px;
+
+    .quest-sheet > * {
+        flex: 1 100%;
+    }
+
+    .sheet-head, .sheet-stats, .sheet-navigation {
+        flex: 0 0 30px;
+    }
+
+    .sheet-madlibs {
+        flex: 1.75 1 0;
+        order: 1;
+        border-right: 2px groove;
+        padding-right: 5px;
+    }
+
+    .sheet-stats {
+       border-bottom: 2px groove; 
+       margin-bottom: 5px;
+    }
+
+    .label {
+        max-width: fit-content;
+    }
+
+    .hp, .ap {
+        background: none;
+        min-width: 20px;
+        height: 24px;
+        border: 1px solid #7a7971;
+        border-radius: 3px;
+    }
+
+    .sheet-abilities {
+        flex: 1 1 0;
+        order: 2;
+    }
+
     ul {
         .draggable {
             will-change: transform;
             list-style-type: none;
         }
     }
+
+    .madlib-upper {
+        margin-left: 10px;
+    }
+
+    .madlib-lower {
+        margin-top: 5px;
+    }
+
+    .madlib-section {
+        flex: 0 0 150px;
+    }
+
+    .char {
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        padding: 10px;
+    }
+
+    .char.name, .char.alias, .char.clothing, .char.heritage, .char.flaw, .char.movement {
+        width: 65%;
+    }
+
+    .char.age, .char.height, .char.trait, .char.role, .char.clothing {
+        width: 40%;
+    }
+
+    .char.role {
+        width: 95%;
+    }
+
+    .char.belief {
+        width: 80%;
+    }
+
+    .char.origin {
+        width: 55%;
+    }
 }
 
-.over {
-    transform: scale(1.1, 1.1);
+/* ----------------------------------------- */
+/*  Inventory Styles                         */
+/* ----------------------------------------- */
+
+.quest.character .content {
+    ul#inventory-list {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .inventory-item {
+        margin-bottom: 5px;
+
+        :last-child {
+            margin-bottom: 0px;
+        }
+    }
+
+    .inventory-item > .item-slot {
+        flex: 0 0 auto;
+        padding: 5px;
+        border-radius: 50%;
+        background-color: #000;
+        color: #fff;
+        font-weight: 700;
+        margin: 0px 5px 5px 5px;
+        height: 28px;
+        width: 28px;
+        line-height: 18px;
+        text-align: center;
+    }
+
+    .inventory-item > .inventory-value {
+        flex: 0 0 75%;
+    }
+
+    .inventory-item > .item-delete {
+        flex: 0 0 auto;
+        margin: 0px 5px;
+    }
+
+    .sort {
+        text-align: center;
+    }
 }
