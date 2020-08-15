@@ -8,10 +8,25 @@
     </header>
     {{!-- Ability Body --}}
     <div class="ability-body flexcol">
-        <label class="label" for="data.description.value">Description</label>
-        <textarea name="data.description.value" class="description" placeholder="Description">{{data.description.value}}</textarea>
-        <label class="label" for="data.description.chat">Chat Text</label>
-        <textarea name="data.description.chat" class="chat" placeholder="Chat Text">{{data.description.chat}}</textarea>
-        
+        <div class="item-group flexrow">
+            <label class="label" for="data.legendary">Legendary Ability?</label>
+            {{#if data.legendary}}
+                <input type="checkbox" name="data.legendary" value=true checked="">
+            {{else}}
+                <input type="checkbox" name="data.legendary" value=true>
+            {{/if}}
+        </div>
+        <div class="explanation">Drag and drop effects onto "+ Add Effect."</div>
+        <label class="label">Effects</label>
+        <div class="adder"><i class="fas fa-plus"></i> Add Effect</div>
+        <div class="item-group">
+            <ul class="item-effects">
+                {{#each displayEffects as | effect index |}}
+                <li class="effect item flexrow" data-item-id="{{index}}">{{effect.name}} <div class="options"><i
+                            class="fas fa-trash-alt item-delete"></i></div>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
     </div>
 </form>

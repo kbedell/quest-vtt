@@ -1,4 +1,26 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
     {{!-- Tree Header --}}
-        
+    <header class="tree-header">
+        <h1 class="header">
+            <input name="name" class="tree-name" type="text" value="{{item.name}}"
+                placeholder="{{localize 'QUEST.TreeName'}}" />
+        </h1>
+    </header>
+    {{!-- Tree Body --}}
+    <div class="tree-body flexcol">
+        <div class="explanation">Drag and drop abilities onto "+ Add Ability." If your ability does not appear, make sure it is
+            of item type "ability." Also at this time, you may only add an ability once.</div>
+            <div class="explanation">Trees have an order to them. To rearrange the order, drag and drop the abilities to their correct order.</div>
+        <label class="label">Abilities</label>
+        <div class="adder"><i class="fas fa-plus"></i> Add Ability</div>
+        <div class="item-group">
+            <ul class="item-abilities" id="item-abilities">
+                {{#each displayAbilities as | ability |}}
+                <li class="ability item flexrow" data-item-id="{{ability.id}}"><div class="index">{{ ability.order }}</div> {{ability.name}} <div class="options"><i
+                            class="fas fa-trash-alt item-delete"></i></div>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
 </form>

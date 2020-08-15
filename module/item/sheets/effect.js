@@ -10,42 +10,21 @@ export class EffectSheetQuest extends ItemSheetQuest {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       width: 460,
-      height: 520,
+      height: 950,
       classes: ["quest", "sheet", "item", "effect"],
-      resizable: true
+      resizable: true,
     });
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
+  async getData() {
     const data = super.getData();
 
-    data.displayRanges = this._getRanges(data.item);
-    console.log(data);
+    data.displayRanges = await this._getRanges(data.item);
 
     return data;
-  }
-
-  /* -------------------------------------------- */
-  /*  Form Submission                             */
-	/* -------------------------------------------- */
-
-  /** @override */
-  _updateObject(event, formData) {
-
-    // Handle Damage Array
-    let damage = Object.entries(formData).filter(e => e[0].startsWith("data.damage.parts"));
-    formData["data.damage.parts"] = damage.reduce((arr, entry) => {
-      let [i, j] = entry[0].split(".").slice(3);
-      if ( !arr[i] ) arr[i] = [];
-      arr[i][j] = entry[1];
-      return arr;
-    }, []);
-
-    // Update the Item
-    super._updateObject(event, formData);
   }
 
   /* -------------------------------------------- */
@@ -61,6 +40,7 @@ export class EffectSheetQuest extends ItemSheetQuest {
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
+    if (!game.user.isGM) return;
 
     html.find(".item-delete").click(this._onDeleteItem.bind(this));
 
@@ -91,28 +71,33 @@ export class EffectSheetQuest extends ItemSheetQuest {
     let data;
     try {
       data = JSON.parse(event.dataTransfer.getData("text/plain"));
-      let range = game.items.get(data.id);
 
-      // TODO: Account for getting data from compendium
-
-      if (this.item.data.type === "effect" && range.data.type === "range") {
-        let updateData = duplicate(this.item.data);
-
-        if (!updateData.data.ranges.includes(data.id)) {
-          updateData.data.ranges.push(data.id);
+      if (!this.item) return;
+      if (data.pack) {
+        if (this.item.data.type === "effect" && data.pack === "world.ranges") {
+          let updateData = duplicate(this.item.data);
+          updateData.data.ranges.push(data);
           await this.item.update(updateData);
-          event.target.classList.remove("hover");
-          this.render(true);
         }
-        return false;
+      } else {
+        let range = game.items.get(data.id);
+
+        if (this.item.data.type === "effect" && range.data.type === "range") {
+          let updateData = duplicate(this.item.data);
+          updateData.data.ranges.push(data);
+          await this.item.update(updateData);
+        }
       }
+
+      event.target.classList.remove("hover");
+      return false;
+
     } catch (err) {
       console.log("Quest Items | drop error");
       console.log(event.dataTransfer.getData("text/plain"));
       console.log(err);
+      return false;
     }
-
-    return false;
   }
 
   _onDragEnd(event) {
@@ -140,19 +125,24 @@ export class EffectSheetQuest extends ItemSheetQuest {
     return false;
   }
 
-  _getRanges(item) {
+  async _getRanges(item) {
     let ranges = [];
+    let range = {};
 
     for (var i = 0; i < item.data.ranges.length; i++) {
       let newRange = {};
-      let range = game.items.get(item.data.ranges[i]);
+      let rangeId = item.data.ranges[i];
+
+      if (rangeId.pack) {
+        let pack = game.packs.find((p) => p.collection === rangeId.pack);
+        range = await pack.getEntity(rangeId.id);
+      } else {
+        range = game.items.get(rangeId.id);
+      }
 
       newRange = {
         name: range.data.name,
-        description: range.data.data.description.value,
-        min: range.data.data.min,
-        max: range.data.data.max,
-        id: item.data.ranges[i]
+        id: range._id
       };
 
       ranges.push(newRange);
@@ -161,15 +151,14 @@ export class EffectSheetQuest extends ItemSheetQuest {
     return ranges;
   }
 
-  _onDeleteItem(event) {
+  async _onDeleteItem(event) {
     event.preventDefault();
 
     let updateData = duplicate(this.item.data);
-    const rangeId = event.currentTarget.closest(".item").dataset.itemId;
-    const newRanges = updateData.data.ranges.filter(e => e !== rangeId);
+    const rangeId = Number(event.currentTarget.closest(".item").dataset.itemId);
+    updateData.data.ranges.splice(rangeId, 1);
 
-    updateData.data.ranges = newRanges;
-    this.item.update(updateData);
+    await this.item.update(updateData);
     this.render(true);
     return false;
   }

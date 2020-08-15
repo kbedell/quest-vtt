@@ -19,13 +19,13 @@
         <input name="data.spellcost" type="number" class="cost" placeholder="0" value="{{data.spellcost}}">
     </div>
     <div class="explanation">Drag and drop ranges onto "+ Add Range." If your range does not appear, make sure it is of
-        item type "range." Also at this time, you may only add a range once.</div>
+        item type "range."</div>
     <label class="label" for="data.ranges">Ranges</label>
     <div class="adder"><i class="fas fa-plus"></i> Add Range</div>
     <div class="item-group">
         <ul class="item-ranges">
-            {{#each displayRanges as | range |}}
-            <li class="range item flexrow" data-item-id="{{range.id}}">{{range.name}} <div class="options"><i class="fas fa-trash-alt item-delete"></i></div>
+            {{#each displayRanges as | range index |}}
+            <li class="range item flexrow" data-item-id="{{index}}">{{range.name}} <div class="options"><i class="fas fa-trash-alt item-delete"></i></div>
             </li>
             {{/each}}
         </ul>

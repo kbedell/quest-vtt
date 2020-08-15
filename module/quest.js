@@ -14,8 +14,10 @@ import { preloadHandlebarsTemplates } from "./templates.js";
 import { ActorQuest } from "./actor/entity.js";
 import { CharacterSheetQuest } from "./actor/sheets/character.js";
 import { ItemQuest } from "./item/entity.js";
-import { EffectSheetQuest } from "./item/sheets/effect.js";
 import { RangeSheetQuest} from "./item/sheets/range.js";
+import { EffectSheetQuest } from "./item/sheets/effect.js";
+import { AbilitySheetQuest} from "./item/sheets/ability.js";
+import { TreeSheetQuest} from "./item/sheets/tree.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -42,8 +44,10 @@ Hooks.once("init", function () {
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("quest", CharacterSheetQuest, { types: ["character"], makeDefault: true });
     Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("quest", EffectSheetQuest, { types: ["effect"], makeDefault: true});
     Items.registerSheet("quest", RangeSheetQuest, { types: ["range"], makeDefault: true});
+    Items.registerSheet("quest", EffectSheetQuest, { types: ["effect"], makeDefault: true});
+    Items.registerSheet("quest", AbilitySheetQuest, { types: ["ability"], makeDefault: true });
+    Items.registerSheet("quest", TreeSheetQuest, { types: ["tree"], makeDefault: true });
   
     // Preload Handlebars Templates
     preloadHandlebarsTemplates();

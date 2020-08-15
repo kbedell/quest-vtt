@@ -116,9 +116,7 @@
             "ranges": []
         },
         "ability": {
-            "templates": ["itemDescription"],
             "legendary": false,
-            "roles": [],
             "effects": []
         }
     }
