@@ -25,6 +25,28 @@ export class ActorQuest extends Actor {
      */
     _prepareCharacterData(actorData) {
       const data = actorData.data;
+
+      data.charroles = false;
+      data.quirk = false;
+      data.norole = false;
+
+      let abilityMode = game.settings.get("quest","abilityMode");
+
+      switch (abilityMode) {
+        case "quirks":
+          data.charroles = true;
+          data.quirk = true;
+          break;
+        case "dual-roles": 
+          data.charroles = true;
+          break;
+        case "no-roles": 
+          data.norole = true;
+          break;
+        default:
+          data.charroles = true;
+          break;
+      }
     }
 
     /* -------------------------------------------- */

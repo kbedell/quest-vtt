@@ -1,0 +1,13 @@
+<form class="roles" autocomplete="off" onsubmit="event.preventDefault();">
+    <ul class="role-list">
+        {{#each choices as |choice|}}
+        <li>
+            <label class="checkbox" for="{{choice.id}}">
+                <input type="checkbox" name="{{choice.id}}" value="{{choice.id}}" {{checked choice.chosen}}>
+                {{choice.label}}
+            </label>
+        </li>
+        {{/each}}
+    </ul>
+    <button type="submit" name="submit" value="1"><i class="far fa-save"></i> {{ localize "QUEST.Save"}}</button>
+</form>

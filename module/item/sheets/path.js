@@ -1,17 +1,17 @@
 import { ItemSheetQuest } from "./base.js";
 
 /**
- * An Item sheet for tree type items in the Quest system.
+ * An Item sheet for path type items in the Quest system.
  * Extends the base ItemSheetQuest class.
  * @type {ItemSheetQuest}
  */
-export class TreeSheetQuest extends ItemSheetQuest {
+export class PathSheetQuest extends ItemSheetQuest {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       width: 580,
       height: 440,
-      classes: ["quest", "sheet", "item", "tree"],
+      classes: ["quest", "sheet", "item", "path"],
       resizable: true,
     });
   }
@@ -126,7 +126,7 @@ export class TreeSheetQuest extends ItemSheetQuest {
 
         if (data.pack) {
           if (
-            this.item.data.type === "tree" &&
+            this.item.data.type === "path" &&
             data.pack === "world.abilities"
           ) {
             let updateData = duplicate(this.item.data);
@@ -137,7 +137,7 @@ export class TreeSheetQuest extends ItemSheetQuest {
           let ability = game.items.get(data.id);
 
           if (
-            this.item.data.type === "tree" &&
+            this.item.data.type === "path" &&
             ability.data.type === "ability"
           ) {
             let updateData = duplicate(this.item.data);

@@ -1,16 +1,16 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-    {{!-- Tree Header --}}
-    <header class="tree-header">
+    {{!-- Path Header --}}
+    <header class="path-header">
         <h1 class="header">
-            <input name="name" class="tree-name" type="text" value="{{item.name}}"
-                placeholder="{{localize 'QUEST.TreeName'}}" />
+            <input name="name" class="path-name" type="text" value="{{item.name}}"
+                placeholder="{{localize 'QUEST.PathName'}}" />
         </h1>
     </header>
-    {{!-- Tree Body --}}
-    <div class="tree-body flexcol">
+    {{!-- Path Body --}}
+    <div class="path-body flexcol">
         <div class="explanation">Drag and drop abilities onto "+ Add Ability." If your ability does not appear, make sure it is
             of item type "ability."</div>
-            <div class="explanation">Trees have an order to them. To rearrange the order, drag and drop the abilities to their correct order.</div>
+            <div class="explanation">Paths have an order to them. To rearrange the order, drag and drop the abilities to their correct order.</div>
         <label class="label">Abilities</label>
         <div class="adder"><i class="fas fa-plus"></i> Add Ability</div>
         <div class="item-group">

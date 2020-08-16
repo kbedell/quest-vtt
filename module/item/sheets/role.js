@@ -22,7 +22,7 @@ export class RoleSheetQuest extends ItemSheetQuest {
   async getData() {
     const data = super.getData();
 
-    data.displayTrees = await this._getTrees(data.item);
+    data.displayPaths = await this._getPaths(data.item);
 
     return data;
   }
@@ -74,17 +74,17 @@ export class RoleSheetQuest extends ItemSheetQuest {
 
       if (!this.item) return;
       if (data.pack) {
-        if (this.item.data.type === "role" && data.pack === "world.trees") {
+        if (this.item.data.type === "role" && data.pack === "world.paths") {
           let updateData = duplicate(this.item.data);
-          updateData.data.trees.push(data);
+          updateData.data.paths.push(data);
           await this.item.update(updateData);
         }
       } else {
-        let tree = game.items.get(data.id);
+        let path = game.items.get(data.id);
 
-        if (this.item.data.type === "role" && tree.data.type === "tree") {
+        if (this.item.data.type === "role" && path.data.type === "path") {
           let updateData = duplicate(this.item.data);
-          updateData.data.trees.push(data);
+          updateData.data.paths.push(data);
           await this.item.update(updateData);
         }
       }
@@ -125,38 +125,38 @@ export class RoleSheetQuest extends ItemSheetQuest {
     return false;
   }
 
-  async _getTrees(item) {
-    let trees = [];
-    let tree = {};
+  async _getPaths(item) {
+    let paths = [];
+    let path = {};
 
-    for (var i = 0; i < item.data.trees.length; i++) {
+    for (var i = 0; i < item.data.paths.length; i++) {
       let newRange = {};
-      let treeId = item.data.trees[i];
+      let pathId = item.data.paths[i];
 
-      if (treeId.pack) {
-        let pack = game.packs.find((p) => p.collection === treeId.pack);
-        tree = await pack.getEntity(treeId.id);
+      if (pathId.pack) {
+        let pack = game.packs.find((p) => p.collection === pathId.pack);
+        path = await pack.getEntity(pathId.id);
       } else {
-        tree = game.items.get(treeId.id);
+        path = game.items.get(pathId.id);
       }
 
       newRange = {
-        name: tree.data.name,
-        id: tree._id
+        name: path.data.name,
+        id: path._id
       };
 
-      trees.push(newRange);
+      paths.push(newRange);
     }
 
-    return trees;
+    return paths;
   }
 
   async _onDeleteItem(event) {
     event.preventDefault();
 
     let updateData = duplicate(this.item.data);
-    const treeId = Number(event.currentTarget.closest(".item").dataset.itemId);
-    updateData.data.trees.splice(treeId, 1);
+    const pathId = Number(event.currentTarget.closest(".item").dataset.itemId);
+    updateData.data.paths.splice(pathId, 1);
 
     await this.item.update(updateData);
     this.render(true);

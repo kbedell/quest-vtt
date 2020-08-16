@@ -18,7 +18,7 @@ export const registerSystemSettings = function () {
     default: "default",
     type: String,
     choices: {
-      "roles": "SETTINGS.Roles",
+      "single-role": "SETTINGS.Roles",
       "quirks": "SETTINGS.Quirks",
       "dual-roles": "SETTINGS.DualRoles",
       "no-roles": "SETTINGS.NoRoles"

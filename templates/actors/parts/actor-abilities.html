@@ -1,0 +1,24 @@
+<div class="abilities-section flexcol">
+    {{#if data.charroles}}
+    <div class="role-selector">
+        <label class="label" for="world.roles">Role(s)</label>
+        <div class="adder"><i class="fas fa-plus"></i> Add Role</div>
+        <div class="item-group">
+            <ul class="item-roles">
+                {{#each displayRole as | role |}}
+                <li class="effect item flexrow" data-item-id="{{role.id}}">{{role.name}} <div class="options"><i
+                            class="fas fa-trash-alt item-delete"></i></div>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    {{/if}}
+    <div class="ability-selector">
+        <label class="label" for="world.abilities">Abilities</label>
+        <div class="adder"><i class="fas fa-plus"></i> Add Abilitiy</div>
+        {{#if quirk}}
+            <label class="label">Quirk</label>
+        {{/if}}
+    </div>
+</div>

@@ -17,7 +17,7 @@ import { ItemQuest } from "./item/entity.js";
 import { RangeSheetQuest} from "./item/sheets/range.js";
 import { EffectSheetQuest } from "./item/sheets/effect.js";
 import { AbilitySheetQuest } from "./item/sheets/ability.js";
-import { TreeSheetQuest} from "./item/sheets/tree.js";
+import { PathSheetQuest} from "./item/sheets/path.js";
 import { RoleSheetQuest } from "./item/sheets/role.js";
 
 /* -------------------------------------------- */
@@ -48,7 +48,7 @@ Hooks.once("init", function () {
     Items.registerSheet("quest", RangeSheetQuest, { types: ["range"], makeDefault: true});
     Items.registerSheet("quest", EffectSheetQuest, { types: ["effect"], makeDefault: true});
     Items.registerSheet("quest", AbilitySheetQuest, { types: ["ability"], makeDefault: true });
-    Items.registerSheet("quest", TreeSheetQuest, { types: ["tree"], makeDefault: true });
+    Items.registerSheet("quest", PathSheetQuest, { types: ["path"], makeDefault: true });
     Items.registerSheet("quest", RoleSheetQuest, { types: ["role"], makeDefault: true });
   
     // Preload Handlebars Templates

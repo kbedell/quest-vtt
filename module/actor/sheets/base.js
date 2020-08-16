@@ -32,7 +32,7 @@ export class ActorSheetQuest extends ActorSheet {
       cssClass: isOwner ? "editable" : "locked",
       isCharacter: this.entity.data.type === "character",
       isNPC: this.entity.data.type === "npc",
-      config: CONFIG.BITD,
+      config: CONFIG.QUEST,
     };
 
     // The Actor and its Items

@@ -152,14 +152,14 @@
 }
 
 /* ----------------------------------------- */
-/*  Tree Styles                              */
+/*  Path Styles                              */
 /* ----------------------------------------- */
 
-.quest.item.tree {
+.quest.item.path {
   min-width: 460px;
   min-height: 520px;
 
-  .tree-header {
+  .path-header {
     flex: 0 0 auto;
   }
 
@@ -203,7 +203,7 @@
     margin-right: 10px;
   }
 
-  ul.item-trees {
+  ul.item-paths {
     padding: 0px 0px 0px 0px;
   }
 
@@ -215,7 +215,7 @@
     flex: 0 0 auto;
   }
 
-  .tree {
+  .path {
     padding: 0.5rem;
     margin-top: 0.5rem;
     border: 1px solid black;

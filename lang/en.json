@@ -11,5 +11,7 @@
     
     "QUEST.Character.Name": "Name",
     "QUEST.Inventory": "Inventory",
-    "QUEST.Abilities": "Abilities"
+    "QUEST.Abilities": "Abilities",
+
+    "QUEST.Save": "Save"
 }

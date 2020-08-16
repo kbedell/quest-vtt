@@ -91,7 +91,7 @@
     },
     "Item":
     {
-        "types": ["role", "tree", "range", "effect", "ability"],
+        "types": ["role", "path", "range", "effect", "ability"],
         "templates": {
             "itemDescription": {
                 "value": "",
@@ -100,9 +100,9 @@
         },
         "role": {
             "templates": ["itemDescription"],
-            "trees": []
+            "paths": []
         },
-        "tree": {
+        "path": {
             "abilities": []
         },
         "range": {

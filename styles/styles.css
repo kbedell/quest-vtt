@@ -13,7 +13,7 @@
 @import url("https://fonts.googleapis.com/css?family=Alegreya+Sans:400,700");
 .quest.character, .quest.item {
   font-family: "Ovo", sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   line-height: 30px; }
 
@@ -122,6 +122,31 @@
   text-align: center; }
 
 /* ----------------------------------------- */
+/*  Ability Styles                           */
+/* ----------------------------------------- */
+.quest.character .content .abilities {
+  margin-left: 10px; }
+
+/* ----------------------------------------- */
+/*  Role App Styles                          */
+/* ----------------------------------------- */
+.app.quest .roles {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 30px; }
+
+.app.quest label.checkbox {
+  font-size: 1rem; }
+
+.app.quest .role-list {
+  list-style: none;
+  padding: 0px; }
+
+.app.quest .checkbox {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700; }
+
+/* ----------------------------------------- */
 /*  Item Styles                              */
 /* ----------------------------------------- */
 /* ----------------------------------------- */
@@ -129,7 +154,7 @@
 /* ----------------------------------------- */
 .quest.character, .quest.item {
   font-family: "Ovo", sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   line-height: 30px; }
 
@@ -243,25 +268,25 @@
     text-align: right; }
 
 /* ----------------------------------------- */
-/*  Tree Styles                              */
+/*  Path Styles                              */
 /* ----------------------------------------- */
-.quest.item.tree {
+.quest.item.path {
   min-width: 460px;
   min-height: 520px; }
-  .quest.item.tree .tree-header {
+  .quest.item.path .path-header {
     flex: 0 0 auto; }
-  .quest.item.tree .label {
+  .quest.item.path .label {
     margin-right: 10px; }
-  .quest.item.tree ul.item-abilities {
+  .quest.item.path ul.item-abilities {
     padding: 0px 0px 0px 0px; }
-  .quest.item.tree .options {
+  .quest.item.path .options {
     text-align: right; }
-  .quest.item.tree .ability {
+  .quest.item.path .ability {
     padding: 0.5rem;
     margin: 0.25rem;
     border: 1px solid black;
     cursor: move; }
-  .quest.item.tree .ability.dragging {
+  .quest.item.path .ability.dragging {
     opacity: 0.5; }
 
 /* ----------------------------------------- */
@@ -274,13 +299,13 @@
     flex: 0 0 auto; }
   .quest.item.role .label {
     margin-right: 10px; }
-  .quest.item.role ul.item-trees {
+  .quest.item.role ul.item-paths {
     padding: 0px 0px 0px 0px; }
   .quest.item.role .options {
     text-align: right; }
   .quest.item.role .description, .quest.item.role .chat {
     flex: 0 0 auto; }
-  .quest.item.role .tree {
+  .quest.item.role .path {
     padding: 0.5rem;
     margin-top: 0.5rem;
     border: 1px solid black; }

@@ -157,3 +157,38 @@
         text-align: center;
     }
 }
+
+/* ----------------------------------------- */
+/*  Ability Styles                           */
+/* ----------------------------------------- */
+
+.quest.character .content {
+    .abilities {
+        margin-left: 10px;
+    }
+}
+
+/* ----------------------------------------- */
+/*  Role App Styles                          */
+/* ----------------------------------------- */
+.app.quest {
+    .roles {
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 30px;
+    }
+
+    label.checkbox {
+        font-size: 1rem;
+    }
+
+    .role-list {
+        list-style: none;
+        padding: 0px;
+    }
+
+    .checkbox {
+        font-family: $fontEmphasis;
+        font-weight: 700;
+    }
+}

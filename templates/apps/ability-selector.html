@@ -1,0 +1,19 @@
+<form class="roles" autocomplete="off" onsubmit="event.preventDefault();">
+    <div class="ability-list">
+        {{#each choices as |path|}}
+        <div class="paths">
+            <label class="label">{{path.name}}</label>
+            <ul>
+            {{#each path.abilities as |ability|}}
+            <li>
+                <label class="checkbox" for="{{ability.id}}">
+                    <input type="checkbox" name="{{ability.id}}" value="{{ability.id}}" {{checked ability.chosen}}>
+                    {{ability.name}}
+                </label>
+            </li>
+            {{/each}}
+        </ul>
+        </div>
+        {{/each}}
+    </div>
+</form>
