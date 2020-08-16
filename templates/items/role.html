@@ -1,0 +1,28 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+    {{!-- Role Header --}}
+    <header class="role-header">
+        <h1 class="header">
+            <input name="name" class="item-header item-name" type="text" value="{{item.name}}"
+                placeholder="{{localize 'Name'}}" />
+        </h1>
+    </header>
+    <div class="explanation">Roles are the class archetypes of Quest.</div>
+    {{!-- Role Body --}}
+    <label class="label" for="data.description.value">Description</label>
+    <textarea name="data.description.value" class="description"
+        placeholder="Description">{{data.description.value}}</textarea>
+    <label class="label" for="data.description.chat">Chat Text</label>
+    <textarea name="data.description.chat" class="chat" placeholder="Chat Text">{{data.description.chat}}</textarea>
+    <div class="explanation">Drag and drop trees onto "+ Add Tree." If your tree does not appear, make sure it is of
+        item type "tree."</div>
+    <label class="label" for="data.trees">Trees</label>
+    <div class="adder"><i class="fas fa-plus"></i> Add Tree</div>
+    <div class="item-group">
+        <ul class="item-trees">
+            {{#each displayTrees as | tree index |}}
+            <li class="tree item flexrow" data-item-id="{{index}}">{{tree.name}} <div class="options"><i class="fas fa-trash-alt item-delete"></i></div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</form>

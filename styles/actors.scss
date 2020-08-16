@@ -72,24 +72,43 @@
         padding: 10px;
     }
 
-    .char.name, .char.alias, .char.clothing, .char.heritage, .char.flaw, .char.movement {
+    .char.name, .char.pronouns, .char.heritage, .char.flaw, .char.movement, .char.community {
         width: 65%;
     }
 
-    .char.age, .char.height, .char.trait, .char.role, .char.clothing {
+    .char.age, .char.height, .char.feature, .char.role, .char.style {
         width: 40%;
     }
 
     .char.role {
-        width: 95%;
+        width: 65%;
     }
 
-    .char.belief {
+    .char.ideal {
         width: 80%;
     }
 
-    .char.origin {
+    .char.home {
         width: 55%;
+    }
+
+    .roll-generic {
+        flex: 0 0 auto;
+
+        :hover {
+            color: red;
+        }
+    }
+
+    .label {
+        flex: 0 0 auto;
+        margin-right: 10px;
+        font-family: $fontEmphasis;
+        font-weight: 700;
+    }
+
+    .label.actionpoints {
+        margin-left: 10px;
     }
 }
 

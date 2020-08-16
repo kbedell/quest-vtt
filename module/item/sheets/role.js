@@ -5,13 +5,13 @@ import { ItemSheetQuest } from "./base.js";
  * Extends the base ItemSheetQuest class.
  * @type {ItemSheetQuest}
  */
-export class EffectSheetQuest extends ItemSheetQuest {
+export class RoleSheetQuest extends ItemSheetQuest {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       width: 460,
-      height: 600,
-      classes: ["quest", "sheet", "item", "effect"],
+      height: 440,
+      classes: ["quest", "sheet", "item", "role"],
       resizable: true,
     });
   }
@@ -22,7 +22,7 @@ export class EffectSheetQuest extends ItemSheetQuest {
   async getData() {
     const data = super.getData();
 
-    data.displayRanges = await this._getRanges(data.item);
+    data.displayTrees = await this._getTrees(data.item);
 
     return data;
   }
@@ -74,17 +74,17 @@ export class EffectSheetQuest extends ItemSheetQuest {
 
       if (!this.item) return;
       if (data.pack) {
-        if (this.item.data.type === "effect" && data.pack === "world.ranges") {
+        if (this.item.data.type === "role" && data.pack === "world.trees") {
           let updateData = duplicate(this.item.data);
-          updateData.data.ranges.push(data);
+          updateData.data.trees.push(data);
           await this.item.update(updateData);
         }
       } else {
-        let range = game.items.get(data.id);
+        let tree = game.items.get(data.id);
 
-        if (this.item.data.type === "effect" && range.data.type === "range") {
+        if (this.item.data.type === "role" && tree.data.type === "tree") {
           let updateData = duplicate(this.item.data);
-          updateData.data.ranges.push(data);
+          updateData.data.trees.push(data);
           await this.item.update(updateData);
         }
       }
@@ -125,38 +125,38 @@ export class EffectSheetQuest extends ItemSheetQuest {
     return false;
   }
 
-  async _getRanges(item) {
-    let ranges = [];
-    let range = {};
+  async _getTrees(item) {
+    let trees = [];
+    let tree = {};
 
-    for (var i = 0; i < item.data.ranges.length; i++) {
+    for (var i = 0; i < item.data.trees.length; i++) {
       let newRange = {};
-      let rangeId = item.data.ranges[i];
+      let treeId = item.data.trees[i];
 
-      if (rangeId.pack) {
-        let pack = game.packs.find((p) => p.collection === rangeId.pack);
-        range = await pack.getEntity(rangeId.id);
+      if (treeId.pack) {
+        let pack = game.packs.find((p) => p.collection === treeId.pack);
+        tree = await pack.getEntity(treeId.id);
       } else {
-        range = game.items.get(rangeId.id);
+        tree = game.items.get(treeId.id);
       }
 
       newRange = {
-        name: range.data.name,
-        id: range._id
+        name: tree.data.name,
+        id: tree._id
       };
 
-      ranges.push(newRange);
+      trees.push(newRange);
     }
 
-    return ranges;
+    return trees;
   }
 
   async _onDeleteItem(event) {
     event.preventDefault();
 
     let updateData = duplicate(this.item.data);
-    const rangeId = Number(event.currentTarget.closest(".item").dataset.itemId);
-    updateData.data.ranges.splice(rangeId, 1);
+    const treeId = Number(event.currentTarget.closest(".item").dataset.itemId);
+    updateData.data.trees.splice(treeId, 1);
 
     await this.item.update(updateData);
     this.render(true);

@@ -2,13 +2,13 @@
     "QUEST.System.Title": "Quest: The Roleplaying Game",
     "QUEST.System.Description": "A system for playing Quest the roleplaying game in the Foundry VTT environment.",
 
+    "SETTINGS.AbilitySelection": "Ability Selection Type",
+    "SETTINGS.AbilitySelectionHint": "Change how players can select abilities. Single Role is the default mode, allowing for each player to have one role. Quirks allows for a single role, as well as one ability from any other role. Dual Roles allow for the selection of two roles, and No Roles means players can select from any ability path. (No Roles still requires players to select abilities in the correct path order.",
+    "SETTINGS.Roles": "Single Role",
     "SETTINGS.Quirks": "Quirks",
-    "SETTINGS.Quirks.Description": "Advanced rules for allowing players to select a skill from another class",
-    "SETTINGS.Dualrole": "Dual Role",
-    "SETTINGS.Dualrole.Description": "Advanced rules for allowing players to select from two roles",
-    "SETTINGS.Noroles": "No Roles",
-    "SETTINGS.Noroles.Description": "Advanced rules for allowing players to pick and choose any skill path from any other class.",
-
+    "SETTINGS.DualRoles": "Dual Roles",
+    "SETTINGS.NoRoles": "No Roles",
+    
     "QUEST.Character.Name": "Name",
     "QUEST.Inventory": "Inventory",
     "QUEST.Abilities": "Abilities"

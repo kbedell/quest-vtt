@@ -64,16 +64,27 @@
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 700;
     padding: 10px; }
-  .quest.character .char.name, .quest.character .char.alias, .quest.character .char.clothing, .quest.character .char.heritage, .quest.character .char.flaw, .quest.character .char.movement {
+  .quest.character .char.name, .quest.character .char.pronouns, .quest.character .char.heritage, .quest.character .char.flaw, .quest.character .char.movement, .quest.character .char.community {
     width: 65%; }
-  .quest.character .char.age, .quest.character .char.height, .quest.character .char.trait, .quest.character .char.role, .quest.character .char.clothing {
+  .quest.character .char.age, .quest.character .char.height, .quest.character .char.feature, .quest.character .char.role, .quest.character .char.style {
     width: 40%; }
   .quest.character .char.role {
-    width: 95%; }
-  .quest.character .char.belief {
+    width: 65%; }
+  .quest.character .char.ideal {
     width: 80%; }
-  .quest.character .char.origin {
+  .quest.character .char.home {
     width: 55%; }
+  .quest.character .roll-generic {
+    flex: 0 0 auto; }
+    .quest.character .roll-generic :hover {
+      color: red; }
+  .quest.character .label {
+    flex: 0 0 auto;
+    margin-right: 10px;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700; }
+  .quest.character .label.actionpoints {
+    margin-left: 10px; }
 
 /* ----------------------------------------- */
 /*  Inventory Styles                         */
@@ -190,16 +201,18 @@
 /* ----------------------------------------- */
 .quest.item.effect {
   min-width: 460px;
-  min-height: 950px; }
+  min-height: 600px; }
   .quest.item.effect .label {
     margin-right: 10px; }
   .quest.item.effect .item-ranges {
-    padding: 0px 0px 0px 5px;
+    padding: 0px 0px 0px 0px;
     margin-top: -10px; }
   .quest.item.effect .options {
     padding: 0.5rem;
     margin: 0.25rem;
     border: 1px solid black; }
+  .quest.item.effect .description, .quest.item.effect .chat {
+    flex: 0 0 auto; }
 
 /* ----------------------------------------- */
 /*  Ability Styles                           */
@@ -211,8 +224,8 @@
     flex: 0 0 auto; }
   .quest.item.ability .label {
     margin-right: 10px; }
-  .quest.item.ability .item-effects {
-    padding: 0px 0px 0px 5px;
+  .quest.item.ability ul.item-effects {
+    padding: 0px 0px 0px 0px;
     margin-top: -10px; }
   .quest.item.ability .adder {
     padding: 10px;
@@ -222,7 +235,7 @@
     flex: 0 0 30px; }
   .quest.item.ability .effect {
     padding: 0.5rem;
-    margin: 0.25rem;
+    margin-top: 0.5rem;
     border: 1px solid black; }
   .quest.item.ability .hover {
     box-shadow: 0px 0px 5px red; }
@@ -230,7 +243,7 @@
     text-align: right; }
 
 /* ----------------------------------------- */
-/*  Ability Styles                           */
+/*  Tree Styles                              */
 /* ----------------------------------------- */
 .quest.item.tree {
   min-width: 460px;
@@ -250,3 +263,24 @@
     cursor: move; }
   .quest.item.tree .ability.dragging {
     opacity: 0.5; }
+
+/* ----------------------------------------- */
+/*  Role Styles                           */
+/* ----------------------------------------- */
+.quest.item.role {
+  min-width: 460px;
+  min-height: 520px; }
+  .quest.item.role .role-header {
+    flex: 0 0 auto; }
+  .quest.item.role .label {
+    margin-right: 10px; }
+  .quest.item.role ul.item-trees {
+    padding: 0px 0px 0px 0px; }
+  .quest.item.role .options {
+    text-align: right; }
+  .quest.item.role .description, .quest.item.role .chat {
+    flex: 0 0 auto; }
+  .quest.item.role .tree {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border: 1px solid black; }

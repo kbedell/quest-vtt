@@ -85,14 +85,14 @@
 
 .quest.item.effect {
   min-width: 460px;
-  min-height: 950px;
+  min-height: 600px;
 
   .label {
     margin-right: 10px;
   }
 
   .item-ranges {
-    padding: 0px 0px 0px 5px;
+    padding: 0px 0px 0px 0px;
     margin-top: -10px;
   }
 
@@ -100,6 +100,10 @@
     padding: 0.5rem;
     margin: 0.25rem;
     border: 1px solid black;
+  }
+
+  .description, .chat {
+    flex: 0 0 auto;
   }
 }
 
@@ -119,8 +123,8 @@
     margin-right: 10px;
   }
 
-  .item-effects {
-    padding: 0px 0px 0px 5px;
+  ul.item-effects {
+    padding: 0px 0px 0px 0px;
     margin-top: -10px;
   }
 
@@ -134,7 +138,7 @@
 
   .effect {
     padding: 0.5rem;
-    margin: 0.25rem;
+    margin-top: 0.5rem;
     border: 1px solid black;
   }
 
@@ -148,7 +152,7 @@
 }
 
 /* ----------------------------------------- */
-/*  Ability Styles                           */
+/*  Tree Styles                              */
 /* ----------------------------------------- */
 
 .quest.item.tree {
@@ -180,5 +184,40 @@
 
   .ability.dragging {
     opacity: 0.5;
+  }
+}
+
+/* ----------------------------------------- */
+/*  Role Styles                           */
+/* ----------------------------------------- */
+
+.quest.item.role {
+  min-width: 460px;
+  min-height: 520px;
+
+  .role-header {
+    flex: 0 0 auto;
+  }
+
+  .label {
+    margin-right: 10px;
+  }
+
+  ul.item-trees {
+    padding: 0px 0px 0px 0px;
+  }
+
+  .options {
+    text-align: right;
+  }
+
+  .description, .chat {
+    flex: 0 0 auto;
+  }
+
+  .tree {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border: 1px solid black;
   }
 }

@@ -6,19 +6,19 @@
         ],
         "templates": {
             "description": {
-                "alias": "",
+                "pronouns": "",
                 "age": "",
                 "height": "",
                 "role": "",
-                "trait-1": "",
-                "trait-2": "",
-                "trait-3": "",
-                "clothing-1": "",
-                "clothing-2": "",
+                "feature-1": "",
+                "feature-2": "",
+                "feature-3": "",
+                "style-1": "",
+                "style-2": "",
                 "movement": "",
-                "origin": "",
-                "heritage": "",
-                "belief": "",
+                "home": "",
+                "community": "",
+                "ideal": "",
                 "flaw": "",
                 "dream": ""
             }
