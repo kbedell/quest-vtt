@@ -1,3 +1,5 @@
+import { getItem } from "../quest-helpers.js";
+
 /**
  * A specialized form used to select role(s)
  * @extends {FormApplication}
@@ -36,11 +38,6 @@ export class RoleSelector extends FormApplication {
   getData() {
     // Get current values
     let roles = this.object.data.data.roles || [];
-    let list = [];
-
-    for (let i = 0; i < roles.length; i++) {
-      list.push(roles[i]._id);
-    }
 
     // Populate choices
     const choices = duplicate(this.options.choices);
@@ -49,7 +46,7 @@ export class RoleSelector extends FormApplication {
       choices[k] = {
         label: v.name,
         id: v._id,
-        chosen: list ? list.includes(v._id) : false
+        chosen: roles ? roles.includes(v._id) : false
       }
     }
 
@@ -64,20 +61,14 @@ export class RoleSelector extends FormApplication {
   /** @override */
   async _updateObject(event, formData) {
     const updateData = {};
-    const pack = game.packs.find((p) => p.collection === "world.roles");
     let role = {};
 
     // Obtain choices
     const chosen = [];
     for (let [k, v] of Object.entries(formData)) {
       if (v) {
-        if (pack && v) {
-          role = await pack.getEntity(k);
-        } else if (v) {
-          role = game.items.get(k);
-        }
-
-        chosen.push(role.data);
+        role = await getItem(k, "role");
+        chosen.push(role._id);
       }
     }
     

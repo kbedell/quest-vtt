@@ -24,16 +24,18 @@ export async function getItem(itemId, type) {
 
     if (pack) {
         item = await pack.getEntity(itemId);
-    } else {
-        const gameItems = game.items.entities;
 
-        for (let i = 0; i < gameItems.length; i++) {
-            if (gameItems[i].data._id === itemId) {
-                item = gameItems[i].data;
+        if (!item) {
+            const gameItems = game.items.entities;
+
+            for (let i = 0; i < gameItems.length; i++) {
+                if (gameItems[i].data._id === itemId) {
+                    item = gameItems[i].data;
+                }
             }
         }
     }
-
+    
     return item;
 }
 

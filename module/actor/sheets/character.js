@@ -2,6 +2,7 @@ import { ActorSheetQuest } from "./base.js";
 import { RoleSelector } from "../../apps/role-selector.js";
 import { AbilitySelector } from "../../apps/ability-selector.js";
 import { getItem } from "../../quest-helpers.js";
+import { getAllItems } from "../../quest-helpers.js";
 
 /**
  * An Actor sheet for player character type actors in the Quest system.
@@ -19,6 +20,17 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       width: 830,
       height: 690,
     });
+  }
+
+  /* -------------------------------------------- */
+
+  /** @override */
+  async getData() {
+    const sheetdata = super.getData();
+
+    sheetdata.displayRoles = await this._getRoles(sheetdata.data.roles);
+
+    return sheetdata;
   }
 
   /* -------------------------------------------- */
@@ -170,16 +182,15 @@ export class CharacterSheetQuest extends ActorSheetQuest {
   async _onRolesSelector(event) {
     event.preventDefault();
     const a = event.currentTarget;
-    const label = a.parentElement.querySelector("label");
     let abilities = [];
     let finalabilities = [];
 
-    let pack = game.packs.find((p) => p.collection === a.dataset.options);
+    let pack = game.packs.find((p) => p.collection === "world.roles");
 
     if (pack) {
       const items = await pack.getData();
       for (let h = 0; h < items.index.length; h++) {
-        let item = await pack.getEntity(items.index[i]._id);
+        let item = await pack.getEntity(items.index[h]._id);
         if (item.data.type === "role") {
           abilities.push(item.data);
         }
@@ -206,7 +217,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     let options = {
       name: "roles",
       title: "Role(s)",
-      choices: finalabilities
+      choices: finalabilities,
     };
 
     new RoleSelector(this.actor, options).render(true);
@@ -222,52 +233,103 @@ export class CharacterSheetQuest extends ActorSheetQuest {
   async _onAbilitySelector(event) {
     event.preventDefault();
     const a = event.currentTarget;
-    const label = a.parentElement.querySelector("label");
     const abilityMode = game.settings.get("quest", "abilityMode");
-    const roles = this.actor.data.data.roles;
     const choices = [];
 
-    if (abilityMode === "single-role" || abilityMode === "dual-roles") {
+    if (abilityMode === "single-role" || abilityMode === "dual-roles" || abilityMode === "") {
+      const roles = this.actor.data.data.roles;
+
       if (roles) {
-        for (let i = 0; i < roles.length; i++)  {
-          let availablePaths = roles[i].data.paths;
+        for (let i = 0; i < roles.length; i++) {
+          let role = await getItem(roles[i], "role");
+          let availablePaths = role.data.data.paths;
 
           if (!availablePaths) return;
-          
-          for (let p = 0; p < availablePaths.length; p++) {
-            let path = await getItem(availablePaths[i].id, "path");
-            let abilityOption = {};
 
-            for (let a = 0; a < path.data.abilities.length; a++) {
-              let abilityData = await getItem(path.data.abilities[i].id, "ability");
-              
+          for (let p = 0; p < availablePaths.length; p++) {
+            let path = await getItem(availablePaths[p].id, "path");
+            let abilities = [];
+
+            for (let a = 0; a < path.data.data.abilities.length; a++) {
+              let abilityOption = {};
+              let abilityData = await getItem(
+                path.data.data.abilities[a].id,
+                "ability"
+              );
 
               abilityOption = {
                 name: abilityData.name,
                 id: abilityData._id,
-                order: a
+                order: a,
               };
+
+              abilities.push(abilityData);
             }
 
             choices.push({
               name: path.name,
-              abilities: abilityOption
+              abilities: abilities,
             });
           }
         }
       }
     } else if (abilityMode === "quirks" || abilityMode === "no-roles") {
-      console.log("not ready yet");
+      const paths = getAllItems("path");
+
+      if (!paths) return;
+
+      for (let p = 0; p < paths.length; p++) {
+        let abilityList = paths.abilities;
+        let abilities = [];
+
+        for (let a = 0; a < abilityList.length; a++) {
+          let ability = {};
+          let abilityData = await getItem(abilityList[a].id, "ability");
+
+          ability = {
+            name: abilityData.name,
+            id: abilityData._id,
+            order: a,
+          };
+
+          abilities.push(abilityData);
+        }
+
+        choices.push({
+          name: path[p].name,
+          abilities: abilities,
+        });
+      }
     }
 
     let options = {
       name: "abilities",
       title: "Abilities",
-      choices: choices
+      choices: choices,
     };
 
     console.log(options);
 
     new AbilitySelector(this.actor, options).render(true);
+  }
+
+  async _getRoles(roles) {
+    let roleData = [];
+
+    for (let r = 0; r < roles.length; r++) {
+      let role = {};
+      let roleId = roles[r];
+      
+      role = await getItem(roleId, "role");
+
+      if (!role) return;
+
+      roleData.push({
+        name: role.data.name,
+        id: role._id
+      });
+    }
+
+    return roleData;
   }
 }

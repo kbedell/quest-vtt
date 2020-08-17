@@ -3,17 +3,18 @@
         {{#each choices as |path|}}
         <div class="paths">
             <label class="label">{{path.name}}</label>
-            <ul>
+            <ol>
             {{#each path.abilities as |ability|}}
             <li>
-                <label class="checkbox" for="{{ability.id}}">
-                    <input type="checkbox" name="{{ability.id}}" value="{{ability.id}}" {{checked ability.chosen}}>
-                    {{ability.name}}
+                <label class="checkbox {{#unless ability.available}} disabled {{/unless}}" for="{{ability.id}}">
+                    <input type="checkbox" name="{{ability.id}}" value="{{ability.id}}" {{checked ability.chosen}} {{#unless ability.available}} disabled=true {{/unless}}>
+                    {{ability.label}}
                 </label>
             </li>
             {{/each}}
-        </ul>
+        </ol>
         </div>
         {{/each}}
     </div>
+    <button type="submit" name="submit" value="1"><i class="far fa-save"></i> {{ localize "QUEST.Save"}}</button>
 </form>

@@ -89,12 +89,14 @@
 /* ----------------------------------------- */
 /*  Inventory Styles                         */
 /* ----------------------------------------- */
-.quest.character .content ul#inventory-list {
-  margin: 0px;
-  padding: 0px; }
+.quest.character .content ol#inventory-list {
+  margin: 15px 0px;
+  padding: 0px 0px 0px 1rem;
+  counter-reset: item; }
 
 .quest.character .content .inventory-item {
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+  counter-increment: item; }
   .quest.character .content .inventory-item :last-child {
     margin-bottom: 0px; }
 
@@ -111,7 +113,21 @@
   line-height: 18px;
   text-align: center; }
 
-.quest.character .content .inventory-item > .inventory-value {
+.quest.character .content .inventory-item > .inventory-value .counter {
+  flex: 0 0 auto;
+  margin-right: 10px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 25px;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  line-height: 25px; }
+
+.quest.character .content .inventory-item > .inventory-value :before {
+  content: counter(item); }
+
+.quest.character .content .inventory-item > .inventory-value .inventory-input {
   flex: 0 0 75%; }
 
 .quest.character .content .inventory-item > .item-delete {
@@ -145,6 +161,9 @@
 .app.quest .checkbox {
   font-family: "Alegreya Sans", sans-serif;
   font-weight: 700; }
+
+.app.quest .disabled {
+  color: grey; }
 
 /* ----------------------------------------- */
 /*  Item Styles                              */

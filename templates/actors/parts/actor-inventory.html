@@ -1,9 +1,16 @@
-<ul id="inventory-list">
+<ol id="inventory-list">
     {{#each data.inventory.contents as | item id | }}
-        <li class="inventory-item flexrow"><div class="item-slot">{{ item.label }}</div> <input name="data.inventory.contents.{{id}}.value" class="inventory-value" type="text" value="{{item.value}}" /> <div class="item-delete"><i class="fas fa-trash-alt"></i></div></li>
+    <li class="inventory-item flexrow">
+        <div class="inventory-value flexrow">
+            <div class="counter"></div>
+            <input name="data.inventory.contents.{{id}}.value" class="inventory-input" type="text"
+                value="{{item.value}}" />
+        </div>
+        <div class="item-delete"><i class="fas fa-trash-alt"></i></div>
+    </li>
     {{/each}}
     <div class="sort">
         <i class="fas fa-sort"></i>
         Sort
     </div>
-</ul>
+</ol>

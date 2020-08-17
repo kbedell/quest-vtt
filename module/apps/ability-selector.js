@@ -21,7 +21,7 @@ export class AbilitySelector extends FormApplication {
     /** @override */
     getData() {
       // Get current values
-      let abilities = this.object.data.data.abilities;
+      const abilities = this.object.data.data.abilities;
       let list = [];
 
       for (let i = 0; i < abilities.length; i++) {
@@ -33,19 +33,33 @@ export class AbilitySelector extends FormApplication {
       const choices = [];
 
       for (let h = 0; h < options.length; h++) {
-        for (let i = 0; i < options[i].abilities.length; i++) {
-          choices.push({
-            label: options[i].abilities[i].name,
-            id: options[i].abilities[i].id,
-            order: key,
-            chosen: list ? list.includes(options[i].abilities[i].name) : false
+        const abilityData = [];
+        for (let i = 0; i < options[h].abilities.length; i++) {
+          let available = false;
+
+          if (i === 0 ) {
+            available = true;
+          } else if (i != 0 && list.includes(options[h].abilities[i-1].name)) {
+            available = true;
+          }
+          
+          abilityData.push({
+            label: options[h].abilities[i].name,
+            id: options[h].abilities[i]._id,
+            order: i,
+            chosen: list ? list.includes(options[h].abilities[i]._id) : false,
+            available: available
           });
         }
+
+        choices.push({
+          name: options[h].name,
+          abilities: abilityData
+        });
       }
-  
-      // Return data
+
       return {
-        choices: choices,
+        choices: choices
       };
     }
   
