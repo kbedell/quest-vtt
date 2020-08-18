@@ -14,24 +14,28 @@
         flex: 1 100%;
     }
 
-    .sheet-head, .sheet-stats, .sheet-navigation {
+    .sheet-head, .sheet-navigation {
         flex: 0 0 30px;
+    }
+
+    .sheet-head {
+        border-bottom: 2px groove #000;
+        margin-bottom: 10px;
     }
 
     .sheet-madlibs {
         flex: 1.75 1 0;
         order: 1;
-        border-right: 2px groove;
+        border-right: 2px groove #000;
         padding-right: 5px;
-    }
-
-    .sheet-stats {
-       border-bottom: 2px groove; 
-       margin-bottom: 5px;
     }
 
     .label {
         max-width: fit-content;
+    }
+
+    .actionpoints {
+        text-align: right;
     }
 
     .hp, .ap {
@@ -186,6 +190,22 @@
     .abilities {
         margin-left: 10px;
     }
+
+    .role-selector, .ability-selector {
+        border-bottom: 1px solid #000;
+    }
+
+    .adder {
+        text-align: right;
+        
+        :hover {
+            color: red;
+        }
+    }
+
+    .item-roles, .item-abilities {
+        padding: 0px;
+    }
 }
 
 /* ----------------------------------------- */
@@ -215,4 +235,62 @@
     .disabled {
         color: grey;
     }
+}
+
+/* ----------------------------------------- */
+/*  Ability App Styles                       */
+/* ----------------------------------------- */
+.app.quest {
+    .cost {
+        flex: 0 0 auto;
+    }
+
+    .ability-info {
+        text-align: right;
+    }
+}
+
+/* ----------------------------------------- */
+/*  Ability Info App Styles                  */
+/* ----------------------------------------- */
+.app.quest .ability-info-container {
+    font-family: $fontFamily;
+    font-size: 1.15rem;
+
+    .ability-name {
+        font-family: $fontEmphasis;
+        font-size: 1.25rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .cost {
+        flex: 0 0 auto;
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        margin-right: 5px;
+    }
+
+    .ability-info-range {
+        flex: 0 0 75px;
+        font-family: $fontEmphasis;
+        font-weight: 700;
+    }
+
+    .row-header {
+        text-align: center;
+        font-size: 1.2rem;
+        font-family: $fontEmphasis;
+        font-weight: 700;
+    }
+
+    .ability-info-ranges {
+        border-bottom: 1px solid #000;
+
+        :last-of-type {
+            border-bottom: 0px;
+        }
+    }
+
+
 }

@@ -17,6 +17,9 @@ export class RoleSelector extends FormApplication {
         case "single-role":
             maximum = 1;
             break;
+        default:
+          maximum = 1;
+          break;
     }
 
     return mergeObject(super.defaultOptions, {

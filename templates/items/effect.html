@@ -21,11 +21,11 @@
     <div class="explanation">Drag and drop ranges onto "+ Add Range." If your range does not appear, make sure it is of
         item type "range."</div>
     <label class="label" for="data.ranges">Ranges</label>
-    <div class="adder"><i class="fas fa-plus"></i> Add Range</div>
+    <div class="adder" id="ranges"><i class="fas fa-plus"></i> Add Range</div>
     <div class="item-group">
         <ul class="item-ranges">
             {{#each displayRanges as | range index |}}
-            <li class="range item flexrow" data-item-id="{{index}}">{{range.name}} <div class="options"><i class="fas fa-trash-alt item-delete"></i></div>
+            <li class="range item flexrow" data-item-id="{{index}}"><div class="options">{{range.name}} <i class="fas fa-trash-alt item-delete"></i></div>
             </li>
             {{/each}}
         </ul>

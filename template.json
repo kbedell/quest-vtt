@@ -88,7 +88,8 @@
         },
         "role": {
             "templates": ["itemDescription"],
-            "paths": []
+            "paths": [],
+            "legendaries": []
         },
         "path": {
             "abilities": []

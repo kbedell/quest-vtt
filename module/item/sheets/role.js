@@ -1,4 +1,5 @@
 import { ItemSheetQuest } from "./base.js";
+import { getItem } from "../../quest-helpers.js";
 
 /**
  * An Item sheet for option type items in the Quest system.
@@ -10,9 +11,9 @@ export class RoleSheetQuest extends ItemSheetQuest {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       width: 460,
-      height: 440,
+      height: "auto",
       classes: ["quest", "sheet", "item", "role"],
-      resizable: true,
+      resizable: false,
     });
   }
 
@@ -22,7 +23,8 @@ export class RoleSheetQuest extends ItemSheetQuest {
   async getData() {
     const data = super.getData();
 
-    data.displayPaths = await this._getPaths(data.item);
+    data.displayPaths = await this._getPaths(data.data.paths);
+    data.displayAbilities = await this._getAbilities(data.data.legendaries);
 
     return data;
   }
@@ -44,12 +46,23 @@ export class RoleSheetQuest extends ItemSheetQuest {
 
     html.find(".item-delete").click(this._onDeleteItem.bind(this));
 
-    this.form.ondragover = (ev) => this._onDragOver(ev);
-    this.form.ondrop = (ev) => this._onDrop(ev);
-    this.form.ondragenter = (ev) => this._onDragEnter(ev);
-    this.form.ondragleave = (ev) => this._onDragLeave(ev);
+    const paths = document.getElementById("paths");
+    
+    paths.addEventListener("dragover", this._onDragOver.bind(this), false);
+    paths.addEventListener("drop", this._onDrop.bind(this), false);
+    paths.addEventListener("dragenter", this._onDragEnter.bind(this), false);
+    paths.addEventListener("dragleave", this._onDragLeave.bind(this), false);
+    paths.addEventListener("dragend", this._onDragEnd.bind(this), false);
 
-    document.addEventListener("dragend", this._onDragEnd.bind(this));
+    const abilities = document.getElementById("abilities");
+
+    abilities.addEventListener("dragover", this._onDragOver.bind(this), false);
+    abilities.addEventListener("drop", this._onDropAbility.bind(this), false);
+    abilities.addEventListener("dragenter", this._onDragEnter.bind(this), false);
+    abilities.addEventListener("dragleave", this._onDragLeave.bind(this), false);
+    abilities.addEventListener("dragend", this._onDragEnd.bind(this), false);
+    
+    // document.addEventListener("dragend", this._onDragEnd.bind(this));
   }
 
   async _onDragItemStart(event) {
@@ -72,30 +85,50 @@ export class RoleSheetQuest extends ItemSheetQuest {
     try {
       data = JSON.parse(event.dataTransfer.getData("text/plain"));
 
-      if (!this.item) return;
-      if (data.pack) {
-        if (this.item.data.type === "role" && data.pack === "world.paths") {
-          let updateData = duplicate(this.item.data);
-          updateData.data.paths.push(data);
-          await this.item.update(updateData);
-        }
-      } else {
-        let path = game.items.get(data.id);
+      if (!this.item) return false;
 
-        if (this.item.data.type === "role" && path.data.type === "path") {
-          let updateData = duplicate(this.item.data);
-          updateData.data.paths.push(data);
+      let updateData = duplicate(this.item.data);
+      if (this.item.data.type === "role") {
+        let gameItem = game.items.get(data.id);
+
+        if ((data.pack && data.pack === "world.paths") || gameItem) {
+          updateData.data.paths.push(data.id);
           await this.item.update(updateData);
         }
       }
-
-      event.target.classList.remove("hover");
-      return false;
-
     } catch (err) {
       console.log("Quest Items | drop error");
       console.log(event.dataTransfer.getData("text/plain"));
       console.log(err);
+    } finally {
+      event.target.classList.remove("hover");
+      return false;
+    }
+  }
+
+  async _onDropAbility(event) {
+    event.preventDefault();
+    let data;
+    try {
+      data = JSON.parse(event.dataTransfer.getData("text/plain"));
+
+      if (!this.item) return false;
+
+      let updateData = duplicate(this.item.data);
+      if (this.item.data.type === "role") {
+        let gameItem = game.items.get(data.id);
+
+        if ((data.pack && data.pack === "world.abilities") || gameItem) {
+          updateData.data.legendaries.push(data.id);
+          await this.item.update(updateData);
+        }
+      }
+    } catch (err) {
+      console.log("Quest Items | drop error");
+      console.log(event.dataTransfer.getData("text/plain"));
+      console.log(err);
+    } finally {
+      event.target.classList.remove("hover");
       return false;
     }
   }
@@ -125,30 +158,42 @@ export class RoleSheetQuest extends ItemSheetQuest {
     return false;
   }
 
-  async _getPaths(item) {
-    let paths = [];
-    let path = {};
+  async _getPaths(paths) {
+    let displayPaths = [];
 
-    for (var i = 0; i < item.data.paths.length; i++) {
-      let newRange = {};
-      let pathId = item.data.paths[i];
+    for (let i = 0; i < paths.length; i++) {
+      let id = paths[i];
 
-      if (pathId.pack) {
-        let pack = game.packs.find((p) => p.collection === pathId.pack);
-        path = await pack.getEntity(pathId.id);
-      } else {
-        path = game.items.get(pathId.id);
-      }
+      let path = await getItem(id, "path");
 
-      newRange = {
+      let newPath = {
         name: path.data.name,
         id: path._id
       };
 
-      paths.push(newRange);
+      displayPaths.push(newPath);
     }
 
-    return paths;
+    return displayPaths;
+  }
+
+  async _getAbilities(abilities) {
+    let displayAbilities = [];
+
+    for (let i = 0; i < abilities.length; i++) {
+      let id = abilities[i];
+
+      let ability = await getItem(id, "ability");
+
+      let newAbility = {
+        name: ability.data.name,
+        id: ability._id
+      }
+
+      displayAbilities.push(newAbility);
+    }
+
+    return displayAbilities;
   }
 
   async _onDeleteItem(event) {

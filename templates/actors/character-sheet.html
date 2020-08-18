@@ -1,15 +1,15 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
     {{!-- Sheet header --}}
     <div class="sheet-head flexrow">
-        <h1>QUEST</h1>
+        <div class="hitpoints">
+            <label class="label" for="hitpoints.value">HP</label>
+            <input type="number" class="char hp" name="hitpoints.value" value="{{data.hitpoints.value}}"> / {{ data.hitpoints.max }}
+        </div>
         <div class="roll-generic"><i class="fas fa-dice-d20 fa-2x"></i></div>
-    </div>
-    <div class="sheet-stats flexrow">
-        <label class="label" for="hitpoints.value">HP</label>
-        <input type="number" class="char hp" name="hitpoints.value" value="{{data.hitpoints.value}}"> / {{ data.hitpoints.max }}
-
-        <label class="label actionpoints" for="hitpoints.value">AP</label>
-        <input type="number" class="char ap" name="actionpoints" value="{{data.actionpoints}}">
+        <div class="actionpoints">
+            <label class="label actionpoints" for="hitpoints.value">AP</label>
+            <input type="number" class="char ap" name="actionpoints" value="{{data.actionpoints}}">
+        </div>
     </div>
     {{!-- Character Body --}}
     <div class="character flexrow flex2">

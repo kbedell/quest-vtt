@@ -5,10 +5,16 @@
             <label class="label">{{path.name}}</label>
             <ol>
             {{#each path.abilities as |ability|}}
-            <li>
-                <label class="checkbox {{#unless ability.available}} disabled {{/unless}}" for="{{ability.id}}">
+            <li class="flexrow">
+                <label class="checkbox flexrow {{#unless ability.available}} disabled {{/unless}}" for="{{ability.id}}">
+                    <div class="cost">
+                        Cost: {{ability.cost}}
+                    </div>
                     <input type="checkbox" name="{{ability.id}}" value="{{ability.id}}" {{checked ability.chosen}} {{#unless ability.available}} disabled=true {{/unless}}>
                     {{ability.label}}
+                    <div class="ability-info" data-item-id={{ability.id}}>
+                        <i class="fas fa-info-circle ability-info"></i>
+                    </div>
                 </label>
             </li>
             {{/each}}

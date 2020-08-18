@@ -1,4 +1,5 @@
 import { ItemSheetQuest } from "./base.js";
+import { getItem } from "../../quest-helpers.js";
 
 /**
  * An Item sheet for option type items in the Quest system.
@@ -10,9 +11,9 @@ export class EffectSheetQuest extends ItemSheetQuest {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       width: 460,
-      height: 600,
+      height: "auto",
       classes: ["quest", "sheet", "item", "effect"],
-      resizable: true,
+      resizable: false,
     });
   }
 
@@ -22,7 +23,7 @@ export class EffectSheetQuest extends ItemSheetQuest {
   async getData() {
     const data = super.getData();
 
-    data.displayRanges = await this._getRanges(data.item);
+    data.displayRanges = await this._getRanges(data.data.ranges);
 
     return data;
   }
@@ -44,12 +45,13 @@ export class EffectSheetQuest extends ItemSheetQuest {
 
     html.find(".item-delete").click(this._onDeleteItem.bind(this));
 
-    this.form.ondragover = (ev) => this._onDragOver(ev);
-    this.form.ondrop = (ev) => this._onDrop(ev);
-    this.form.ondragenter = (ev) => this._onDragEnter(ev);
-    this.form.ondragleave = (ev) => this._onDragLeave(ev);
+    const ranges = document.getElementById("ranges");
 
-    document.addEventListener("dragend", this._onDragEnd.bind(this));
+    ranges.addEventListener("dragover", this._onDragOver.bind(this), false);
+    ranges.addEventListener("drop", this._onDrop.bind(this), false);
+    ranges.addEventListener("dragenter", this._onDragEnter.bind(this), false);
+    ranges.addEventListener("dragleave", this._onDragLeave.bind(this), false);
+    ranges.addEventListener("dragend", this._onDragEnd.bind(this), false);
   }
 
   async _onDragItemStart(event) {
@@ -72,30 +74,23 @@ export class EffectSheetQuest extends ItemSheetQuest {
     try {
       data = JSON.parse(event.dataTransfer.getData("text/plain"));
 
-      if (!this.item) return;
-      if (data.pack) {
-        if (this.item.data.type === "effect" && data.pack === "world.ranges") {
-          let updateData = duplicate(this.item.data);
-          updateData.data.ranges.push(data);
-          await this.item.update(updateData);
-        }
-      } else {
-        let range = game.items.get(data.id);
+      if (!this.item) return false;
 
-        if (this.item.data.type === "effect" && range.data.type === "range") {
-          let updateData = duplicate(this.item.data);
-          updateData.data.ranges.push(data);
+      let updateData = duplicate(this.item.data);
+      if (this.item.data.type === "effect") {
+        let gameItem = game.items.get(data.id);
+
+        if ((data.pack && data.pack === "world.ranges") || gameItem) {
+          updateData.data.ranges.push(data.id);
           await this.item.update(updateData);
         }
       }
-
-      event.target.classList.remove("hover");
-      return false;
-
     } catch (err) {
       console.log("Quest Items | drop error");
       console.log(event.dataTransfer.getData("text/plain"));
       console.log(err);
+    } finally {
+      event.target.classList.remove("hover");
       return false;
     }
   }
@@ -125,30 +120,23 @@ export class EffectSheetQuest extends ItemSheetQuest {
     return false;
   }
 
-  async _getRanges(item) {
-    let ranges = [];
-    let range = {};
+  async _getRanges(ranges) {
+    let displayRanges = [];
 
-    for (var i = 0; i < item.data.ranges.length; i++) {
-      let newRange = {};
-      let rangeId = item.data.ranges[i];
+    for (let i = 0; i < ranges.length; i++) {
+      let id = ranges[i];
 
-      if (rangeId.pack) {
-        let pack = game.packs.find((p) => p.collection === rangeId.pack);
-        range = await pack.getEntity(rangeId.id);
-      } else {
-        range = game.items.get(rangeId.id);
-      }
+      let range = await getItem(id, "range");
 
-      newRange = {
+      let newRange = {
         name: range.data.name,
         id: range._id
       };
 
-      ranges.push(newRange);
+      displayRanges.push(newRange);
     }
 
-    return ranges;
+    return displayRanges;
   }
 
   async _onDeleteItem(event) {

@@ -1,0 +1,32 @@
+<div class="ability-info-container flexcol">
+    <div class="send-to-chat">
+        <i class="fas fa-bullhorn"></i> Send to Chat
+    </div>
+    <div class="ability-description">
+        <div class="ability-name">{{ability.name}}</div>
+    </div>
+    {{#if ability.legendary}}
+    <div class="legendary">LEGENDARY</div>
+    {{/if}}
+    {{#each ability.effects as |effect| }}
+    <div class="ability-effect flexcol">
+        <div class="flexcol">
+            <div class="flexrow">
+                <div class="cost">Cost: {{effect.cost}}</div>
+                <div class="effect-description">
+                    {{effect.description}}
+                </div>
+            </div>
+            <div class="row-header">Roll the Die</div>
+            {{#each effect.ranges as |range| }}
+            <div class="ability-info-ranges flexrow">
+                <div class="ability-info-range">{{range.min}} - {{range.max}}</div>
+                <div class="effect-description">
+                    {{range.description}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    {{/each}}
+</div>

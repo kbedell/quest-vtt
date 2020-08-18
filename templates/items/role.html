@@ -16,7 +16,7 @@
     <div class="explanation">Drag and drop paths onto "+ Add Path." If your path does not appear, make sure it is of
         item type "path."</div>
     <label class="label" for="data.paths">Paths</label>
-    <div class="adder"><i class="fas fa-plus"></i> Add Path</div>
+    <div class="adder" id="paths"><i class="fas fa-plus"></i> Add Path</div>
     <div class="item-group">
         <ul class="item-paths">
             {{#each displayPaths as | path index |}}
@@ -24,5 +24,19 @@
             </li>
             {{/each}}
         </ul>
+    </div>
+    <div class="legandaries">
+        <div class="explanation">Drag and drop paths onto "+ Add Abilities." If your ability does not appear, make sure it is of
+            item type "ability."</div>
+        <label class="label" for="data.paths">Legendary Abilities</label>
+        <div class="adder" id="abilities"><i class="fas fa-plus"></i> Add Legendary Ability</div>
+        <div class="item-group">
+            <ul class="item-paths">
+                {{#each displayAbilities as | ability index |}}
+                <li class="path item flexrow" data-item-id="{{index}}">{{ability.name}} <div class="options"><i class="fas fa-trash-alt item-delete"></i></div>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
     </div>
 </form>

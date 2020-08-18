@@ -1,4 +1,5 @@
 import { ItemSheetQuest } from "./base.js";
+import { getItem } from "../../quest-helpers.js";
 
 /**
  * An Item sheet for path type items in the Quest system.
@@ -10,9 +11,9 @@ export class PathSheetQuest extends ItemSheetQuest {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       width: 580,
-      height: 440,
+      height: "auto",
       classes: ["quest", "sheet", "item", "path"],
-      resizable: true,
+      resizable: false,
     });
   }
 
@@ -22,8 +23,7 @@ export class PathSheetQuest extends ItemSheetQuest {
   async getData() {
     const data = super.getData();
 
-    data.displayAbilities = await this._getAbilities(data.item);
-    console.log(data);
+    data.displayAbilities = await this._getAbilities(data.data.abilities);
 
     return data;
   }
@@ -41,18 +41,19 @@ export class PathSheetQuest extends ItemSheetQuest {
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
+    if (!game.user.isGM) return;
 
     html.find(".item-delete").click(this._onDeleteItem.bind(this));
+    
+    const abilities = document.getElementById("abilities");
 
-    this.form.ondragover = (ev) => this._onDragOver(ev);
-    this.form.ondrop = (ev) => this._onDrop(ev);
-    this.form.ondragenter = (ev) => this._onDragEnter(ev);
-    this.form.ondragleave = (ev) => this._onDragLeave(ev);
-
-    document.addEventListener("dragend", this._onDragEnd.bind(this));
+    abilities.addEventListener("dragover", this._onDragOver.bind(this), false);
+    abilities.addEventListener("drop", this._onDrop.bind(this), false);
+    abilities.addEventListener("dragenter", this._onDragEnter.bind(this), false);
+    abilities.addEventListener("dragleave", this._onDragLeave.bind(this), false);
+    abilities.addEventListener("dragend", this._onDragEnd.bind(this), false);
 
     // Item Dragging
-    let handler = (ev) => this._onDragReorderStart(ev);
     html.find("li.ability").each((i, li) => {
       li.setAttribute("draggable", true);
       li.addEventListener("dragstart", this._handleDragStart.bind(this), false);
@@ -121,37 +122,20 @@ export class PathSheetQuest extends ItemSheetQuest {
     event.preventDefault();
     let data;
     try {
-      try {
-        data = JSON.parse(event.dataTransfer.getData("text/plain"));
+      data = JSON.parse(event.dataTransfer.getData("text/plain"));
 
-        if (data.pack) {
-          if (
-            this.item.data.type === "path" &&
-            data.pack === "world.abilities"
-          ) {
-            let updateData = duplicate(this.item.data);
-            updateData.data.abilities.push(data);
-            await this.item.update(updateData);
-          }
-        } else {
-          let ability = game.items.get(data.id);
+      if (!this.item) return false;
 
-          if (
-            this.item.data.type === "path" &&
-            ability.data.type === "ability"
-          ) {
-            let updateData = duplicate(this.item.data);
-            updateData.data.abilities.push(data);
-            await this.item.update(updateData);
-          }
+      let updateData = duplicate(this.item.data);
+
+      if (this.item.data.type === "path") {
+        let gameItem = game.items.get(data.id);
+
+        if ((data.pack && data.pack === "world.abilities") || gameItem) {
+          updateData.data.abilities.push(data.id);
+          await this.item.update(updateData);
         }
-
-        event.target.classList.remove("hover");
-      } catch {
-        await this._reorderAbilities(event);
       }
-
-      return false;
     } catch (err) {
       console.log("Quest Items | drop error");
       console.log(event.dataTransfer.getData("text/plain"));
@@ -186,31 +170,23 @@ export class PathSheetQuest extends ItemSheetQuest {
     return false;
   }
 
-  async _getAbilities(item) {
-    let abilities = [];
-    let ability = {};
+  async _getAbilities(abilities) {
+    let displayAbilities = [];
 
-    for (var i = 0; i < item.data.abilities.length; i++) {
-      let newAbility = {};
-      let abilityId = item.data.abilities[i];
+    for (let i = 0; i < abilities.length; i++) {
+      let id = abilities[i];
 
-      if (abilityId.pack) {
-        let pack = game.packs.find((p) => p.collection === abilityId.pack);
-        ability = await pack.getEntity(abilityId.id);
-      } else {
-        ability = game.items.get(abilityId.id);
-      }
+      let ability = await getItem(id, "ability");
 
-      newAbility = {
+      let newAbility = {
         name: ability.data.name,
-        id: ability._id,
-        order: i + 1,
+        id: ability._id
       };
 
-      abilities.push(newAbility);
+      displayAbilities.push(newAbility);
     }
 
-    return abilities;
+    return displayAbilities;
   }
 
   async _onDeleteItem(event) {

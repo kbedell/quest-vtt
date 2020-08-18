@@ -1,14 +1,14 @@
 <div class="abilities-section flexcol">
     {{#if data.charroles}}
-    <div class="role-selector">
-        <div class="flexrow">
+    <div class="roles">
+        <div class="role-selector flexrow">
             <label class="label" for="world.roles">Role(s) </label>
             <div class="adder"><i class="fas fa-plus"></i></div>
         </div>
         <div class="item-group">
             <ul class="item-roles flexrow">
                 {{#each displayRoles as | role |}}
-                <li class="effect item flexrow" data-item-id="{{role.id}}">{{role.name}}
+                <li class="role item flexrow" data-item-id="{{role.id}}">{{role.name}}
                 </li>
                 {{/each}}
             </ul>
@@ -22,5 +22,17 @@
         {{#if quirk}}
             <label class="label">Quirk</label>
         {{/if}}
+    </div>
+
+    <div class="item-group">
+        <ul class="item-abilities flexrow">
+            {{#each displayAbilities as | ability |}}
+            <li class="ability item flexrow" data-item-id="{{ability.id}}">{{ability.name}}
+                <div class="ability-info" data-item-id={{ability.id}}>
+                    <i class="fas fa-info-circle"></i>
+                </div><i class="fas fa-bullhorn"></i>
+            </li>
+            {{/each}}
+        </ul>
     </div>
 </div>

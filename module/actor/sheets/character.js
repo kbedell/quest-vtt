@@ -3,6 +3,8 @@ import { RoleSelector } from "../../apps/role-selector.js";
 import { AbilitySelector } from "../../apps/ability-selector.js";
 import { getItem } from "../../quest-helpers.js";
 import { getAllItems } from "../../quest-helpers.js";
+import { getFullAbilityData } from "../../quest-helpers.js";
+import { AbilityInfo } from "../../apps/ability-info.js";
 
 /**
  * An Actor sheet for player character type actors in the Quest system.
@@ -29,6 +31,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     const sheetdata = super.getData();
 
     sheetdata.displayRoles = await this._getRoles(sheetdata.data.roles);
+    sheetdata.displayAbilities = await this._getAbilities(sheetdata.data.abilities);
 
     return sheetdata;
   }
@@ -64,104 +67,10 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     html.find(".roll-generic").click(this._rollGeneric.bind(this));
     html.find(".role-selector").click(this._onRolesSelector.bind(this));
     html.find(".ability-selector").click(this._onAbilitySelector.bind(this));
-
-    // html.find(".ability-delete").click(this._onDeleteAbility.bind(this));
-
-    this.form.ondragover = (ev) => this._onDragOver(ev);
-    this.form.ondrop = (ev) => this._onDrop(ev);
-    this.form.ondragenter = (ev) => this._onDragEnter(ev);
-    this.form.ondragleave = (ev) => this._onDragLeave(ev);
-
-    document.addEventListener("dragend", this._onDragEnd.bind(this));
+    html.find(".ability-info").click(this._displayAbilityInfo.bind(this));
   }
 
   /* -------------------------------------------- */
-
-  async _onDragStart(event) {
-    event.stopPropagation();
-    const itemId = Number(event.currentTarget.dataset.itemId);
-    let item = items.find((i) => i._id === itemId);
-    item = duplicate(item);
-    event.dataTransfer.setData(
-      "text/plain",
-      JSON.stringify({
-        type: "Item",
-        data: item,
-      })
-    );
-  }
-
-  async _onDrop(event) {
-    event.preventDefault();
-    let data;
-    try {
-      data = JSON.parse(event.dataTransfer.getData("text/plain"));
-
-      if (!this.actor) return;
-
-      if (data.pack) {
-        if (data.pack === "world.abilities") {
-          let pack = game.packs.find((p) => p.collection === data.pack);
-          role = await pack.getEntity(data.id);
-          let updateData = duplciate(this.actor.data);
-          updateData.abilities.push(data);
-          await this.actor.update(updateData);
-        }
-      } else {
-        let role = game.items.get(data.id);
-        if (range.data.type === "role") {
-          let updateData = duplciate(this.actor.data);
-          updateData.abilities.push(data);
-          await this.actor.update(updateData);
-        }
-      }
-
-      event.target.classList.remove("hover");
-      return false;
-    } catch (err) {
-      console.log("Quest abilities | drop error");
-      console.log(event.dataTransfer.getData("text/plain"));
-      console.log(err);
-      return false;
-    }
-  }
-
-  _onDragEnd(event) {
-    event.preventDefault();
-    return false;
-  }
-  _onDragOver(event) {
-    event.preventDefault();
-    return false;
-  }
-
-  _onDragEnter(event) {
-    event.preventDefault();
-    if (event.target.className === "adder") {
-      event.target.classList.add("hover");
-    }
-    return false;
-  }
-
-  _onDragLeave(event) {
-    event.preventDefault();
-    if (event.target.className === "adder hover") {
-      event.target.classList.remove("hover");
-    }
-    return false;
-  }
-
-  // async _onDeleteItem(event) {
-  //   event.preventDefault();
-
-  //   let updateData = duplicate(this.item.data);
-  //   const rangeId = Number(event.currentTarget.closest(".item").dataset.itemId);
-  //   updateData.data.ranges.splice(rangeId, 1);
-
-  //   await this.item.update(updateData);
-  //   this.render(true);
-  //   return false;
-  // }
 
   /**
    * Handle rolling a generic for the Character
@@ -172,52 +81,22 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     event.preventDefault();
     return this.actor.rollGeneric({ event: event });
   }
+
   /* -------------------------------------------- */
 
   /**
-   * Handle spawning the TraitSelector application which allows a checkbox of multiple trait options
+   * Handle spawning the RoleSelector application which allows a checkbox of multiple role options
    * @param {Event} event   The click event which originated the selection
    * @private
    */
   async _onRolesSelector(event) {
     event.preventDefault();
-    const a = event.currentTarget;
-    let abilities = [];
-    let finalabilities = [];
-
-    let pack = game.packs.find((p) => p.collection === "world.roles");
-
-    if (pack) {
-      const items = await pack.getData();
-      for (let h = 0; h < items.index.length; h++) {
-        let item = await pack.getEntity(items.index[h]._id);
-        if (item.data.type === "role") {
-          abilities.push(item.data);
-        }
-      }
-    }
-
-    const gameItems = game.items.entities;
-
-    for (let i = 0; i < gameItems.length; i++) {
-      if (gameItems[i].data.type === "role") {
-        abilities.push(gameItems[i].data);
-      }
-    }
-
-    let tracker = [];
-    for (let j = 0; j < abilities.length; j++) {
-      if (abilities[j].pack && !tracker.includes(abilities[j].name)) {
-        finalabilities.push(abilities[j]);
-      } else if (!tracker.includes(abilities[j].name)) {
-        finalabilities.push(abilities[j]);
-      }
-    }
+    const roles = await getAllItems("role");
 
     let options = {
       name: "roles",
       title: "Role(s)",
-      choices: finalabilities,
+      choices: roles
     };
 
     new RoleSelector(this.actor, options).render(true);
@@ -226,7 +105,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
   /* -------------------------------------------- */
 
   /**
-   * Handle spawning the TraitSelector application which allows a checkbox of multiple trait options
+   * Handle spawning the AbilitySelector application which allows a checkbox of multiple ability options
    * @param {Event} event   The click event which originated the selection
    * @private
    */
@@ -236,7 +115,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     const abilityMode = game.settings.get("quest", "abilityMode");
     const choices = [];
 
-    if (abilityMode === "single-role" || abilityMode === "dual-roles" || abilityMode === "") {
+    if (abilityMode === "single-role" || abilityMode === "dual-roles" || abilityMode === "" || abilityMode === "default") {
       const roles = this.actor.data.data.roles;
 
       if (roles) {
@@ -247,23 +126,20 @@ export class CharacterSheetQuest extends ActorSheetQuest {
           if (!availablePaths) return;
 
           for (let p = 0; p < availablePaths.length; p++) {
-            let path = await getItem(availablePaths[p].id, "path");
+            let path = await getItem(availablePaths[p], "path");
             let abilities = [];
 
             for (let a = 0; a < path.data.data.abilities.length; a++) {
-              let abilityOption = {};
-              let abilityData = await getItem(
-                path.data.data.abilities[a].id,
-                "ability"
-              );
+              let abilityData = await getFullAbilityData(path.data.data.abilities[a]);
 
-              abilityOption = {
-                name: abilityData.name,
-                id: abilityData._id,
+              let abilityOption = {
+                name: abilityData.ability.name,
+                id: abilityData.ability._id,
                 order: a,
+                effects: abilityData.effects
               };
 
-              abilities.push(abilityData);
+              abilities.push(abilityOption);
             }
 
             choices.push({
@@ -271,6 +147,28 @@ export class CharacterSheetQuest extends ActorSheetQuest {
               abilities: abilities,
             });
           }
+
+          // Can't forget about legendaries
+          let legendaries = role.data.data.legendaries;
+          let legendaryOptions = [];
+
+          for (let a = 0; a < legendaries.length; a++) {
+            let ability = await getFullAbilityData(legendaries[a]);
+            
+            let abilityOption = {
+              name: ability.ability.name,
+              id: ability.ability._id,
+              order: a,
+              effects: ability.effects
+            };
+
+            legendaryOptions.push(abilityOption);
+          }
+
+          choices.push({
+            name: "Legendaries",
+            abilities: legendaryOptions
+          });
         }
       }
     } else if (abilityMode === "quirks" || abilityMode === "no-roles") {
@@ -292,7 +190,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
             order: a,
           };
 
-          abilities.push(abilityData);
+          abilities.push(ability);
         }
 
         choices.push({
@@ -308,8 +206,6 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       choices: choices,
     };
 
-    console.log(options);
-
     new AbilitySelector(this.actor, options).render(true);
   }
 
@@ -322,7 +218,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       
       role = await getItem(roleId, "role");
 
-      if (!role) return;
+      if (!role) continue;
 
       roleData.push({
         name: role.data.name,
@@ -331,5 +227,70 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     }
 
     return roleData;
+  }
+
+  async _getAbilities(abilities) {
+    let abilityData = [];
+
+    for (let a = 0; a < abilities.length; a++) {
+      let ability = {};
+      let abilityId = abilities[a];
+
+      ability = await getItem(abilityId, "ability");
+
+      if (!ability) continue;
+
+      abilityData.push({
+        name: ability.data.name,
+        id: ability._id
+      })
+    }
+
+    return abilityData;
+  }
+
+  async _displayAbilityInfo(event) {
+    event.preventDefault();
+    let options = {};
+
+    let ability = await getFullAbilityData(
+      event.target.parentNode.dataset.itemId
+    );
+
+    if (ability.effects.length > 0) {
+      let effects = ability.effects;
+      let effectsText = [];
+
+      for (let e = 0; e < effects.length; e++) {
+        if (ability.effects.length > 0) {
+          let ranges = effects[e].ranges;
+          let rangeText = [];
+
+          if (ranges.length > 0) {
+            for (let r = 0; r < ranges.length; r++) {
+              rangeText.push({
+                description: ranges.description.value,
+                min: ranges.min,
+                max: ranges.max,
+              });
+            }
+          }
+
+          effectsText.push({
+            description: effects[e].effect.data.data.description.value,
+            cost: effects[e].effect.data.data.spellcost,
+            ranges: ranges,
+          });
+        }
+      }
+
+      options = {
+        name: ability.ability.name,
+        legendary: ability.ability.legendary,
+        effects: effectsText,
+      };
+    }
+
+    new AbilityInfo(this.actor, options).render(true);
   }
 }

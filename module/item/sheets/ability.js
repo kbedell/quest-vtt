@@ -1,4 +1,5 @@
 import { ItemSheetQuest } from "./base.js";
+import { getItem } from "../../quest-helpers.js";
 
 /**
  * An Item sheet for option type items in the Quest system.
@@ -10,9 +11,9 @@ export class AbilitySheetQuest extends ItemSheetQuest {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       width: 460,
-      height: 440,
+      height: "auto",
       classes: ["quest", "sheet", "item", "ability"],
-      resizable: true,
+      resizable: false,
     });
   }
 
@@ -22,7 +23,7 @@ export class AbilitySheetQuest extends ItemSheetQuest {
   async getData() {
     const data = super.getData();
 
-    data.displayEffects = await this._getEffects(data.item);
+    data.displayEffects = await this._getEffects(data.data.effects);
 
     return data;
   }
@@ -40,15 +41,17 @@ export class AbilitySheetQuest extends ItemSheetQuest {
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
+    if (!game.user.isGM) return;
 
     html.find(".item-delete").click(this._onDeleteItem.bind(this));
 
-    this.form.ondragover = (ev) => this._onDragOver(ev);
-    this.form.ondrop = (ev) => this._onDrop(ev);
-    this.form.ondragenter = (ev) => this._onDragEnter(ev);
-    this.form.ondragleave = (ev) => this._onDragLeave(ev);
+    const effects = document.getElementById("effects");
 
-    document.addEventListener("dragend", this._onDragEnd.bind(this));
+    effects.addEventListener("dragover", this._onDragOver.bind(this), false);
+    effects.addEventListener("drop", this._onDrop.bind(this), false);
+    effects.addEventListener("dragenter", this._onDragEnter.bind(this), false);
+    effects.addEventListener("dragleave", this._onDragLeave.bind(this), false);
+    effects.addEventListener("dragend", this._onDragEnd.bind(this), false);
   }
 
   async _onDragItemStart(event) {
@@ -70,31 +73,25 @@ export class AbilitySheetQuest extends ItemSheetQuest {
     let data;
     try {
       data = JSON.parse(event.dataTransfer.getData("text/plain"));
-      if (!this.item) return;
 
-      if (data.pack) {
-        if (this.item.data.type === "ability" && data.pack === "world.effects") {
-          let updateData = duplicate(this.item.data);
-          updateData.data.effects.push(data);
-          await this.item.update(updateData);
-        }
-      } else {
-        let effect = game.items.get(data.id);
+      if (!this.item) return false;
 
-        if (this.item.data.type === "ability" && effect.data.type === "effect") {
-          let updateData = duplicate(this.item.data);
-          updateData.data.effects.push(data);
+      let updateData = duplicate(this.item.data);
+
+      if (this.item.data.type === "ability") {
+        let gameItem = game.items.get(data.id);
+
+        if ((data.pack && data.pack === "world.effects") || gameItem) {
+          updateData.data.effects.push(data.id);
           await this.item.update(updateData);
         }
       }
-
-      event.target.classList.remove("hover");
-      return false;
-
     } catch (err) {
       console.log("Quest Items | drop error");
       console.log(event.dataTransfer.getData("text/plain"));
       console.log(err);
+    } finally {
+      event.target.classList.remove("hover");
       return false;
     }
   }
@@ -124,31 +121,23 @@ export class AbilitySheetQuest extends ItemSheetQuest {
     return false;
   }
 
-  async _getEffects(item) {
-    let effects = [];
-    let effect = {};
+  async _getEffects(effects) {
+    let displayEffects = [];
 
+    for (let i = 0; i < effects.length; i++) {
+      let id = effects[i];
 
-    for (var i = 0; i < item.data.effects.length; i++) {
-      let newEffect = {};
-      let effectId = item.data.effects[i];
+      let effect = await getItem(id, "effect");
 
-      if (effectId.pack) {
-        let pack = game.packs.find((p) => p.collection === effectId.pack);
-        effect = await pack.getEntity(effectId.id);
-      } else {
-        effect = game.items.get(effectId.id);
-      }
-
-      newEffect = {
+      let newEffect = {
         name: effect.data.name,
         id: effect._id
       };
 
-      effects.push(newEffect);
+      displayEffects.push(newEffect);
     }
 
-    return effects;
+    return displayEffects;
   }
 
   async _onDeleteItem(event) {
