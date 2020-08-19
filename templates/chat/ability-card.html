@@ -1,29 +1,26 @@
-<div class="ability-info-container flexcol">
-    <div class="send-to-chat-info" data-item-id={{ability.id}}>
-        <i class="fas fa-bullhorn"></i> Send to Chat
-    </div>
+<div class="chat ability-card">
     <div class="ability-description">
-        <div class="ability-name">{{ability.name}}</div>
+        <div class="ability-name">{{ability.data.name}}</div>
     </div>
     {{#if ability.legendary}}
     <div class="legendary">LEGENDARY</div>
     {{/if}}
-    {{#each ability.effects as |effect| }}
+    {{#each effects as |effect| }}
     <div class="ability-effect flexcol">
         <div class="flexcol">
             <div class="flexrow">
-                <div class="cost">{{effect.cost}}</div>
+                <div class="cost">{{effect.effect.data.data.spellcost}}</div>
                 <div class="effect-description">
-                    {{effect.description}}
+                    {{effect.effect.data.data.description.value}}
                 </div>
             </div>
             <div class="row-header">Roll the Die</div>
             <div class="effect-ranges">
                 {{#each effect.ranges as |range| }}
                 <div class="ability-info-ranges flexrow">
-                    <div class="ability-info-range">{{range.min}} - {{range.max}}</div>
+                    <div class="ability-info-range">{{range.data.data.min}} - {{range.data.data.max}}</div>
                     <div class="effect-description">
-                        {{range.description}}
+                        {{range.data.data.description.value}}
                     </div>
                 </div>
                 {{/each}}

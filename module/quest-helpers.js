@@ -68,12 +68,10 @@ export async function getAllItems(type) {
         }
     }
 
-    const gameItems = game.items.entities;
+    const gameItems = game.items.entities.filter((i) => i.type === type);
 
     for (let g = 0; g < gameItems.length; g++) {
-        if (gameItems[g].data.type === type) {
-            fullList.push(gameItems[g].data);
-        }
+        fullList.push(gameItems[g].data);
     }
 
     for (let fl = 0; fl < fullList.length; fl++) {

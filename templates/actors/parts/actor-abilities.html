@@ -17,20 +17,61 @@
     {{/if}}
     <div class="ability-selector">
         <div class="flexrow">
-            <label class="label" for="world.abilities">Abilities</label>        <div class="adder"><i class="fas fa-plus"></i></div>
+            <label class="label" for="world.abilities">Abilities</label>
+            <div class="adder"><i class="fas fa-plus"></i></div>
         </div>
         {{#if quirk}}
-            <label class="label">Quirk</label>
+        <label class="label">Quirk</label>
         {{/if}}
     </div>
 
     <div class="item-group">
-        <ul class="item-abilities flexrow">
+        <ul class="item-abilities flexcol">
             {{#each displayAbilities as | ability |}}
-            <li class="ability item flexrow" data-item-id="{{ability.id}}">{{ability.name}}
-                <div class="ability-info" data-item-id={{ability.id}}>
-                    <i class="fas fa-info-circle"></i>
-                </div><i class="fas fa-bullhorn"></i>
+            <li class="ability item flexrow" data-item-id="{{ability.id}}">
+                <div class="name-header flexrow">
+                    <div class="cost">{{ability.cost}}</div>
+                    {{#if multi }}
+                    <div class="ability-name-toggle show">
+                        <i class="far fa-plus-square"></i>
+                        <label class="label">{{ability.name}}</label>
+                    </div>
+                    <div class="ability-name-toggle hide">
+                        <i class="far fa-minus-square"></i>
+                        <label class="label">{{ability.name}}</label>
+                    </div>
+                    {{else}}
+                    <div class="ability-name flexrow">
+                        <label class="label">{{ability.name}}</label>
+                    </div>
+                    {{/if}}
+                    <div class="ability-info" data-item-id={{ability.id}}>
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="send-to-chat-default" data-item-id={{ability.id}}>
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+
+                    {{#unless ability.multi}}
+                    {{#each ability.effects as |effect|}}
+                        {{#if effect.roll}}
+                        <div class="roll-ability" data-item-id={{effect.id}} data-ability-id={{ability.id}}>
+                            <i class="fas fa-dice-d20"></i>
+                        </div>
+                        {{/if}}
+                    {{/each}}
+                    {{/unless}}
+                </div>
+                {{#if ability.multi}} 
+                    {{#each abilities.effects as |effect|}}
+                    <div class="cost">{{effect.cost}}</div>
+                        {{#if effect.roll}}
+                        <div class="roll-ability" data-item-id={{effect.id}}>
+                            <i class="fas fa-dice-d20"></i>
+                        </div>
+                        {{/if}}
+                    {{/each}}
+                {{/if}}
             </li>
             {{/each}}
         </ul>

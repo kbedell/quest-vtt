@@ -1,0 +1,31 @@
+<div class="quest chat-card generic-roll" data-actor-id="{{actor._id}}">
+    {{#if isTriumph}}
+    <div class="status triumph">TRIUMPH</div>
+    <div class="flavor">{{actor.name}} is triumphant!</div>
+    {{/if}}
+
+    {{#if isSuccess}}
+    <div class="status success">SUCCESS</div>
+    <div class="flavor">{{actor.name}} is successful.</div>
+    {{/if}}
+
+    {{#if isToughChoice}}
+    <div class="status tough-choice">TOUGH CHOICE</div>
+    <div class="flavor">{{actor.name}} must face a tough choice.</div>
+    {{/if}}
+
+    {{#if isFailure}}
+    <div class="status tough-choice">FAILURE</div>
+    <div class="flavor">{{actor.name}} has failed.</div>
+    {{/if}}
+
+    {{#if isCatastrophe}}
+    <div class="status catastrophe">CATASTROPHE</div>
+    <div class="flavor">{{actor.name}} faces a catastrophe!</div>
+    {{/if}}
+
+    <div class="roll flexcol">
+        <div class="die">{{roll.formula}}</div>
+        <div class="roll-total">{{roll.total}}</div>
+    </div>
+</div>

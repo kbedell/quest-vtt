@@ -18,15 +18,19 @@
         flex: 0 0 30px;
     }
 
+    .sheet-navigation.tabs {
+        border-bottom: 2px groove #eeede0;
+    }
+
     .sheet-head {
-        border-bottom: 2px groove #000;
+        border-bottom: 2px groove #eeede0;
         margin-bottom: 10px;
     }
 
     .sheet-madlibs {
         flex: 1.75 1 0;
         order: 1;
-        border-right: 2px groove #000;
+        border-right: 2px groove #eeede0;
         padding-right: 5px;
     }
 
@@ -206,6 +210,19 @@
     .item-roles, .item-abilities {
         padding: 0px;
     }
+
+    .ability-info, .send-to-chat-default {
+        flex: 0 0 auto;
+        margin-right: 5px;
+    }
+
+    .name-header {
+        align-items: center;
+    }
+
+    .roll-ability {
+        flex: 0 0 auto;
+    }
 }
 
 /* ----------------------------------------- */
@@ -240,13 +257,55 @@
 /* ----------------------------------------- */
 /*  Ability App Styles                       */
 /* ----------------------------------------- */
+#ability-selector {
+    min-height: 400px;
+}
+
+.abilities {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 30px;
+}
+
 .app.quest {
+    ol {
+        padding: 0px;
+    }
+
     .cost {
         flex: 0 0 auto;
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        margin-right: 20px;
+        padding-left: 10px;
+        border-radius: 3px 0px 0px 3px;
+        background: #000;
+        color: #fff;
+        height: 20px;
+        line-height: 20px;
+        position: relative;
+        padding-right: 5px;
     }
+
+    .cost:after {
+        content:"";
+        float:right;
+        position:absolute;
+        top:0;
+        right:-11px;
+        width:0;
+        height:0;
+        border-color:transparent transparent transparent #000;
+        border-style:solid;
+        border-width:10px 0px 10px 11px;		
+      }
 
     .ability-info {
         text-align: right;
+    }
+
+    .hide {
+        display: none;
     }
 }
 
@@ -255,7 +314,7 @@
 /* ----------------------------------------- */
 .app.quest .ability-info-container {
     font-family: $fontFamily;
-    font-size: 1.15rem;
+    font-size: 1.1em;
 
     .ability-name {
         font-family: $fontEmphasis;
@@ -268,8 +327,29 @@
         flex: 0 0 auto;
         font-family: $fontEmphasis;
         font-weight: 700;
-        margin-right: 5px;
+        margin-right: 20px;
+        padding-left: 10px;
+        border-radius: 3px 0px 0px 3px;
+        background: #000;
+        color: #fff;
+        height: 20px;
+        line-height: 20px;
+        position: relative;
+        padding-right: 5px;
     }
+
+    .cost:after {
+        content:"";
+        float:right;
+        position:absolute;
+        top:0;
+        right:-11px;
+        width:0;
+        height:0;
+        border-color:transparent transparent transparent #000;
+        border-style:solid;
+        border-width:10px 0px 10px 11px;		
+      }
 
     .ability-info-range {
         flex: 0 0 75px;
@@ -277,20 +357,23 @@
         font-weight: 700;
     }
 
+    .ability-info-ranges {
+        border-bottom: 1px solid #000;
+    }
+
     .row-header {
         text-align: center;
         font-size: 1.2rem;
         font-family: $fontEmphasis;
         font-weight: 700;
+        margin-top: 10px;
     }
 
-    .ability-info-ranges {
-        border-bottom: 1px solid #000;
-
-        :last-of-type {
-            border-bottom: 0px;
-        }
+    .effect-ranges .ability-info-ranges:last-child {
+        border-bottom: none;
     }
 
-
+    .send-to-chat-info {
+        text-align: center;
+    }
 }

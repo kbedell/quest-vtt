@@ -62,12 +62,16 @@ export class CharacterSheetQuest extends ActorSheetQuest {
    */
   activateListeners(html) {
     super.activateListeners(html);
+
+    html.find(".send-to-chat-default").click(this._onSendToChat.bind(this));
+
     if (!this.options.editable) return;
 
     html.find(".roll-generic").click(this._rollGeneric.bind(this));
     html.find(".role-selector").click(this._onRolesSelector.bind(this));
     html.find(".ability-selector").click(this._onAbilitySelector.bind(this));
     html.find(".ability-info").click(this._displayAbilityInfo.bind(this));
+    html.find(".roll-ability").click(this._rollAbility.bind(this));
   }
 
   /* -------------------------------------------- */
@@ -79,7 +83,19 @@ export class CharacterSheetQuest extends ActorSheetQuest {
    */
   _rollGeneric(event) {
     event.preventDefault();
-    return this.actor.rollGeneric({ event: event });
+    return this.actor.rollGeneric({ event: event, actor: this.actor.data });
+  }
+
+    /**
+   * Handle rolling an ability for the Character
+   * @param {MouseEvent} event    The originating click event
+   * @private
+   */
+  _rollAbility(event) {
+    event.preventDefault();
+    let effectId = event.target.parentNode.dataset.itemId;
+    let abilityId = event.target.parentNode.dataset.abilityId;
+    return this.actor.rollAbility({ event: event, actor: this.actor.data, effectId: effectId, abilityId: abilityId });
   }
 
   /* -------------------------------------------- */
@@ -144,6 +160,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
 
             choices.push({
               name: path.name,
+              id: path._id,
               abilities: abilities,
             });
           }
@@ -195,6 +212,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
 
         choices.push({
           name: path[p].name,
+          id: path[p]._id,
           abilities: abilities,
         });
       }
@@ -235,14 +253,47 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     for (let a = 0; a < abilities.length; a++) {
       let ability = {};
       let abilityId = abilities[a];
+      let roll = false;
+      let multi = false;
+      let cost = "0";
 
       ability = await getItem(abilityId, "ability");
 
+      let effects = ability.data.data.effects;
+      let effectData = [];
+
+      for (let e = 0; e < effects.length; e++) {
+        let effect = await getItem(effects[e], "effect");
+        
+        if (!effect) continue;
+
+        if (effect.data.data.ranges.length > 0) {
+          roll = true;
+        }
+
+        effectData.push({
+          name: effect.data.name,
+          id: effects[e],
+          roll: roll,
+          cost: effect.data.data.spellcost
+        });
+      }
+
       if (!ability) continue;
+
+      if (effectData.length > 1) {
+        cost = "X";
+        multi = true;
+      } else if (effectData.length === 1) {
+        cost = effectData[0].cost;
+      }
 
       abilityData.push({
         name: ability.data.name,
-        id: ability._id
+        id: ability._id,
+        cost: cost,
+        multi: multi,
+        effects: effectData
       })
     }
 
@@ -269,9 +320,9 @@ export class CharacterSheetQuest extends ActorSheetQuest {
           if (ranges.length > 0) {
             for (let r = 0; r < ranges.length; r++) {
               rangeText.push({
-                description: ranges.description.value,
-                min: ranges.min,
-                max: ranges.max,
+                description: ranges[r].data.data.description.value,
+                min: ranges[r].data.data.min,
+                max: ranges[r].data.data.max,
               });
             }
           }
@@ -279,18 +330,39 @@ export class CharacterSheetQuest extends ActorSheetQuest {
           effectsText.push({
             description: effects[e].effect.data.data.description.value,
             cost: effects[e].effect.data.data.spellcost,
-            ranges: ranges,
+            ranges: rangeText,
           });
         }
       }
 
       options = {
         name: ability.ability.name,
+        id: ability.ability._id,
         legendary: ability.ability.legendary,
         effects: effectsText,
       };
     }
 
     new AbilityInfo(this.actor, options).render(true);
+  }
+
+  async _onSendToChat(event) {
+    const id = event.currentTarget.dataset.itemId;
+    const item = await getFullAbilityData(id);
+
+    const template = "systems/quest/templates/chat/ability-card.html";
+    const html = await renderTemplate(template, item);
+
+    const chatData = {
+      event: event,
+      user: game.user._id,
+      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      content: html,
+      speaker: {
+        user: game.user._id,
+      },
+    };
+
+    return ChatMessage.create(chatData);
   }
 }

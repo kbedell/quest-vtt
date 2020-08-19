@@ -20,4 +20,13 @@ $fontEmphasis: "Alegreya Sans", sans-serif;
     max-width: 150px;
     height: 150px;
   }
+
+  textarea:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px red;
+  }
+
+  input::placeholder{
+    opacity: 0.6;
+  }
 }

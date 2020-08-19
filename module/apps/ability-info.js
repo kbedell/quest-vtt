@@ -1,3 +1,5 @@
+import { getFullAbilityData } from "../quest-helpers.js";
+
 /**
  * A specialized form used to selecting abilities
  * @extends {FormApplication}
@@ -34,8 +36,26 @@ export class AbilityInfo extends FormApplication {
    * @param html {HTML}   The prepared HTML object ready to be rendered into the DOM
    */
   activateListeners(html) {
-    // html.find(".roll-generic").click(this._rollGeneric.bind(this));
-    // html.find(".role-selector").click(this._onRolesSelector.bind(this));
-    // html.find(".ability-selector").click(this._onAbilitySelector.bind(this));
+    html.find(".send-to-chat-info").click(this._onSendToChat.bind(this));
+  }
+
+  async _onSendToChat(event) {
+    const id = event.currentTarget.dataset.itemId;
+    const item = await getFullAbilityData(id);
+
+    const template = "systems/quest/templates/chat/ability-card.html";
+    const html = await renderTemplate(template, item);
+
+    const chatData = {
+      event: event,
+      user: game.user._id,
+      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      content: html,
+      speaker: {
+        user: game.user._id,
+      },
+    };
+
+    return ChatMessage.create(chatData);
   }
 }

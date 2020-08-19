@@ -1,4 +1,4 @@
-import { getFullAbilityData } from "../quest-helpers.js";
+import { getFullAbilityData, getItem } from "../quest-helpers.js";
 import { AbilityInfo } from "./ability-info.js";
 
 /**
@@ -14,7 +14,8 @@ export class AbilitySelector extends FormApplication {
       title: "Ability Selection",
       template: "systems/quest/templates/apps/ability-selector.html",
       width: 320,
-      height: "auto",
+      height: 400,
+      resizable: true,
       choices: {},
     });
   }
@@ -33,10 +34,10 @@ export class AbilitySelector extends FormApplication {
     for (let h = 0; h < options.length; h++) {
       const abilityData = [];
       let cost = "0";
-      let available = false;
 
       for (let a = 0; a < options[h].abilities.length; a++) {
         let effects = options[h].abilities[a].effects;
+        let available = false;
 
         if (effects.length > 1) {
           cost = "X";
@@ -44,11 +45,14 @@ export class AbilitySelector extends FormApplication {
           cost = effects[0].effect.data.spellcost;
         }
 
+        let previous = a - 1;
+
         if (a === 0) {
           available = true;
         } else if (
           a > 0 &&
-          abilities.includes(options[h].abilities[a - 1].id)
+          abilities &&
+          abilities.includes(options[h].abilities[previous].id)
         ) {
           available = true;
         }
@@ -67,6 +71,7 @@ export class AbilitySelector extends FormApplication {
 
       choices.push({
         name: options[h].name,
+        id: options[h].id,
         abilities: abilityData,
       });
     }
@@ -81,24 +86,19 @@ export class AbilitySelector extends FormApplication {
   /** @override */
   async _updateObject(event, formData) {
     const updateData = {};
-    const pack = game.packs.find((p) => p.collection === "world.abilities");
     let ability = {};
 
     // Obtain choices
     const chosen = [];
     for (let [k, v] of Object.entries(formData)) {
       if (v) {
-        if (pack && v) {
-          ability = await pack.getEntity(k);
-        } else if (v) {
-          ability = game.items.get(k);
-        }
-
+        ability = await getItem(k, "ability");
         chosen.push(ability._id);
       }
     }
 
     updateData["data.abilities"] = chosen;
+
     // Update the object
     this.object.update(updateData);
   }
@@ -112,7 +112,10 @@ export class AbilitySelector extends FormApplication {
    * @param html {HTML}   The prepared HTML object ready to be rendered into the DOM
    */
   activateListeners(html) {
-    html.find(".ability-info").click(this._displayAbilityInfo.bind(this));
+    super.activateListeners(html);
+    html.find(".ability-info-list").click(this._displayAbilityInfo.bind(this));
+    html.find(".path-name").click(this._toggleAbilityList.bind(this));
+    html.find(".ability-check-toggle").click(this._onToggleDisable.bind(this));
   }
 
   async _displayAbilityInfo(event) {
@@ -152,11 +155,54 @@ export class AbilitySelector extends FormApplication {
 
       options = {
         name: ability.ability.name,
+        id: ability.ability._id,
         legendary: ability.ability.legendary,
         effects: effectsText,
       };
     }
 
     new AbilityInfo(this.actor, options).render(true);
+  }
+
+  _toggleAbilityList(event) {
+    event.preventDefault();
+
+    let display = event.currentTarget.parentNode.children[2];
+    let toggleOff = event.currentTarget.parentNode.children[1];
+    let toggleOn = event.currentTarget.parentNode.children[0];
+
+    if (display.className === "ability-selector-list hide") {
+      display.classList.remove("hide");
+      toggleOff.classList.remove("hide");
+      toggleOn.classList.add("hide");
+    } else {
+      display.classList.add("hide");
+      toggleOff.classList.add("hide");
+      toggleOn.classList.remove("hide");
+    }
+  }
+
+  async _onToggleDisable(event) {
+    const index = event.currentTarget.dataset.index;
+    const pathId = event.currentTarget.dataset.pathId;
+
+    let checks = document.querySelectorAll(".ability-check-" + pathId);
+    let checked = event.currentTarget.checked;
+
+    if (!checked) {
+      for (let i = checks.length; i > 0; i--) {
+        if (i-1 >= index && i-1 !== 0) {
+          checks[i-1].checked = false;
+          checks[i-1].disabled = true;
+          checks[i-1].parentNode.classList.add("disabled");
+        }
+      }
+    } else {
+      let next = parseInt(index) + 1;
+      if (checks[next]) {
+        checks[next].disabled = false;
+        checks[next].parentNode.classList.remove("disabled");
+      }
+    }
   }
 }

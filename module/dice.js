@@ -19,15 +19,15 @@ export class DiceQuest {
            let roll = new Roll("1d20").roll();
 
            if (roll.total === 20) {
-               flavor = `${flavor} (Triumph)`;
+               flavor = `Triumph`;
            } else if (roll.total < 20 && roll.total > 10) {
-               flavor = `${flavor} (Success)`;
+               flavor = `Success`;
            } else if (roll.total < 11 && roll.total > 5) {
-               flavor = `${flavor} (Tough Choice)`;
+               flavor = `Tough Choice`;
            } else if (roll.total < 6 && roll.total > 1) {
-               flavor = `${flavor} (Failure)`;
+               flavor = `Failure`;
            } else if (roll.total === 1) {
-               flavor = `${flavor} (Catastrophe)`;
+               flavor = `Catastrophe`;
            }
 
            roll.toMessage({
@@ -39,5 +39,15 @@ export class DiceQuest {
        }
 
        return _roll(event);
+   }
+
+   static async renderRollCard(chatOptions, rollData) {
+       let displayData = {
+           title: chatOptions.title,
+           rollData: rollData
+       };
+
+       chatOptions["flags.data"] = {
+       }
    }
 }

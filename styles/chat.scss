@@ -1,0 +1,142 @@
+@import 'sheet';
+/* ----------------------------------------- */
+/*  Chat Styles                              */
+/* ----------------------------------------- */
+
+/* ----------------------------------------- */
+/*  Generic Roll Styles                      */
+/* ----------------------------------------- */
+.chat-card.generic-roll {
+    text-align: center;
+
+    .card-header {
+        font-family: $fontEmphasis;
+        font-weight: 700;
+    }
+
+    .status {
+        font-family: $fontEmphasis;
+        font-weight: 700;
+    }
+
+    .triumph {
+        color: gold;
+    }
+
+    .success {
+        color: green;
+    }
+
+    .tough-choice {
+        color: brown;
+    }
+
+    .catastrophe {
+        color: red;
+    }
+
+    .die {
+        margin-bottom: 5px;
+    }
+
+    .die, .roll-total {
+        padding: 5px;
+        border: 1px solid #000;
+        border-radius: 3px;
+    }
+
+    .flavor {
+        font-size: 0.95rem;
+    }
+}
+
+/* ----------------------------------------- */
+/*  Ability Card Styles                      */
+/* ----------------------------------------- */
+
+.chat.ability-card {
+    .ability-name {
+        font-family: $fontEmphasis;
+        font-size: 1.25rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .cost {
+        flex: 0 0 auto;
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        margin-right: 20px;
+        padding-left: 10px;
+        border-radius: 3px 0px 0px 3px;
+        background: #000;
+        color: #fff;
+        height: 20px;
+        line-height: 20px;
+        position: relative;
+        padding-right: 5px;
+    }
+
+    .cost:after {
+        content:"";
+        float:right;
+        position:absolute;
+        top:0;
+        right:-11px;
+        width:0;
+        height:0;
+        border-color:transparent transparent transparent #000;
+        border-style:solid;
+        border-width:10px 0px 10px 11px;		
+      }
+
+    .ability-info-range {
+        flex: 0 0 75px;
+        font-family: $fontEmphasis;
+        font-weight: 700;
+    }
+
+    .ability-info-ranges {
+        border-bottom: 1px solid #000;
+    }
+
+    .row-header {
+        text-align: center;
+        font-size: 1.2rem;
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        margin-top: 10px;
+    }
+
+    .effect-ranges .ability-info-ranges:last-child {
+        border-bottom: none;
+    }
+}
+
+/* ----------------------------------------- */
+/*  Ability Card Styles                      */
+/* ----------------------------------------- */
+
+.chat.ability-roll {
+    text-align: center;
+
+    .ability-name {
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+
+    .die {
+        margin-bottom: 5px;
+    }
+
+    .die, .roll-total {
+        padding: 5px;
+        border: 1px solid #000;
+        border-radius: 3px;
+    }
+
+    .flavor {
+        margin-top: 10px;
+    }
+}

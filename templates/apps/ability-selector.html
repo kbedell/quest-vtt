@@ -1,19 +1,26 @@
-<form class="roles" autocomplete="off" onsubmit="event.preventDefault();">
+<form class="abilities" autocomplete="off" onsubmit="event.preventDefault();">
     <div class="ability-list">
         {{#each choices as |path|}}
         <div class="paths">
-            <label class="label">{{path.name}}</label>
-            <ol>
-            {{#each path.abilities as |ability|}}
+            <div class="path-name show">
+                <i class="far fa-plus-square"></i> 
+                <label class="label">{{path.name}}</label>
+            </div>
+            <div class="path-name hide">
+                <i class="far fa-minus-square"></i>
+                <label class="label">{{path.name}}</label>
+            </div>
+            <ol class="ability-selector-list hide">
+            {{#each path.abilities as |ability index|}}
             <li class="flexrow">
                 <label class="checkbox flexrow {{#unless ability.available}} disabled {{/unless}}" for="{{ability.id}}">
                     <div class="cost">
-                        Cost: {{ability.cost}}
+                        {{ability.cost}}
                     </div>
-                    <input type="checkbox" name="{{ability.id}}" value="{{ability.id}}" {{checked ability.chosen}} {{#unless ability.available}} disabled=true {{/unless}}>
+                    <input type="checkbox" class="ability-check-{{path.id}} ability-check-toggle" name="{{ability.id}}" value="{{ability.id}}" data-path-id={{path.id}} data-index={{index}} {{checked ability.chosen}} {{#unless ability.available}} disabled="true" {{/unless}}>
                     {{ability.label}}
                     <div class="ability-info" data-item-id={{ability.id}}>
-                        <i class="fas fa-info-circle ability-info"></i>
+                        <i class="fas fa-info-circle ability-info-list"></i>
                     </div>
                 </label>
             </li>
