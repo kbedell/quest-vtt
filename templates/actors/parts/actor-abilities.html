@@ -35,15 +35,15 @@
                         {{#if multi }}
                         <div class="ability-name-toggle show">
                             <i class="far fa-plus-square"></i>
-                            <label class="label">{{ability.name}}</label>
+                            <label class="label ability-expand">{{ability.name}}</label>
                         </div>
                         <div class="ability-name-toggle hide">
                             <i class="far fa-minus-square"></i>
-                            <label class="label">{{ability.name}}</label>
+                            <label class="label ability-expand">{{ability.name}}</label>
                         </div>
                         {{else}}
                         <div class="ability-name flexrow">
-                            <label class="label">{{ability.name}}</label>
+                            <label class="label ability-expand">{{ability.name}}</label>
                         </div>
                         {{/if}}
                         <div class="ability-info" data-item-id={{ability.id}}>

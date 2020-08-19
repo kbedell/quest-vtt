@@ -83,7 +83,31 @@ export class ActorQuest extends Actor {
     return super.create(data, options);
   }
 
-  // TODO: Add token - based modifications
+  /** @override */
+  async modifyTokenAttribute(attribute, value, isDelta, isBar) {
+    if (attribute !== "hitpoints" || attribute !== "actionpoints")
+      return super.modifyTokenAttribute(attribute, value, isDelta, isBar);
+
+      const att = getProperty(this.data.data, attribute);
+      const delta = isDelta ? value : value - current;
+
+    if (attribute === "hitpoints") {
+      const current = att.value;
+      let dhp = delta - current;
+
+      return this.update({
+        "data.hitpoints.value": Math.clamped(att.value + dhp, 0, max),
+      });
+    } else if (attribute === "actionpoints") {
+      const current = att;
+
+      let dap = delta - current;
+
+      return this.update({
+        "data.actionpoints": Math.clamped(att.value + dhp, 0, max),
+      });
+    }
+  }
 
   /* -------------------------------------------- */
   /*  Rolls                                       */
@@ -142,12 +166,12 @@ export class ActorQuest extends Actor {
   }
 
   /* -------------------------------------------- */
-  
+
   async rollAbility(options = {}) {
     const effect = await getItem(options.effectId, "effect");
     const ability = await getItem(options.abilityId, "ability");
     const roll = new Roll("1d20").roll();
-     
+
     if (!effect) return;
 
     let resultFlavor = "";
@@ -159,11 +183,18 @@ export class ActorQuest extends Actor {
 
       if (range.data.data.min === range.data.data.max) {
         if (roll.total === range.data.data.max) {
-          resultFlavor = TextEditor.enrichHTML(range.data.data.description.chat);
+          resultFlavor = TextEditor.enrichHTML(
+            range.data.data.description.chat
+          );
         }
       } else {
-        if (roll.total <= range.data.data.max && roll.total >= range.data.data.min) {
-          resultFlavor = TextEditor.enrichHTML(range.data.data.description.chat);
+        if (
+          roll.total <= range.data.data.max &&
+          roll.total >= range.data.data.min
+        ) {
+          resultFlavor = TextEditor.enrichHTML(
+            range.data.data.description.chat
+          );
         }
       }
     }
@@ -172,9 +203,8 @@ export class ActorQuest extends Actor {
       actor: options.actor,
       roll: roll,
       resultFlavor: resultFlavor,
-      abilityName: ability.name
+      abilityName: ability.name,
     };
-
 
     const template = "systems/quest/templates/chat/ability-roll-card.html";
     const html = await renderTemplate(template, rollData);

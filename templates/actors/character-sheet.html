@@ -2,13 +2,13 @@
     {{!-- Sheet header --}}
     <div class="sheet-head flexrow">
         <div class="hitpoints">
-            <label class="label" for="hitpoints.value">HP</label>
-            <input type="number" class="char hp" name="hitpoints.value" value="{{data.hitpoints.value}}"> / {{ data.hitpoints.max }}
+            <label class="label" for="data.hitpoints.value">HP</label>
+            <input type="number" class="char hp" name="data.hitpoints.value" data-dtype="Number" value="{{data.hitpoints.value}}"> / {{ data.hitpoints.max }}
         </div>
         <div class="roll-generic"><i class="fas fa-dice-d20 fa-2x"></i></div>
         <div class="actionpoints">
-            <label class="label actionpoints" for="hitpoints.value">AP</label>
-            <input type="number" class="char ap" name="actionpoints" value="{{data.actionpoints}}">
+            <label class="label actionpoints" for="data.actionpoints">AP</label>
+            <input type="number" class="char ap" name="data.actionpoints" data-dtype="Number" value="{{data.actionpoints}}">
         </div>
     </div>
     {{!-- Character Body --}}

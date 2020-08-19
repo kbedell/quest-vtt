@@ -198,30 +198,31 @@ export class CharacterSheetQuest extends ActorSheetQuest {
         }
       }
     } else if (abilityMode === "quirks" || abilityMode === "no-roles") {
-      const paths = getAllItems("path");
+      const paths = await getAllItems("path");
 
       if (!paths) return;
 
       for (let p = 0; p < paths.length; p++) {
-        let abilityList = paths.abilities;
+        let abilityList = paths[p].data.abilities;
         let abilities = [];
 
         for (let a = 0; a < abilityList.length; a++) {
           let ability = {};
-          let abilityData = await getItem(abilityList[a].id, "ability");
+          let abilityData =  await getFullAbilityData(abilityList[a]);
 
           ability = {
-            name: abilityData.name,
-            id: abilityData._id,
+            name: abilityData.ability.data.name,
+            id: abilityData.ability.data._id,
             order: a,
+            effects: abilityData.effects
           };
 
           abilities.push(ability);
         }
 
         choices.push({
-          name: path[p].name,
-          id: path[p]._id,
+          name: paths[p].name,
+          id: paths[p]._id,
           abilities: abilities,
         });
       }
@@ -388,7 +389,8 @@ export class CharacterSheetQuest extends ActorSheetQuest {
         data: {
           name: ability.name,
           item: itemId,
-          effect: effectId
+          effect: effectId,
+          actor: this.actor._id
         }
       })
     );

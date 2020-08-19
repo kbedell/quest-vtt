@@ -15,7 +15,7 @@ export const registerSystemSettings = function () {
     hint: game.i18n.localize('SETTINGS.AbilitySelectionHint'),
     scope: "world",
     config: true,
-    default: "default",
+    default: "single-role",
     type: String,
     choices: {
       "single-role": "SETTINGS.Roles",
@@ -31,4 +31,4 @@ export const registerSystemSettings = function () {
   function _setAbilityMode(abilityMode) {
     CONFIG.abilityMode = abilityMode;
   }
-};
+}
