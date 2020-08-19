@@ -20,6 +20,9 @@ It is also possible to create connections from the default item list; however, I
 *   Why are there no descriptions or effect roll ranges?
     **Answer**: Quest's creators' license allows for the basic descriptions provided. If you wish to expand upon what is available, I would highly recommend supporting The Adventure Guild, and purchasing a fully copy of Quest.
 
+## Credits
+Macro Icon created by [Delapouite](http://delapouite.com/) under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
+
 ## Additional Legal
 This work uses material from the Quest Creators Resource. The Quest Creators Resource by The Adventure Guild, LLC is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
