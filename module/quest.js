@@ -19,7 +19,7 @@ import { EffectSheetQuest } from "./item/sheets/effect.js";
 import { AbilitySheetQuest } from "./item/sheets/ability.js";
 import { PathSheetQuest } from "./item/sheets/path.js";
 import { RoleSheetQuest } from "./item/sheets/role.js";
-import * as chat from "./chat.js";
+import { getItem } from "./quest-helpers.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -32,6 +32,7 @@ Hooks.once("init", function () {
   game.quest = {
     ActorQuest,
     ItemQuest,
+    rollAbilityMacro
   };
 
   // Record Configuration Values
@@ -95,8 +96,62 @@ Hooks.once("setup", function () {
 /* -------------------------------------------- */
 /*  Other Hooks                                 */
 /* -------------------------------------------- */
-Hooks.on("renderChatMessage", (app, html, data) => {
-  // Optionally collapse the content
-  // if (game.settings.get("quest", "autoCollapseItemCards"))
-  //   html.find(".card-content").hide();
+/**
+ * Once the entire VTT framework is initialized, check to see if we should perform a data migration
+ */
+Hooks.once("ready", function() {
+  Hooks.on("hotbarDrop", (bar, data, slot) => createQuestMacro(data, slot));
 });
+
+
+/* -------------------------------------------- */
+/*  Hotbar Macros                               */
+/* -------------------------------------------- */
+
+/**
+ * Create a Macro from an Item drop.
+ * Get an existing item macro if one exists, otherwise create a new one.
+ * @param {Object} data     The dropped data
+ * @param {number} slot     The hotbar slot to use
+ * @returns {Promise}
+ */
+async function createQuestMacro(data, slot) {
+  if ( data.type !== "Item" ) return;
+  const item = data.data;
+
+  // Create the macro command
+  const command = `game.quest.rollAbilityMacro("${item.item}", "${item.effect}", "${item.name}");`;
+  let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command));
+  if ( !macro ) {
+    macro = await Macro.create({
+      name: item.name,
+      type: "script",
+      img: item.img,
+      command: command,
+      flags: {"quest.abilityMacro": true}
+    });
+  }
+  game.user.assignHotbarMacro(macro, slot);
+  return false;
+}
+
+/**
+ * Create a Macro from an Item drop.
+ * Get an existing item macro if one exists, otherwise create a new one.
+ * @param {string} itemName
+ * @return {Promise}
+ */
+function rollAbilityMacro(abilityId, effectId, name) {
+  const speaker = ChatMessage.getSpeaker();
+  let actor;
+
+  if ( speaker.token ) actor = game.actors.tokens[speaker.token];
+  if ( !actor ) actor = game.actors.get(speaker.actor);
+
+  const item = actor ? actor.data.data.abilities.find(i => i.name === ability.name) : null;
+
+  if ( !item ) return ui.notifications.warn(`Your controlled Actor does not have an ability named ${name}`);
+
+  // Trigger the item roll
+  return actor.rollAbility({actor: actor, effectId: effectId, abilityId: abilityId});
+}

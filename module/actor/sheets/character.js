@@ -67,11 +67,20 @@ export class CharacterSheetQuest extends ActorSheetQuest {
 
     if (!this.options.editable) return;
 
-    html.find(".roll-generic").click(this._rollGeneric.bind(this));
-    html.find(".role-selector").click(this._onRolesSelector.bind(this));
-    html.find(".ability-selector").click(this._onAbilitySelector.bind(this));
-    html.find(".ability-info").click(this._displayAbilityInfo.bind(this));
-    html.find(".roll-ability").click(this._rollAbility.bind(this));
+    if ( this.actor.owner ) {
+      html.find(".roll-generic").click(this._rollGeneric.bind(this));
+      html.find(".role-selector").click(this._onRolesSelector.bind(this));
+      html.find(".ability-selector").click(this._onAbilitySelector.bind(this));
+      html.find(".ability-info").click(this._displayAbilityInfo.bind(this));
+      html.find(".roll-ability").click(this._rollAbility.bind(this));
+
+      let handler = ev => this._onDragAbilityStart(ev);
+
+      html.find("li.ability").each((i, li) => {
+        li.setAttribute("draggable", true);
+        li.addEventListener("dragstart", handler, false);
+      });
+    }
   }
 
   /* -------------------------------------------- */
@@ -364,5 +373,24 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     };
 
     return ChatMessage.create(chatData);
+  }
+
+  async _onDragAbilityStart(event) {
+    event.stopPropagation();
+    let itemId = event.currentTarget.dataset.itemId;
+    let effectId = event.currentTarget.dataset.effectId;
+
+    let ability = await getItem(itemId, "ability");
+    event.dataTransfer.setData(
+      "text/plain",
+      JSON.stringify({
+        type: "Item",
+        data: {
+          name: ability.name,
+          item: itemId,
+          effect: effectId
+        }
+      })
+    );
   }
 }
