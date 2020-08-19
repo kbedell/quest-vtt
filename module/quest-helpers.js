@@ -2,19 +2,19 @@ export async function getItem(itemId, type) {
     let compendium = "";
     switch (type) {
         case "range":
-            compendium = "world.ranges";
+            compendium = "quest-basics.ranges";
             break;
         case "effect":
-            compendium = "world.effects";
+            compendium = "quest-basics.effects";
             break;
         case "ability":
-            compendium = "world.abilities";
+            compendium = "quest-basics.abilities";
             break;
         case "path":
-            compendium = "world.paths";
+            compendium = "quest-basics.paths";
             break;
         case "role":
-            compendium = "world.roles";
+            compendium = "quest-basics.roles";
             break;
     }
 
@@ -41,19 +41,19 @@ export async function getAllItems(type) {
 
     switch (type) {
         case "range":
-            compendium = "world.ranges";
+            compendium = "quest-basics.ranges";
             break;
         case "effect":
-            compendium = "world.effects";
+            compendium = "quest-basics.effects";
             break;
         case "ability":
-            compendium = "world.abilities";
+            compendium = "quest-basics.abilities";
             break;
         case "path":
-            compendium = "world.paths";
+            compendium = "quest-basics.paths";
             break;
         case "role":
-            compendium = "world.roles";
+            compendium = "quest-basics.roles";
             break;
     }
 

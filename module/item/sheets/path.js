@@ -131,7 +131,7 @@ export class PathSheetQuest extends ItemSheetQuest {
       if (this.item.data.type === "path") {
         let gameItem = game.items.get(data.id);
 
-        if ((data.pack && data.pack === "world.abilities") || gameItem) {
+        if ((data.pack && data.pack === "quest-basics.abilities") || gameItem) {
           updateData.data.abilities.push(data.id);
           await this.item.update(updateData);
         }
