@@ -1,8 +1,10 @@
-# Quest
-**A roleplaying system for Foundry VTT**
+# Quest-VTT
+**An implementation of the Quest roleplaying system for Foundry Virtual Tabletop**
 ***
+## What is this?
+Quest-VTT is an implementation of The Adventure Guild's [Quest roleplaying system](https://adventure.game/] for Foundry Virtual Tabletop! The makers of Quest have published a Creator's Resource (and license) that allows us to include the rules, character sheets, and _limited descriptions_ for things like classes, abilities, and items. The full content of the game is **not included**. Please support The Adventure Guild and consider [purchasing a copy of Quest](https://www.adventure.game/digital-edition) if you like what you see here!
 
-## Recommendations for Creating new Content
+## Recommendations for Creating New Content
 If you want to create new roles, ability paths, ability effects, or effect roll ranges, I highly recommend doing it in the following order:
 1. Create your new role.
 2. Create your new ability path
