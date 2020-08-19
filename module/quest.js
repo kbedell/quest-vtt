@@ -126,7 +126,7 @@ async function createQuestMacro(data, slot) {
     macro = await Macro.create({
       name: item.name,
       type: "script",
-      img: item.img,
+      img: "systems/quest/icons/macro.png",
       command: command,
       flags: {"quest.abilityMacro": true}
     });

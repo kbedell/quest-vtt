@@ -58,6 +58,20 @@
   .hover {
     box-shadow: 0px 0px 5px red;
   }
+
+  .item-image {
+    height: 100px;
+    width: 100px;
+    flex: 0 0 100px;
+  }
+
+  .legendary {
+    margin-left: 10px;
+  }
+
+  .ability-body {
+    flex: 0 0 auto;
+  }
 }
 
 /* ----------------------------------------- */
@@ -94,6 +108,10 @@
   .item-ranges {
     padding: 0px 0px 0px 0px;
     margin-top: -10px;
+  }
+
+  .item-group.sc {
+    margin-left: 10px;
   }
 
   .options {
@@ -173,6 +191,10 @@
 
   .options {
     text-align: right;
+  }
+
+  .path-body {
+    flex: 0 0 auto;
   }
 
   .ability {

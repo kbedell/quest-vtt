@@ -6,6 +6,13 @@
                 placeholder="{{localize 'Name'}}" />
         </h1>
     </header>
+    <div class="image flexrow">
+        <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <div class="item-group sc flexrow">
+            <label class="label" for="data.spellcost">Action Point Cost</label>
+            <input name="data.spellcost" type="number" class="spellcost" placeholder="0" value="{{data.spellcost}}">
+        </div>
+    </div>
     <div class="explanation">Effects are the ability description, or in certain cases part of the ability description if
         there are multiple effects available.</div>
     {{!-- Effect Body --}}
@@ -14,10 +21,6 @@
         placeholder="Description">{{data.description.value}}</textarea>
     <label class="label" for="data.description.chat">Chat Text</label>
     <textarea name="data.description.chat" class="chat" placeholder="Chat Text">{{data.description.chat}}</textarea>
-    <div class="item-group flexrow">
-        <label class="label" for="data.spellcost">Action Point Cost</label>
-        <input name="data.spellcost" type="number" class="spellcost" placeholder="0" value="{{data.spellcost}}">
-    </div>
     <div class="explanation">Drag and drop ranges onto "+ Add Range." If your range does not appear, make sure it is of
         item type "range."</div>
     <label class="label" for="data.ranges">Ranges</label>

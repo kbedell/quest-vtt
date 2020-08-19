@@ -6,9 +6,10 @@
                 placeholder="{{localize 'QUEST.AbilityName'}}" />
         </h1>
     </header>
-    {{!-- Ability Body --}}
-    <div class="ability-body flexcol">
-        <div class="item-group flexrow">
+    <div class="ability-body flexrow">
+        <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+
+        <div class="item-group legendary flexrow">
             <label class="label" for="data.legendary">Legendary Ability?</label>
             {{#if data.legendary}}
                 <input type="checkbox" name="data.legendary" value=true checked="">
@@ -16,6 +17,9 @@
                 <input type="checkbox" name="data.legendary" value=true>
             {{/if}}
         </div>
+    </div>
+    {{!-- Ability Body --}}
+    <div class="ability-body flexcol">
         <div class="explanation">Drag and drop effects onto "+ Add Effect."</div>
         <label class="label">Effects</label>
         <div class="adder" id="effects"><i class="fas fa-plus"></i> Add Effect</div>

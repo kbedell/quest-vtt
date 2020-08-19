@@ -366,6 +366,17 @@
 .quest.item .hover {
   box-shadow: 0px 0px 5px red; }
 
+.quest.item .item-image {
+  height: 100px;
+  width: 100px;
+  flex: 0 0 100px; }
+
+.quest.item .legendary {
+  margin-left: 10px; }
+
+.quest.item .ability-body {
+  flex: 0 0 auto; }
+
 /* ----------------------------------------- */
 /*  Range Styles                             */
 /* ----------------------------------------- */
@@ -390,6 +401,8 @@
   .quest.item.effect .item-ranges {
     padding: 0px 0px 0px 0px;
     margin-top: -10px; }
+  .quest.item.effect .item-group.sc {
+    margin-left: 10px; }
   .quest.item.effect .options {
     padding: 0.5rem;
     margin-top: 0.25rem;
@@ -439,6 +452,8 @@
     padding: 0px 0px 0px 0px; }
   .quest.item.path .options {
     text-align: right; }
+  .quest.item.path .path-body {
+    flex: 0 0 auto; }
   .quest.item.path .ability {
     padding: 0.5rem;
     margin: 0.25rem;

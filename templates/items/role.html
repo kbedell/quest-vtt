@@ -8,6 +8,9 @@
     </header>
     <div class="explanation">Roles are the class archetypes of Quest.</div>
     {{!-- Role Body --}}
+    <div class="image">
+        <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+    </div>
     <label class="label" for="data.description.value">Description</label>
     <textarea name="data.description.value" class="description"
         placeholder="Description">{{data.description.value}}</textarea>
