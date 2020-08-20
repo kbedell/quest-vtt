@@ -1,6 +1,6 @@
 # Quest-VTT
 **A CC BY 4.0 implementation of the Quest roleplaying system for Foundry Virtual Tabletop**
-***
+
 ## What is this?
 Quest-VTT is an implementation of The Adventure Guild's [Quest roleplaying system](https://adventure.game/) for Foundry Virtual Tabletop!
 
