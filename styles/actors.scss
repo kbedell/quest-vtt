@@ -222,6 +222,11 @@
 
     .roll-ability {
         flex: 0 0 auto;
+        margin-right: 5px;
+    }
+
+    .effect.item {
+        margin-top: 10px;
     }
 }
 
@@ -302,10 +307,6 @@
 
     .ability-info {
         text-align: right;
-    }
-
-    .hide {
-        display: none;
     }
 }
 

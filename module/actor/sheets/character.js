@@ -6,6 +6,7 @@ import { getAllItems } from "../../quest-helpers.js";
 import { getFullAbilityData } from "../../quest-helpers.js";
 import { AbilityInfo } from "../../apps/ability-info.js";
 
+
 /**
  * An Actor sheet for player character type actors in the Quest system.
  * Extends the base ActorSheetQuest class.
@@ -64,6 +65,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     super.activateListeners(html);
 
     html.find(".send-to-chat-default").click(this._onSendToChat.bind(this));
+    html.find(".ability-name-toggle").click(this._toggleEffectList.bind(this));
 
     if (!this.options.editable) return;
 
@@ -398,5 +400,23 @@ export class CharacterSheetQuest extends ActorSheetQuest {
         }
       })
     );
+  }
+
+  _toggleEffectList(event) {
+    const abilityId = event.currentTarget.dataset.itemId;
+
+    let display = document.getElementById(`effects-${abilityId}`);
+    let toggleOff = document.getElementById(`toggle-on-${abilityId}`);
+    let toggleOn = document.getElementById(`toggle-off-${abilityId}`);
+
+    if (display.className === "effects flexcol hide") {
+      display.classList.remove("hide");
+      toggleOff.classList.remove("hide");
+      toggleOn.classList.add("hide");
+    } else {
+      display.classList.add("hide");
+      toggleOff.classList.add("hide");
+      toggleOn.classList.remove("hide");
+    }
   }
 }

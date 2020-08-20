@@ -1,5 +1,3 @@
-import { DiceQuest } from "../dice.js";
-import { getFullAbilityData } from "../quest-helpers.js";
 import { getItem } from "../quest-helpers.js";
 
 /**

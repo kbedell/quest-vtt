@@ -7,12 +7,35 @@
   .item-header {
     font-family: $fontEmphasis;
     font-weight: 700;
-    padding-bottom: 5px;
     flex: 0 0 auto;
   }
 
   h1 > input[type="text"] {
-    height: 30px;
+    flex: 0 0 auto;
+  }
+
+  input[type="text"] {
+    font-family: $fontEmphasis;
+    padding: 10px;
+
+    ::placeholder {
+      font-weight: 700;
+    }
+  }
+
+  textarea {
+    font-family: $fontEmphasis;
+    padding: 10px;
+
+    ::placeholder {
+      font-weight: 700;
+    }
+  }
+
+  h1.header {
+    margin-left: 10px;
+    padding: 0px;
+    border-bottom: 0px;
   }
 
   input[type="number"] {
@@ -50,7 +73,7 @@
   .adder {
     padding: 10px;
     line-height: 30px;
-    border: 1px solid #000;
+    border: 2px dashed #000;
     list-style: dot;
     flex: 0 0 30px;
   }
@@ -72,6 +95,23 @@
   .ability-body {
     flex: 0 0 auto;
   }
+
+  .item-header {
+    align-items: center;
+  }
+
+  .item-name {
+    height: 45px;
+  }
+
+  .item-info {
+    flex: 0 0 auto;
+    margin-left: 5px;
+  }
+
+  .item-label {
+    flex: 0 0 auto;
+  }
 }
 
 /* ----------------------------------------- */
@@ -79,7 +119,7 @@
 /* ----------------------------------------- */
 
 .quest.item.range {
-  min-width: 580px;
+  min-width: 600px;
   min-height: 440px;
 
   .range-value {
@@ -98,7 +138,7 @@
 /* ----------------------------------------- */
 
 .quest.item.effect {
-  min-width: 460px;
+  min-width: 600px;
   min-height: 600px;
 
   .label {
@@ -110,17 +150,17 @@
     margin-top: -10px;
   }
 
-  .item-group.sc {
-    margin-left: 10px;
-  }
-
-  .options {
+  .range {
     padding: 0.5rem;
     margin-top: 0.25rem;
     border: 1px solid black;
   }
 
-  .description, .chat {
+  .options {
+    text-align: right;
+  }
+
+  .description, .chat, .effect-cost, .effect-flavor-name {
     flex: 0 0 auto;
   }
 }
@@ -130,7 +170,7 @@
 /* ----------------------------------------- */
 
 .quest.item.ability {
-  min-width: 460px;
+  min-width: 550px;
   min-height: 520px;
 
   .ability-header {
@@ -149,7 +189,7 @@
   .adder {
     padding: 10px;
     line-height: 30px;
-    border: 1px solid #000;
+    border: 2px dashed #000;
     list-style: dot;
     flex: 0 0 30px;
   }
@@ -167,6 +207,11 @@
   .options {
     text-align: right;
   }
+
+  .item-group.legendary {
+    margin: 0px;
+    padding: 0px;
+  }
 }
 
 /* ----------------------------------------- */
@@ -174,7 +219,7 @@
 /* ----------------------------------------- */
 
 .quest.item.path {
-  min-width: 460px;
+  min-width: 580px;
   min-height: 520px;
 
   .path-header {
@@ -199,7 +244,7 @@
 
   .ability {
     padding: 0.5rem;
-    margin: 0.25rem;
+    margin-bottom: 0.5rem;
     border: 1px solid black;
     cursor: move;
   }
@@ -214,7 +259,7 @@
 /* ----------------------------------------- */
 
 .quest.item.role {
-  min-width: 460px;
+  min-width: 550px;
   min-height: 520px;
 
   .role-header {

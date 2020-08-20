@@ -9,7 +9,7 @@ export class RangeSheetQuest extends ItemSheetQuest {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      width: 580,
+      width: 600,
       height: 440,
       classes: ["quest", "sheet", "item", "range"],
       resizable: false

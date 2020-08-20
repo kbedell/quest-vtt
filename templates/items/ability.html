@@ -1,16 +1,17 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
     {{!-- Ability Header --}}
-    <header class="ability-header">
+    <header class="item-header flexrow">
+        <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
         <h1 class="header">
-            <input name="name" class="ability-name" type="text" value="{{item.name}}"
-                placeholder="{{localize 'QUEST.AbilityName'}}" />
+            <input name="name" class="item-header item-name" type="text" value="{{item.name}}"
+                placeholder="{{localize 'Name'}}" />
         </h1>
     </header>
     <div class="ability-body flexrow">
-        <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
-
         <div class="item-group legendary flexrow">
-            <label class="label" for="data.legendary">Legendary Ability?</label>
+            <div class="label">
+                <label class="item-label" for="data.legendary">Legendary Ability?</label>
+            </div>
             {{#if data.legendary}}
                 <input type="checkbox" name="data.legendary" value=true checked="">
             {{else}}
@@ -20,8 +21,11 @@
     </div>
     {{!-- Ability Body --}}
     <div class="ability-body flexcol">
-        <div class="explanation">Drag and drop effects onto "+ Add Effect."</div>
-        <label class="label">Effects</label>
+        <div class="label flexrow">
+            <label class="item-label" for="data.effects">Effects</label>
+            <div class="item-info" title="To add effectss, drag and drop from the item list or compendium.">
+                <i class="fas fa-info-circle"></i></div>
+        </div>
         <div class="adder" id="effects"><i class="fas fa-plus"></i> Add Effect</div>
         <div class="item-group">
             <ul class="item-effects">

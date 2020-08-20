@@ -102,6 +102,8 @@
         "effect": {
             "templates": ["itemDescription"],
             "spellcost": 0,
+            "variableCost": false,
+            "effectFlavorName": "",
             "ranges": []
         },
         "ability": {

@@ -19,7 +19,6 @@ import { EffectSheetQuest } from "./item/sheets/effect.js";
 import { AbilitySheetQuest } from "./item/sheets/ability.js";
 import { PathSheetQuest } from "./item/sheets/path.js";
 import { RoleSheetQuest } from "./item/sheets/role.js";
-import { getItem } from "./quest-helpers.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */

@@ -1,5 +1,4 @@
 import { ItemSheetQuest } from "./base.js";
-import { getItem } from "../../quest-helpers.js";
 
 /**
  * An Item sheet for option type items in the Quest system.
@@ -10,7 +9,7 @@ export class EffectSheetQuest extends ItemSheetQuest {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      width: 460,
+      width: 600,
       height: "auto",
       classes: ["quest", "sheet", "item", "effect"],
       resizable: false,
@@ -43,111 +42,53 @@ export class EffectSheetQuest extends ItemSheetQuest {
     if (!this.options.editable) return;
     if (!game.user.isGM) return;
 
-    html.find(".item-delete").click(this._onDeleteItem.bind(this));
+    html.find(".item-delete").click(this._onDeleteRange.bind(this));
 
     const ranges = document.getElementById("ranges");
 
-    ranges.addEventListener("dragover", this._onDragOver.bind(this), false);
-    ranges.addEventListener("drop", this._onDrop.bind(this), false);
-    ranges.addEventListener("dragenter", this._onDragEnter.bind(this), false);
-    ranges.addEventListener("dragleave", this._onDragLeave.bind(this), false);
-    ranges.addEventListener("dragend", this._onDragEnd.bind(this), false);
+    ranges.addEventListener("dragover", this._onRangeDragOver.bind(this), false);
+    ranges.addEventListener("drop", this._onRangeDrop.bind(this), false);
+    ranges.addEventListener("dragenter", this._onRangeDragEnter.bind(this), false);
+    ranges.addEventListener("dragleave", this._onRangeDragLeave.bind(this), false);
+    ranges.addEventListener("dragend", this._onRangeDragEnd.bind(this), false);
   }
 
-  async _onDragItemStart(event) {
+  async _onRangeDragStart(event) {
     event.stopPropagation();
-    const itemId = Number(event.currentTarget.dataset.itemId);
-    let item = items.find((i) => i._id === itemId);
-    item = duplicate(item);
-    event.dataTransfer.setData(
-      "text/plain",
-      JSON.stringify({
-        type: "Item",
-        data: item,
-      })
-    );
+    return this.item.onDragItemStart(event);
   }
 
-  async _onDrop(event) {
+  async _onRangeDragOver(event) {
     event.preventDefault();
-    let data;
-    try {
-      data = JSON.parse(event.dataTransfer.getData("text/plain"));
-
-      if (!this.item) return false;
-
-      let updateData = duplicate(this.item.data);
-      if (this.item.data.type === "effect") {
-        let gameItem = game.items.get(data.id);
-
-        if ((data.pack && data.pack === "quest-basic.ranges") || (data.pack && data.pack === "world.ranges") || gameItem) {
-          updateData.data.ranges.push(data.id);
-          await this.item.update(updateData);
-        }
-      }
-    } catch (err) {
-      console.log("Quest Items | drop error");
-      console.log(event.dataTransfer.getData("text/plain"));
-      console.log(err);
-    } finally {
-      event.target.classList.remove("hover");
-      return false;
-    }
+    return this.item.onDragOver(event);
   }
 
-  _onDragEnd(event) {
+  async _onRangeDrop(event){
     event.preventDefault();
-    return false;
-  }
-  _onDragOver(event) {
-    event.preventDefault();
-    return false;
+    return this.item.onDrop(event);
   }
 
-  _onDragEnter(event) {
+  async _onRangeDragEnter(event) {
     event.preventDefault();
-    if (event.target.className === "adder") {
-      event.target.classList.add("hover");
-    }
-    return false;
+    return this.item.onDragEnter(event);
   }
 
-  _onDragLeave(event) {
+  async _onRangeDragLeave(event) {
     event.preventDefault();
-    if (event.target.className === "adder hover") {
-      event.target.classList.remove("hover");
-    }
-    return false;
+    return this.item.onDragLeave(event);
+  }
+
+  async _onRangeDragEnd(event) {
+    event.preventDefault();
+    return this.item.onDragEnd(event);
   }
 
   async _getRanges(ranges) {
-    let displayRanges = [];
-
-    for (let i = 0; i < ranges.length; i++) {
-      let id = ranges[i];
-
-      let range = await getItem(id, "range");
-
-      let newRange = {
-        name: range.data.name,
-        id: range._id
-      };
-
-      displayRanges.push(newRange);
-    }
-
-    return displayRanges;
+    return this.item.getItems(ranges, "ranges");
   }
 
-  async _onDeleteItem(event) {
+  async _onDeleteRange(event) {
     event.preventDefault();
-
-    let updateData = duplicate(this.item.data);
-    const rangeId = Number(event.currentTarget.closest(".item").dataset.itemId);
-    updateData.data.ranges.splice(rangeId, 1);
-
-    await this.item.update(updateData);
-    this.render(true);
-    return false;
+    return this.item.onDeleteItem(event);
   }
 }

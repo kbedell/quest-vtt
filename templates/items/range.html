@@ -1,16 +1,15 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
     {{!-- Range Header --}}
-    <header class="item-header">
+    <header class="item-header flexrow">
+        <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
         <h1 class="header">
             <input name="name" class="item-header item-name" type="text" value="{{item.name}}"
                 placeholder="{{localize 'Name'}}" />
         </h1>
+        <div class="item-info"
+            title="Ranges are utilized by effects. They represent potential outcomes when an effect requires a die roll.">
+            <i class="fas fa-info-circle"></i></div>
     </header>
-    <div class="image">
-        <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
-    </div>
-    <div class="explanation">Ranges are utilized by effects. They represent potential outcomes when an effect requires
-        a die roll.</div>
     {{!-- Ranges Body --}}
     <label class="label" for="data.description.value">Description</label>
     <textarea name="data.description.value" class="description" placeholder="Description">{{data.description.value}}</textarea>

@@ -1,20 +1,24 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
     {{!-- Path Header --}}
-    <header class="path-header">
+    <header class="item-header flexrow">
+        <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
         <h1 class="header">
-            <input name="name" class="path-name" type="text" value="{{item.name}}"
-                placeholder="{{localize 'QUEST.PathName'}}" />
+            <input name="name" class="item-header item-name" type="text" value="{{item.name}}"
+                placeholder="{{localize 'Name'}}" />
         </h1>
+        <div class="item-info"
+            title="Effects are what the ability does. Every ability will have an effect, but some may have more than one.">
+            <i class="fas fa-info-circle"></i></div>
     </header>
-    <div class="path-body flexrow">
-        <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
-    </div>
     {{!-- Path Body --}}
     <div class="path-body flexcol">
-        <div class="explanation">Drag and drop abilities onto "+ Add Ability." If your ability does not appear, make sure it is
-            of item type "ability."</div>
-            <div class="explanation">Paths have an order to them. To rearrange the order, drag and drop the abilities to their correct order.</div>
-        <label class="label">Abilities</label>
+        <div class="label flexrow">
+            <label class="item-label" for="data.abilities">Abilities</label>
+            <div class="item-info"
+                title="Drag and drop abilities from the item list or the compendium.">
+                <i class="fas fa-info-circle"></i></div>
+        </div>
+        <div class="explanation">Paths have an order to them. To rearrange the order, drag and drop the abilities to their correct order.</div>
         <div class="adder" id="abilities"><i class="fas fa-plus"></i> Add Ability</div>
         <div class="item-group">
             <ul class="item-abilities" id="item-abilities">

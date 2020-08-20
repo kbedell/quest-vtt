@@ -21,12 +21,20 @@ $fontEmphasis: "Alegreya Sans", sans-serif;
     height: 150px;
   }
 
-  textarea:focus {
-    outline: none;
-    box-shadow: 0px 0px 5px red;
-  }
-
   input::placeholder{
     opacity: 0.6;
   }
+}
+
+textarea:focus {
+  outline: none;
+  box-shadow: 0px 0px 5px red;
+}
+
+input[type="number"]:focus {
+  box-shadow: 0px 0px 5px red;
+}
+
+.hide {
+  display: none;
 }
