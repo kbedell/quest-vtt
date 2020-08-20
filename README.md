@@ -2,7 +2,9 @@
 **An implementation of the Quest roleplaying system for Foundry Virtual Tabletop**
 ***
 ## What is this?
-Quest-VTT is an implementation of The Adventure Guild's [Quest roleplaying system](https://adventure.game/) for Foundry Virtual Tabletop! The Adventure Guild has published a [Creator's Resource (and license)](https://www.adventure.game/creators-license) that allows us to include the rules, character sheets, and _limited descriptions_ for things like classes, abilities, and items. The full content of the game is **not included**. Please support The Adventure Guild and consider [purchasing a copy of Quest](https://www.adventure.game/digital-edition) if you like what you see!
+Quest-VTT is an implementation of The Adventure Guild's [Quest roleplaying system](https://adventure.game/) for Foundry Virtual Tabletop! Thanks to the Adventure Guild's [Quest Creators Resource](https://www.adventure.game/creators-license) (and license), we're able to include the rules, character sheets, and _limited descriptions_ for things like classes, abilities, and items with this Foundry game system. Full descriptions from the Quest Game Book are **not included**.
+
+Please support The Adventure Guild and consider [purchasing a copy of Quest](https://www.adventure.game/digital-edition) if you like what you see!
 
 ## Recommendations for Creating New Content
 If you want to create new roles, ability paths, ability effects, or effect roll ranges, I highly recommend doing it in the following order:
@@ -33,7 +35,7 @@ Information regarding the Quest system can be found here: [https://www.adventure
 Quest was created by The Adventure Guild LLC.
 Quest is copyrighted (©) to The Adventure Guild LLC, 2019. All rights reserved.
 
-Additional information regarding their creators' license can be found here:
+Additional information regarding the Quest Creators' License can be found here:
 [https://www.adventure.game/creators-license](https://www.adventure.game/creators-license)
 
 ###### Disclaimer of Warranties
