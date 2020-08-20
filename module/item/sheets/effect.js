@@ -80,7 +80,7 @@ export class EffectSheetQuest extends ItemSheetQuest {
       if (this.item.data.type === "effect") {
         let gameItem = game.items.get(data.id);
 
-        if ((data.pack && data.pack === "quest-basic.ranges") || gameItem) {
+        if ((data.pack && data.pack === "quest-basic.ranges") || (data.pack && data.pack === "world.ranges") || gameItem) {
           updateData.data.ranges.push(data.id);
           await this.item.update(updateData);
         }

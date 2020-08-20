@@ -81,7 +81,7 @@ export class AbilitySheetQuest extends ItemSheetQuest {
       if (this.item.data.type === "ability") {
         let gameItem = game.items.get(data.id);
 
-        if ((data.pack && data.pack === "quest-basic.effects") || gameItem) {
+        if ((data.pack && data.pack === "quest-basic.effects") || (data.pack && data.pack === "world.effects") || gameItem) {
           updateData.data.effects.push(data.id);
           await this.item.update(updateData);
         }

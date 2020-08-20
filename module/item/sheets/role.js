@@ -91,7 +91,7 @@ export class RoleSheetQuest extends ItemSheetQuest {
       if (this.item.data.type === "role") {
         let gameItem = game.items.get(data.id);
 
-        if ((data.pack && data.pack === "quest-basic.paths") || gameItem) {
+        if ((data.pack && data.pack === "quest-basic.paths") || (data.pack && data.pack === "world.paths") || gameItem) {
           updateData.data.paths.push(data.id);
           await this.item.update(updateData);
         }
@@ -118,7 +118,7 @@ export class RoleSheetQuest extends ItemSheetQuest {
       if (this.item.data.type === "role") {
         let gameItem = game.items.get(data.id);
 
-        if ((data.pack && data.pack === "quest-basic.abilities") || gameItem) {
+        if ((data.pack && data.pack === "quest-basic.abilities") || (data.pack && data.pack === "world.abilities") || gameItem) {
           updateData.data.legendaries.push(data.id);
           await this.item.update(updateData);
         }

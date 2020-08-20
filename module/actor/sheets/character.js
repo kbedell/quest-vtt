@@ -295,7 +295,11 @@ export class CharacterSheetQuest extends ActorSheetQuest {
         cost = "X";
         multi = true;
       } else if (effectData.length === 1) {
-        cost = effectData[0].cost;
+        if (effectData[0].cost >= 0) {
+          cost = effectData[0].cost;
+        } else {
+          cost = "X";
+        }
       }
 
       abilityData.push({
