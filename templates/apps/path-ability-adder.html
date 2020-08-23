@@ -1,0 +1,23 @@
+<form class="abilities" autocomplete="off" onsubmit="event.preventDefault();">
+    <div class="section">
+        <h1 class="section-header">
+            Available Abilities
+        </h1>
+        <div class="filter">
+            <input type="text" name="filter" class="filter-abilities" id="filter-abilities"
+                placeholder="{{localize 'QUEST.FilterAbilities'}}">
+        </div>
+        <ul class="ability-list" id="ability-list">
+            {{#each choices as |choice|}}
+            <li class="ability-choice">
+                <label class="checkbox item-label" for="{{choice.id}}">
+                    <input type="checkbox" name="{{choice.id}}" value="{{choice.id}}" {{checked choice.chosen}}>
+                    {{choice.label}}
+                </label>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    <button type="submit" class="submit" name="submit" value="1"><i class="far fa-save"></i>
+        {{ localize "QUEST.Save"}}</button>
+</form>

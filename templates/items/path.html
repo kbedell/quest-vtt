@@ -1,33 +1,32 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-    {{!-- Path Header --}}
-    <header class="item-header flexrow">
+    {{!-- Header --}}
+    <header class="item-header flexcol">
         <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
-        <h1 class="header">
-            <input name="name" class="item-header item-name" type="text" value="{{item.name}}"
-                placeholder="{{localize 'Name'}}" />
+        <h1 class="header flexrow">
+            <input name="name" class="item-name" type="text" value="{{item.name}}"
+                placeholder="{{localize 'QUEST.Role Name'}}" />
         </h1>
-        <div class="item-info"
-            title="Effects are what the ability does. Every ability will have an effect, but some may have more than one.">
-            <i class="fas fa-info-circle"></i></div>
     </header>
-    {{!-- Path Body --}}
-    <div class="path-body flexcol">
-        <div class="label flexrow">
-            <label class="item-label" for="data.abilities">Abilities</label>
-            <div class="item-info"
-                title="Drag and drop abilities from the item list or the compendium.">
-                <i class="fas fa-info-circle"></i></div>
-        </div>
-        <div class="explanation">Paths have an order to them. To rearrange the order, drag and drop the abilities to their correct order.</div>
-        <div class="adder" id="abilities"><i class="fas fa-plus"></i> Add Ability</div>
-        <div class="item-group">
-            <ul class="item-abilities" id="item-abilities">
-                {{#each displayAbilities as | ability |}}
-                <li class="ability item flexrow" data-item-id="{{ability.id}}"><div class="index">{{ ability.order }}</div> {{ability.name}} <div class="options"><i
-                            class="fas fa-trash-alt item-delete"></i></div>
-                </li>
-                {{/each}}
-            </ul>
-        </div>
+    {{!-- Header End --}}
+
+    {{!-- Body --}}
+    <div class="section flexcol">
+        <h1 class="section-header">
+            Abilities
+        </h1>
+        <div class="adder-abilities" id="abilities"><i class="fas fa-plus"></i> Add Ability</div>
+        <ul class="abilities-list" id="abilities-list">
+            {{#each displayAbilities as | ability |}}
+            <li class="ability item flexrow" data-item-id="{{ability.id}}">
+                <div class="drag-bars">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="index">{{ ability.order }}</div> {{ability.name}} <div class="options flexrow">
+                    <div class="delete"><i class="fas fa-trash-alt item-delete"></i></div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
     </div>
+    {{!-- Body End--}}
 </form>

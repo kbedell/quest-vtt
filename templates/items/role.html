@@ -1,50 +1,57 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-    {{!-- Role Header --}}
-    <header class="item-header flexrow">
-        <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
-        <h1 class="header">
-            <input name="name" class="item-header item-name" type="text" value="{{item.name}}"
-                placeholder="{{localize 'Name'}}" />
+    {{!-- Header --}}
+    <header class="item-header flexcol">
+        <img class="item-image" src="{{img}}" title="{{name}}" data-edit="img" />
+        <h1 class="header flexrow">
+            <input name="name" class="item-name" type="text" value="{{name}}"
+                placeholder="{{localize 'QUEST.Role Name'}}" />
         </h1>
-        <div class="item-info" title="Roles are the class archetypes of Quest.">
-            <i class="fas fa-info-circle"></i></div>
     </header>
-    {{!-- Role Body --}}
-    <label class="label" for="data.description.value">Description</label>
-    <textarea name="data.description.value" class="description"
-        placeholder="Description">{{data.description.value}}</textarea>
-    <label class="label" for="data.description.chat">Chat Text</label>
-    <textarea name="data.description.chat" class="chat" placeholder="Chat Text">{{data.description.chat}}</textarea>
-    <div class="label flexrow">
-        <label class="item-label" for="data.paths">Paths</label>
-        <div class="item-info" title="To add paths, drag and drop from the item list or compendium.">
-            <i class="fas fa-info-circle"></i></div>
+    {{!-- Header End --}}
+
+    {{!-- Body --}}
+    <div class="section flexcol">
+        <h1 class="section-header">
+            Descriptions
+        </h1>
+        <div class="field-group">
+            <label class="item-label" for="data.full">Description</label>
+            <textarea name="data.description.full" class="full" placeholder="Description">{{data.description.full}}</textarea>
+        </div>
+        <label class="item-label" for="chat">Chat Text</label>
+        <textarea name="data.description.chat" class="chat" placeholder="Chat Text">{{data.description.chat}}</textarea>
     </div>
-    <div class="adder" id="paths"><i class="fas fa-plus"></i> Add Learning Paths</div>
-    <div class="item-group">
-        <ul class="item-paths">
+
+    <div class="section flexcol">
+        <h1 class="section-header">
+            Learning Paths
+        </h1>
+        <div class="adder-paths" id="paths"><i class="fas fa-plus"></i> Add Learning Paths</div>
+
+        <ul class="path-list">
             {{#each displayPaths as | path index |}}
             <li class="path item flexrow" data-type-delete="path" data-item-id="{{index}}">{{path.name}} <div
-                    class="options"><i class="fas fa-trash-alt item-delete"></i></div>
+                    class="options flexrow">
+                    <div class="delete"><i class="fas fa-trash-alt item-delete"></i></div>
+                </div>
             </li>
             {{/each}}
         </ul>
     </div>
-    <div class="legandaries">
-        <div class="label flexrow">
-            <label class="item-label" for="data.paths">Legendary Abilities</label>
-            <div class="item-info" title="To add legendary abilities, drag and drop from the item list or compendium.">
-                <i class="fas fa-info-circle"></i></div>
-        </div>
-        <div class="adder" id="abilities"><i class="fas fa-plus"></i> Add Legendary Ability</div>
-        <div class="item-group">
-            <ul class="item-paths">
-                {{#each displayAbilities as | ability index |}}
-                <li class="path item flexrow" data-type-delete="ability" data-item-id="{{index}}">{{ability.name}} <div
-                        class="options"><i class="fas fa-trash-alt item-delete"></i></div>
-                </li>
-                {{/each}}
-            </ul>
-        </div>
+    <div class="section flexcol">
+        <h1 class="section-header">
+            Legendary Abilities
+        </h1>
+        <div class="adder-legendaries" id="legendaries"><i class="fas fa-plus"></i> Add Legendary Ability</div>
+        <ul class="legendary-list">
+            {{#each displayAbilities as | ability index |}}
+            <li class="legendary item flexrow" data-type-delete="ability" data-item-id="{{index}}">{{ability.name}}
+                <div class="options flexrow">
+                    <div class="delete"><i class="fas fa-trash-alt item-delete"></i></div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
     </div>
+    {{!-- Body --}}
 </form>

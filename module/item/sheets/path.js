@@ -1,5 +1,6 @@
 import { ItemSheetQuest } from "./base.js";
-import { getItem } from "../../quest-helpers.js";
+import { getAllItems } from "../../quest-helpers.js";
+import { PathAbilityAdder } from "../../apps/path-ability-adder.js";
 
 /**
  * An Item sheet for path type items in the Quest system.
@@ -10,7 +11,7 @@ export class PathSheetQuest extends ItemSheetQuest {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      width: 580,
+      width: 450,
       height: "auto",
       classes: ["quest", "sheet", "item", "path"],
       resizable: false,
@@ -22,6 +23,10 @@ export class PathSheetQuest extends ItemSheetQuest {
   /** @override */
   async getData() {
     const data = super.getData();
+
+    if (data.item.img === "icons/svg/mystery-man.svg") {
+      data.item.img = "systems/quest/icons/skills.png"
+    }
 
     data.displayAbilities = await this._getAbilities(data.data.abilities);
 
@@ -43,15 +48,8 @@ export class PathSheetQuest extends ItemSheetQuest {
     if (!this.options.editable) return;
     if (!game.user.isGM) return;
 
-    html.find(".item-delete").click(this._onDeleteAbility.bind(this));
-    
-    const abilities = document.getElementById("abilities");
-
-    abilities.addEventListener("dragover", this._onAbilityDragOver.bind(this), false);
-    abilities.addEventListener("drop", this._onAbilityDrop.bind(this), false);
-    abilities.addEventListener("dragenter", this._onAbilityDragEnter.bind(this), false);
-    abilities.addEventListener("dragleave", this._onAbilityDragLeave.bind(this), false);
-    abilities.addEventListener("dragend", this._onAbilityDragEnd.bind(this), false);
+    html.find(".delete").click(this._onDeleteAbility.bind(this));
+    html.find(".adder-abilities").click(this._onAbilityAdder.bind(this));
 
     // Item Dragging
     html.find("li.ability").each((i, li) => {
@@ -63,37 +61,7 @@ export class PathSheetQuest extends ItemSheetQuest {
       li.addEventListener("dragend", this._onReorderDragEnd.bind(this), false);
     });
   }
-
-  async _onAbilityDragStart(event) {
-    event.stopPropagation();
-    return this.item.onDragItemStart(event);
-  }
-
-  async _onAbilityDragOver(event) {
-    event.preventDefault();
-    return this.item.onDragOver(event);
-  }
-
-  async _onAbilityDrop(event){
-    event.preventDefault();
-    return this.item.onDrop(event);
-  }
-
-  async _onAbilityDragEnter(event) {
-    event.preventDefault();
-    return this.item.onDragEnter(event);
-  }
-
-  async _onAbilityDragLeave(event) {
-    event.preventDefault();
-    return this.item.onDragLeave(event);
-  }
-
-  async _onAbilityDragEnd(event) {
-    event.preventDefault();
-    return this.item.onDragEnd(event);
-  }
-
+  
   async _getAbilities(abilities) {
     return this.item.getItems(abilities, "ability");
   }
@@ -128,7 +96,7 @@ export class PathSheetQuest extends ItemSheetQuest {
   _onReorderDragOver(event) {
     event.preventDefault();
     
-    let containers = document.querySelectorAll(".item-abilities");
+    let containers = document.querySelectorAll(".abilities-list");
 
     containers.forEach(async (container) => {
       const afterElement = this._getDragAfterElement(container, event.clientY);
@@ -155,7 +123,7 @@ export class PathSheetQuest extends ItemSheetQuest {
 
 
   async _reorderAbilities(event) {
-    let list = document.getElementById("item-abilities");
+    let list = document.getElementById("abilities-list");
     let newOrder = [];
     let updateData = duplicate(this.item.data);
 
@@ -192,5 +160,17 @@ export class PathSheetQuest extends ItemSheetQuest {
       },
       { offset: Number.NEGATIVE_INFINITY }
     ).element;
+  }
+
+  async _onAbilityAdder(event) {
+    event.preventDefault();
+
+    const abilities = await getAllItems("ability");
+
+    let options = {
+      choices: abilities
+    };
+
+    new PathAbilityAdder(this.item, options).render(true);
   }
 }

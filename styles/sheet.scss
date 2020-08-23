@@ -6,35 +6,104 @@
 $fontFamily: "Ovo", sans-serif;
 $fontEmphasis: "Alegreya Sans", sans-serif;
 
-.quest.character, .quest.item {
-  font-family: $fontFamily;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 30px;
+/* Colors */
+$white: #fff;
+$black: #000;
+$darkGrey: #222831;
+$lightGrey: #eeeeee;
+$highlightRed: #f04828;
+$charHeaderBlue: #004576;
+$borderGrey:  #adb5bd;
+$builderHighlightGreen: #3D8F57;
+$effectPurple: #804D7F;
+$rangeGold: #e99d36;
+$roleGrey: #454f4e;
+$pathPink: #EE5874;
+$legendary: #ffcc00;
+
+.sheet.actor.character {
+  .window-content {
+    background: $lightGrey;
+    line-height: 1.2rem;
+    font-size: 1.1rem;
+  }
 }
 
-.quest.character {
-  // Character Profile image (larger than usual)
-  img.profile {
-    flex: 0 0 150px;
-    max-width: 150px;
-    height: 150px;
+.quest {
+  input,
+  input[type="number"],
+  input[type="text"],
+  textarea {
+    font-family: $fontEmphasis;
+    font-weight: 700;
+    background: $lightGrey;
+    line-height: 1.2rem;
+    border: 1px solid $borderGrey;
+
+    :focus {
+      box-shadow: 0px;
+      outline: 1px solid $highlightRed;
+    }
   }
 
-  input::placeholder{
+  input::placeholder, textarea::placeholder {
     opacity: 0.6;
   }
-}
 
-textarea:focus {
-  outline: none;
-  box-shadow: 0px 0px 5px red;
-}
+  input[type="text"]:focus {
+    box-shadow: none;
+    outline: 2px solid $highlightRed;
+    border-radius: 0.2rem;
+    border: 1px solid $borderGrey;
+  }
 
-input[type="number"]:focus {
-  box-shadow: 0px 0px 5px red;
-}
+  input[type="number"]:focus {
+    box-shadow: none;
+    outline: 2px solid $highlightRed;
+  }
 
-.hide {
-  display: none;
+  textarea:focus {
+    outline: 2px solid $highlightRed;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .tooltip {
+    position: relative;
+
+    .tooltiptext {
+      visibility: hidden;
+      width: 12rem;
+      background-color: $darkGrey;
+      color: $white;
+      text-align: center;
+      border-radius: 0.3rem;
+      position: absolute;
+      z-index: 99999;
+      margin-left: 0.4rem;
+      top: -1.6rem;
+      padding: 0.2rem;
+    }
+
+    .tooltiptext::after {
+      content: " ";
+      position: absolute;
+      top: 50%;
+      right: 100%;
+      margin-top: -0.4rem;
+      border-width: 0.4rem;
+      border-style: solid;
+      border-color: transparent $darkGrey transparent transparent;
+    }
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  button:hover {
+    box-shadow: none;
+  }
 }

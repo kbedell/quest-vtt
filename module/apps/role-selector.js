@@ -1,4 +1,5 @@
 import { getItem } from "../quest-helpers.js";
+import { RoleInfo } from "./role-info.js";
 
 /**
  * A specialized form used to select role(s)
@@ -24,7 +25,7 @@ export class RoleSelector extends FormApplication {
 
     return mergeObject(super.defaultOptions, {
       id: "role-selector",
-      classes: ["quest"],
+      classes: ["quest", "app", "role-selector"],
       title: "Role Selection",
       template: "systems/quest/templates/apps/role-selector.html",
       width: 320,
@@ -91,5 +92,38 @@ export class RoleSelector extends FormApplication {
 
     // Update the object
     this.object.update(updateData);
+  }
+
+    /* -------------------------------------------- */
+  /*  Event Listeners and Handlers
+  /* -------------------------------------------- */
+
+  /**
+   * Activate event listeners using the prepared sheet HTML
+   * @param html {HTML}   The prepared HTML object ready to be rendered into the DOM
+   */
+  activateListeners(html) {
+    super.activateListeners(html);
+    html.find(".role-info").click(this._displayRoleInfo.bind(this));
+  }
+
+  async _displayRoleInfo(event) {
+    event.preventDefault();
+    let options = {};
+
+    let role = await getItem(
+      event.currentTarget.parentNode.dataset.itemId,
+      "role"
+    );
+
+    options = {
+      name: role.data.name,
+      id: role.data._id,
+      description: TextEditor.enrichHTML(
+        role.data.data.description.full
+      )
+    };
+
+    new RoleInfo(this.actor, options).render(true);
   }
 }

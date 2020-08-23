@@ -3,214 +3,317 @@
 /* ----------------------------------------- */
 @import "sheet";
 
-.quest.item {
-  .item-header {
-    font-family: $fontEmphasis;
-    font-weight: 700;
-    flex: 0 0 auto;
+/* ----------------------------------------- */
+/*  Ability Builder Style                    */
+/* ----------------------------------------- */
+
+.quest.item.ability-builder {
+  .window-content {
+    background-color: $lightGrey;
+    background-image: none;
   }
 
-  h1 > input[type="text"] {
-    flex: 0 0 auto;
-  }
-
-  input[type="text"] {
-    font-family: $fontEmphasis;
-    padding: 10px;
-
-    ::placeholder {
-      font-weight: 700;
-    }
-  }
-
-  textarea {
-    font-family: $fontEmphasis;
-    padding: 10px;
-
-    ::placeholder {
-      font-weight: 700;
-    }
-  }
-
-  h1.header {
-    margin-left: 10px;
-    padding: 0px;
-    border-bottom: 0px;
-  }
-
-  input[type="number"] {
-    background: none;
-    min-width: 20px;
-    height: 24px;
-    border: 1px solid #7a7971;
-    border-radius: 3px;
-  }
-
-  .label {
-    flex: 0 0 auto;
-    font-family: $fontEmphasis;
-    font-weight: 700;
-  }
-
-  .item-group {
-    margin-top: 10px;
-    flex: 0 0 auto;
-  }
-
-  .maximum,
-  .minimum {
-    margin-left: 10px;
-  }
-
-  .explanation {
-    flex: 0 0 auto;
-  }
-
-  .item-delete:hover {
-    color: red;
-  }
-
-  .adder {
-    padding: 10px;
-    line-height: 30px;
-    border: 2px dashed #000;
-    list-style: dot;
-    flex: 0 0 30px;
-  }
-
-  .hover {
-    box-shadow: 0px 0px 5px red;
-  }
-
-  .item-image {
+  img {
+    flex: 0 1 100px;
+    max-width: 100px;
     height: 100px;
-    width: 100px;
-    flex: 0 0 100px;
-  }
-
-  .legendary {
-    margin-left: 10px;
-  }
-
-  .ability-body {
-    flex: 0 0 auto;
+    border-radius: 100px;
+    border: 1px solid $borderGrey;
   }
 
   .item-header {
-    align-items: center;
+    align-content: center;
+
+    .item-image,
+    .header {
+      align-self: center;
+    }
+
+    h1.header {
+      text-align: center;
+      border-bottom: 2px solid $builderHighlightGreen;
+    }
   }
 
-  .item-name {
-    height: 45px;
+  .submit {
+    margin-top: 0.3rem;
+    color: $white;
+    background-color: $builderHighlightGreen;
+    border: 1px solid $builderHighlightGreen;
+
+    :hover {
+      background-color: $highlightRed;
+      border: 1px solid $highlightRed;
+    }
   }
 
-  .item-info {
-    flex: 0 0 auto;
-    margin-left: 5px;
-  }
+  .steps {
+    .step {
+      h1.progress-header {
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        font-size: 1.3rem;
+        border-bottom: 2px solid $builderHighlightGreen;
+        text-align: center;
+      }
 
-  .item-label {
-    flex: 0 0 auto;
+      .section {
+        align-items: center;
+        margin-top: 0.4rem;
+
+        .item-label {
+          flex: 0 1 auto;
+          font-family: $fontEmphasis;
+          font-weight: 700;
+          font-size: 1rem;
+          margin-right: 0.2rem;
+        }
+
+        .tooltip {
+          flex: 0 1 auto;
+
+          .tooltiptext {
+            top: -1.8rem;
+            left: -6.2rem;
+
+            ::after {
+              top: 100%;
+              left: 50%;
+              margin-left: -0.4rem;
+              border-width: 0.4rem;
+              border-style: solid;
+              border-color: $darkGrey, transparent, transparent, transparent;
+            }
+          }
+        }
+
+        input[type="checkbox"] {
+          height: auto;
+        }
+
+        textarea:focus,
+        input[type="checkbox"]:focus {
+          outline: 2px solid $highlightRed;
+        }
+
+        select:focus {
+          box-shadow: none;
+          outline: 2px solid $highlightRed;
+        }
+      }
+
+      .adder-effect {
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        flex: 0 1 0.8rem;
+        background-color: $builderHighlightGreen;
+        border: 1px solid $builderHighlightGreen;
+        color: $white;
+        padding: 0.5rem;
+        text-align: center;
+        width: 16rem;
+        border-radius: 0.3rem;
+        align-self: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .effect-list {
+        padding: 0px;
+        margin: 0px;
+        align-content: center;
+
+        .effect {
+          font-weight: 700;
+          padding: 0.5rem;
+          border: 1px solid $borderGrey;
+          margin-bottom: 0.3rem;
+
+          .options {
+            justify-content: flex-end;
+
+            .config,
+            .delete {
+              flex: 0 1 auto;
+            }
+
+            .config:hover,
+            .delete:hover {
+              color: $highlightRed;
+            }
+
+            .config {
+              margin-right: 0.2rem;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
 /* ----------------------------------------- */
-/*  Range Styles                             */
+/*  Role Styles                              */
 /* ----------------------------------------- */
 
-.quest.item.range {
-  min-width: 600px;
-  min-height: 440px;
-
-  .range-value {
-    margin-left: 10px;
+.quest.sheet.item.role {
+  .window-content {
+    background-color: $lightGrey;
+    background-image: none;
   }
 
-  .minimum,
-  .maximum {
-    margin-left: 0px;
-    padding-left: 10px;
-  }
-}
-
-/* ----------------------------------------- */
-/*  Effect Styles                            */
-/* ----------------------------------------- */
-
-.quest.item.effect {
-  min-width: 600px;
-  min-height: 600px;
-
-  .label {
-    margin-right: 10px;
+  img {
+    flex: 0 1 100px;
+    max-width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    border: 1px solid $borderGrey;
   }
 
-  .item-ranges {
-    padding: 0px 0px 0px 0px;
-    margin-top: -10px;
+  .item-header {
+    align-content: center;
+
+    .item-image,
+    .header {
+      align-self: center;
+    }
+
+    h1.header {
+      text-align: center;
+      border-bottom: 2px solid $roleGrey;
+      margin-top: 0.5rem;
+    }
   }
 
-  .range {
-    padding: 0.5rem;
-    margin-top: 0.25rem;
-    border: 1px solid black;
+  .tooltip {
+    flex: 0 1 auto;
+
+    .tooltiptext {
+      top: -1.8rem;
+      left: -6.2rem;
+
+      ::after {
+        top: 100%;
+        left: 50%;
+        margin-left: -0.4rem;
+        border-width: 0.4rem;
+        border-style: solid;
+        border-color: $darkGrey, transparent, transparent, transparent;
+      }
+    }
   }
 
-  .options {
-    text-align: right;
-  }
+  .section {
+    margin-top: 0.4rem;
 
-  .description, .chat, .effect-cost, .effect-flavor-name {
-    flex: 0 0 auto;
-  }
-}
+    h1.section-header {
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1.3rem;
+      border-bottom: 2px solid $roleGrey;
+      text-align: center;
+      flex: 0 1 auto;
+    }
 
-/* ----------------------------------------- */
-/*  Ability Styles                           */
-/* ----------------------------------------- */
+    .item-label {
+      flex: 0 1 auto;
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-right: 0.2rem;
+    }
 
-.quest.item.ability {
-  min-width: 550px;
-  min-height: 520px;
+    input[type="checkbox"] {
+      height: auto;
+    }
 
-  .ability-header {
-    flex: 0 0 auto;
-  }
+    textarea:focus,
+    input[type="checkbox"]:focus {
+      outline: 2px solid $highlightRed;
+    }
 
-  .label {
-    margin-right: 10px;
-  }
+    select:focus {
+      box-shadow: none;
+      outline: 2px solid $highlightRed;
+    }
 
-  ul.item-effects {
-    padding: 0px 0px 0px 0px;
-    margin-top: -10px;
-  }
+    .adder-legendaries,
+    .adder-paths {
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      flex: 0 1 0.8rem;
+      background-color: $roleGrey;
+      border: 1px solid $roleGrey;
+      color: $white;
+      padding: 0.5rem;
+      text-align: center;
+      width: 16rem;
+      border-radius: 0.3rem;
+      align-self: center;
+      margin-bottom: 0.5rem;
+    }
 
-  .adder {
-    padding: 10px;
-    line-height: 30px;
-    border: 2px dashed #000;
-    list-style: dot;
-    flex: 0 0 30px;
-  }
+    .legendary-list {
+      padding: 0px;
+      margin: 0px;
+      align-content: center;
 
-  .effect {
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    border: 1px solid black;
-  }
+      .legendary,
+      .path {
+        font-weight: 700;
+        padding: 0.5rem;
+        border: 1px solid $borderGrey;
+        margin-bottom: 0.3rem;
 
-  .hover {
-    box-shadow: 0px 0px 5px red;
-  }
+        .options {
+          justify-content: flex-end;
 
-  .options {
-    text-align: right;
-  }
+          .config,
+          .delete {
+            flex: 0 1 auto;
+          }
 
-  .item-group.legendary {
-    margin: 0px;
-    padding: 0px;
+          .config:hover,
+          .delete:hover {
+            color: $highlightRed;
+          }
+
+          .config {
+            margin-right: 0.2rem;
+          }
+        }
+      }
+    }
+
+    .path-list {
+      padding: 0px;
+      margin: 0px;
+      align-content: center;
+
+      .path {
+        font-weight: 700;
+        padding: 0.5rem;
+        border: 1px solid $borderGrey;
+        margin-bottom: 0.3rem;
+
+        .options {
+          justify-content: flex-end;
+
+          .config,
+          .delete {
+            flex: 0 1 auto;
+          }
+
+          .config:hover,
+          .delete:hover {
+            color: $highlightRed;
+          }
+
+          .config {
+            margin-right: 0.2rem;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -218,73 +321,123 @@
 /*  Path Styles                              */
 /* ----------------------------------------- */
 
-.quest.item.path {
-  min-width: 580px;
-  min-height: 520px;
-
-  .path-header {
-    flex: 0 0 auto;
+.quest.sheet.item.path {
+  .window-content {
+    background-color: $lightGrey;
+    background-image: none;
   }
 
-  .label {
-    margin-right: 10px;
+  img {
+    flex: 0 1 100px;
+    max-width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    border: 1px solid $borderGrey;
   }
 
-  ul.item-abilities {
-    padding: 0px 0px 0px 0px;
+  .item-header {
+    align-content: center;
+
+    .item-image,
+    .header {
+      align-self: center;
+    }
+
+    h1.header {
+      text-align: center;
+      border-bottom: 2px solid $pathPink;
+      margin-top: 0.5rem;
+    }
   }
 
-  .options {
-    text-align: right;
+  .tooltip {
+    flex: 0 1 auto;
+
+    .tooltiptext {
+      top: -1.8rem;
+      left: -6.2rem;
+
+      ::after {
+        top: 100%;
+        left: 50%;
+        margin-left: -0.4rem;
+        border-width: 0.4rem;
+        border-style: solid;
+        border-color: $darkGrey, transparent, transparent, transparent;
+      }
+    }
   }
 
-  .path-body {
-    flex: 0 0 auto;
-  }
+  .section {
+    margin-top: 0.4rem;
 
-  .ability {
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    border: 1px solid black;
-    cursor: move;
-  }
+    h1.section-header {
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1.3rem;
+      border-bottom: 2px solid $pathPink;
+      text-align: center;
+      flex: 0 1 auto;
+    }
 
-  .ability.dragging {
-    opacity: 0.5;
-  }
-}
+    .item-label {
+      flex: 0 1 auto;
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-right: 0.2rem;
+    }
 
-/* ----------------------------------------- */
-/*  Role Styles                           */
-/* ----------------------------------------- */
+    .adder-abilities {
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      flex: 0 1 0.8rem;
+      background-color: $pathPink;
+      border: 1px solid $pathPink;
+      color: $white;
+      padding: 0.5rem;
+      text-align: center;
+      width: 16rem;
+      border-radius: 0.3rem;
+      align-self: center;
+      margin-bottom: 0.5rem;
+    }
 
-.quest.item.role {
-  min-width: 550px;
-  min-height: 520px;
+    .abilities-list {
+      padding: 0px;
+      margin: 0px;
+      align-content: center;
 
-  .role-header {
-    flex: 0 0 auto;
-  }
+      .ability {
+        font-weight: 700;
+        padding: 0.5rem;
+        border: 1px solid $borderGrey;
+        margin-bottom: 0.3rem;
 
-  .label {
-    margin-right: 10px;
-  }
+        .drag-bars {
+          flex: 0 1 auto;
+          margin-right: 0.5rem;
+          color: $borderGrey;
+        }
 
-  ul.item-paths {
-    padding: 0px 0px 0px 0px;
-  }
+        .options {
+          justify-content: flex-end;
 
-  .options {
-    text-align: right;
-  }
+          .config,
+          .delete {
+            flex: 0 1 auto;
+          }
 
-  .description, .chat {
-    flex: 0 0 auto;
-  }
+          .config:hover,
+          .delete:hover {
+            color: $highlightRed;
+          }
 
-  .path {
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    border: 1px solid black;
+          .config {
+            margin-right: 0.2rem;
+          }
+        }
+      }
+    }
   }
 }

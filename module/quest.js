@@ -14,11 +14,9 @@ import { preloadHandlebarsTemplates } from "./templates.js";
 import { ActorQuest } from "./actor/entity.js";
 import { CharacterSheetQuest } from "./actor/sheets/character.js";
 import { ItemQuest } from "./item/entity.js";
-import { RangeSheetQuest } from "./item/sheets/range.js";
-import { EffectSheetQuest } from "./item/sheets/effect.js";
-import { AbilitySheetQuest } from "./item/sheets/ability.js";
 import { PathSheetQuest } from "./item/sheets/path.js";
 import { RoleSheetQuest } from "./item/sheets/role.js";
+import { AbilityBuilderQuest } from "./item/sheets/ability-builder.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -49,24 +47,16 @@ Hooks.once("init", function () {
     makeDefault: true,
   });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("quest", RangeSheetQuest, {
-    types: ["range"],
-    makeDefault: true,
-  });
-  Items.registerSheet("quest", EffectSheetQuest, {
-    types: ["effect"],
-    makeDefault: true,
-  });
-  Items.registerSheet("quest", AbilitySheetQuest, {
+  Items.registerSheet("quest", AbilityBuilderQuest, {
     types: ["ability"],
-    makeDefault: true,
-  });
-  Items.registerSheet("quest", PathSheetQuest, {
-    types: ["path"],
     makeDefault: true,
   });
   Items.registerSheet("quest", RoleSheetQuest, {
     types: ["role"],
+    makeDefault: true,
+  });
+  Items.registerSheet("quest", PathSheetQuest, {
+    types: ["path"],
     makeDefault: true,
   });
 
@@ -125,7 +115,7 @@ async function createQuestMacro(data, slot) {
     macro = await Macro.create({
       name: item.name,
       type: "script",
-      img: "systems/quest/icons/macro.png",
+      img: "systems/quest/icons/dice-fire.png",
       command: command,
       flags: {"quest.abilityMacro": true}
     });

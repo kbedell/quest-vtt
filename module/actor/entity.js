@@ -166,42 +166,67 @@ export class ActorQuest extends Actor {
   /* -------------------------------------------- */
 
   async rollAbility(options = {}) {
-    const effect = await getItem(options.effectId, "effect");
     const ability = await getItem(options.abilityId, "ability");
+    const effect = ability.data.data.effects[options.effectId];
+    let isTriumph = false;
+    let isSuccess = false;
+    let isToughChoice = false;
+    let isFailure = false;
+    let isCatastrophe = false;
+
     const roll = new Roll("1d20").roll();
 
     if (!effect) return;
 
     let resultFlavor = "";
 
-    const ranges = effect.data.data.ranges;
+    const ranges = effect.ranges;
 
     for (let r = 0; r < ranges.length; r++) {
-      const range = await getItem(ranges[r], "range");
+      const range = ranges[r];
 
-      if (range.data.data.min === range.data.data.max) {
-        if (roll.total === range.data.data.max) {
+      if (range.min === range.max) {
+        if (roll.total === range.max) {
           resultFlavor = TextEditor.enrichHTML(
-            range.data.data.description.chat
+            range.description.chat
           );
         }
       } else {
         if (
-          roll.total <= range.data.data.max &&
-          roll.total >= range.data.data.min
+          roll.total <= range.max &&
+          roll.total >= range.min
         ) {
           resultFlavor = TextEditor.enrichHTML(
-            range.data.data.description.chat
+            range.description.chat
           );
         }
       }
     }
 
+    if (roll.total === 20) {
+      isTriumph = true;
+    } else if (roll.total < 20 && roll.total >= 10) {
+      isSuccess = true;
+    } else if (roll.total < 11 && roll.total >= 5) {
+      isToughChoice = true;
+    } else if (roll.total < 6 && roll.total >= 2) {
+      isFailure = true;
+    } else if (roll.total === 1) {
+      isCatastrophe = true;
+    }
+
+
     const rollData = {
       actor: options.actor,
       roll: roll,
+      legendary: ability.data.data.legendary,
       resultFlavor: resultFlavor,
       abilityName: ability.name,
+      isTriumph: isTriumph,
+      isSuccess: isSuccess,
+      isToughChoice: isToughChoice,
+      isFailure: isFailure,
+      isCatastrophe: isCatastrophe
     };
 
     const template = "systems/quest/templates/chat/ability-roll-card.html";

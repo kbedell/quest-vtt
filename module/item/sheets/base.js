@@ -34,16 +34,4 @@ export class ItemSheetQuest extends ItemSheet {
   }
 
   /* -------------------------------------------- */
-
-  // /* -------------------------------------------- */
-  // /*  Event Listeners and Handlers
-  // /* -------------------------------------------- */
-
-  // /**
-  //  * Activate event listeners using the prepared sheet HTML
-  //  * @param html {HTML}   The prepared HTML object ready to be rendered into the DOM
-  //  */
-  // activateListeners(html) {
-  //   super.activateListeners(html);
-  // }
 }

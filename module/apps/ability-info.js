@@ -1,4 +1,4 @@
-import { getFullAbilityData } from "../quest-helpers.js";
+import { getItem } from "../quest-helpers.js";
 
 /**
  * A specialized form used to selecting abilities
@@ -9,7 +9,7 @@ export class AbilityInfo extends FormApplication {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       id: "ability-info",
-      classes: ["quest"],
+      classes: ["quest", "app", "ability-info"],
       title: "Ability Info",
       template: "systems/quest/templates/apps/ability-info.html",
       width: 400,
@@ -41,7 +41,7 @@ export class AbilityInfo extends FormApplication {
 
   async _onSendToChat(event) {
     const id = event.currentTarget.dataset.itemId;
-    const item = await getFullAbilityData(id);
+    const item = await getItem(id, "ability");
 
     const template = "systems/quest/templates/chat/ability-card.html";
     const html = await renderTemplate(template, item);

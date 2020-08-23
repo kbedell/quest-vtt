@@ -13,5 +13,11 @@
     "QUEST.Inventory": "Inventory",
     "QUEST.Abilities": "Abilities",
 
-    "QUEST.Save": "Save"
+    "QUEST.EffectName": "Effect Name (Required)",
+    "QUEST.FilterPaths": "Filter Paths",
+    "QUEST.FilterLegendaries": "Filter Abilities",
+    "QUEST.PathName": "Learning Path Name",
+
+    "QUEST.Save": "Save",
+    "QUEST.Cancel": "Cancel"
 }

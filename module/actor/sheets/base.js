@@ -60,10 +60,6 @@ export class ActorSheetQuest extends ActorSheet {
     return position;
   }
 
-  /* -------------------------------------------- */
-  /*  Event Listeners and Handlers                */
-  /* -------------------------------------------- */
-
  /* -------------------------------------------- */
   /*  Event Listeners and Handlers
   /* -------------------------------------------- */

@@ -1,380 +1,309 @@
 /* ----------------------------------------- */
 /*  Actor Styles                             */
 /* ----------------------------------------- */
-@import 'sheet';
+@import "sheet";
 
 /* ----------------------------------------- */
 /*  Character Styles                         */
 /* ----------------------------------------- */
-.quest.character{
-    min-width: 830px;
-    min-height: 690px;
+.quest.character {
+  min-width: 830px;
+  min-height: 690px;
 
-    .quest-sheet > * {
-        flex: 1 100%;
+  .window-content {
+    padding: 0px;
+  }
+
+  .character-form {
+    background-color: $lightGrey;
+    font-family: $fontFamily;
+    color: $darkGrey;
+    font-size: 1.1rem;
+    font-weight: 500;
+
+    img.profile {
+      flex: 0 1 150px;
+      max-width: 150px;
+      height: 150px;
+      border-radius: 150px;
+      border: 1px solid $borderGrey;
+      margin-right: 0.5rem;
     }
 
-    .sheet-head, .sheet-navigation {
-        flex: 0 0 30px;
+    .header {
+      background: $charHeaderBlue;
+      padding: 0.4rem;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      flex: 0 1 auto;
+      justify-items: space-between;
     }
 
-    .sheet-navigation.tabs {
-        border-bottom: 2px groove #eeede0;
+    .details {
+      padding: 1rem;
     }
 
-    .sheet-head {
-        border-bottom: 2px groove #eeede0;
-        margin-bottom: 10px;
+    .character-label,
+    .hitpoints {
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-right: 0.2rem;
     }
 
-    .sheet-madlibs {
-        flex: 1.75 1 0;
-        order: 1;
-        border-right: 2px groove #eeede0;
-        padding-right: 5px;
+    .hitpoints,
+    .actionpoints,
+    .roll-generic {
+      color: $white;
+      text-align: center;
     }
 
-    .label {
-        max-width: fit-content;
-    }
-
-    .actionpoints {
-        text-align: right;
-    }
-
-    .hp, .ap {
-        background: none;
-        min-width: 20px;
-        height: 24px;
-        border: 1px solid #7a7971;
-        border-radius: 3px;
-    }
-
-    .sheet-abilities {
-        flex: 1 1 0;
-        order: 2;
-    }
-
-    ul {
-        .draggable {
-            will-change: transform;
-            list-style-type: none;
-        }
-    }
-
-    .madlib-upper {
-        margin-left: 10px;
-    }
-
-    .madlib-lower {
-        margin-top: 5px;
-    }
-
-    .madlib-section {
-        flex: 0 0 150px;
-    }
-
-    .char {
-        font-family: $fontEmphasis;
-        font-weight: 700;
-        padding: 10px;
-    }
-
-    .char.name, .char.pronouns, .char.heritage, .char.flaw, .char.movement, .char.community {
-        width: 65%;
-    }
-
-    .char.age, .char.height, .char.feature, .char.role, .char.style {
-        width: 40%;
-    }
-
-    .char.role {
-        width: 65%;
-    }
-
-    .char.ideal {
-        width: 80%;
-    }
-
-    .char.home {
-        width: 55%;
+    .hp,
+    .ap {
+      min-width: 20px;
+      border: 1px solid #7a7971;
+      border-radius: 0.3rem;
+      font-size: 1.1rem;
+      padding-left: 0.3rem;
     }
 
     .roll-generic {
-        flex: 0 0 auto;
-
-        :hover {
-            color: red;
-        }
+      :hover {
+        color: $highlightRed;
+      }
     }
 
-    .label {
-        flex: 0 0 auto;
-        margin-right: 10px;
+    .biography {
+      flex: 1.75 1 0;
+      order: 1;
+      padding-right: 0.2rem;
+      max-width: 580px;
+      max-height: 520px;
+    }
+
+    .inventory-abilities {
+      flex: 1 1 0;
+      order: 2;
+      border-left: 2px groove $lightGrey;
+      margin-left: 0.3rem;
+
+      .content {
+        margin-left: 1rem;
+        margin-top: 0.8rem;
+      }
+    }
+
+    .name,
+    .pronouns,
+    .heritage,
+    .flaw,
+    .movement,
+    .community {
+      width: 65%;
+    }
+
+    .age,
+    .height,
+    .feature,
+    .role,
+    .style {
+      width: 40%;
+    }
+
+    .role {
+      width: 65%;
+    }
+
+    .ideal {
+      width: 80%;
+    }
+
+    .home {
+      width: 55%;
+    }
+
+    .biography-section-upper,
+    .biography-section-lower {
+      flex: 0 1 auto;
+    }
+
+    .descriptor-section,
+    .descriptor-section-lower {
+      flex: 0 1 auto;
+      margin-bottom: 0.3rem;
+      line-height: 1.8rem;
+    }
+
+    .sheet-navigation {
+      flex: 0 1 auto;
+
+      a.item {
         font-family: $fontEmphasis;
         font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      #inventory.active,
+      #abilities.active {
+        text-shadow: none;
+        color: $charHeaderBlue;
+        border-bottom: 2px solid $charHeaderBlue;
+      }
+
+      #inventory:hover,
+      #abilities:hover {
+        text-shadow: none;
+        color: $highlightRed;
+        border-bottom: 2px solid $highlightRed;
+      }
+
+      .inventory,
+      .abilities {
+        margin-top: 0.3rem;
+      }
     }
 
-    .label.actionpoints {
-        margin-left: 10px;
-    }
-}
+    /* ----------------------------------------- */
+    /*  Inventory Styles                         */
+    /* ----------------------------------------- */
 
-/* ----------------------------------------- */
-/*  Inventory Styles                         */
-/* ----------------------------------------- */
-
-.quest.character .content {
     ol#inventory-list {
-        margin: 15px 0px;
-        padding: 0px 0px 0px 1rem;
-        counter-reset: item;
+      padding: 0px;
+      counter-reset: item;
     }
 
-    .inventory-item {
-        margin-bottom: 5px;
-        counter-increment: item;
+    .inventory-slot {
+      counter-increment: item;
 
-        :last-child {
-            margin-bottom: 0px;
-        }
+      :last-child {
+        margin-bottom: 0px;
+      }
     }
 
-    .inventory-item > .item-slot {
-        flex: 0 0 auto;
-        padding: 5px;
-        border-radius: 50%;
+    .inventory-slot > .inventory-item {
+      margin-bottom: 0.5rem;
+
+      .counter {
+        flex: 0 1 auto;
+        margin-right: 0.5rem;
         background-color: #000;
         color: #fff;
-        font-weight: 700;
-        margin: 0px 5px 5px 5px;
-        height: 28px;
-        width: 28px;
-        line-height: 18px;
+        border-radius: 1.8rem;
+        height: 1.8rem;
+        width: 1.8rem;
         text-align: center;
+        line-height: 1.8rem;
+      }
+
+      :before {
+        content: counter(item);
+      }
+
+      .inventory-item-value {
+        flex: 0 1 82%;
+      }
     }
 
-    .inventory-item > .inventory-value {
-        .counter {
-            flex: 0 0 auto;
-            margin-right: 10px;
-            background-color: #000;
-            color: #fff;
-            border-radius: 25px;
-            height: 25px;
-            width: 25px;
-            text-align: center;
-            line-height: 25px;
-        }
-
-        :before {
-            content: counter(item);
-        }
-
-        .inventory-input {
-            flex: 0 0 75%;
-        } 
-    }
-
-    .inventory-item > .item-delete {
-        flex: 0 0 auto;
-        margin: 0px 5px;
+    .inventory-slot > .item-delete {
+      flex: 0 1 auto;
     }
 
     .sort {
-        text-align: center;
-    }
-}
-
-/* ----------------------------------------- */
-/*  Ability Styles                           */
-/* ----------------------------------------- */
-
-.quest.character .content {
-    .abilities {
-        margin-left: 10px;
+      text-align: center;
     }
 
-    .role-selector, .ability-selector {
-        border-bottom: 1px solid #000;
+    .inventory-delete {
+      flex: 0 1 auto;
+
+      :hover {
+        color: $highlightRed;
+      }
     }
 
-    .adder {
+    .sort:hover {
+      color: $highlightRed;
+    }
+
+    /* ----------------------------------------- */
+    /*  Ability Styles                           */
+    /* ----------------------------------------- */
+
+    .abilities-section {
+      .ability-info,
+      .roll-ability,
+      .send-to-chat-default {
+        flex: 0 1 auto;
+      }
+
+      .ability-info:hover,
+      .roll-ability:hover,
+      .send-to-chat-default:hover {
+        color: $highlightRed;
+      }
+
+      .ability-info,
+      .roll-ability {
+        margin-right: 0.3rem;
+      }
+
+      .role-selector,
+      .ability-selector {
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        color: $charHeaderBlue;
+        border-bottom: 2px solid $charHeaderBlue;
+      }
+
+      .adder-plus {
         text-align: right;
-        
+
         :hover {
-            color: red;
+          color: $highlightRed;
         }
-    }
+      }
 
-    .item-roles, .item-abilities {
+      .abilities-list {
         padding: 0px;
-    }
+      }
 
-    .ability-info, .send-to-chat-default {
+      .name-header {
+        margin-bottom: 0.3rem;
+      }
+
+      .cost {
         flex: 0 0 auto;
-        margin-right: 5px;
-    }
-
-    .name-header {
-        align-items: center;
-    }
-
-    .roll-ability {
-        flex: 0 0 auto;
-        margin-right: 5px;
-    }
-
-    .effect.item {
-        margin-top: 10px;
-    }
-}
-
-/* ----------------------------------------- */
-/*  Role App Styles                          */
-/* ----------------------------------------- */
-.app.quest {
-    .roles {
-        font-size: 1rem;
-        font-weight: 500;
-        line-height: 30px;
-    }
-
-    label.checkbox {
-        font-size: 1rem;
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        margin-right: 20px;
+        padding-left: 10px;
+        border-radius: 3px 0px 0px 3px;
+        background: $darkGrey;
+        color: $white;
+        height: 20px;
+        line-height: 1rem;
+        position: relative;
+        padding-right: 5px;
+        width: 1.8rem;
+      }
+    
+      .cost:after {
+        content: "";
+        float: right;
+        position: absolute;
+        top: 0;
+        right: -11px;
+        width: 0;
+        height: 0;
+        border-color: transparent transparent transparent $darkGrey;
+        border-style: solid;
+        border-width: 10px 0px 10px 11px;
+      }
     }
 
     .role-list {
-        list-style: none;
-        padding: 0px;
+      padding: 0px;
+      font-family: $fontEmphasis;
+      font-weight: 700;
     }
-
-    .checkbox {
-        font-family: $fontEmphasis;
-        font-weight: 700;
-    }
-
-    .disabled {
-        color: grey;
-    }
-}
-
-/* ----------------------------------------- */
-/*  Ability App Styles                       */
-/* ----------------------------------------- */
-#ability-selector {
-    min-height: 400px;
-}
-
-.abilities {
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 30px;
-}
-
-.app.quest {
-    ol {
-        padding: 0px;
-    }
-
-    .cost {
-        flex: 0 0 auto;
-        font-family: $fontEmphasis;
-        font-weight: 700;
-        margin-right: 20px;
-        padding-left: 10px;
-        border-radius: 3px 0px 0px 3px;
-        background: #000;
-        color: #fff;
-        height: 20px;
-        line-height: 20px;
-        position: relative;
-        padding-right: 5px;
-    }
-
-    .cost:after {
-        content:"";
-        float:right;
-        position:absolute;
-        top:0;
-        right:-11px;
-        width:0;
-        height:0;
-        border-color:transparent transparent transparent #000;
-        border-style:solid;
-        border-width:10px 0px 10px 11px;		
-      }
-
-    .ability-info {
-        text-align: right;
-    }
-}
-
-/* ----------------------------------------- */
-/*  Ability Info App Styles                  */
-/* ----------------------------------------- */
-.app.quest .ability-info-container {
-    font-family: $fontFamily;
-    font-size: 1.1em;
-
-    .ability-name {
-        font-family: $fontEmphasis;
-        font-size: 1.25rem;
-        font-weight: 700;
-        text-align: center;
-    }
-
-    .cost {
-        flex: 0 0 auto;
-        font-family: $fontEmphasis;
-        font-weight: 700;
-        margin-right: 20px;
-        padding-left: 10px;
-        border-radius: 3px 0px 0px 3px;
-        background: #000;
-        color: #fff;
-        height: 20px;
-        line-height: 20px;
-        position: relative;
-        padding-right: 5px;
-    }
-
-    .cost:after {
-        content:"";
-        float:right;
-        position:absolute;
-        top:0;
-        right:-11px;
-        width:0;
-        height:0;
-        border-color:transparent transparent transparent #000;
-        border-style:solid;
-        border-width:10px 0px 10px 11px;		
-      }
-
-    .ability-info-range {
-        flex: 0 0 75px;
-        font-family: $fontEmphasis;
-        font-weight: 700;
-    }
-
-    .ability-info-ranges {
-        border-bottom: 1px solid #000;
-    }
-
-    .row-header {
-        text-align: center;
-        font-size: 1.2rem;
-        font-family: $fontEmphasis;
-        font-weight: 700;
-        margin-top: 10px;
-    }
-
-    .effect-ranges .ability-info-ranges:last-child {
-        border-bottom: none;
-    }
-
-    .send-to-chat-info {
-        text-align: center;
-    }
+  }
 }

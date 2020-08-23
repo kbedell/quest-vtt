@@ -1,114 +1,95 @@
 {
-    "Actor": {
-        "types": [
-            "character",
-            "npc"
-        ],
-        "templates": {
-            "description": {
-                "pronouns": "",
-                "age": "",
-                "height": "",
-                "role": "",
-                "feature-1": "",
-                "feature-2": "",
-                "feature-3": "",
-                "style-1": "",
-                "style-2": "",
-                "movement": "",
-                "home": "",
-                "community": "",
-                "ideal": "",
-                "flaw": "",
-                "dream": ""
-            }
-        },
-        "character": {
-            "templates": [
-                "description"
-            ],
-            "roles": [],
-            "hitpoints": {
-                "value": 10,
-                "max": 10
-            },
-            "actionpoints": 0,
-            "inventory": {
-                "contents":[
-                    {
-                        "value": ""
-                    },
-                    {
-                        "value": ""
-                    },
-                    {
-                        "value": ""
-                    },
-                    {
-                        "value": ""
-                    },
-                    {
-                        "value": ""
-                    },
-                    {
-                        "value": ""
-                    },
-                    {
-                        "value": ""
-                    },
-                    {
-                        "value": ""
-                    },
-                    {
-                        "value": ""
-                    },
-                    {
-                        "value": ""
-                    },
-                    {
-                        "value": ""
-                    },
-                    {
-                        "value": ""
-                    }
-                ],
-                "max": 12
-            },
-            "abilities": []
-        }
+  "Actor": {
+    "types": ["character", "npc"],
+    "templates": {
+      "description": {
+        "pronouns": "",
+        "age": "",
+        "height": "",
+        "role": "",
+        "feature-1": "",
+        "feature-2": "",
+        "feature-3": "",
+        "style-1": "",
+        "style-2": "",
+        "movement": "",
+        "home": "",
+        "community": "",
+        "ideal": "",
+        "flaw": "",
+        "dream": ""
+      }
     },
-    "Item":
-    {
-        "types": ["role", "path", "range", "effect", "ability"],
-        "templates": {
-            "itemDescription": {
-                "value": "",
-                "chat": ""
-            }
+    "character": {
+      "templates": ["description"],
+      "roles": [],
+      "hitpoints": {
+        "value": 10,
+        "max": 10
+      },
+      "actionpoints": 0,
+      "inventory": [
+        {
+          "value": ""
         },
-        "role": {
-            "templates": ["itemDescription"],
-            "paths": [],
-            "legendaries": []
+        {
+          "value": ""
         },
-        "path": {
-            "abilities": []
+        {
+          "value": ""
         },
-        "range": {
-            "templates": ["itemDescription"],
-            "min": 0,
-            "max": 20
+        {
+          "value": ""
         },
-        "effect": {
-            "templates": ["itemDescription"],
-            "spellcost": 0,
-            "variableCost": false,
-            "effectFlavorName": "",
-            "ranges": []
+        {
+          "value": ""
         },
-        "ability": {
-            "legendary": false,
-            "effects": []
+        {
+          "value": ""
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": ""
         }
+      ],
+      "abilities": []
     }
+  },
+  "Item": {
+    "types": ["role", "path", "ability"],
+    "templates": {
+      "itemDescription": {
+        "description": {
+          "full": "",
+          "chat": ""
+        }
+      }
+    },
+    "role": {
+      "templates": ["itemDescription"],
+      "paths": [],
+      "legendaries": []
+    },
+    "ability": {
+      "legendary": false,
+      "effects": []
+    },
+    "path": {
+      "abilities": []
+    }
+  }
 }

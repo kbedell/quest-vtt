@@ -1,0 +1,700 @@
+/* ----------------------------------------- */
+/*  App Styles                               */
+/* ----------------------------------------- */
+@import "sheet";
+
+/* ----------------------------------------- */
+/*  Effects Styles                           */
+/* ----------------------------------------- */
+
+.quest.effect-adder {
+  .window-content {
+    background-color: $lightGrey;
+    background-image: none;
+  }
+
+  img {
+    flex: 0 1 100px;
+    max-width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    border: 1px solid $borderGrey;
+  }
+
+  .effects {
+    .item-header {
+      align-content: center;
+
+      .item-image,
+      .header {
+        align-self: center;
+      }
+
+      h1.header {
+        text-align: center;
+        border-bottom: 2px solid $effectPurple;
+      }
+    }
+
+    .submit,
+    .cancel {
+      margin-top: 0.3rem;
+      color: $white;
+      background-color: $effectPurple;
+      border: 1px solid $effectPurple;
+    }
+
+    .submit:hover,
+    .cancel:hover {
+      background-color: $highlightRed;
+      border: 1px solid $highlightRed;
+    }
+
+    .section {
+      margin-top: 0.4rem;
+
+      .section-header {
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        font-size: 1.3rem;
+        border-bottom: 2px solid $effectPurple;
+        text-align: center;
+      }
+
+      .item-label {
+        flex: 0 1 auto;
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        font-size: 1rem;
+        margin-right: 0.2rem;
+      }
+
+      .tooltip {
+        flex: 0 1 auto;
+
+        .tooltiptext {
+          top: -1.8rem;
+          left: -6.2rem;
+
+          ::after {
+            top: 100%;
+            left: 50%;
+            margin-left: -0.4rem;
+            border-width: 0.4rem;
+            border-style: solid;
+            border-color: $darkGrey, transparent, transparent, transparent;
+          }
+        }
+      }
+
+      input[type="checkbox"] {
+        height: auto;
+      }
+
+      textarea:focus,
+      input[type="checkbox"]:focus {
+        outline: 2px solid $highlightRed;
+      }
+
+      select:focus {
+        box-shadow: none;
+        outline: 2px solid $highlightRed;
+      }
+
+      .adder-range {
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        flex: 0 1 0.8rem;
+        background-color: $effectPurple;
+        border: 1px solid $effectPurple;
+        color: $white;
+        padding: 0.5rem;
+        text-align: center;
+        width: 16rem;
+        border-radius: 0.3rem;
+        align-self: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .range-list {
+        padding: 0px;
+        margin: 0px;
+        align-content: center;
+
+        .range {
+          font-weight: 700;
+          padding: 0.5rem;
+          border: 1px solid $borderGrey;
+          margin-bottom: 0.3rem;
+
+          .options {
+            justify-content: flex-end;
+
+            .config,
+            .delete {
+              flex: 0 1 auto;
+            }
+
+            .config:hover,
+            .delete:hover {
+              color: $highlightRed;
+            }
+
+            .config {
+              margin-right: 0.2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ----------------------------------------- */
+/*  Ranges Styles                            */
+/* ----------------------------------------- */
+
+.quest.range-adder {
+  .window-content {
+    background-color: $lightGrey;
+    background-image: none;
+  }
+
+  .ranges {
+    .item-header {
+      align-content: center;
+
+      .item-image,
+      .header {
+        align-self: center;
+      }
+
+      h1.header {
+        text-align: center;
+        border-bottom: 2px solid $rangeGold;
+      }
+    }
+
+    .submit,
+    .cancel {
+      margin-top: 0.3rem;
+      color: $white;
+      background-color: $rangeGold;
+      border: 1px solid $rangeGold;
+    }
+
+    .submit:hover,
+    .cancel:hover {
+      background-color: $highlightRed;
+      border: 1px solid $highlightRed;
+    }
+
+    .section {
+      margin-top: 0.4rem;
+
+      .section-header {
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        font-size: 1.3rem;
+        border-bottom: 2px solid $rangeGold;
+        text-align: center;
+      }
+
+      .item-label {
+        flex: 0 1 auto;
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        font-size: 1rem;
+        margin-right: 0.2rem;
+      }
+
+      .tooltip {
+        flex: 0 1 auto;
+
+        .tooltiptext {
+          top: -1.8rem;
+          left: -6.2rem;
+
+          ::after {
+            top: 100%;
+            left: 50%;
+            margin-left: -0.4rem;
+            border-width: 0.4rem;
+            border-style: solid;
+            border-color: $darkGrey, transparent, transparent, transparent;
+          }
+        }
+      }
+
+      .seperator {
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        font-size: 1rem;
+        flex: 0 1 auto;
+        margin: 0px 0.4rem;
+        color: $rangeGold;
+      }
+
+      .min-max,
+      .field-group {
+        align-items: center;
+      }
+
+      input[type="checkbox"] {
+        height: auto;
+      }
+
+      textarea:focus,
+      input[type="checkbox"]:focus {
+        outline: 2px solid $highlightRed;
+      }
+
+      select:focus {
+        box-shadow: none;
+        outline: 2px solid $highlightRed;
+      }
+
+      .adder-range {
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        flex: 0 1 0.8rem;
+        background-color: $rangeGold;
+        border: 1px solid $rangeGold;
+        color: $white;
+        padding: 0.5rem;
+        text-align: center;
+        width: 16rem;
+        border-radius: 0.3rem;
+        align-self: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .range-list {
+        padding: 0px;
+        margin: 0px;
+        align-content: center;
+
+        .range {
+          font-weight: 700;
+          padding: 0.5rem;
+          border: 1px solid $borderGrey;
+          margin-bottom: 0.3rem;
+
+          .options {
+            justify-content: flex-end;
+
+            .config,
+            .delete {
+              flex: 0 1 auto;
+            }
+
+            .config:hover,
+            .delete:hover {
+              color: $highlightRed;
+            }
+
+            .config {
+              margin-right: 0.2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ----------------------------------------- */
+/*  Path Styles                              */
+/* ----------------------------------------- */
+
+.quest.path-adder {
+  .window-content {
+    background-color: $lightGrey;
+    background-image: none;
+  }
+
+  .submit,
+  .cancel {
+    margin-top: 0.3rem;
+    color: $white;
+    background-color: $pathPink;
+    border: 1px solid $pathPink;
+  }
+
+  .submit:hover,
+  .cancel:hover {
+    background-color: $highlightRed;
+    border: 1px solid $highlightRed;
+  }
+
+  .section {
+    margin-top: 0.4rem;
+
+    .section-header {
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1.3rem;
+      border-bottom: 2px solid $pathPink;
+      text-align: center;
+    }
+
+    .item-label {
+      flex: 0 1 auto;
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-right: 0.2rem;
+    }
+
+    .path-list {
+      list-style: none;
+      padding: 0px;
+    }
+  }
+}
+
+/* ----------------------------------------- */
+/*  Legendary Styles                         */
+/* ----------------------------------------- */
+
+.quest.legendary-adder {
+  .window-content {
+    background-color: $lightGrey;
+    background-image: none;
+  }
+
+  .submit,
+  .cancel {
+    margin-top: 0.3rem;
+    color: $white;
+    background-color: $builderHighlightGreen;
+    border: 1px solid $builderHighlightGreen;
+  }
+
+  .submit:hover,
+  .cancel:hover {
+    background-color: $highlightRed;
+    border: 1px solid $highlightRed;
+  }
+
+  .section {
+    margin-top: 0.4rem;
+
+    .section-header {
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1.3rem;
+      border-bottom: 2px solid $builderHighlightGreen;
+      text-align: center;
+    }
+
+    .item-label {
+      flex: 0 1 auto;
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-right: 0.2rem;
+    }
+
+    .legendary-list {
+      list-style: none;
+      padding: 0px;
+    }
+  }
+}
+
+/* ----------------------------------------- */
+/*  Path Ability Styles                      */
+/* ----------------------------------------- */
+
+.quest.path-ability-adder {
+  .window-content {
+    background-color: $lightGrey;
+    background-image: none;
+  }
+
+  .submit,
+  .cancel {
+    margin-top: 0.3rem;
+    color: $white;
+    background-color: $builderHighlightGreen;
+    border: 1px solid $builderHighlightGreen;
+  }
+
+  .submit:hover,
+  .cancel:hover {
+    background-color: $highlightRed;
+    border: 1px solid $highlightRed;
+  }
+
+  .section {
+    margin-top: 0.4rem;
+
+    .section-header {
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1.3rem;
+      border-bottom: 2px solid $builderHighlightGreen;
+      text-align: center;
+    }
+
+    .item-label {
+      flex: 0 1 auto;
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-right: 0.2rem;
+    }
+
+    .ability-list {
+      list-style: none;
+      padding: 0px;
+    }
+  }
+}
+
+/* ----------------------------------------- */
+/*  Role Selector Styles                     */
+/* ----------------------------------------- */
+
+.quest.role-selector {
+  .window-content {
+    background-color: $lightGrey;
+    background-image: none;
+  }
+
+  .submit,
+  .cancel {
+    margin-top: 0.3rem;
+    color: $white;
+    background-color: $roleGrey;
+    border: 1px solid $roleGrey;
+  }
+
+  .submit:hover,
+  .cancel:hover {
+    background-color: $highlightRed;
+    border: 1px solid $highlightRed;
+  }
+
+  .options {
+    justify-content: flex-end;
+
+    .role-info {
+      flex: 0 1 auto;
+
+      :hover {
+        color: $highlightRed;
+      }
+    }
+  }
+
+  .role-list {
+    list-style: none;
+    padding: 0px;
+
+    label {
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1rem;
+      align-content: center;
+    }
+  }
+
+  .disabled {
+    color: grey;
+  }
+}
+
+/* ----------------------------------------- */
+/*  Role Info Styles                         */
+/* ----------------------------------------- */
+
+.quest.role-info {
+  .window-content {
+    background-color: $lightGrey;
+    background-image: none;
+  }
+
+  .role-header {
+    .role-name {
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1.3rem;
+      border-bottom: 2px solid $roleGrey;
+      text-align: center;
+    }
+
+    .send-to-chat-info {
+      text-align: center;
+
+      :hover {
+        color: $highlightRed;
+      }
+    }
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+}
+
+/* ----------------------------------------- */
+/*  Ability Selector Styles                  */
+/* ----------------------------------------- */
+
+.quest.ability-selector {
+  .window-content {
+    background-color: $lightGrey;
+    background-image: none;
+  }
+
+  #ability-selector {
+    min-height: 400px;
+  }
+
+  .abilities {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 30px;
+  }
+
+  label {
+    font-family: $fontEmphasis;
+    font-weight: 700;
+    font-size: 1rem;
+    align-content: center;
+  }
+
+  ol {
+    padding: 0px;
+  }
+
+  .cost {
+    flex: 0 0 auto;
+    font-family: $fontEmphasis;
+    font-weight: 700;
+    margin-right: 20px;
+    padding-left: 10px;
+    border-radius: 3px 0px 0px 3px;
+    background: $darkGrey;
+    color: $white;
+    height: 20px;
+    line-height: 1rem;
+    position: relative;
+    padding-right: 5px;
+    width: 1.8rem;
+  }
+
+  .cost:after {
+    content: "";
+    float: right;
+    position: absolute;
+    top: 0;
+    right: -11px;
+    width: 0;
+    height: 0;
+    border-color: transparent transparent transparent $darkGrey;
+    border-style: solid;
+    border-width: 10px 0px 10px 11px;
+  }
+
+  .ability-info {
+    text-align: right;
+  }
+
+  .send-to-chat-info {
+    text-align: center;
+
+    :hover {
+      color: $highlightRed;
+    }
+  }
+}
+
+/* ----------------------------------------- */
+/*  Ability Info Styles                      */
+/* ----------------------------------------- */
+
+.quest.ability-info {
+  .window-content {
+    background-color: $lightGrey;
+    background-image: none;
+  }
+
+  .ability-header {
+    .ability-description {
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1.3rem;
+      border-bottom: 2px solid $builderHighlightGreen;
+      text-align: center;
+    }
+  }
+
+  .send-to-chat-info {
+    text-align: center;
+
+    :hover {
+      color: $highlightRed;
+    }
+  }
+  .section {
+    font-size: 1rem;
+    margin-top: 0.4rem;
+  }
+
+  .row-header {
+    font-family: $fontEmphasis;
+    font-weight: 700;
+    font-size: 1rem;
+    border-bottom: 2px solid $builderHighlightGreen;
+    margin-top: 0.3rem;
+    text-align: center;
+  }
+
+  .ability-info-range {
+    flex: 0 1 auto;
+    font-family: $fontEmphasis;
+    font-weight: 700;
+    margin-right: 0.3rem;
+  }
+
+  .effect-header {
+    .effect-name {
+      font-size: 1.1rem;
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      border-bottom: 2px solid $builderHighlightGreen;
+      text-align: center;
+    }
+
+    .cost {
+      text-align: center;
+      font-size: 1rem;
+    }
+  }
+
+  .effect-description {
+    flex: 0 1 auto;
+  }
+
+  .effect-ranges > .ability-info-ranges {
+    border-bottom: 1px solid $borderGrey;
+    padding: 0.3rem 0px;
+  }
+
+  .effect-ranges > .ability-info-ranges:last-child {
+    border-bottom: 0px;
+  }
+
+  .ability-effect {
+    border: 2px solid $builderHighlightGreen;
+    padding: 0.2rem;
+    border-radius: 0.4rem;
+
+    .ability {
+      margin-bottom: 0.3rem;
+    }
+  }
+}

@@ -9,33 +9,82 @@
 /* ----------------------------------------- */
 @import url("https://fonts.googleapis.com/css?family=Ovo:400");
 @import url("https://fonts.googleapis.com/css?family=Alegreya+Sans:400,700");
+/* Colors */
 @import url("https://fonts.googleapis.com/css?family=Ovo:400");
 @import url("https://fonts.googleapis.com/css?family=Alegreya+Sans:400,700");
 @import url("https://fonts.googleapis.com/css?family=Ovo:400");
 @import url("https://fonts.googleapis.com/css?family=Alegreya+Sans:400,700");
-.quest.character, .quest.item {
-  font-family: "Ovo", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 30px; }
+@import url("https://fonts.googleapis.com/css?family=Ovo:400");
+@import url("https://fonts.googleapis.com/css?family=Alegreya+Sans:400,700");
+.sheet.actor.character .window-content {
+  background: #eeeeee;
+  line-height: 1.2rem;
+  font-size: 1.1rem; }
 
-.quest.character img.profile {
-  flex: 0 0 150px;
-  max-width: 150px;
-  height: 150px; }
+.quest input,
+.quest input[type="number"],
+.quest input[type="text"],
+.quest textarea {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  background: #eeeeee;
+  line-height: 1.2rem;
+  border: 1px solid #adb5bd; }
+  .quest input :focus,
+  .quest input[type="number"] :focus,
+  .quest input[type="text"] :focus,
+  .quest textarea :focus {
+    box-shadow: 0px;
+    outline: 1px solid #f04828; }
 
-.quest.character input::placeholder {
+.quest input::placeholder, .quest textarea::placeholder {
   opacity: 0.6; }
 
-textarea:focus {
-  outline: none;
-  box-shadow: 0px 0px 5px red; }
+.quest input[type="text"]:focus {
+  box-shadow: none;
+  outline: 2px solid #f04828;
+  border-radius: 0.2rem;
+  border: 1px solid #adb5bd; }
 
-input[type="number"]:focus {
-  box-shadow: 0px 0px 5px red; }
+.quest input[type="number"]:focus {
+  box-shadow: none;
+  outline: 2px solid #f04828; }
 
-.hide {
+.quest textarea:focus {
+  outline: 2px solid #f04828; }
+
+.quest .hide {
   display: none; }
+
+.quest .tooltip {
+  position: relative; }
+  .quest .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 12rem;
+    background-color: #222831;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.3rem;
+    position: absolute;
+    z-index: 99999;
+    margin-left: 0.4rem;
+    top: -1.6rem;
+    padding: 0.2rem; }
+  .quest .tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -0.4rem;
+    border-width: 0.4rem;
+    border-style: solid;
+    border-color: transparent #222831 transparent transparent; }
+
+.quest .tooltip:hover .tooltiptext {
+  visibility: visible; }
+
+.quest button:hover {
+  box-shadow: none; }
 
 /* ----------------------------------------- */
 /*  Character Styles                         */
@@ -43,266 +92,203 @@ input[type="number"]:focus {
 .quest.character {
   min-width: 830px;
   min-height: 690px; }
-  .quest.character .quest-sheet > * {
-    flex: 1 100%; }
-  .quest.character .sheet-head, .quest.character .sheet-navigation {
-    flex: 0 0 30px; }
-  .quest.character .sheet-navigation.tabs {
-    border-bottom: 2px groove #eeede0; }
-  .quest.character .sheet-head {
-    border-bottom: 2px groove #eeede0;
-    margin-bottom: 10px; }
-  .quest.character .sheet-madlibs {
-    flex: 1.75 1 0;
-    order: 1;
-    border-right: 2px groove #eeede0;
-    padding-right: 5px; }
-  .quest.character .label {
-    max-width: fit-content; }
-  .quest.character .actionpoints {
-    text-align: right; }
-  .quest.character .hp, .quest.character .ap {
-    background: none;
-    min-width: 20px;
-    height: 24px;
-    border: 1px solid #7a7971;
-    border-radius: 3px; }
-  .quest.character .sheet-abilities {
-    flex: 1 1 0;
-    order: 2; }
-  .quest.character ul .draggable {
-    will-change: transform;
-    list-style-type: none; }
-  .quest.character .madlib-upper {
-    margin-left: 10px; }
-  .quest.character .madlib-lower {
-    margin-top: 5px; }
-  .quest.character .madlib-section {
-    flex: 0 0 150px; }
-  .quest.character .char {
-    font-family: "Alegreya Sans", sans-serif;
-    font-weight: 700;
-    padding: 10px; }
-  .quest.character .char.name, .quest.character .char.pronouns, .quest.character .char.heritage, .quest.character .char.flaw, .quest.character .char.movement, .quest.character .char.community {
-    width: 65%; }
-  .quest.character .char.age, .quest.character .char.height, .quest.character .char.feature, .quest.character .char.role, .quest.character .char.style {
-    width: 40%; }
-  .quest.character .char.role {
-    width: 65%; }
-  .quest.character .char.ideal {
-    width: 80%; }
-  .quest.character .char.home {
-    width: 55%; }
-  .quest.character .roll-generic {
-    flex: 0 0 auto; }
-    .quest.character .roll-generic :hover {
-      color: red; }
-  .quest.character .label {
-    flex: 0 0 auto;
-    margin-right: 10px;
-    font-family: "Alegreya Sans", sans-serif;
-    font-weight: 700; }
-  .quest.character .label.actionpoints {
-    margin-left: 10px; }
-
-/* ----------------------------------------- */
-/*  Inventory Styles                         */
-/* ----------------------------------------- */
-.quest.character .content ol#inventory-list {
-  margin: 15px 0px;
-  padding: 0px 0px 0px 1rem;
-  counter-reset: item; }
-
-.quest.character .content .inventory-item {
-  margin-bottom: 5px;
-  counter-increment: item; }
-  .quest.character .content .inventory-item :last-child {
-    margin-bottom: 0px; }
-
-.quest.character .content .inventory-item > .item-slot {
-  flex: 0 0 auto;
-  padding: 5px;
-  border-radius: 50%;
-  background-color: #000;
-  color: #fff;
-  font-weight: 700;
-  margin: 0px 5px 5px 5px;
-  height: 28px;
-  width: 28px;
-  line-height: 18px;
-  text-align: center; }
-
-.quest.character .content .inventory-item > .inventory-value .counter {
-  flex: 0 0 auto;
-  margin-right: 10px;
-  background-color: #000;
-  color: #fff;
-  border-radius: 25px;
-  height: 25px;
-  width: 25px;
-  text-align: center;
-  line-height: 25px; }
-
-.quest.character .content .inventory-item > .inventory-value :before {
-  content: counter(item); }
-
-.quest.character .content .inventory-item > .inventory-value .inventory-input {
-  flex: 0 0 75%; }
-
-.quest.character .content .inventory-item > .item-delete {
-  flex: 0 0 auto;
-  margin: 0px 5px; }
-
-.quest.character .content .sort {
-  text-align: center; }
-
-/* ----------------------------------------- */
-/*  Ability Styles                           */
-/* ----------------------------------------- */
-.quest.character .content .abilities {
-  margin-left: 10px; }
-
-.quest.character .content .role-selector, .quest.character .content .ability-selector {
-  border-bottom: 1px solid #000; }
-
-.quest.character .content .adder {
-  text-align: right; }
-  .quest.character .content .adder :hover {
-    color: red; }
-
-.quest.character .content .item-roles, .quest.character .content .item-abilities {
-  padding: 0px; }
-
-.quest.character .content .ability-info, .quest.character .content .send-to-chat-default {
-  flex: 0 0 auto;
-  margin-right: 5px; }
-
-.quest.character .content .name-header {
-  align-items: center; }
-
-.quest.character .content .roll-ability {
-  flex: 0 0 auto;
-  margin-right: 5px; }
-
-.quest.character .content .effect.item {
-  margin-top: 10px; }
-
-/* ----------------------------------------- */
-/*  Role App Styles                          */
-/* ----------------------------------------- */
-.app.quest .roles {
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 30px; }
-
-.app.quest label.checkbox {
-  font-size: 1rem; }
-
-.app.quest .role-list {
-  list-style: none;
-  padding: 0px; }
-
-.app.quest .checkbox {
-  font-family: "Alegreya Sans", sans-serif;
-  font-weight: 700; }
-
-.app.quest .disabled {
-  color: grey; }
-
-/* ----------------------------------------- */
-/*  Ability App Styles                       */
-/* ----------------------------------------- */
-#ability-selector {
-  min-height: 400px; }
-
-.abilities {
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 30px; }
-
-.app.quest ol {
-  padding: 0px; }
-
-.app.quest .cost {
-  flex: 0 0 auto;
-  font-family: "Alegreya Sans", sans-serif;
-  font-weight: 700;
-  margin-right: 20px;
-  padding-left: 10px;
-  border-radius: 3px 0px 0px 3px;
-  background: #000;
-  color: #fff;
-  height: 20px;
-  line-height: 20px;
-  position: relative;
-  padding-right: 5px; }
-
-.app.quest .cost:after {
-  content: "";
-  float: right;
-  position: absolute;
-  top: 0;
-  right: -11px;
-  width: 0;
-  height: 0;
-  border-color: transparent transparent transparent #000;
-  border-style: solid;
-  border-width: 10px 0px 10px 11px; }
-
-.app.quest .ability-info {
-  text-align: right; }
-
-/* ----------------------------------------- */
-/*  Ability Info App Styles                  */
-/* ----------------------------------------- */
-.app.quest .ability-info-container {
-  font-family: "Ovo", sans-serif;
-  font-size: 1.1em; }
-  .app.quest .ability-info-container .ability-name {
-    font-family: "Alegreya Sans", sans-serif;
-    font-size: 1.25rem;
-    font-weight: 700;
-    text-align: center; }
-  .app.quest .ability-info-container .cost {
-    flex: 0 0 auto;
-    font-family: "Alegreya Sans", sans-serif;
-    font-weight: 700;
-    margin-right: 20px;
-    padding-left: 10px;
-    border-radius: 3px 0px 0px 3px;
-    background: #000;
-    color: #fff;
-    height: 20px;
-    line-height: 20px;
-    position: relative;
-    padding-right: 5px; }
-  .app.quest .ability-info-container .cost:after {
-    content: "";
-    float: right;
-    position: absolute;
-    top: 0;
-    right: -11px;
-    width: 0;
-    height: 0;
-    border-color: transparent transparent transparent #000;
-    border-style: solid;
-    border-width: 10px 0px 10px 11px; }
-  .app.quest .ability-info-container .ability-info-range {
-    flex: 0 0 75px;
-    font-family: "Alegreya Sans", sans-serif;
-    font-weight: 700; }
-  .app.quest .ability-info-container .ability-info-ranges {
-    border-bottom: 1px solid #000; }
-  .app.quest .ability-info-container .row-header {
-    text-align: center;
-    font-size: 1.2rem;
-    font-family: "Alegreya Sans", sans-serif;
-    font-weight: 700;
-    margin-top: 10px; }
-  .app.quest .ability-info-container .effect-ranges .ability-info-ranges:last-child {
-    border-bottom: none; }
-  .app.quest .ability-info-container .send-to-chat-info {
-    text-align: center; }
+  .quest.character .window-content {
+    padding: 0px; }
+  .quest.character .character-form {
+    background-color: #eeeeee;
+    font-family: "Ovo", sans-serif;
+    color: #222831;
+    font-size: 1.1rem;
+    font-weight: 500;
+    /* ----------------------------------------- */
+    /*  Inventory Styles                         */
+    /* ----------------------------------------- */
+    /* ----------------------------------------- */
+    /*  Ability Styles                           */
+    /* ----------------------------------------- */ }
+    .quest.character .character-form img.profile {
+      flex: 0 1 150px;
+      max-width: 150px;
+      height: 150px;
+      border-radius: 150px;
+      border: 1px solid #adb5bd;
+      margin-right: 0.5rem; }
+    .quest.character .character-form .header {
+      background: #004576;
+      padding: 0.4rem;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      flex: 0 1 auto;
+      justify-items: space-between; }
+    .quest.character .character-form .details {
+      padding: 1rem; }
+    .quest.character .character-form .character-label,
+    .quest.character .character-form .hitpoints {
+      font-family: "Alegreya Sans", sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-right: 0.2rem; }
+    .quest.character .character-form .hitpoints,
+    .quest.character .character-form .actionpoints,
+    .quest.character .character-form .roll-generic {
+      color: #fff;
+      text-align: center; }
+    .quest.character .character-form .hp,
+    .quest.character .character-form .ap {
+      min-width: 20px;
+      border: 1px solid #7a7971;
+      border-radius: 0.3rem;
+      font-size: 1.1rem;
+      padding-left: 0.3rem; }
+    .quest.character .character-form .roll-generic :hover {
+      color: #f04828; }
+    .quest.character .character-form .biography {
+      flex: 1.75 1 0;
+      order: 1;
+      padding-right: 0.2rem;
+      max-width: 580px;
+      max-height: 520px; }
+    .quest.character .character-form .inventory-abilities {
+      flex: 1 1 0;
+      order: 2;
+      border-left: 2px groove #eeeeee;
+      margin-left: 0.3rem; }
+      .quest.character .character-form .inventory-abilities .content {
+        margin-left: 1rem;
+        margin-top: 0.8rem; }
+    .quest.character .character-form .name,
+    .quest.character .character-form .pronouns,
+    .quest.character .character-form .heritage,
+    .quest.character .character-form .flaw,
+    .quest.character .character-form .movement,
+    .quest.character .character-form .community {
+      width: 65%; }
+    .quest.character .character-form .age,
+    .quest.character .character-form .height,
+    .quest.character .character-form .feature,
+    .quest.character .character-form .role,
+    .quest.character .character-form .style {
+      width: 40%; }
+    .quest.character .character-form .role {
+      width: 65%; }
+    .quest.character .character-form .ideal {
+      width: 80%; }
+    .quest.character .character-form .home {
+      width: 55%; }
+    .quest.character .character-form .biography-section-upper,
+    .quest.character .character-form .biography-section-lower {
+      flex: 0 1 auto; }
+    .quest.character .character-form .descriptor-section,
+    .quest.character .character-form .descriptor-section-lower {
+      flex: 0 1 auto;
+      margin-bottom: 0.3rem;
+      line-height: 1.8rem; }
+    .quest.character .character-form .sheet-navigation {
+      flex: 0 1 auto; }
+      .quest.character .character-form .sheet-navigation a.item {
+        font-family: "Alegreya Sans", sans-serif;
+        font-weight: 700;
+        text-transform: uppercase; }
+      .quest.character .character-form .sheet-navigation #inventory.active,
+      .quest.character .character-form .sheet-navigation #abilities.active {
+        text-shadow: none;
+        color: #004576;
+        border-bottom: 2px solid #004576; }
+      .quest.character .character-form .sheet-navigation #inventory:hover,
+      .quest.character .character-form .sheet-navigation #abilities:hover {
+        text-shadow: none;
+        color: #f04828;
+        border-bottom: 2px solid #f04828; }
+      .quest.character .character-form .sheet-navigation .inventory,
+      .quest.character .character-form .sheet-navigation .abilities {
+        margin-top: 0.3rem; }
+    .quest.character .character-form ol#inventory-list {
+      padding: 0px;
+      counter-reset: item; }
+    .quest.character .character-form .inventory-slot {
+      counter-increment: item; }
+      .quest.character .character-form .inventory-slot :last-child {
+        margin-bottom: 0px; }
+    .quest.character .character-form .inventory-slot > .inventory-item {
+      margin-bottom: 0.5rem; }
+      .quest.character .character-form .inventory-slot > .inventory-item .counter {
+        flex: 0 1 auto;
+        margin-right: 0.5rem;
+        background-color: #000;
+        color: #fff;
+        border-radius: 1.8rem;
+        height: 1.8rem;
+        width: 1.8rem;
+        text-align: center;
+        line-height: 1.8rem; }
+      .quest.character .character-form .inventory-slot > .inventory-item :before {
+        content: counter(item); }
+      .quest.character .character-form .inventory-slot > .inventory-item .inventory-item-value {
+        flex: 0 1 82%; }
+    .quest.character .character-form .inventory-slot > .item-delete {
+      flex: 0 1 auto; }
+    .quest.character .character-form .sort {
+      text-align: center; }
+    .quest.character .character-form .inventory-delete {
+      flex: 0 1 auto; }
+      .quest.character .character-form .inventory-delete :hover {
+        color: #f04828; }
+    .quest.character .character-form .sort:hover {
+      color: #f04828; }
+    .quest.character .character-form .abilities-section .ability-info,
+    .quest.character .character-form .abilities-section .roll-ability,
+    .quest.character .character-form .abilities-section .send-to-chat-default {
+      flex: 0 1 auto; }
+    .quest.character .character-form .abilities-section .ability-info:hover,
+    .quest.character .character-form .abilities-section .roll-ability:hover,
+    .quest.character .character-form .abilities-section .send-to-chat-default:hover {
+      color: #f04828; }
+    .quest.character .character-form .abilities-section .ability-info,
+    .quest.character .character-form .abilities-section .roll-ability {
+      margin-right: 0.3rem; }
+    .quest.character .character-form .abilities-section .role-selector,
+    .quest.character .character-form .abilities-section .ability-selector {
+      font-family: "Alegreya Sans", sans-serif;
+      font-weight: 700;
+      color: #004576;
+      border-bottom: 2px solid #004576; }
+    .quest.character .character-form .abilities-section .adder-plus {
+      text-align: right; }
+      .quest.character .character-form .abilities-section .adder-plus :hover {
+        color: #f04828; }
+    .quest.character .character-form .abilities-section .abilities-list {
+      padding: 0px; }
+    .quest.character .character-form .abilities-section .name-header {
+      margin-bottom: 0.3rem; }
+    .quest.character .character-form .abilities-section .cost {
+      flex: 0 0 auto;
+      font-family: "Alegreya Sans", sans-serif;
+      font-weight: 700;
+      margin-right: 20px;
+      padding-left: 10px;
+      border-radius: 3px 0px 0px 3px;
+      background: #222831;
+      color: #fff;
+      height: 20px;
+      line-height: 1rem;
+      position: relative;
+      padding-right: 5px;
+      width: 1.8rem; }
+    .quest.character .character-form .abilities-section .cost:after {
+      content: "";
+      float: right;
+      position: absolute;
+      top: 0;
+      right: -11px;
+      width: 0;
+      height: 0;
+      border-color: transparent transparent transparent #222831;
+      border-style: solid;
+      border-width: 10px 0px 10px 11px; }
+    .quest.character .character-form .role-list {
+      padding: 0px;
+      font-family: "Alegreya Sans", sans-serif;
+      font-weight: 700; }
 
 /* ----------------------------------------- */
 /*  Item Styles                              */
@@ -310,250 +296,462 @@ input[type="number"]:focus {
 /* ----------------------------------------- */
 /*  Sheet Styles                             */
 /* ----------------------------------------- */
-.quest.character, .quest.item {
-  font-family: "Ovo", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 30px; }
+/* Colors */
+.sheet.actor.character .window-content {
+  background: #eeeeee;
+  line-height: 1.2rem;
+  font-size: 1.1rem; }
 
-.quest.character img.profile {
-  flex: 0 0 150px;
-  max-width: 150px;
-  height: 150px; }
-
-.quest.character input::placeholder {
-  opacity: 0.6; }
-
-textarea:focus {
-  outline: none;
-  box-shadow: 0px 0px 5px red; }
-
-input[type="number"]:focus {
-  box-shadow: 0px 0px 5px red; }
-
-.hide {
-  display: none; }
-
-.quest.item .item-header {
+.quest input,
+.quest input[type="number"],
+.quest input[type="text"],
+.quest textarea {
   font-family: "Alegreya Sans", sans-serif;
   font-weight: 700;
-  flex: 0 0 auto; }
+  background: #eeeeee;
+  line-height: 1.2rem;
+  border: 1px solid #adb5bd; }
+  .quest input :focus,
+  .quest input[type="number"] :focus,
+  .quest input[type="text"] :focus,
+  .quest textarea :focus {
+    box-shadow: 0px;
+    outline: 1px solid #f04828; }
 
-.quest.item h1 > input[type="text"] {
-  flex: 0 0 auto; }
+.quest input::placeholder, .quest textarea::placeholder {
+  opacity: 0.6; }
 
-.quest.item input[type="text"] {
-  font-family: "Alegreya Sans", sans-serif;
-  padding: 10px; }
-  .quest.item input[type="text"] ::placeholder {
-    font-weight: 700; }
+.quest input[type="text"]:focus {
+  box-shadow: none;
+  outline: 2px solid #f04828;
+  border-radius: 0.2rem;
+  border: 1px solid #adb5bd; }
 
-.quest.item textarea {
-  font-family: "Alegreya Sans", sans-serif;
-  padding: 10px; }
-  .quest.item textarea ::placeholder {
-    font-weight: 700; }
+.quest input[type="number"]:focus {
+  box-shadow: none;
+  outline: 2px solid #f04828; }
 
-.quest.item h1.header {
-  margin-left: 10px;
-  padding: 0px;
-  border-bottom: 0px; }
+.quest textarea:focus {
+  outline: 2px solid #f04828; }
 
-.quest.item input[type="number"] {
-  background: none;
-  min-width: 20px;
-  height: 24px;
-  border: 1px solid #7a7971;
-  border-radius: 3px; }
+.quest .hide {
+  display: none; }
 
-.quest.item .label {
-  flex: 0 0 auto;
-  font-family: "Alegreya Sans", sans-serif;
-  font-weight: 700; }
+.quest .tooltip {
+  position: relative; }
+  .quest .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 12rem;
+    background-color: #222831;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.3rem;
+    position: absolute;
+    z-index: 99999;
+    margin-left: 0.4rem;
+    top: -1.6rem;
+    padding: 0.2rem; }
+  .quest .tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -0.4rem;
+    border-width: 0.4rem;
+    border-style: solid;
+    border-color: transparent #222831 transparent transparent; }
 
-.quest.item .item-group {
-  margin-top: 10px;
-  flex: 0 0 auto; }
+.quest .tooltip:hover .tooltiptext {
+  visibility: visible; }
 
-.quest.item .maximum,
-.quest.item .minimum {
-  margin-left: 10px; }
+.quest button:hover {
+  box-shadow: none; }
 
-.quest.item .explanation {
-  flex: 0 0 auto; }
+/* ----------------------------------------- */
+/*  Ability Builder Style                    */
+/* ----------------------------------------- */
+.quest.item.ability-builder .window-content {
+  background-color: #eeeeee;
+  background-image: none; }
 
-.quest.item .item-delete:hover {
-  color: red; }
-
-.quest.item .adder {
-  padding: 10px;
-  line-height: 30px;
-  border: 2px dashed #000;
-  list-style: dot;
-  flex: 0 0 30px; }
-
-.quest.item .hover {
-  box-shadow: 0px 0px 5px red; }
-
-.quest.item .item-image {
+.quest.item.ability-builder img {
+  flex: 0 1 100px;
+  max-width: 100px;
   height: 100px;
-  width: 100px;
-  flex: 0 0 100px; }
+  border-radius: 100px;
+  border: 1px solid #adb5bd; }
 
-.quest.item .legendary {
-  margin-left: 10px; }
+.quest.item.ability-builder .item-header {
+  align-content: center; }
+  .quest.item.ability-builder .item-header .item-image,
+  .quest.item.ability-builder .item-header .header {
+    align-self: center; }
+  .quest.item.ability-builder .item-header h1.header {
+    text-align: center;
+    border-bottom: 2px solid #3D8F57; }
 
-.quest.item .ability-body {
-  flex: 0 0 auto; }
+.quest.item.ability-builder .submit {
+  margin-top: 0.3rem;
+  color: #fff;
+  background-color: #3D8F57;
+  border: 1px solid #3D8F57; }
+  .quest.item.ability-builder .submit :hover {
+    background-color: #f04828;
+    border: 1px solid #f04828; }
 
-.quest.item .item-header {
-  align-items: center; }
+.quest.item.ability-builder .steps .step h1.progress-header {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  border-bottom: 2px solid #3D8F57;
+  text-align: center; }
 
-.quest.item .item-name {
-  height: 45px; }
+.quest.item.ability-builder .steps .step .section {
+  align-items: center;
+  margin-top: 0.4rem; }
+  .quest.item.ability-builder .steps .step .section .item-label {
+    flex: 0 1 auto;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-right: 0.2rem; }
+  .quest.item.ability-builder .steps .step .section .tooltip {
+    flex: 0 1 auto; }
+    .quest.item.ability-builder .steps .step .section .tooltip .tooltiptext {
+      top: -1.8rem;
+      left: -6.2rem; }
+      .quest.item.ability-builder .steps .step .section .tooltip .tooltiptext ::after {
+        top: 100%;
+        left: 50%;
+        margin-left: -0.4rem;
+        border-width: 0.4rem;
+        border-style: solid;
+        border-color: #222831, transparent, transparent, transparent; }
+  .quest.item.ability-builder .steps .step .section input[type="checkbox"] {
+    height: auto; }
+  .quest.item.ability-builder .steps .step .section textarea:focus,
+  .quest.item.ability-builder .steps .step .section input[type="checkbox"]:focus {
+    outline: 2px solid #f04828; }
+  .quest.item.ability-builder .steps .step .section select:focus {
+    box-shadow: none;
+    outline: 2px solid #f04828; }
 
-.quest.item .item-info {
-  flex: 0 0 auto;
-  margin-left: 5px; }
+.quest.item.ability-builder .steps .step .adder-effect {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  flex: 0 1 0.8rem;
+  background-color: #3D8F57;
+  border: 1px solid #3D8F57;
+  color: #fff;
+  padding: 0.5rem;
+  text-align: center;
+  width: 16rem;
+  border-radius: 0.3rem;
+  align-self: center;
+  margin-bottom: 0.5rem; }
 
-.quest.item .item-label {
-  flex: 0 0 auto; }
-
-/* ----------------------------------------- */
-/*  Range Styles                             */
-/* ----------------------------------------- */
-.quest.item.range {
-  min-width: 600px;
-  min-height: 440px; }
-  .quest.item.range .range-value {
-    margin-left: 10px; }
-  .quest.item.range .minimum,
-  .quest.item.range .maximum {
-    margin-left: 0px;
-    padding-left: 10px; }
-
-/* ----------------------------------------- */
-/*  Effect Styles                            */
-/* ----------------------------------------- */
-.quest.item.effect {
-  min-width: 600px;
-  min-height: 600px; }
-  .quest.item.effect .label {
-    margin-right: 10px; }
-  .quest.item.effect .item-ranges {
-    padding: 0px 0px 0px 0px;
-    margin-top: -10px; }
-  .quest.item.effect .range {
+.quest.item.ability-builder .steps .step .effect-list {
+  padding: 0px;
+  margin: 0px;
+  align-content: center; }
+  .quest.item.ability-builder .steps .step .effect-list .effect {
+    font-weight: 700;
     padding: 0.5rem;
-    margin-top: 0.25rem;
-    border: 1px solid black; }
-  .quest.item.effect .options {
-    text-align: right; }
-  .quest.item.effect .description, .quest.item.effect .chat, .quest.item.effect .effect-cost, .quest.item.effect .effect-flavor-name {
-    flex: 0 0 auto; }
+    border: 1px solid #adb5bd;
+    margin-bottom: 0.3rem; }
+    .quest.item.ability-builder .steps .step .effect-list .effect .options {
+      justify-content: flex-end; }
+      .quest.item.ability-builder .steps .step .effect-list .effect .options .config,
+      .quest.item.ability-builder .steps .step .effect-list .effect .options .delete {
+        flex: 0 1 auto; }
+      .quest.item.ability-builder .steps .step .effect-list .effect .options .config:hover,
+      .quest.item.ability-builder .steps .step .effect-list .effect .options .delete:hover {
+        color: #f04828; }
+      .quest.item.ability-builder .steps .step .effect-list .effect .options .config {
+        margin-right: 0.2rem; }
 
 /* ----------------------------------------- */
-/*  Ability Styles                           */
+/*  Role Styles                              */
 /* ----------------------------------------- */
-.quest.item.ability {
-  min-width: 550px;
-  min-height: 520px; }
-  .quest.item.ability .ability-header {
-    flex: 0 0 auto; }
-  .quest.item.ability .label {
-    margin-right: 10px; }
-  .quest.item.ability ul.item-effects {
-    padding: 0px 0px 0px 0px;
-    margin-top: -10px; }
-  .quest.item.ability .adder {
-    padding: 10px;
-    line-height: 30px;
-    border: 2px dashed #000;
-    list-style: dot;
-    flex: 0 0 30px; }
-  .quest.item.ability .effect {
+.quest.sheet.item.role .window-content {
+  background-color: #eeeeee;
+  background-image: none; }
+
+.quest.sheet.item.role img {
+  flex: 0 1 100px;
+  max-width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border: 1px solid #adb5bd; }
+
+.quest.sheet.item.role .item-header {
+  align-content: center; }
+  .quest.sheet.item.role .item-header .item-image,
+  .quest.sheet.item.role .item-header .header {
+    align-self: center; }
+  .quest.sheet.item.role .item-header h1.header {
+    text-align: center;
+    border-bottom: 2px solid #454f4e;
+    margin-top: 0.5rem; }
+
+.quest.sheet.item.role .tooltip {
+  flex: 0 1 auto; }
+  .quest.sheet.item.role .tooltip .tooltiptext {
+    top: -1.8rem;
+    left: -6.2rem; }
+    .quest.sheet.item.role .tooltip .tooltiptext ::after {
+      top: 100%;
+      left: 50%;
+      margin-left: -0.4rem;
+      border-width: 0.4rem;
+      border-style: solid;
+      border-color: #222831, transparent, transparent, transparent; }
+
+.quest.sheet.item.role .section {
+  margin-top: 0.4rem; }
+  .quest.sheet.item.role .section h1.section-header {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #454f4e;
+    text-align: center;
+    flex: 0 1 auto; }
+  .quest.sheet.item.role .section .item-label {
+    flex: 0 1 auto;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-right: 0.2rem; }
+  .quest.sheet.item.role .section input[type="checkbox"] {
+    height: auto; }
+  .quest.sheet.item.role .section textarea:focus,
+  .quest.sheet.item.role .section input[type="checkbox"]:focus {
+    outline: 2px solid #f04828; }
+  .quest.sheet.item.role .section select:focus {
+    box-shadow: none;
+    outline: 2px solid #f04828; }
+  .quest.sheet.item.role .section .adder-legendaries,
+  .quest.sheet.item.role .section .adder-paths {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    flex: 0 1 0.8rem;
+    background-color: #454f4e;
+    border: 1px solid #454f4e;
+    color: #fff;
     padding: 0.5rem;
-    margin-top: 0.5rem;
-    border: 1px solid black; }
-  .quest.item.ability .hover {
-    box-shadow: 0px 0px 5px red; }
-  .quest.item.ability .options {
-    text-align: right; }
-  .quest.item.ability .item-group.legendary {
+    text-align: center;
+    width: 16rem;
+    border-radius: 0.3rem;
+    align-self: center;
+    margin-bottom: 0.5rem; }
+  .quest.sheet.item.role .section .legendary-list {
+    padding: 0px;
     margin: 0px;
-    padding: 0px; }
+    align-content: center; }
+    .quest.sheet.item.role .section .legendary-list .legendary,
+    .quest.sheet.item.role .section .legendary-list .path {
+      font-weight: 700;
+      padding: 0.5rem;
+      border: 1px solid #adb5bd;
+      margin-bottom: 0.3rem; }
+      .quest.sheet.item.role .section .legendary-list .legendary .options,
+      .quest.sheet.item.role .section .legendary-list .path .options {
+        justify-content: flex-end; }
+        .quest.sheet.item.role .section .legendary-list .legendary .options .config,
+        .quest.sheet.item.role .section .legendary-list .legendary .options .delete,
+        .quest.sheet.item.role .section .legendary-list .path .options .config,
+        .quest.sheet.item.role .section .legendary-list .path .options .delete {
+          flex: 0 1 auto; }
+        .quest.sheet.item.role .section .legendary-list .legendary .options .config:hover,
+        .quest.sheet.item.role .section .legendary-list .legendary .options .delete:hover,
+        .quest.sheet.item.role .section .legendary-list .path .options .config:hover,
+        .quest.sheet.item.role .section .legendary-list .path .options .delete:hover {
+          color: #f04828; }
+        .quest.sheet.item.role .section .legendary-list .legendary .options .config,
+        .quest.sheet.item.role .section .legendary-list .path .options .config {
+          margin-right: 0.2rem; }
+  .quest.sheet.item.role .section .path-list {
+    padding: 0px;
+    margin: 0px;
+    align-content: center; }
+    .quest.sheet.item.role .section .path-list .path {
+      font-weight: 700;
+      padding: 0.5rem;
+      border: 1px solid #adb5bd;
+      margin-bottom: 0.3rem; }
+      .quest.sheet.item.role .section .path-list .path .options {
+        justify-content: flex-end; }
+        .quest.sheet.item.role .section .path-list .path .options .config,
+        .quest.sheet.item.role .section .path-list .path .options .delete {
+          flex: 0 1 auto; }
+        .quest.sheet.item.role .section .path-list .path .options .config:hover,
+        .quest.sheet.item.role .section .path-list .path .options .delete:hover {
+          color: #f04828; }
+        .quest.sheet.item.role .section .path-list .path .options .config {
+          margin-right: 0.2rem; }
 
 /* ----------------------------------------- */
 /*  Path Styles                              */
 /* ----------------------------------------- */
-.quest.item.path {
-  min-width: 580px;
-  min-height: 520px; }
-  .quest.item.path .path-header {
-    flex: 0 0 auto; }
-  .quest.item.path .label {
-    margin-right: 10px; }
-  .quest.item.path ul.item-abilities {
-    padding: 0px 0px 0px 0px; }
-  .quest.item.path .options {
-    text-align: right; }
-  .quest.item.path .path-body {
-    flex: 0 0 auto; }
-  .quest.item.path .ability {
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    border: 1px solid black;
-    cursor: move; }
-  .quest.item.path .ability.dragging {
-    opacity: 0.5; }
+.quest.sheet.item.path .window-content {
+  background-color: #eeeeee;
+  background-image: none; }
 
-/* ----------------------------------------- */
-/*  Role Styles                           */
-/* ----------------------------------------- */
-.quest.item.role {
-  min-width: 550px;
-  min-height: 520px; }
-  .quest.item.role .role-header {
-    flex: 0 0 auto; }
-  .quest.item.role .label {
-    margin-right: 10px; }
-  .quest.item.role ul.item-paths {
-    padding: 0px 0px 0px 0px; }
-  .quest.item.role .options {
-    text-align: right; }
-  .quest.item.role .description, .quest.item.role .chat {
-    flex: 0 0 auto; }
-  .quest.item.role .path {
+.quest.sheet.item.path img {
+  flex: 0 1 100px;
+  max-width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border: 1px solid #adb5bd; }
+
+.quest.sheet.item.path .item-header {
+  align-content: center; }
+  .quest.sheet.item.path .item-header .item-image,
+  .quest.sheet.item.path .item-header .header {
+    align-self: center; }
+  .quest.sheet.item.path .item-header h1.header {
+    text-align: center;
+    border-bottom: 2px solid #EE5874;
+    margin-top: 0.5rem; }
+
+.quest.sheet.item.path .tooltip {
+  flex: 0 1 auto; }
+  .quest.sheet.item.path .tooltip .tooltiptext {
+    top: -1.8rem;
+    left: -6.2rem; }
+    .quest.sheet.item.path .tooltip .tooltiptext ::after {
+      top: 100%;
+      left: 50%;
+      margin-left: -0.4rem;
+      border-width: 0.4rem;
+      border-style: solid;
+      border-color: #222831, transparent, transparent, transparent; }
+
+.quest.sheet.item.path .section {
+  margin-top: 0.4rem; }
+  .quest.sheet.item.path .section h1.section-header {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #EE5874;
+    text-align: center;
+    flex: 0 1 auto; }
+  .quest.sheet.item.path .section .item-label {
+    flex: 0 1 auto;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-right: 0.2rem; }
+  .quest.sheet.item.path .section .adder-abilities {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    flex: 0 1 0.8rem;
+    background-color: #EE5874;
+    border: 1px solid #EE5874;
+    color: #fff;
     padding: 0.5rem;
-    margin-top: 0.5rem;
-    border: 1px solid black; }
+    text-align: center;
+    width: 16rem;
+    border-radius: 0.3rem;
+    align-self: center;
+    margin-bottom: 0.5rem; }
+  .quest.sheet.item.path .section .abilities-list {
+    padding: 0px;
+    margin: 0px;
+    align-content: center; }
+    .quest.sheet.item.path .section .abilities-list .ability {
+      font-weight: 700;
+      padding: 0.5rem;
+      border: 1px solid #adb5bd;
+      margin-bottom: 0.3rem; }
+      .quest.sheet.item.path .section .abilities-list .ability .drag-bars {
+        flex: 0 1 auto;
+        margin-right: 0.5rem;
+        color: #adb5bd; }
+      .quest.sheet.item.path .section .abilities-list .ability .options {
+        justify-content: flex-end; }
+        .quest.sheet.item.path .section .abilities-list .ability .options .config,
+        .quest.sheet.item.path .section .abilities-list .ability .options .delete {
+          flex: 0 1 auto; }
+        .quest.sheet.item.path .section .abilities-list .ability .options .config:hover,
+        .quest.sheet.item.path .section .abilities-list .ability .options .delete:hover {
+          color: #f04828; }
+        .quest.sheet.item.path .section .abilities-list .ability .options .config {
+          margin-right: 0.2rem; }
 
 /* ----------------------------------------- */
 /*  Sheet Styles                             */
 /* ----------------------------------------- */
-.quest.character, .quest.item {
-  font-family: "Ovo", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 30px; }
+/* Colors */
+.sheet.actor.character .window-content {
+  background: #eeeeee;
+  line-height: 1.2rem;
+  font-size: 1.1rem; }
 
-.quest.character img.profile {
-  flex: 0 0 150px;
-  max-width: 150px;
-  height: 150px; }
+.quest input,
+.quest input[type="number"],
+.quest input[type="text"],
+.quest textarea {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  background: #eeeeee;
+  line-height: 1.2rem;
+  border: 1px solid #adb5bd; }
+  .quest input :focus,
+  .quest input[type="number"] :focus,
+  .quest input[type="text"] :focus,
+  .quest textarea :focus {
+    box-shadow: 0px;
+    outline: 1px solid #f04828; }
 
-.quest.character input::placeholder {
+.quest input::placeholder, .quest textarea::placeholder {
   opacity: 0.6; }
 
-textarea:focus {
-  outline: none;
-  box-shadow: 0px 0px 5px red; }
+.quest input[type="text"]:focus {
+  box-shadow: none;
+  outline: 2px solid #f04828;
+  border-radius: 0.2rem;
+  border: 1px solid #adb5bd; }
 
-input[type="number"]:focus {
-  box-shadow: 0px 0px 5px red; }
+.quest input[type="number"]:focus {
+  box-shadow: none;
+  outline: 2px solid #f04828; }
 
-.hide {
+.quest textarea:focus {
+  outline: 2px solid #f04828; }
+
+.quest .hide {
   display: none; }
+
+.quest .tooltip {
+  position: relative; }
+  .quest .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 12rem;
+    background-color: #222831;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.3rem;
+    position: absolute;
+    z-index: 99999;
+    margin-left: 0.4rem;
+    top: -1.6rem;
+    padding: 0.2rem; }
+  .quest .tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -0.4rem;
+    border-width: 0.4rem;
+    border-style: solid;
+    border-color: transparent #222831 transparent transparent; }
+
+.quest .tooltip:hover .tooltiptext {
+  visibility: visible; }
+
+.quest button:hover {
+  box-shadow: none; }
 
 /* ----------------------------------------- */
 /*  Chat Styles                              */
@@ -570,21 +768,19 @@ input[type="number"]:focus {
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 700; }
   .chat-card.generic-roll .triumph {
-    color: gold; }
+    color: #e99d36; }
   .chat-card.generic-roll .success {
-    color: green; }
+    color: #3D8F57; }
   .chat-card.generic-roll .tough-choice {
-    color: brown; }
+    color: #454f4e; }
   .chat-card.generic-roll .catastrophe {
-    color: red; }
-  .chat-card.generic-roll .die {
-    margin-bottom: 5px; }
-  .chat-card.generic-roll .die, .chat-card.generic-roll .roll-total {
-    padding: 5px;
-    border: 1px solid #000;
-    border-radius: 3px; }
+    color: #f04828; }
+  .chat-card.generic-roll .roll-total {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem; }
   .chat-card.generic-roll .flavor {
-    font-size: 0.95rem; }
+    font-size: 1rem; }
 
 /* ----------------------------------------- */
 /*  Ability Card Styles                      */
@@ -648,11 +844,599 @@ input[type="number"]:focus {
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 700;
     font-size: 1.2rem; }
-  .chat.ability-roll .die {
-    margin-bottom: 5px; }
-  .chat.ability-roll .die, .chat.ability-roll .roll-total {
-    padding: 5px;
-    border: 1px solid #000;
-    border-radius: 3px; }
+  .chat.ability-roll .roll-total {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem; }
   .chat.ability-roll .flavor {
-    margin-top: 10px; }
+    font-size: 1rem; }
+  .chat.ability-roll .triumph {
+    color: #e99d36; }
+  .chat.ability-roll .success {
+    color: #3D8F57; }
+  .chat.ability-roll .tough-choice {
+    color: #454f4e; }
+  .chat.ability-roll .catastrophe {
+    color: #f04828; }
+  .chat.ability-roll .legendary img {
+    border: none;
+    width: 50%; }
+
+/* ----------------------------------------- */
+/*  App Styles                               */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+/*  Sheet Styles                             */
+/* ----------------------------------------- */
+/* Colors */
+.sheet.actor.character .window-content {
+  background: #eeeeee;
+  line-height: 1.2rem;
+  font-size: 1.1rem; }
+
+.quest input,
+.quest input[type="number"],
+.quest input[type="text"],
+.quest textarea {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  background: #eeeeee;
+  line-height: 1.2rem;
+  border: 1px solid #adb5bd; }
+  .quest input :focus,
+  .quest input[type="number"] :focus,
+  .quest input[type="text"] :focus,
+  .quest textarea :focus {
+    box-shadow: 0px;
+    outline: 1px solid #f04828; }
+
+.quest input::placeholder, .quest textarea::placeholder {
+  opacity: 0.6; }
+
+.quest input[type="text"]:focus {
+  box-shadow: none;
+  outline: 2px solid #f04828;
+  border-radius: 0.2rem;
+  border: 1px solid #adb5bd; }
+
+.quest input[type="number"]:focus {
+  box-shadow: none;
+  outline: 2px solid #f04828; }
+
+.quest textarea:focus {
+  outline: 2px solid #f04828; }
+
+.quest .hide {
+  display: none; }
+
+.quest .tooltip {
+  position: relative; }
+  .quest .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 12rem;
+    background-color: #222831;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.3rem;
+    position: absolute;
+    z-index: 99999;
+    margin-left: 0.4rem;
+    top: -1.6rem;
+    padding: 0.2rem; }
+  .quest .tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -0.4rem;
+    border-width: 0.4rem;
+    border-style: solid;
+    border-color: transparent #222831 transparent transparent; }
+
+.quest .tooltip:hover .tooltiptext {
+  visibility: visible; }
+
+.quest button:hover {
+  box-shadow: none; }
+
+/* ----------------------------------------- */
+/*  Effects Styles                           */
+/* ----------------------------------------- */
+.quest.effect-adder .window-content {
+  background-color: #eeeeee;
+  background-image: none; }
+
+.quest.effect-adder img {
+  flex: 0 1 100px;
+  max-width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border: 1px solid #adb5bd; }
+
+.quest.effect-adder .effects .item-header {
+  align-content: center; }
+  .quest.effect-adder .effects .item-header .item-image,
+  .quest.effect-adder .effects .item-header .header {
+    align-self: center; }
+  .quest.effect-adder .effects .item-header h1.header {
+    text-align: center;
+    border-bottom: 2px solid #804D7F; }
+
+.quest.effect-adder .effects .submit,
+.quest.effect-adder .effects .cancel {
+  margin-top: 0.3rem;
+  color: #fff;
+  background-color: #804D7F;
+  border: 1px solid #804D7F; }
+
+.quest.effect-adder .effects .submit:hover,
+.quest.effect-adder .effects .cancel:hover {
+  background-color: #f04828;
+  border: 1px solid #f04828; }
+
+.quest.effect-adder .effects .section {
+  margin-top: 0.4rem; }
+  .quest.effect-adder .effects .section .section-header {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #804D7F;
+    text-align: center; }
+  .quest.effect-adder .effects .section .item-label {
+    flex: 0 1 auto;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-right: 0.2rem; }
+  .quest.effect-adder .effects .section .tooltip {
+    flex: 0 1 auto; }
+    .quest.effect-adder .effects .section .tooltip .tooltiptext {
+      top: -1.8rem;
+      left: -6.2rem; }
+      .quest.effect-adder .effects .section .tooltip .tooltiptext ::after {
+        top: 100%;
+        left: 50%;
+        margin-left: -0.4rem;
+        border-width: 0.4rem;
+        border-style: solid;
+        border-color: #222831, transparent, transparent, transparent; }
+  .quest.effect-adder .effects .section input[type="checkbox"] {
+    height: auto; }
+  .quest.effect-adder .effects .section textarea:focus,
+  .quest.effect-adder .effects .section input[type="checkbox"]:focus {
+    outline: 2px solid #f04828; }
+  .quest.effect-adder .effects .section select:focus {
+    box-shadow: none;
+    outline: 2px solid #f04828; }
+  .quest.effect-adder .effects .section .adder-range {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    flex: 0 1 0.8rem;
+    background-color: #804D7F;
+    border: 1px solid #804D7F;
+    color: #fff;
+    padding: 0.5rem;
+    text-align: center;
+    width: 16rem;
+    border-radius: 0.3rem;
+    align-self: center;
+    margin-bottom: 0.5rem; }
+  .quest.effect-adder .effects .section .range-list {
+    padding: 0px;
+    margin: 0px;
+    align-content: center; }
+    .quest.effect-adder .effects .section .range-list .range {
+      font-weight: 700;
+      padding: 0.5rem;
+      border: 1px solid #adb5bd;
+      margin-bottom: 0.3rem; }
+      .quest.effect-adder .effects .section .range-list .range .options {
+        justify-content: flex-end; }
+        .quest.effect-adder .effects .section .range-list .range .options .config,
+        .quest.effect-adder .effects .section .range-list .range .options .delete {
+          flex: 0 1 auto; }
+        .quest.effect-adder .effects .section .range-list .range .options .config:hover,
+        .quest.effect-adder .effects .section .range-list .range .options .delete:hover {
+          color: #f04828; }
+        .quest.effect-adder .effects .section .range-list .range .options .config {
+          margin-right: 0.2rem; }
+
+/* ----------------------------------------- */
+/*  Ranges Styles                            */
+/* ----------------------------------------- */
+.quest.range-adder .window-content {
+  background-color: #eeeeee;
+  background-image: none; }
+
+.quest.range-adder .ranges .item-header {
+  align-content: center; }
+  .quest.range-adder .ranges .item-header .item-image,
+  .quest.range-adder .ranges .item-header .header {
+    align-self: center; }
+  .quest.range-adder .ranges .item-header h1.header {
+    text-align: center;
+    border-bottom: 2px solid #e99d36; }
+
+.quest.range-adder .ranges .submit,
+.quest.range-adder .ranges .cancel {
+  margin-top: 0.3rem;
+  color: #fff;
+  background-color: #e99d36;
+  border: 1px solid #e99d36; }
+
+.quest.range-adder .ranges .submit:hover,
+.quest.range-adder .ranges .cancel:hover {
+  background-color: #f04828;
+  border: 1px solid #f04828; }
+
+.quest.range-adder .ranges .section {
+  margin-top: 0.4rem; }
+  .quest.range-adder .ranges .section .section-header {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #e99d36;
+    text-align: center; }
+  .quest.range-adder .ranges .section .item-label {
+    flex: 0 1 auto;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-right: 0.2rem; }
+  .quest.range-adder .ranges .section .tooltip {
+    flex: 0 1 auto; }
+    .quest.range-adder .ranges .section .tooltip .tooltiptext {
+      top: -1.8rem;
+      left: -6.2rem; }
+      .quest.range-adder .ranges .section .tooltip .tooltiptext ::after {
+        top: 100%;
+        left: 50%;
+        margin-left: -0.4rem;
+        border-width: 0.4rem;
+        border-style: solid;
+        border-color: #222831, transparent, transparent, transparent; }
+  .quest.range-adder .ranges .section .seperator {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    flex: 0 1 auto;
+    margin: 0px 0.4rem;
+    color: #e99d36; }
+  .quest.range-adder .ranges .section .min-max,
+  .quest.range-adder .ranges .section .field-group {
+    align-items: center; }
+  .quest.range-adder .ranges .section input[type="checkbox"] {
+    height: auto; }
+  .quest.range-adder .ranges .section textarea:focus,
+  .quest.range-adder .ranges .section input[type="checkbox"]:focus {
+    outline: 2px solid #f04828; }
+  .quest.range-adder .ranges .section select:focus {
+    box-shadow: none;
+    outline: 2px solid #f04828; }
+  .quest.range-adder .ranges .section .adder-range {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    flex: 0 1 0.8rem;
+    background-color: #e99d36;
+    border: 1px solid #e99d36;
+    color: #fff;
+    padding: 0.5rem;
+    text-align: center;
+    width: 16rem;
+    border-radius: 0.3rem;
+    align-self: center;
+    margin-bottom: 0.5rem; }
+  .quest.range-adder .ranges .section .range-list {
+    padding: 0px;
+    margin: 0px;
+    align-content: center; }
+    .quest.range-adder .ranges .section .range-list .range {
+      font-weight: 700;
+      padding: 0.5rem;
+      border: 1px solid #adb5bd;
+      margin-bottom: 0.3rem; }
+      .quest.range-adder .ranges .section .range-list .range .options {
+        justify-content: flex-end; }
+        .quest.range-adder .ranges .section .range-list .range .options .config,
+        .quest.range-adder .ranges .section .range-list .range .options .delete {
+          flex: 0 1 auto; }
+        .quest.range-adder .ranges .section .range-list .range .options .config:hover,
+        .quest.range-adder .ranges .section .range-list .range .options .delete:hover {
+          color: #f04828; }
+        .quest.range-adder .ranges .section .range-list .range .options .config {
+          margin-right: 0.2rem; }
+
+/* ----------------------------------------- */
+/*  Path Styles                              */
+/* ----------------------------------------- */
+.quest.path-adder .window-content {
+  background-color: #eeeeee;
+  background-image: none; }
+
+.quest.path-adder .submit,
+.quest.path-adder .cancel {
+  margin-top: 0.3rem;
+  color: #fff;
+  background-color: #EE5874;
+  border: 1px solid #EE5874; }
+
+.quest.path-adder .submit:hover,
+.quest.path-adder .cancel:hover {
+  background-color: #f04828;
+  border: 1px solid #f04828; }
+
+.quest.path-adder .section {
+  margin-top: 0.4rem; }
+  .quest.path-adder .section .section-header {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #EE5874;
+    text-align: center; }
+  .quest.path-adder .section .item-label {
+    flex: 0 1 auto;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-right: 0.2rem; }
+  .quest.path-adder .section .path-list {
+    list-style: none;
+    padding: 0px; }
+
+/* ----------------------------------------- */
+/*  Legendary Styles                         */
+/* ----------------------------------------- */
+.quest.legendary-adder .window-content {
+  background-color: #eeeeee;
+  background-image: none; }
+
+.quest.legendary-adder .submit,
+.quest.legendary-adder .cancel {
+  margin-top: 0.3rem;
+  color: #fff;
+  background-color: #3D8F57;
+  border: 1px solid #3D8F57; }
+
+.quest.legendary-adder .submit:hover,
+.quest.legendary-adder .cancel:hover {
+  background-color: #f04828;
+  border: 1px solid #f04828; }
+
+.quest.legendary-adder .section {
+  margin-top: 0.4rem; }
+  .quest.legendary-adder .section .section-header {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #3D8F57;
+    text-align: center; }
+  .quest.legendary-adder .section .item-label {
+    flex: 0 1 auto;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-right: 0.2rem; }
+  .quest.legendary-adder .section .legendary-list {
+    list-style: none;
+    padding: 0px; }
+
+/* ----------------------------------------- */
+/*  Path Ability Styles                      */
+/* ----------------------------------------- */
+.quest.path-ability-adder .window-content {
+  background-color: #eeeeee;
+  background-image: none; }
+
+.quest.path-ability-adder .submit,
+.quest.path-ability-adder .cancel {
+  margin-top: 0.3rem;
+  color: #fff;
+  background-color: #3D8F57;
+  border: 1px solid #3D8F57; }
+
+.quest.path-ability-adder .submit:hover,
+.quest.path-ability-adder .cancel:hover {
+  background-color: #f04828;
+  border: 1px solid #f04828; }
+
+.quest.path-ability-adder .section {
+  margin-top: 0.4rem; }
+  .quest.path-ability-adder .section .section-header {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #3D8F57;
+    text-align: center; }
+  .quest.path-ability-adder .section .item-label {
+    flex: 0 1 auto;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-right: 0.2rem; }
+  .quest.path-ability-adder .section .ability-list {
+    list-style: none;
+    padding: 0px; }
+
+/* ----------------------------------------- */
+/*  Role Selector Styles                     */
+/* ----------------------------------------- */
+.quest.role-selector .window-content {
+  background-color: #eeeeee;
+  background-image: none; }
+
+.quest.role-selector .submit,
+.quest.role-selector .cancel {
+  margin-top: 0.3rem;
+  color: #fff;
+  background-color: #454f4e;
+  border: 1px solid #454f4e; }
+
+.quest.role-selector .submit:hover,
+.quest.role-selector .cancel:hover {
+  background-color: #f04828;
+  border: 1px solid #f04828; }
+
+.quest.role-selector .options {
+  justify-content: flex-end; }
+  .quest.role-selector .options .role-info {
+    flex: 0 1 auto; }
+    .quest.role-selector .options .role-info :hover {
+      color: #f04828; }
+
+.quest.role-selector .role-list {
+  list-style: none;
+  padding: 0px; }
+  .quest.role-selector .role-list label {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    align-content: center; }
+
+.quest.role-selector .disabled {
+  color: grey; }
+
+/* ----------------------------------------- */
+/*  Role Info Styles                         */
+/* ----------------------------------------- */
+.quest.role-info .window-content {
+  background-color: #eeeeee;
+  background-image: none; }
+
+.quest.role-info .role-header .role-name {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  border-bottom: 2px solid #454f4e;
+  text-align: center; }
+
+.quest.role-info .role-header .send-to-chat-info {
+  text-align: center; }
+  .quest.role-info .role-header .send-to-chat-info :hover {
+    color: #f04828; }
+
+.quest.role-info .description {
+  font-size: 1rem; }
+
+/* ----------------------------------------- */
+/*  Ability Selector Styles                  */
+/* ----------------------------------------- */
+.quest.ability-selector .window-content {
+  background-color: #eeeeee;
+  background-image: none; }
+
+.quest.ability-selector #ability-selector {
+  min-height: 400px; }
+
+.quest.ability-selector .abilities {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 30px; }
+
+.quest.ability-selector label {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  align-content: center; }
+
+.quest.ability-selector ol {
+  padding: 0px; }
+
+.quest.ability-selector .cost {
+  flex: 0 0 auto;
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  margin-right: 20px;
+  padding-left: 10px;
+  border-radius: 3px 0px 0px 3px;
+  background: #222831;
+  color: #fff;
+  height: 20px;
+  line-height: 1rem;
+  position: relative;
+  padding-right: 5px;
+  width: 1.8rem; }
+
+.quest.ability-selector .cost:after {
+  content: "";
+  float: right;
+  position: absolute;
+  top: 0;
+  right: -11px;
+  width: 0;
+  height: 0;
+  border-color: transparent transparent transparent #222831;
+  border-style: solid;
+  border-width: 10px 0px 10px 11px; }
+
+.quest.ability-selector .ability-info {
+  text-align: right; }
+
+.quest.ability-selector .send-to-chat-info {
+  text-align: center; }
+  .quest.ability-selector .send-to-chat-info :hover {
+    color: #f04828; }
+
+/* ----------------------------------------- */
+/*  Ability Info Styles                      */
+/* ----------------------------------------- */
+.quest.ability-info .window-content {
+  background-color: #eeeeee;
+  background-image: none; }
+
+.quest.ability-info .ability-header .ability-description {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  border-bottom: 2px solid #3D8F57;
+  text-align: center; }
+
+.quest.ability-info .send-to-chat-info {
+  text-align: center; }
+  .quest.ability-info .send-to-chat-info :hover {
+    color: #f04828; }
+
+.quest.ability-info .section {
+  font-size: 1rem;
+  margin-top: 0.4rem; }
+
+.quest.ability-info .row-header {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  border-bottom: 2px solid #3D8F57;
+  margin-top: 0.3rem;
+  text-align: center; }
+
+.quest.ability-info .ability-info-range {
+  flex: 0 1 auto;
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  margin-right: 0.3rem; }
+
+.quest.ability-info .effect-header .effect-name {
+  font-size: 1.1rem;
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  border-bottom: 2px solid #3D8F57;
+  text-align: center; }
+
+.quest.ability-info .effect-header .cost {
+  text-align: center;
+  font-size: 1rem; }
+
+.quest.ability-info .effect-description {
+  flex: 0 1 auto; }
+
+.quest.ability-info .effect-ranges > .ability-info-ranges {
+  border-bottom: 1px solid #adb5bd;
+  padding: 0.3rem 0px; }
+
+.quest.ability-info .effect-ranges > .ability-info-ranges:last-child {
+  border-bottom: 0px; }
+
+.quest.ability-info .ability-effect {
+  border: 2px solid #3D8F57;
+  padding: 0.2rem;
+  border-radius: 0.4rem; }
+  .quest.ability-info .ability-effect .ability {
+    margin-bottom: 0.3rem; }

@@ -2,92 +2,88 @@
     {{#if data.charroles}}
     <div class="roles">
         <div class="role-selector flexrow">
-            <label class="label" for="world.roles">Role(s) </label>
-            <div class="adder"><i class="fas fa-plus"></i></div>
+            <label class="character-label" for="world.roles">Role(s) </label>
+            <div class="adder-plus"><i class="fas fa-plus"></i></div>
         </div>
-        <div class="item-group">
-            <ul class="item-roles flexrow">
+        <div class="ability-section">
+            <ul class="role-list flexrow">
                 {{#each displayRoles as | role |}}
-                <li class="role item flexrow" data-item-id="{{role.id}}">{{role.name}}
+                <li class="role-item item flexrow" data-item-id="{{role.id}}">{{role.name}}
                 </li>
                 {{/each}}
             </ul>
         </div>
     </div>
     {{/if}}
-    <div class="ability-selector">
-        <div class="flexrow">
-            <label class="label" for="world.abilities">Abilities</label>
-            <div class="adder"><i class="fas fa-plus"></i></div>
-        </div>
+    <div class="ability-selector flexrow">
+        <label class="character-label" for="world.abilities">Abilities</label>
+        <div class="adder-plus"><i class="fas fa-plus"></i></div>
         {{#if quirk}}
-        <label class="label">Quirk</label>
+        <label class="character-label">Quirk</label>
         {{/if}}
     </div>
 
-    <div class="item-group">
-        <ul class="item-abilities flexcol">
-            {{#each displayAbilities as | ability |}}
-                {{#if ability.multi}}
-                    <li class="ability item flexcol" data-item-id="{{ability.id}}">
-                        <div class="flexrow">
-                            <div class="ability-name-toggle" id="toggle-off-{{ability.id}}" data-item-id="{{ability.id}}">
-                                <i class="far fa-plus-square"></i>
-                                <label class="label ability-expand">{{ability.name}}</label>
-                            </div>
-                            <div class="ability-name-toggle hide" id="toggle-on-{{ability.id}}" data-item-id="{{ability.id}}">
-                                <i class="far fa-minus-square"></i>
-                                <label class="label ability-expand">{{ability.name}}</label>
-                            </div>
-                            <div class="ability-info" data-item-id={{ability.id}}>
-                                <i class="fas fa-info-circle"></i>
-                            </div>
-                            <div class="send-to-chat-default" data-item-id={{ability.id}}>
-                                <i class="fas fa-bullhorn"></i>
-                            </div>
+    <ul class="abilities-list flexcol">
+        {{#each displayAbilities as | ability |}}
+        {{#if ability.multi}}
+        <li class="ability item flexcol" data-item-id="{{ability.id}}">
+            <div class="flexrow">
+                <div class="ability-name-toggle" id="toggle-off-{{ability.id}}" data-item-id="{{ability.id}}">
+                    <i class="far fa-plus-square"></i>
+                    <label class="character-label ability-expand">{{ability.name}}</label>
+                </div>
+                <div class="ability-name-toggle hide" id="toggle-on-{{ability.id}}" data-item-id="{{ability.id}}">
+                    <i class="far fa-minus-square"></i>
+                    <label class="character-label ability-expand">{{ability.name}}</label>
+                </div>
+                <div class="ability-info" data-item-id={{ability.id}}>
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="send-to-chat-default" data-item-id={{ability.id}}>
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+            </div>
+            <ul class="effects flexcol hide" id="effects-{{ability.id}}">
+                {{#each ability.effects as |effect index|}}
+                <li class="effect item flexrow">
+                    <div class="name-header flexrow">
+                        <div class="cost">{{effect.cost}}</div>
+                        <div class="ability-name flexrow">
+                            <label class="character-label">{{effect.name}}</label>
                         </div>
-                        <ul class="effects flexcol hide" id="effects-{{ability.id}}">
-                            {{#each ability.effects as |effect|}}
-                            <li class="effect item flexrow" data-effect-id="{{ability.effectId}}" data-item-id="{{ability.id}}">
-                                <div class="name-header flexrow">
-                                    <div class="cost">{{effect.cost}}</div>
-                                    <div class="ability-name flexrow">
-                                        <label class="label">{{effect.display-name}}</label>
-                                    </div>
-                                </div>
-                            </li>
-                            {{#if effect.roll}}
-                            <div class="roll-ability" data-item-id={{effect.id}} data-ability-id={{ability.id}}>
-                                <i class="fas fa-dice-d20"></i>
-                            </div>
-                            {{/if}}
-                            {{/each}}
-                        </ul>
-                    </li>
-                {{else}}
-                    {{#each ability.effects as |effect|}}
-                        <li class="ability item flexrow" data-effect-id="{{ability.effectId}}" data-item-id="{{ability.id}}">
-                            <div class="name-header flexrow">
-                                <div class="cost">{{ability.cost}}</div>
-                                <div class="ability-name flexrow">
-                                    <label class="label">{{ability.name}}</label>
-                                </div>
-                            </div>
-                            {{#if effect.roll}}
-                            <div class="roll-ability" data-item-id={{effect.id}} data-ability-id={{ability.id}}>
-                                <i class="fas fa-dice-d20"></i>
-                            </div>
-                            {{/if}}
-                            <div class="ability-info" data-item-id={{ability.id}}>
-                                <i class="fas fa-info-circle"></i>
-                            </div>
-                            <div class="send-to-chat-default" data-item-id={{ability.id}}>
-                                <i class="fas fa-bullhorn"></i>
-                            </div>
-                        </li>
-                    {{/each}}
-                {{/if}}
-            {{/each}}
-        </ul>
-    </div>
+                    </div>
+                    {{#if effect.roll}}
+                    <div class="roll-ability" data-item-id={{index}} data-ability-id={{ability.id}}>
+                        <i class="fas fa-dice-d20"></i>
+                    </div>
+                    {{/if}}
+                </li>
+                {{/each}}
+            </ul>
+        </li>
+        {{else}}
+        {{#each ability.effects as |effect|}}
+        <li class="ability item flexrow">
+            <div class="name-header flexrow">
+                <div class="cost">{{ability.cost}}</div>
+                <div class="ability-name flexrow">
+                    <label class="character-label">{{ability.name}}</label>
+                </div>
+            </div>
+            {{#if effect.roll}}
+            <div class="roll-ability" data-item-id={{effect.id}} data-ability-id={{ability.id}}>
+                <i class="fas fa-dice-d20"></i>
+            </div>
+            {{/if}}
+            <div class="ability-info" data-item-id={{ability.id}}>
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="send-to-chat-default" data-item-id={{ability.id}}>
+                <i class="fas fa-bullhorn"></i>
+            </div>
+        </li>
+        {{/each}}
+        {{/if}}
+        {{/each}}
+    </ul>
 </div>

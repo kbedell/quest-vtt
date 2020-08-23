@@ -1,9 +1,30 @@
 <div class="chat ability-roll">
     <div class="ability-name">{{abilityName}}</div>
-    <div class="roll flexcol">
-        <div class="die">{{roll.formula}}</div>
-        <div class="roll-total">{{roll.total}}</div>
-    </div>
+    {{#if legendary}}
+    <div class="legendary"><img src="systems/quest/icons/legendary.gif" alt="legendary"></div>
+    {{/if}}
+    <div class="roll-total">{{roll.total}}</div>
+
+    {{#if isTriumph}}
+    <div class="status triumph">TRIUMPH</div>
+    {{/if}}
+
+    {{#if isSuccess}}
+    <div class="status success">SUCCESS</div>
+    {{/if}}
+
+    {{#if isToughChoice}}
+    <div class="status tough-choice">TOUGH CHOICE</div>
+    {{/if}}
+
+    {{#if isFailure}}
+    <div class="status tough-choice">FAILURE</div>
+    {{/if}}
+
+    {{#if isCatastrophe}}
+    <div class="status catastrophe">CATASTROPHE</div>
+    {{/if}}
+
     <div class="flavor">
         {{resultFlavor}}
     </div>

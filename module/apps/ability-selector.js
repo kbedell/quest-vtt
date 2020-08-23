@@ -1,5 +1,5 @@
-import { getFullAbilityData, getItem } from "../quest-helpers.js";
 import { AbilityInfo } from "./ability-info.js";
+import { getItem } from "../quest-helpers.js";
 
 /**
  * A specialized form used to selecting abilities
@@ -10,7 +10,7 @@ export class AbilitySelector extends FormApplication {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       id: "ability-selector",
-      classes: ["quest"],
+      classes: ["quest", "app", "ability-selector"],
       title: "Ability Selection",
       template: "systems/quest/templates/apps/ability-selector.html",
       width: 320,
@@ -40,9 +40,13 @@ export class AbilitySelector extends FormApplication {
         let available = false;
 
         if (effects.length > 1) {
-          cost = "X";
+          cost = "x";
         } else if (effects.length === 1) {
-          cost = effects[0].effect.data.spellcost;
+          if ((!effects[0].variablecost) && effects[0].spellcost != "" && parseInt(effects[0].spellcost) > 0) {
+            cost = effects[0].spellcost;
+          } else if (effects[0].variablecost) {
+            cost = "x";
+          }
         }
 
         let previous = a - 1;
@@ -122,42 +126,53 @@ export class AbilitySelector extends FormApplication {
     event.preventDefault();
     let options = {};
 
-    let ability = await getFullAbilityData(
-      event.target.parentNode.dataset.itemId
-    );
+    let ability = await getItem(
+      event.target.parentNode.dataset.itemId, "ability");
 
-    if (ability.effects.length > 0) {
-      let effects = ability.effects;
+    if (ability.data.data.effects.length > 0) {
+      let effects = ability.data.data.effects
       let effectsText = [];
 
       for (let e = 0; e < effects.length; e++) {
-        if (ability.effects.length > 0) {
+        let rangeText = [];
+        let roll = false;
+        if (effects[e].ranges.length > 0) {
           let ranges = effects[e].ranges;
-          let rangeText = [];
 
           if (ranges.length > 0) {
+            roll = true;
             for (let r = 0; r < ranges.length; r++) {
               rangeText.push({
-                description: ranges[r].data.data.description.value,
-                min: ranges[r].data.data.min,
-                max: ranges[r].data.data.max,
+                description: ranges[r].description.full,
+                min: ranges[r].min,
+                max: ranges[r].max,
               });
             }
           }
-
-          effectsText.push({
-            description: effects[e].effect.data.data.description.value,
-            cost: effects[e].effect.data.data.spellcost,
-            ranges: rangeText,
-          });
         }
+
+        let cost = "0";
+
+        if (Boolean(effects[e].variablecost)) {
+          cost = "x";
+        } else {
+          cost = effects[e].spellcost;
+        }
+
+        effectsText.push({
+          name: effects[e].name,
+          description: effects[e].description.full,
+          cost: cost,
+          ranges: rangeText,
+          roll: roll
+        });
       }
 
       options = {
-        name: ability.ability.name,
-        id: ability.ability._id,
-        legendary: ability.ability.legendary,
-        effects: effectsText,
+        name: ability.data.name,
+        id: ability.data._id,
+        legendary: ability.data.legendary,
+        effects: effectsText
       };
     }
 

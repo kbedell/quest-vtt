@@ -1,27 +1,29 @@
-<form class="{{cssClass}} flexcol" autocomplete="off">
-    {{!-- Sheet header --}}
-    <div class="sheet-head flexrow">
+<form class="{{cssClass}} character-form flexcol" autocomplete="off">
+    {{!-- Character Header --}}
+    <div class="header flexrow">
         <div class="hitpoints">
-            <label class="label" for="data.hitpoints.value">HP</label>
-            <input type="number" class="char hp" name="data.hitpoints.value" data-dtype="Number" value="{{data.hitpoints.value}}"> / {{ data.hitpoints.max }}
+            <label class="character-label" for="data.hitpoints.value">HP</label>
+            <input type="number" class="hp" name="data.hitpoints.value" data-dtype="Number" value="{{data.hitpoints.value}}"> / {{ data.hitpoints.max }}
         </div>
         <div class="roll-generic"><i class="fas fa-dice-d20 fa-2x"></i></div>
         <div class="actionpoints">
-            <label class="label actionpoints" for="data.actionpoints">AP</label>
-            <input type="number" class="char ap" name="data.actionpoints" data-dtype="Number" value="{{data.actionpoints}}">
+            <label class="character-label" for="data.actionpoints">AP</label>
+            <input type="number" class="ap" name="data.actionpoints" data-dtype="Number" value="{{data.actionpoints}}">
         </div>
     </div>
+    {{!-- Character Header End --}}
+
     {{!-- Character Body --}}
-    <div class="character flexrow flex2">
-        {{!-- Character Summary --}}
-        {{> "systems/quest/templates/actors/parts/actor-madlibs.html" }}
-        
+    <div class="details flexrow flex2">
+        {{!-- Biography --}}
+            {{> "systems/quest/templates/actors/parts/actor-madlibs.html" }}
+        {{!-- Biography End --}}
         {{!-- Inventory/Spells --}}
-        <div class="sheet-abilities flexcol flex1">
+        <div class="inventory-abilities flexcol flex1">
             {{!-- NPC Sheet Navigation --}}
             <nav class="sheet-navigation tabs" data-group="primary">
-                <a class="item active" data-tab="inventory">{{localize 'QUEST.Inventory'}}</a>
-                <a class="item" data-tab="abilities">{{localize 'QUEST.Abilities'}}</a>
+                <a class="item active" id="inventory" data-tab="inventory">{{localize 'QUEST.Inventory'}}</a>
+                <a class="item" id="abilities" data-tab="abilities">{{localize 'QUEST.Abilities'}}</a>
             </nav>
             <section class="content">
                 <div class="tab inventory flexcol" data-group="primary" data-tab="inventory">
@@ -33,4 +35,5 @@
             </section>
         </div>
     </div>
+    {{!-- Character Body End--}}
 </form>
