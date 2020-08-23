@@ -27,13 +27,13 @@ export async function getItem(itemId, type) {
             }
             break;
         case "path":
-            compendium = pathsCompendiums;
+            compendiums = pathsCompendiums;
             if (customCompendium !== "") {
                 compendiums.push(customCompendium + ".paths");
             }
             break;
         case "role":
-            compendium = rolesCompendiums;
+            compendiums = rolesCompendiums;
             if (customCompendium !== "") {
                 compendiums.push(customCompendium + ".roles");
             }
