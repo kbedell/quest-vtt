@@ -65,6 +65,8 @@ export async function getAllItems(type) {
     const items = [];
     let compendiums = [];
 
+    const customCompendium = game.settings.get("quest", "customCompendium");
+
     const rolesCompendiums = [
         "quest-basic.roles",
         "world.roles"
