@@ -2,6 +2,8 @@ export async function getItem(itemId, type) {
     let compendiums = [];
     let item;
 
+    const customCompendium = game.settings.get("quest", "customCompendium");
+
     const rolesCompendiums = [
         "quest-basic.roles",
         "world.roles"
@@ -20,12 +22,21 @@ export async function getItem(itemId, type) {
     switch (type) {
         case "ability":
             compendiums = abilitiesCompendiums;
+            if (customCompendium !== "") {
+                compendiums.push(customCompendium + ".abilities");
+            }
             break;
         case "path":
             compendium = pathsCompendiums;
+            if (customCompendium !== "") {
+                compendiums.push(customCompendium + ".paths");
+            }
             break;
         case "role":
             compendium = rolesCompendiums;
+            if (customCompendium !== "") {
+                compendiums.push(customCompendium + ".roles");
+            }
             break;
     }
 

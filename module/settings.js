@@ -31,4 +31,20 @@ export const registerSystemSettings = function () {
   function _setAbilityMode(abilityMode) {
     CONFIG.abilityMode = abilityMode;
   }
+
+  game.settings.register("quest", "customCompendium", {
+    name: game.i18n.localize('SETTINGS.CustomCompendium'),
+    hint: game.i18n.localize('SETTINGS.CustomCompendiumHint'),
+    scope: "world",
+    config: true,
+    default: "",
+    type: String,
+    onChange: rule => _setCustomCompendium(rule)
+  });
+
+  _setCustomCompendium(game.settings.get("quest", "customCompendium"));
+
+  function _setCustomCompendium(customCompendium) {
+    CONFIG.customCompendium = customCompendium;
+  }
 }
