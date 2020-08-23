@@ -63,7 +63,7 @@
         </li>
         {{else}}
         {{#each ability.effects as |effect|}}
-        <li class="ability item flexrow">
+        <li class="ability item flexrow" data-item-id={{effect.id}} data-ability-id={{ability.id}}>
             <div class="name-header flexrow">
                 <div class="cost">{{ability.cost}}</div>
                 <div class="ability-name flexrow">

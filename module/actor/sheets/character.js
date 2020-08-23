@@ -427,17 +427,17 @@ export class CharacterSheetQuest extends ActorSheetQuest {
 
   async _onDragAbilityStart(event) {
     event.stopPropagation();
-    let itemId = event.currentTarget.dataset.itemId;
-    let effectId = event.currentTarget.dataset.effectId;
+    let effectId = event.currentTarget.dataset.itemId;
+    let abilityId = event.currentTarget.dataset.abilityId;
 
-    let ability = await getItem(itemId, "ability");
+    let ability = await getItem(abilityId, "ability");
     event.dataTransfer.setData(
       "text/plain",
       JSON.stringify({
         type: "Item",
         data: {
           name: ability.name,
-          item: itemId,
+          item: abilityId,
           effect: effectId,
           actor: this.actor._id,
         },

@@ -49,18 +49,24 @@
       font-weight: 700;
       font-size: 1rem;
       margin-right: 0.2rem;
+      color: $white;
+      text-align: left;
     }
 
-    .hitpoints,
-    .actionpoints,
     .roll-generic {
       color: $white;
       text-align: center;
     }
 
+    .actionpoints {
+      color: $white;
+      text-align: right;
+    }
+
     .hp,
     .ap {
       min-width: 20px;
+      max-width: 10rem;
       border: 1px solid #7a7971;
       border-radius: 0.3rem;
       font-size: 1.1rem;
@@ -220,8 +226,15 @@
       }
     }
 
-    .sort:hover {
-      color: $highlightRed;
+    .inventory-sort {
+      margin-top: 0.3rem;
+      color: $white;
+      background-color: $charHeaderBlue;
+      border: 1px solid $charHeaderBlue;
+
+      :hover {
+        color: $highlightRed;
+      }
     }
 
     /* ----------------------------------------- */

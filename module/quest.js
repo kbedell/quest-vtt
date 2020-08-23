@@ -93,6 +93,23 @@ Hooks.once("ready", function() {
 });
 
 
+Hooks.once("preCreateActor", (createData) => {
+  mergeObject(createData,{
+    "token.bar1": {"attribute": "hitpoints"},   
+    "token.bar2": {"attribute": "actionpoints"},
+    "token.displayName" : CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,  
+    "token.displayBars" : CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+    "token.disposition" : CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+    "token.name" : createData.name      
+  });
+
+  if (createData.type == "character")
+  {
+    createData.token.vision = true;
+    createData.token.actorLink = true;
+  }
+});
+
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
 /* -------------------------------------------- */

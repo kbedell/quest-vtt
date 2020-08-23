@@ -127,15 +127,19 @@
       font-family: "Alegreya Sans", sans-serif;
       font-weight: 700;
       font-size: 1rem;
-      margin-right: 0.2rem; }
-    .quest.character .character-form .hitpoints,
-    .quest.character .character-form .actionpoints,
+      margin-right: 0.2rem;
+      color: #fff;
+      text-align: left; }
     .quest.character .character-form .roll-generic {
       color: #fff;
       text-align: center; }
+    .quest.character .character-form .actionpoints {
+      color: #fff;
+      text-align: right; }
     .quest.character .character-form .hp,
     .quest.character .character-form .ap {
       min-width: 20px;
+      max-width: 10rem;
       border: 1px solid #7a7971;
       border-radius: 0.3rem;
       font-size: 1.1rem;
@@ -233,8 +237,13 @@
       flex: 0 1 auto; }
       .quest.character .character-form .inventory-delete :hover {
         color: #f04828; }
-    .quest.character .character-form .sort:hover {
-      color: #f04828; }
+    .quest.character .character-form .inventory-sort {
+      margin-top: 0.3rem;
+      color: #fff;
+      background-color: #004576;
+      border: 1px solid #004576; }
+      .quest.character .character-form .inventory-sort :hover {
+        color: #f04828; }
     .quest.character .character-form .abilities-section .ability-info,
     .quest.character .character-form .abilities-section .roll-ability,
     .quest.character .character-form .abilities-section .send-to-chat-default {
