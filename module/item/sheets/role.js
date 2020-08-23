@@ -76,7 +76,9 @@ export class RoleSheetQuest extends ItemSheetQuest {
     let legendaries = [];
 
     for (let a = 0; a < abilities.length; a++) {
-      if (abilities[a].data.legendary) {
+      if (abilities[a].data.data && abilities[a].data.data.legendary) {
+        legendaries.push(abilities[a].data);
+      } else if (abilities[a].data.legendary && abilities[a].data.legendary) {
         legendaries.push(abilities[a]);
       }
     }

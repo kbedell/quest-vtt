@@ -46,6 +46,8 @@ export async function getItem(itemId, type) {
         if (pack) {
             item = await pack.getEntity(itemId);
 
+            if (!item) continue;
+
             return item;
         }
     }
@@ -86,7 +88,7 @@ export async function getAllItems(type) {
         case "ability":
             compendiums = abilitiesCompendiums;
             if (customCompendium !== "") {
-                compendiums.push(customCompendium + ".paths");
+                compendiums.push(customCompendium + ".abilities");
             }
             break;
         case "path":
@@ -98,7 +100,7 @@ export async function getAllItems(type) {
         case "role":
             compendiums = rolesCompendiums;
             if (customCompendium !== "") {
-                compendiums.push(customCompendium + ".paths");
+                compendiums.push(customCompendium + ".roles");
             }
             break;
     }
