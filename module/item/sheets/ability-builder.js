@@ -48,6 +48,8 @@ export class AbilityBuilderQuest extends ItemSheetQuest {
     updateData.data.legendary = Boolean(formData.legendary);
     updateData.img = formData.img;
     updateData.name = formData.name;
+    updateData.description.full = formData.full;
+    updateData.description.chat = formData.chat;
 
     for (let e = 0; e < updateData.data.effects.length; e++) {
       let effect = updateData.data.effects[e];

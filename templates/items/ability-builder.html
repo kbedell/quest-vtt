@@ -27,13 +27,35 @@
                                 Is this ability legendary?
                             </span>
                         </div>
-                        <input type="checkbox" name="legendary" value="true" {{#if data.data.legendary}}checked=""{{/if}} >
+                        <input type="checkbox" name="legendary" value="true" {{#if data.data.legendary}}checked=""
+                            {{/if}}>
                     </div>
                 </div>
             </div>
             {{!-- Step 1 End --}}
-
             {{!-- Step 2 --}}
+            <div class="step flexcol" data-step="1">
+                <h1 class="progress-header">
+                    General
+                </h1>
+                <div class="section">
+                    <h1 class="section-header">
+                        Descriptions
+                    </h1>
+                    <div class="field-group">
+                        <label class="item-label" for="full">Full Description</label>
+                        <textarea name="full" class="description"
+                            placeholder="Description">{{data.description.full}}</textarea>
+                    </div>
+                    <div class="field-group">
+                        <label class="item-label" for="chat">Chat Description</label>
+                        <textarea name="chat" class="description"
+                            placeholder="Chat Description">{{data.description.chat}}</textarea>
+                    </div>
+                </div>
+            </div>
+            {{!-- Step 2 End --}}
+            {{!-- Step 3 --}}
             <div class="step flexcol" data-step="2">
                 <h1 class="progress-header">
                     Effects
@@ -56,10 +78,11 @@
                 </ul>
 
             </div>
-            {{!-- Step 2 End --}}
+            {{!-- Step 3 End --}}
         </div>
         {{!-- Steps End --}}
     </div>
     {{!-- Body End --}}
-    <button type="submit" class="submit" name="submit" value="1"><i class="far fa-save"></i> {{ localize "QUEST.Save"}}</button>
+    <button type="submit" class="submit" name="submit" value="1"><i class="far fa-save"></i>
+        {{ localize "QUEST.Save"}}</button>
 </form>
