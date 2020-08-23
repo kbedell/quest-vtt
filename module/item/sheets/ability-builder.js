@@ -116,7 +116,7 @@ export class AbilityBuilderQuest extends ItemSheetQuest {
 
     let effectStub = {
       name: "",
-      img: "systems/quest/icons/effect.png",
+      img: "systems/quest/icons/aura.png",
       description: {
         full: "",
         chat: "",
