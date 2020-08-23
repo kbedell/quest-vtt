@@ -83,12 +83,21 @@ export async function getAllItems(type) {
     switch (type) {
         case "ability":
             compendiums = abilitiesCompendiums;
+            if (customCompendium !== "") {
+                compendiums.push(customCompendium + ".paths");
+            }
             break;
         case "path":
-            compendium = pathsCompendiums;
+            compendiums = pathsCompendiums;
+            if (customCompendium !== "") {
+                compendiums.push(customCompendium + ".paths");
+            }
             break;
         case "role":
-            compendium = rolesCompendiums;
+            compendiums = rolesCompendiums;
+            if (customCompendium !== "") {
+                compendiums.push(customCompendium + ".paths");
+            }
             break;
     }
 
