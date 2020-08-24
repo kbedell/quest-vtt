@@ -187,7 +187,7 @@ export class ActorQuest extends Actor {
 
       if (range.min === range.max) {
         if (roll.total === range.max) {
-          resultFlavor = TextEditor.enrichHTML(
+          resultFlavor = TextEditor.decodeHTML(
             range.description.chat
           );
         }
@@ -196,7 +196,7 @@ export class ActorQuest extends Actor {
           roll.total <= range.max &&
           roll.total >= range.min
         ) {
-          resultFlavor = TextEditor.enrichHTML(
+          resultFlavor = TextEditor.decodeHTML(
             range.description.chat
           );
         }
@@ -257,14 +257,14 @@ export class ActorQuest extends Actor {
 
   /**
    * Prepare an object of chat data used to display a card for the Item in the chat log
-   * @param {Object} htmlOptions    Options used by the TextEditor.enrichHTML function
+   * @param {Object} htmlOptions    Options used by the TextEditor.decodeHTML function
    * @return {Object}               An object of chat data to render
    */
   getChatData(htmlOptions) {
     const data = duplicate(this.data.data);
 
     // Rich text description
-    data.description.value = TextEditor.enrichHTML(
+    data.description.value = TextEditor.decodeHTML(
       data.description.value,
       htmlOptions
     );

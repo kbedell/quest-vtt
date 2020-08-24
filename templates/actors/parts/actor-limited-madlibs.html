@@ -1,0 +1,42 @@
+<div class="biography display-only flexcol flex1">
+    {{!-- Biography Upper --}}
+    <div class="biography-section-upper flexrow">
+        <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
+
+        <div class="profile-section flexcol">
+            <div class="descriptor-section">
+                Hi, my name is <div class="decision">{{actor.name}}</div> (<div class="decision">{{data.description.pronouns}}</div>).
+            </div>
+            <div class="descriptor-section">
+                I'm <div class="decision">{{data.description.age}}</div> years old and stand <div class="decision">{{data.description.height}}</div> tall.
+            </div>
+            <div class="descriptor-section">
+                I'm the party's <div class="decision">{{data.description.role}}</div>.
+            </div>
+            <div class="descriptor">
+                When people see me they first notice my <div class="decision">{{data.description.feature-1}}</div>, <div class="decision">{{data.description.feature-2}}</div>, and <div class="decision">{{data.description.feature-3}}</div>.
+            </div>
+        </div>
+    </div>
+    {{!-- Biography Upper End --}}
+
+    {{!-- Biography Lower --}}
+    <div class="biography-section-lower">    
+        <div class="descriptor-section-lower">
+            I wear <div class="decision">{{data.description.style-1}}</div>, <div class="decision">{{data.description.style-2}}</div>, and move with <div class="decision">{{data.description.movement}}</div>.
+        </div>
+    
+        <div class="descriptor-section-lower">
+            I'm from <div class="decision">{{data.description.home}}</div> where my people are known for <div class="decision">{{data.description.community}}</div>.
+        </div>
+    
+        <div class="descriptor-section-lower">
+            I believe in <div class="decision">{{data.description.ideal.value}}</div>, but my <div class="decision">{{data.description.flaw.value}}</div> side can get in my way.
+        </div>
+    
+        <div class="descriptor-section-lower">
+            I dream of <div class="decision">{{breaklines data.description.dream}}</div>.
+        </div>
+    </div>
+    {{!-- Biography Lower End --}}
+</div>

@@ -7,6 +7,8 @@
             <input type="text" name="filter" class="filter-legendaries" id="filter-legendaries"
                 placeholder="{{localize 'QUEST.FilterLegendaries'}}">
         </div>
+        <button type="submit" class="submit" name="submit" value="1"><i class="far fa-save"></i>
+            {{ localize "QUEST.Save"}}</button>
         <ul class="legendary-list" id="legendary-list">
             {{#each choices as |choice|}}
             <li class="legendary-choice">

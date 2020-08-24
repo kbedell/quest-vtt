@@ -1,4 +1,8 @@
 <div class="quest chat-card generic-roll" data-actor-id="{{actor._id}}">
+    <div class="roll flexcol">
+        <div class="roll-total">{{roll.total}}</div>
+    </div>
+   
     {{#if isTriumph}}
     <div class="status triumph">TRIUMPH</div>
     <div class="flavor">{{actor.name}} is triumphant!</div>
@@ -23,8 +27,4 @@
     <div class="status catastrophe">CATASTROPHE</div>
     <div class="flavor">{{actor.name}} faces a catastrophe!</div>
     {{/if}}
-
-    <div class="roll flexcol">
-        <div class="roll-total">{{roll.total}}</div>
-    </div>
 </div>

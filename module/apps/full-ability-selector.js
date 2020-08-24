@@ -1,108 +1,56 @@
 import { AbilityInfo } from "./ability-info.js";
-import { getItem} from "../quest-helpers.js";
+import { getItem } from "../quest-helpers.js";
 
 /**
- * A specialized form used to selecting abilities
+ * A specialized form used to select role(s)
  * @extends {FormApplication}
  */
-export class AbilitySelector extends FormApplication {
+export class FullAbilitySelector extends FormApplication {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      id: "ability-selector",
-      classes: ["quest", "app", "ability-selector"],
-      title: "Ability Selection",
-      template: "systems/quest/templates/apps/ability-selector.html",
+      id: "full-ability-selector",
+      classes: ["quest", "app", "full-ability-selector"],
+      title: "Full Ability Selection",
+      template: "systems/quest/templates/apps/full-ability-selector.html",
       width: 320,
       height: 400,
-      resizable: true,
       choices: {},
+      minimum: 0,
+      maximum: 1
     });
   }
-
   /* -------------------------------------------- */
 
   /** @override */
   getData() {
+    let mode = this.options.mode;
+    let limit = 1;
+
+    if (mode === "quirks") {
+      limit = game.settings.get("quest", "quirkLimit");
+    } else if (mode === "full") {
+      limit = null;
+    }
+
+    this.options.maximum = limit;
+
     // Get current values
-    const abilities = this.object.data.data.abilities;
+    const abilities = this.object.data.data.quirks;
 
     // Populate choices
     const options = duplicate(this.options.choices);
     const choices = [];
-    let roles = false;
 
-    if (this.options.roles) {
-      roles = true;
-      for (let r = 0; r < options.length; r++) {
-        const pathData = [];
-        for (let p = 0; p < options[r].paths.length; p++) {
-          let path = options[r].paths[p];
-          const abilityData = [];
-          let cost = "0";
-
-          for (let a = 0; a < path.abilities.length; a++) {
-            let effects = path.abilities[a].effects;
-            let available = false;
-
-            if (effects.length > 1) {
-              cost = "x";
-            } else if (effects.length === 1) {
-              if (
-                !effects[0].variablecost &&
-                effects[0].spellcost != "" &&
-                parseInt(effects[0].spellcost) > 0
-              ) {
-                cost = effects[0].spellcost;
-              } else if (effects[0].variablecost) {
-                cost = "x";
-              }
-            }
-
-            let previous = a - 1;
-
-            if (a === 0) {
-              available = true;
-            } else if (
-              a > 0 &&
-              abilities &&
-              abilities.includes(path.abilities[previous].id)
-            ) {
-              available = true;
-            }
-
-            abilityData.push({
-              label: path.abilities[a].name,
-              id: path.abilities[a].id,
-              order: a,
-              chosen: abilities
-                ? abilities.includes(path.abilities[a].id)
-                : false,
-              available: available,
-              cost: cost,
-            });
-          }
-
-          pathData.push({
-            name: path.name,
-            id: path.id,
-            abilities: abilityData
-          });
-        }
-
-        choices.push({
-          name: options[r].role,
-          id: options.id,
-          paths: pathData
-        });
-      }
-    } else {
-      for (let h = 0; h < options.length; h++) {
+    for (let r = 0; r < options.length; r++) {
+      const pathData = [];
+      for (let p = 0; p < options[r].paths.length; p++) {
+        let path = options[r].paths[p];
         const abilityData = [];
         let cost = "0";
 
-        for (let a = 0; a < options[h].abilities.length; a++) {
-          let effects = options[h].abilities[a].effects;
+        for (let a = 0; a < path.abilities.length; a++) {
+          let effects = path.abilities[a].effects;
           let available = false;
 
           if (effects.length > 1) {
@@ -126,33 +74,38 @@ export class AbilitySelector extends FormApplication {
           } else if (
             a > 0 &&
             abilities &&
-            abilities.includes(options[h].abilities[previous].id)
+            abilities.includes(path.abilities[previous].id)
           ) {
             available = true;
           }
 
           abilityData.push({
-            label: options[h].abilities[a].name,
-            id: options[h].abilities[a].id,
+            label: path.abilities[a].name,
+            id: path.abilities[a].id,
             order: a,
             chosen: abilities
-              ? abilities.includes(options[h].abilities[a].id)
+              ? abilities.includes(path.abilities[a].id)
               : false,
             available: available,
             cost: cost,
           });
         }
 
-        choices.push({
-          name: options[h].name,
-          id: options[h].id,
+        pathData.push({
+          name: path.name,
+          id: path.id,
           abilities: abilityData,
         });
       }
+
+      choices.push({
+        name: options[r].role,
+        id: options.id,
+        paths: pathData,
+      });
     }
 
     return {
-      roles: roles,
       choices: choices,
     };
   }
@@ -173,7 +126,19 @@ export class AbilitySelector extends FormApplication {
       }
     }
 
-    updateData["data.abilities"] = chosen;
+    // Validate the number chosen
+    if (this.options.minimum && chosen.length < this.options.minimum) {
+      return ui.notifications.error(
+        `You must choose at least ${this.options.minimum} options`
+      );
+    }
+    if (this.options.maximum && chosen.length > this.options.maximum) {
+      return ui.notifications.error(
+        `You may choose no more than ${this.options.maximum} options`
+      );
+    }
+
+    updateData["data.quirks"] = chosen;
 
     // Update the object
     this.object.update(updateData);

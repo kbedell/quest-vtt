@@ -3,7 +3,6 @@
     <div class="roles">
         <div class="role-selector flexrow">
             <label class="character-label-color" for="world.roles">Role(s) </label>
-            <div class="adder-plus"><i class="fas fa-plus"></i></div>
         </div>
         <div class="ability-section">
             <ul class="role-list flexrow">
@@ -15,24 +14,9 @@
         </div>
     </div>
     {{/if}}
-    {{#if data.charroles}}
     <div class="ability-selector flexrow">
         <label class="character-label-color" for="world.abilities">Abilities</label>
-        <div class="adder-plus"><i class="fas fa-plus"></i></div>
     </div>
-    {{/if}}
-    {{#if data.quirk}}
-    <div class="ability-selector-quirk flexrow">
-        <div class="adder-quirk"><i class="fas fa-plus"></i></div>
-        <label class="character-label">Quirk</label>
-    </div>
-    {{/if}}
-    {{#if data.norole}}
-    <div class="ability-selector-all flexrow">
-        <label class="character-label-color" for="world.abilities">Abilities</label>
-        <div class="adder-plus"><i class="fas fa-plus"></i></div>
-    </div>
-    {{/if}}
 
     <ul class="abilities-list flexcol">
         {{#each displayAbilities as | ability |}}
@@ -67,29 +51,19 @@
                             <label class="character-label-dark">{{effect.name}}</label>
                         </div>
                     </div>
-                    {{#if effect.roll}}
-                    <div class="roll-ability" data-item-id={{index}} data-ability-name={{ability.name}} data-ability-id={{ability.id}}>
-                        <i class="fas fa-dice-d20"></i>
-                    </div>
-                    {{/if}}
                 </li>
                 {{/each}}
             </ul>
         </li>
         {{else}}
         {{#each ability.effects as |effect|}}
-        <li class="ability item flexrow" data-item-id={{effect.id}} data-ability-id={{ability.id}} data-ability-name={{ability.name}}>
+        <li class="ability item flexrow" data-item-id={{effect.id}} data-ability-id={{ability.id}}>
             <div class="name-header flexrow">
                 <div class="cost">{{ability.cost}}</div>
                 <div class="ability-name flexrow">
                     <label class="character-label-dark">{{ability.name}}</label>
                 </div>
             </div>
-            {{#if effect.roll}}
-            <div class="roll-ability" data-item-id={{effect.id}} data-ability-id={{ability.id}}>
-                <i class="fas fa-dice-d20"></i>
-            </div>
-            {{/if}}
             <div class="ability-info" data-item-id={{ability.id}}>
                 <i class="fas fa-info-circle"></i>
             </div>

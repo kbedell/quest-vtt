@@ -1,4 +1,4 @@
-import { getItem } from "../quest-helpers.js";
+import { getItem, compareLabels } from "../quest-helpers.js";
 import { RoleInfo } from "./role-info.js";
 
 /**
@@ -54,6 +54,8 @@ export class RoleSelector extends FormApplication {
       }
     }
 
+    choices.sort(compareLabels);
+
     // Return data
     return {
       choices: choices,
@@ -94,8 +96,8 @@ export class RoleSelector extends FormApplication {
     this.object.update(updateData);
   }
 
-    /* -------------------------------------------- */
-  /*  Event Listeners and Handlers
+  /* -------------------------------------------- */
+  /*  Event Listeners and Handlers                */
   /* -------------------------------------------- */
 
   /**
@@ -119,7 +121,7 @@ export class RoleSelector extends FormApplication {
     options = {
       name: role.data.name,
       id: role.data._id,
-      description: TextEditor.enrichHTML(
+      description: TextEditor.decodeHTML(
         role.data.data.description.full
       )
     };

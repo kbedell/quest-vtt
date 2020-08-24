@@ -11,6 +11,7 @@
         {{#if ability.legendary}}
         <div class="legendary">LEGENDARY</div>
         {{/if}}
+        <div class="description">{{breaklines ability.description}}</div>
         {{#each ability.effects as |effect| }}
         <div class="ability-effect flexcol">
             <div class="ability flexcol">
@@ -21,7 +22,7 @@
                     <div class="cost">{{effect.cost}} AP</div>
                 </div>
                 <div class="description">
-                    {{effect.description}}
+                    {{breaklines effect.description}}
                 </div>
                 {{#if effect.roll}}
                 <div class="effects">

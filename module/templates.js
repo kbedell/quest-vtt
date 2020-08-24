@@ -11,7 +11,10 @@ export const preloadHandlebarsTemplates = async function() {
       // Actor Sheet Partials
       "systems/quest/templates/actors/parts/actor-madlibs.html",
       "systems/quest/templates/actors/parts/actor-inventory.html",
-      "systems/quest/templates/actors/parts/actor-abilities.html"
+      "systems/quest/templates/actors/parts/actor-abilities.html",
+      "systems/quest/templates/actors/parts/actor-limited-madlibs.html",
+      "systems/quest/templates/actors/parts/actor-limited-inventory.html",
+      "systems/quest/templates/actors/parts/actor-limited-abilities.html"
     ];
   
     // Load the template parts

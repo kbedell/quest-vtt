@@ -8,6 +8,10 @@
     "SETTINGS.Quirks": "Quirks",
     "SETTINGS.DualRoles": "Dual Roles",
     "SETTINGS.NoRoles": "No Roles",
+    "SETTINGS.QuirkLimit": "Quirk Ability Limit",
+    "SETTINGS.QuirkLimitHint": "How many quirk abilities a player is allowed to have. (Only works if Quirk ability selection type is enabled.)",
+    "SETTINGS.CustomCompendium": "Custom Compendium Module Name",
+    "SETTINGS.CustomCompendiumHint": "The name of the module for your custom compendium. E.g. 'quest-compendium'",
     
     "QUEST.Character.Name": "Name",
     "QUEST.Inventory": "Inventory",
@@ -16,6 +20,7 @@
     "QUEST.EffectName": "Effect Name (Required)",
     "QUEST.FilterPaths": "Filter Paths",
     "QUEST.FilterLegendaries": "Filter Abilities",
+    "QUEST.FilterAbilities": "Filter Abilities",
     "QUEST.PathName": "Learning Path Name",
 
     "QUEST.Save": "Save",

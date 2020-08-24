@@ -14,17 +14,18 @@ Our current release includes:
 
 Full descriptions and content from the Quest Game Book are **not included** (see the FAQ below for more details).  Please support The Adventure Guild and consider [purchasing a copy of Quest](https://www.adventure.game/digital-edition) if you like what you see!
 
-## Recommendations for Creating New Content
-If you want to create new roles, ability paths, ability effects, or effect roll ranges, I highly recommend doing it in the following order:
-1. Create your new role.
-2. Create your new ability path
-3. Create your new ability effect
-4. Create your new effect(s)
-5. Create your new effect roll ranges.
-
-Once you have done all of this, move these items into the appropriate compendium. Once in the compendium build the connections, by dragging and dropping the appropriate association. E.g. Roles are associated with paths.
-
-It is also possible to create connections from the default item list; however, I recommend utilizing the compendium method for easier filtering.
+## Creating custom compendiums
+If you would like to create your own Foundry compendium for **personal use**, I would recommend doing the following:
+1. Create your new compendiums. In order all Quest sheets to find your compendiums, please name them the following:
+    - Abilities
+    - Paths
+    - Roles
+2. Create your new ability.
+3. Create your new path.
+4. Create your new role.
+5. Move each item to its appropriate compendium.
+6. From the path compendium entry, add abilities to your path.
+7. From the role compendium entry, add paths and legendary abilities to your role.
 
 ## FAQ
 *   How do I load the Quest Creators Resource content in to my game?

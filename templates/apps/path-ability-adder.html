@@ -7,6 +7,8 @@
             <input type="text" name="filter" class="filter-abilities" id="filter-abilities"
                 placeholder="{{localize 'QUEST.FilterAbilities'}}">
         </div>
+        <button type="submit" class="submit" name="submit" value="1"><i class="far fa-save"></i>
+            {{ localize "QUEST.Save"}}</button>
         <ul class="ability-list" id="ability-list">
             {{#each choices as |choice|}}
             <li class="ability-choice">

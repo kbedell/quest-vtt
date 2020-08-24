@@ -203,6 +203,8 @@
 
       :before {
         content: counter(item);
+        font-family: $fontEmphasis;
+        font-weight: 700;
       }
 
       .inventory-item-value {
@@ -260,11 +262,40 @@
       }
 
       .role-selector,
-      .ability-selector {
+      .ability-selector,
+      .ability-selector-all {
         font-family: $fontEmphasis;
         font-weight: 700;
         color: $charHeaderBlue;
         border-bottom: 2px solid $charHeaderBlue;
+      }
+
+      .ability-selector-quirk {
+        border: 1px solid $charHeaderBlue;
+        background-color: $charHeaderBlue;
+        color: $white;
+        font-family: $fontEmphasis;
+        font-weight: 700;
+        width: 60%;
+        margin-top: 0.4rem;
+        padding: 0.2rem;
+        text-align: center;
+        align-self: center;
+        border-radius: 0.3rem;
+        justify-content: center;
+
+        .adder-quirk {
+          flex: 0 1 auto;
+          margin-right: 0.3rem;
+        }
+
+        .character-label {
+          flex: 0 1 auto;
+        }
+      }
+
+      .adder-quirk {
+        text-align: right;
       }
 
       .adder-plus {
@@ -277,6 +308,15 @@
 
       .abilities-list {
         padding: 0px;
+      }
+
+      .expander {
+        flex: 0 1 auto;
+        margin-right: 0.3rem;
+      }
+
+      .effects-expand {
+        margin-top: 0px;
       }
 
       .name-header {
@@ -298,7 +338,7 @@
         padding-right: 5px;
         width: 1.8rem;
       }
-    
+
       .cost:after {
         content: "";
         float: right;
@@ -318,5 +358,112 @@
       font-family: $fontEmphasis;
       font-weight: 700;
     }
+
+    .character-label-color {
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-right: 0.2rem;
+      text-align: left;
+      color: $charHeaderBlue;
+    }
+  }
+
+  .character-label-dark {
+    font-family: $fontEmphasis;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-right: 0.2rem;
+    text-align: left;
+    color: $darkGrey;
+  }
+
+  .roles {
+    .character-label-color {
+      color: $charHeaderBlue;
+    }
+  }
+}
+
+/* ----------------------------------------- */
+/*  Limited Styles                           */
+/* ----------------------------------------- */
+.quest.character.limited {
+  min-width: 750px;
+  min-height: 590px;
+
+  .display-only {
+    max-width: 450px;
+    min-height: auto;
+  }
+
+  .decision {
+    font-family: $fontEmphasis;
+    font-weight: 700;
+    display: inline-block;
+  }
+
+  li.inventory-slot-display {
+    counter-increment: item;
+
+    :last-child {
+      margin-bottom: 0px;
+    }
+  }
+
+  li.inventory-slot-display > .inventory-item-display {
+    margin-bottom: 0.3rem;
+
+    .counter {
+      flex: 0 1 auto;
+      margin-right: 0.5rem;
+      background-color: #000;
+      color: #fff;
+      border-radius: 1.8rem;
+      height: 1.8rem;
+      width: 1.8rem;
+      text-align: center;
+      line-height: 1.8rem;
+    }
+
+    .counter:before {
+      content: counter(item);
+    }
+  }
+
+  .ap-display, .hp-display {
+    font-family: $fontEmphasis;
+    font-weight: 700;
+    color: $white;
+    flex: 0 1 auto;
+  }
+
+  .roll-generic-display {
+    flex: 0 1 auto;
+    color: $white;
+  }
+
+  .actionpoints, .hitpoints {
+    flex: 0 1 auto;
+  }
+
+  .character-label-display {
+    font-family: $fontEmphasis;
+    font-weight: 700;
+    color: $white;
+    margin-right: 0.3rem;
+  }
+
+  .actionpoints {
+    justify-content: flex-start;
+  }
+
+  .hitpoints {
+    justify-content: flex-end;
+  }
+
+  .header {
+    justify-content: space-between;
+    align-items: center;
   }
 }

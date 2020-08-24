@@ -304,7 +304,7 @@
 }
 
 /* ----------------------------------------- */
-/*  Path Styles                              */
+/*  Path Adder Styles                        */
 /* ----------------------------------------- */
 
 .quest.path-adder {
@@ -337,19 +337,19 @@
       border-bottom: 2px solid $pathPink;
       text-align: center;
     }
+  }
 
-    .item-label {
-      flex: 0 1 auto;
-      font-family: $fontEmphasis;
-      font-weight: 700;
-      font-size: 1rem;
-      margin-right: 0.2rem;
-    }
+  .item-label {
+    flex: 0 1 auto;
+    font-family: $fontEmphasis;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-right: 0.2rem;
+  }
 
-    .path-list {
-      list-style: none;
-      padding: 0px;
-    }
+  .path-list {
+    list-style: none;
+    padding: 0px;
   }
 }
 
@@ -543,7 +543,7 @@
 /*  Ability Selector Styles                  */
 /* ----------------------------------------- */
 
-.quest.ability-selector {
+.quest.ability-selector, .quest.full-ability-selector {
   .window-content {
     background-color: $lightGrey;
     background-image: none;
@@ -610,6 +610,27 @@
       color: $highlightRed;
     }
   }
+
+  .role-name {
+    font-size: 1.1rem;
+    color: $builderHighlightGreen;
+    border-bottom: 2px solid $builderHighlightGreen;
+  }
+
+  .submit,
+  .cancel {
+    margin: 0.3rem 0px;
+    color: $white;
+    background-color: $builderHighlightGreen;
+    border: 1px solid $builderHighlightGreen;
+  }
+
+  .submit:hover,
+  .cancel:hover {
+    background-color: $highlightRed;
+    border: 1px solid $highlightRed;
+  }
+
 }
 
 /* ----------------------------------------- */
@@ -676,7 +697,7 @@
   }
 
   .effect-description {
-    flex: 0 1 auto;
+    flex: 0 0 85%;
   }
 
   .effect-ranges > .ability-info-ranges {
@@ -692,6 +713,7 @@
     border: 2px solid $builderHighlightGreen;
     padding: 0.2rem;
     border-radius: 0.4rem;
+    margin-top: 0.4rem;
 
     .ability {
       margin-bottom: 0.3rem;

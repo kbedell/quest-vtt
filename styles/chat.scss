@@ -3,6 +3,17 @@
 /*  Chat Styles                              */
 /* ----------------------------------------- */
 
+.chat,
+.chat-card {
+  .legendary {
+    text-align: center;
+    img {
+      border: none;
+      width: 50%;
+    }
+  }
+}
+
 /* ----------------------------------------- */
 /*  Generic Roll Styles                      */
 /* ----------------------------------------- */
@@ -21,28 +32,28 @@
 
   .triumph {
     color: $rangeGold;
+    font-weight: 700;
   }
 
   .success {
     color: $builderHighlightGreen;
+    font-weight: 700;
   }
 
   .tough-choice {
     color: $roleGrey;
+    font-weight: 700;
   }
 
   .catastrophe {
     color: $highlightRed;
+    font-weight: 700;
   }
 
   .roll-total {
     font-family: $fontEmphasis;
     font-weight: 700;
-    font-size: 1.5rem;
-  }
-
-  .flavor {
-    font-size: 1rem;
+    font-size: 1.9rem;
   }
 }
 
@@ -110,7 +121,7 @@
 }
 
 /* ----------------------------------------- */
-/*  Ability Card Styles                      */
+/*  Ability Roll Styles                      */
 /* ----------------------------------------- */
 
 .chat.ability-roll {
@@ -119,38 +130,33 @@
   .ability-name {
     font-family: $fontEmphasis;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    border-bottom: 2px solid $darkGrey;
   }
 
   .roll-total {
     font-family: $fontEmphasis;
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.9rem;
   }
 
-  .flavor {
-    font-size: 1rem;
-  }
   .triumph {
     color: $rangeGold;
+    font-weight: 700;
   }
 
   .success {
     color: $builderHighlightGreen;
+    font-weight: 700;
   }
 
   .tough-choice {
     color: $roleGrey;
+    font-weight: 700;
   }
 
   .catastrophe {
     color: $highlightRed;
-  }
-
-  .legendary {
-      img {
-          border: none;
-          width: 50%;
-      }
+    font-weight: 700;
   }
 }

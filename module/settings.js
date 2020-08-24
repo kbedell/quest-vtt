@@ -32,6 +32,22 @@ export const registerSystemSettings = function () {
     CONFIG.abilityMode = abilityMode;
   }
 
+  game.settings.register("quest", "quirkLimit", {
+    name: game.i18n.localize('SETTINGS.QuirkLimit'),
+    hint: game.i18n.localize('SETTINGS.QuirkLimitHint'),
+    scope: "world",
+    config: true,
+    default: 1,
+    type: Number,
+    onChange: rule => _setQuirkLimit(rule)
+  });
+
+  _setQuirkLimit(game.settings.get("quest", "quirkLimit"));
+
+  function _setQuirkLimit(limit) {
+    CONFIG.quirkLimit = limit;
+  }
+
   game.settings.register("quest", "customCompendium", {
     name: game.i18n.localize('SETTINGS.CustomCompendium'),
     hint: game.i18n.localize('SETTINGS.CustomCompendiumHint'),

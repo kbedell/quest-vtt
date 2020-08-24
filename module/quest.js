@@ -17,6 +17,7 @@ import { ItemQuest } from "./item/entity.js";
 import { PathSheetQuest } from "./item/sheets/path.js";
 import { RoleSheetQuest } from "./item/sheets/role.js";
 import { AbilityBuilderQuest } from "./item/sheets/ability-builder.js";
+import * as migrations from "./migration.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -29,7 +30,7 @@ Hooks.once("init", function () {
   game.quest = {
     ActorQuest,
     ItemQuest,
-    rollAbilityMacro
+    rollAbilityMacro,
   };
 
   // Record Configuration Values
@@ -60,6 +61,12 @@ Hooks.once("init", function () {
     makeDefault: true,
   });
 
+  Handlebars.registerHelper("breaklines", function (text) {
+    text = Handlebars.Utils.escapeExpression(text);
+    text = text.replace(/(\r\n|\n|\r)/gm, "<br>");
+    return new Handlebars.SafeString(text);
+  });
+
   // Preload Handlebars Templates
   preloadHandlebarsTemplates();
 });
@@ -88,23 +95,34 @@ Hooks.once("setup", function () {
 /**
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
-Hooks.once("ready", function() {
+Hooks.once("ready", function () {
+  const currentVersion = game.settings.get("quest", "systemMigrationVersion");
+  const NEEDS_MIGRATION_VERSION = 1.0;
+  const COMPATIBLE_MIGRATION_VERSION = 1.0;
+  let needMigration = (currentVersion < NEEDS_MIGRATION_VERSION) || (currentVersion === null);
+  const canMigrate = currentVersion >= COMPATIBLE_MIGRATION_VERSION;
+
+  if ( needMigration && game.user.isGM ) {
+    if ( currentVersion && (currentVersion < COMPATIBLE_MIGRATION_VERSION) ) {
+      ui.notifications.error(`Your Quest system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`, {permanent: true});
+    }
+    migrations.migrateWorld();
+  }
+
   Hooks.on("hotbarDrop", (bar, data, slot) => createQuestMacro(data, slot));
 });
 
-
 Hooks.once("preCreateActor", (createData) => {
-  mergeObject(createData,{
-    "token.bar1": {"attribute": "hitpoints"},   
-    "token.bar2": {"attribute": "actionpoints"},
-    "token.displayName" : CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,  
-    "token.displayBars" : CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-    "token.disposition" : CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-    "token.name" : createData.name      
+  mergeObject(createData, {
+    "token.bar1": { attribute: "hitpoints" },
+    "token.bar2": { attribute: "actionpoints" },
+    "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+    "token.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+    "token.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+    "token.name": createData.name,
   });
 
-  if (createData.type == "character")
-  {
+  if (createData.type == "character") {
     createData.token.vision = true;
     createData.token.actorLink = true;
   }
@@ -122,19 +140,21 @@ Hooks.once("preCreateActor", (createData) => {
  * @returns {Promise}
  */
 async function createQuestMacro(data, slot) {
-  if ( data.type !== "Item" ) return;
+  if (data.type !== "Item") return;
   const item = data.data;
 
   // Create the macro command
   const command = `game.quest.rollAbilityMacro("${item.item}", "${item.effect}", "${item.name}", "${item.actor}");`;
-  let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command));
-  if ( !macro ) {
+  let macro = game.macros.entities.find(
+    (m) => m.name === item.name && m.command === command
+  );
+  if (!macro) {
     macro = await Macro.create({
       name: item.name,
       type: "script",
       img: "systems/quest/icons/dice-fire.png",
       command: command,
-      flags: {"quest.abilityMacro": true}
+      flags: { "quest.abilityMacro": true },
     });
   }
   game.user.assignHotbarMacro(macro, slot);
@@ -151,13 +171,22 @@ function rollAbilityMacro(abilityId, effectId, name, actorId) {
   const speaker = ChatMessage.getSpeaker();
   let actor;
 
-  if ( speaker.token ) actor = game.actors.tokens[speaker.token];
-  if ( !actor ) actor = game.actors.get(actorId);
+  if (speaker.token) actor = game.actors.tokens[speaker.token];
+  if (!actor) actor = game.actors.get(actorId);
 
-  const item = actor ? actor.data.data.abilities.find(i => i === abilityId) : null;
+  const item = actor
+    ? actor.data.data.abilities.find((i) => i === abilityId)
+    : null;
 
-  if ( !item ) return ui.notifications.warn(`Your controlled Actor does not have an ability named ${name}`);
-  
+  if (!item)
+    return ui.notifications.warn(
+      `Your controlled Actor does not have an ability named ${name}`
+    );
+
   // Trigger the item roll
-  return actor.rollAbility({actor: actor, effectId: effectId, abilityId: abilityId});
+  return actor.rollAbility({
+    actor: actor,
+    effectId: effectId,
+    abilityId: abilityId,
+  });
 }

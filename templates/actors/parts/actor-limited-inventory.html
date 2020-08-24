@@ -1,0 +1,10 @@
+<ol id="inventory-list">
+    {{#each data.inventory as | item | }}
+    <li class="inventory-slot-display flexrow">
+        <div class="inventory-item-display flexrow">
+            <div class="counter"></div>
+            <div class="descion">{{item.value}}</div>
+        </div>
+    </li>
+    {{/each}}
+</ol>

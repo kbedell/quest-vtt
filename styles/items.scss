@@ -40,11 +40,11 @@
     color: $white;
     background-color: $builderHighlightGreen;
     border: 1px solid $builderHighlightGreen;
+  }
 
-    :hover {
+  .submit:hover {
       background-color: $highlightRed;
       border: 1px solid $highlightRed;
-    }
   }
 
   .steps {

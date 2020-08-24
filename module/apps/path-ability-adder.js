@@ -1,3 +1,5 @@
+import { compareLabels } from "../quest-helpers.js";
+
 /**
  * A specialized form used to selecting abilities
  * @extends {FormApplication}
@@ -32,6 +34,8 @@ export class PathAbilityAdder extends FormApplication {
           chosen: abilities ? abilities.includes(v._id) : false,
         };
       }
+
+      choices.sort(compareLabels);
   
       // Return data
       return {
@@ -44,8 +48,7 @@ export class PathAbilityAdder extends FormApplication {
     /** @override */
     async _updateObject(event, formData) {
       const updateData = {};
-      let ability = {};
-  
+
       // Obtain choices
       const chosen = [];
       for (let [k, v] of Object.entries(formData)) {
@@ -78,7 +81,6 @@ export class PathAbilityAdder extends FormApplication {
   
       let input = event.currentTarget.value;
       let filter = input.toLowerCase();
-      let list = document.getElementById("ability-list");
       let choices = document.getElementsByClassName("ability-choice");
   
       for (let i = 0; i < choices.length; i++) {

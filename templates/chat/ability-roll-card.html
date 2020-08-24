@@ -1,9 +1,8 @@
 <div class="chat ability-roll">
-    <div class="ability-name">{{abilityName}}</div>
+    <div class="roll-total">{{roll.total}}</div>
     {{#if legendary}}
     <div class="legendary"><img src="systems/quest/icons/legendary.gif" alt="legendary"></div>
     {{/if}}
-    <div class="roll-total">{{roll.total}}</div>
 
     {{#if isTriumph}}
     <div class="status triumph">TRIUMPH</div>
@@ -24,8 +23,8 @@
     {{#if isCatastrophe}}
     <div class="status catastrophe">CATASTROPHE</div>
     {{/if}}
-
+    <div class="ability-name">{{abilityName}}</div>
     <div class="flavor">
-        {{resultFlavor}}
+        {{breaklines resultFlavor}}
     </div>
 </div>

@@ -15,8 +15,14 @@
         "movement": "",
         "home": "",
         "community": "",
-        "ideal": "",
-        "flaw": "",
+        "ideal": {
+          "value": "",
+          "assocation": false
+        },
+        "flaw": {
+          "value": "",
+          "assocation": false
+        },
         "dream": ""
       }
     },
@@ -30,43 +36,56 @@
       "actionpoints": 0,
       "inventory": [
         {
-          "value": ""
+          "value": "",
+          "association": false
         },
         {
-          "value": ""
+          "value": "",
+          "assocation": false
         },
         {
-          "value": ""
+          "value": "",
+          "assocation": false
         },
         {
-          "value": ""
+          "value": "",
+          "assocation": false
         },
         {
-          "value": ""
+          "value": "",
+          "assocation": false
         },
         {
-          "value": ""
+          "value": "",
+          "assocation": false
         },
         {
-          "value": ""
+          "value": "",
+          "assocation": false
         },
         {
-          "value": ""
+          "value": "",
+          "assocation": false
         },
         {
-          "value": ""
+          "value": "",
+          "assocation": false
         },
         {
-          "value": ""
+          "value": "",
+          "assocation": false
         },
         {
-          "value": ""
+          "value": "",
+          "assocation": false
         },
         {
-          "value": ""
+          "value": "",
+          "assocation": false
         }
       ],
-      "abilities": []
+      "abilities": [],
+      "quirks": []
     }
   },
   "Item": {

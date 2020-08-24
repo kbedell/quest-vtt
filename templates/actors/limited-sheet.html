@@ -1,0 +1,41 @@
+<form class="{{cssClass}} character-form flexcol" autocomplete="off">
+    {{!-- Character Header --}}
+    <div class="header flexrow">
+        <div class="hitpoints flexrow">
+            <div class="character-label-display">HP</div>
+            <div class="hp-display">
+                {{data.hitpoints.value}} / {{ data.hitpoints.max }}
+            </div>
+        </div>
+        <div class="roll-generic-display"><i class="fas fa-dice-d20 fa-2x"></i></div>
+        <div class="actionpoints flexrow">
+            <div class="character-label-display">AP</div>
+            <div class="ap-display">{{data.actionpoints}}</div>
+        </div>
+    </div>
+    {{!-- Character Header End --}}
+
+    {{!-- Character Body --}}
+    <div class="details flexrow flex2">
+        {{!-- Biography --}}
+            {{> "systems/quest/templates/actors/parts/actor-limited-madlibs.html" }}
+        {{!-- Biography End --}}
+        {{!-- Inventory/Spells --}}
+        <div class="inventory-abilities flexcol flex1">
+            {{!-- NPC Sheet Navigation --}}
+            <nav class="sheet-navigation tabs" data-group="primary">
+                <a class="item active" id="inventory" data-tab="inventory">{{localize 'QUEST.Inventory'}}</a>
+                <a class="item" id="abilities" data-tab="abilities">{{localize 'QUEST.Abilities'}}</a>
+            </nav>
+            <section class="content">
+                <div class="tab inventory flexcol" data-group="primary" data-tab="inventory">
+                    {{> "systems/quest/templates/actors/parts/actor-limited-inventory.html" }}
+                </div>
+                <div class="tab abilities flexcol" data-group="primary" data-tab="abilities">
+                    {{> "systems/quest/templates/actors/parts/actor-limited-abilities.html" }}
+                </div>
+            </section>
+        </div>
+    </div>
+    {{!-- Character Body End--}}
+</form>

@@ -226,7 +226,9 @@
         text-align: center;
         line-height: 1.8rem; }
       .quest.character .character-form .inventory-slot > .inventory-item :before {
-        content: counter(item); }
+        content: counter(item);
+        font-family: "Alegreya Sans", sans-serif;
+        font-weight: 700; }
       .quest.character .character-form .inventory-slot > .inventory-item .inventory-item-value {
         flex: 0 1 82%; }
     .quest.character .character-form .inventory-slot > .item-delete {
@@ -256,17 +258,43 @@
     .quest.character .character-form .abilities-section .roll-ability {
       margin-right: 0.3rem; }
     .quest.character .character-form .abilities-section .role-selector,
-    .quest.character .character-form .abilities-section .ability-selector {
+    .quest.character .character-form .abilities-section .ability-selector,
+    .quest.character .character-form .abilities-section .ability-selector-all {
       font-family: "Alegreya Sans", sans-serif;
       font-weight: 700;
       color: #004576;
       border-bottom: 2px solid #004576; }
+    .quest.character .character-form .abilities-section .ability-selector-quirk {
+      border: 1px solid #004576;
+      background-color: #004576;
+      color: #fff;
+      font-family: "Alegreya Sans", sans-serif;
+      font-weight: 700;
+      width: 60%;
+      margin-top: 0.4rem;
+      padding: 0.2rem;
+      text-align: center;
+      align-self: center;
+      border-radius: 0.3rem;
+      justify-content: center; }
+      .quest.character .character-form .abilities-section .ability-selector-quirk .adder-quirk {
+        flex: 0 1 auto;
+        margin-right: 0.3rem; }
+      .quest.character .character-form .abilities-section .ability-selector-quirk .character-label {
+        flex: 0 1 auto; }
+    .quest.character .character-form .abilities-section .adder-quirk {
+      text-align: right; }
     .quest.character .character-form .abilities-section .adder-plus {
       text-align: right; }
       .quest.character .character-form .abilities-section .adder-plus :hover {
         color: #f04828; }
     .quest.character .character-form .abilities-section .abilities-list {
       padding: 0px; }
+    .quest.character .character-form .abilities-section .expander {
+      flex: 0 1 auto;
+      margin-right: 0.3rem; }
+    .quest.character .character-form .abilities-section .effects-expand {
+      margin-top: 0px; }
     .quest.character .character-form .abilities-section .name-header {
       margin-bottom: 0.3rem; }
     .quest.character .character-form .abilities-section .cost {
@@ -298,6 +326,76 @@
       padding: 0px;
       font-family: "Alegreya Sans", sans-serif;
       font-weight: 700; }
+    .quest.character .character-form .character-label-color {
+      font-family: "Alegreya Sans", sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-right: 0.2rem;
+      text-align: left;
+      color: #004576; }
+  .quest.character .character-label-dark {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-right: 0.2rem;
+    text-align: left;
+    color: #222831; }
+  .quest.character .roles .character-label-color {
+    color: #004576; }
+
+/* ----------------------------------------- */
+/*  Limited Styles                           */
+/* ----------------------------------------- */
+.quest.character.limited {
+  min-width: 750px;
+  min-height: 590px; }
+  .quest.character.limited .display-only {
+    max-width: 450px;
+    min-height: auto; }
+  .quest.character.limited .decision {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    display: inline-block; }
+  .quest.character.limited li.inventory-slot-display {
+    counter-increment: item; }
+    .quest.character.limited li.inventory-slot-display :last-child {
+      margin-bottom: 0px; }
+  .quest.character.limited li.inventory-slot-display > .inventory-item-display {
+    margin-bottom: 0.3rem; }
+    .quest.character.limited li.inventory-slot-display > .inventory-item-display .counter {
+      flex: 0 1 auto;
+      margin-right: 0.5rem;
+      background-color: #000;
+      color: #fff;
+      border-radius: 1.8rem;
+      height: 1.8rem;
+      width: 1.8rem;
+      text-align: center;
+      line-height: 1.8rem; }
+    .quest.character.limited li.inventory-slot-display > .inventory-item-display .counter:before {
+      content: counter(item); }
+  .quest.character.limited .ap-display, .quest.character.limited .hp-display {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    color: #fff;
+    flex: 0 1 auto; }
+  .quest.character.limited .roll-generic-display {
+    flex: 0 1 auto;
+    color: #fff; }
+  .quest.character.limited .actionpoints, .quest.character.limited .hitpoints {
+    flex: 0 1 auto; }
+  .quest.character.limited .character-label-display {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    color: #fff;
+    margin-right: 0.3rem; }
+  .quest.character.limited .actionpoints {
+    justify-content: flex-start; }
+  .quest.character.limited .hitpoints {
+    justify-content: flex-end; }
+  .quest.character.limited .header {
+    justify-content: space-between;
+    align-items: center; }
 
 /* ----------------------------------------- */
 /*  Item Styles                              */
@@ -404,9 +502,10 @@
   color: #fff;
   background-color: #3D8F57;
   border: 1px solid #3D8F57; }
-  .quest.item.ability-builder .submit :hover {
-    background-color: #f04828;
-    border: 1px solid #f04828; }
+
+.quest.item.ability-builder .submit:hover {
+  background-color: #f04828;
+  border: 1px solid #f04828; }
 
 .quest.item.ability-builder .steps .step h1.progress-header {
   font-family: "Alegreya Sans", sans-serif;
@@ -765,6 +864,14 @@
 /* ----------------------------------------- */
 /*  Chat Styles                              */
 /* ----------------------------------------- */
+.chat .legendary,
+.chat-card .legendary {
+  text-align: center; }
+  .chat .legendary img,
+  .chat-card .legendary img {
+    border: none;
+    width: 50%; }
+
 /* ----------------------------------------- */
 /*  Generic Roll Styles                      */
 /* ----------------------------------------- */
@@ -777,19 +884,21 @@
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 700; }
   .chat-card.generic-roll .triumph {
-    color: #e99d36; }
+    color: #e99d36;
+    font-weight: 700; }
   .chat-card.generic-roll .success {
-    color: #3D8F57; }
+    color: #3D8F57;
+    font-weight: 700; }
   .chat-card.generic-roll .tough-choice {
-    color: #454f4e; }
+    color: #454f4e;
+    font-weight: 700; }
   .chat-card.generic-roll .catastrophe {
-    color: #f04828; }
+    color: #f04828;
+    font-weight: 700; }
   .chat-card.generic-roll .roll-total {
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 700;
-    font-size: 1.5rem; }
-  .chat-card.generic-roll .flavor {
-    font-size: 1rem; }
+    font-size: 1.9rem; }
 
 /* ----------------------------------------- */
 /*  Ability Card Styles                      */
@@ -845,31 +954,31 @@
   border-bottom: none; }
 
 /* ----------------------------------------- */
-/*  Ability Card Styles                      */
+/*  Ability Roll Styles                      */
 /* ----------------------------------------- */
 .chat.ability-roll {
   text-align: center; }
   .chat.ability-roll .ability-name {
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 700;
-    font-size: 1.2rem; }
+    font-size: 1.1rem;
+    border-bottom: 2px solid #222831; }
   .chat.ability-roll .roll-total {
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 700;
-    font-size: 1.5rem; }
-  .chat.ability-roll .flavor {
-    font-size: 1rem; }
+    font-size: 1.9rem; }
   .chat.ability-roll .triumph {
-    color: #e99d36; }
+    color: #e99d36;
+    font-weight: 700; }
   .chat.ability-roll .success {
-    color: #3D8F57; }
+    color: #3D8F57;
+    font-weight: 700; }
   .chat.ability-roll .tough-choice {
-    color: #454f4e; }
+    color: #454f4e;
+    font-weight: 700; }
   .chat.ability-roll .catastrophe {
-    color: #f04828; }
-  .chat.ability-roll .legendary img {
-    border: none;
-    width: 50%; }
+    color: #f04828;
+    font-weight: 700; }
 
 /* ----------------------------------------- */
 /*  App Styles                               */
@@ -1156,7 +1265,7 @@
           margin-right: 0.2rem; }
 
 /* ----------------------------------------- */
-/*  Path Styles                              */
+/*  Path Adder Styles                        */
 /* ----------------------------------------- */
 .quest.path-adder .window-content {
   background-color: #eeeeee;
@@ -1182,15 +1291,17 @@
     font-size: 1.3rem;
     border-bottom: 2px solid #EE5874;
     text-align: center; }
-  .quest.path-adder .section .item-label {
-    flex: 0 1 auto;
-    font-family: "Alegreya Sans", sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-right: 0.2rem; }
-  .quest.path-adder .section .path-list {
-    list-style: none;
-    padding: 0px; }
+
+.quest.path-adder .item-label {
+  flex: 0 1 auto;
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-right: 0.2rem; }
+
+.quest.path-adder .path-list {
+  list-style: none;
+  padding: 0px; }
 
 /* ----------------------------------------- */
 /*  Legendary Styles                         */
@@ -1329,28 +1440,28 @@
 /* ----------------------------------------- */
 /*  Ability Selector Styles                  */
 /* ----------------------------------------- */
-.quest.ability-selector .window-content {
+.quest.ability-selector .window-content, .quest.full-ability-selector .window-content {
   background-color: #eeeeee;
   background-image: none; }
 
-.quest.ability-selector #ability-selector {
+.quest.ability-selector #ability-selector, .quest.full-ability-selector #ability-selector {
   min-height: 400px; }
 
-.quest.ability-selector .abilities {
+.quest.ability-selector .abilities, .quest.full-ability-selector .abilities {
   font-size: 1rem;
   font-weight: 500;
   line-height: 30px; }
 
-.quest.ability-selector label {
+.quest.ability-selector label, .quest.full-ability-selector label {
   font-family: "Alegreya Sans", sans-serif;
   font-weight: 700;
   font-size: 1rem;
   align-content: center; }
 
-.quest.ability-selector ol {
+.quest.ability-selector ol, .quest.full-ability-selector ol {
   padding: 0px; }
 
-.quest.ability-selector .cost {
+.quest.ability-selector .cost, .quest.full-ability-selector .cost {
   flex: 0 0 auto;
   font-family: "Alegreya Sans", sans-serif;
   font-weight: 700;
@@ -1365,7 +1476,7 @@
   padding-right: 5px;
   width: 1.8rem; }
 
-.quest.ability-selector .cost:after {
+.quest.ability-selector .cost:after, .quest.full-ability-selector .cost:after {
   content: "";
   float: right;
   position: absolute;
@@ -1377,13 +1488,32 @@
   border-style: solid;
   border-width: 10px 0px 10px 11px; }
 
-.quest.ability-selector .ability-info {
+.quest.ability-selector .ability-info, .quest.full-ability-selector .ability-info {
   text-align: right; }
 
-.quest.ability-selector .send-to-chat-info {
+.quest.ability-selector .send-to-chat-info, .quest.full-ability-selector .send-to-chat-info {
   text-align: center; }
-  .quest.ability-selector .send-to-chat-info :hover {
+  .quest.ability-selector .send-to-chat-info :hover, .quest.full-ability-selector .send-to-chat-info :hover {
     color: #f04828; }
+
+.quest.ability-selector .role-name, .quest.full-ability-selector .role-name {
+  font-size: 1.1rem;
+  color: #3D8F57;
+  border-bottom: 2px solid #3D8F57; }
+
+.quest.ability-selector .submit,
+.quest.ability-selector .cancel, .quest.full-ability-selector .submit,
+.quest.full-ability-selector .cancel {
+  margin: 0.3rem 0px;
+  color: #fff;
+  background-color: #3D8F57;
+  border: 1px solid #3D8F57; }
+
+.quest.ability-selector .submit:hover,
+.quest.ability-selector .cancel:hover, .quest.full-ability-selector .submit:hover,
+.quest.full-ability-selector .cancel:hover {
+  background-color: #f04828;
+  border: 1px solid #f04828; }
 
 /* ----------------------------------------- */
 /*  Ability Info Styles                      */
@@ -1434,7 +1564,7 @@
   font-size: 1rem; }
 
 .quest.ability-info .effect-description {
-  flex: 0 1 auto; }
+  flex: 0 0 85%; }
 
 .quest.ability-info .effect-ranges > .ability-info-ranges {
   border-bottom: 1px solid #adb5bd;
@@ -1446,6 +1576,7 @@
 .quest.ability-info .ability-effect {
   border: 2px solid #3D8F57;
   padding: 0.2rem;
-  border-radius: 0.4rem; }
+  border-radius: 0.4rem;
+  margin-top: 0.4rem; }
   .quest.ability-info .ability-effect .ability {
     margin-bottom: 0.3rem; }

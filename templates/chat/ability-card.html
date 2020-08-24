@@ -2,13 +2,21 @@
     <div class="ability-description">
         <div class="ability-name">{{data.name}}</div>
     </div>
+    {{#if data.data.legendary}}
+    <div class="ability-legendary">
+        <div class="legendary"><img src="systems/quest/icons/legendary.gif" alt="legendary"></div>
+    </div>
+    {{/if}}
+    <div class="ability-description">
+        {{breaklines data.data.description.full}}
+    </div>
     {{#each data.data.effects as |effect| }}
     <div class="ability-effect flexcol">
         <div class="flexcol">
             <div class="flexrow">
                 <div class="cost">{{effect.spellcost}}</div>
                 <div class="effect-description">
-                    {{effect.description.full}}
+                    {{breaklines effect.description.full}}
                 </div>
             </div>
             {{#if roll}}
@@ -18,7 +26,7 @@
                 <div class="ability-info-ranges flexrow">
                     <div class="ability-info-range">{{range.min}} - {{range.max}}</div>
                     <div class="effect-description">
-                        {{range.description.full}}
+                        {{breaklines range.description.full}}
                     </div>
                 </div>
                 {{/each}}

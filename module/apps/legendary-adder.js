@@ -1,3 +1,5 @@
+import { compareLabels } from "../quest-helpers.js";
+
 /**
  * A specialized form used to selecting abilities
  * @extends {FormApplication}
@@ -32,6 +34,8 @@ export class LegendaryAdder extends FormApplication {
         chosen: legendaries ? legendaries.includes(v._id) : false,
       };
     }
+
+    choices.sort(compareLabels);
 
     // Return data
     return {

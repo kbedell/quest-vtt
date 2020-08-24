@@ -146,3 +146,16 @@ export async function getFormData(formData) {
 
     return object;
 }
+
+export function compareLabels(a,b) {
+    const objectA = a.label.toLowerCase();
+    const objectB = b.label.toLowerCase();
+  
+    let comparison = 0;
+    if (objectA > objectB) {
+      comparison = 1;
+    } else if (objectA < objectB) {
+      comparison = -1;
+    }
+    return comparison;
+  }
