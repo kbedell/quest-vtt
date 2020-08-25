@@ -13,6 +13,7 @@ import { registerSystemSettings } from "./settings.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { ActorQuest } from "./actor/entity.js";
 import { CharacterSheetQuest } from "./actor/sheets/character.js";
+import { NPCSheetQuest } from "./actor/sheets/npc.js";
 import { ItemQuest } from "./item/entity.js";
 import { PathSheetQuest } from "./item/sheets/path.js";
 import { RoleSheetQuest } from "./item/sheets/role.js";
@@ -45,6 +46,10 @@ Hooks.once("init", function () {
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("quest", CharacterSheetQuest, {
     types: ["character"],
+    makeDefault: true,
+  });
+  Actors.registerSheet("quest", NPCSheetQuest, {
+    types: ["npc"],
     makeDefault: true,
   });
   Items.unregisterSheet("core", ItemSheet);
@@ -99,12 +104,16 @@ Hooks.once("ready", function () {
   const currentVersion = game.settings.get("quest", "systemMigrationVersion");
   const NEEDS_MIGRATION_VERSION = 1.0;
   const COMPATIBLE_MIGRATION_VERSION = 1.0;
-  let needMigration = (currentVersion < NEEDS_MIGRATION_VERSION) || (currentVersion === null);
+  let needMigration =
+    currentVersion < NEEDS_MIGRATION_VERSION || currentVersion === null;
   const canMigrate = currentVersion >= COMPATIBLE_MIGRATION_VERSION;
 
-  if ( needMigration && game.user.isGM ) {
-    if ( currentVersion && (currentVersion < COMPATIBLE_MIGRATION_VERSION) ) {
-      ui.notifications.error(`Your Quest system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`, {permanent: true});
+  if (needMigration && game.user.isGM) {
+    if (currentVersion && currentVersion < COMPATIBLE_MIGRATION_VERSION) {
+      ui.notifications.error(
+        `Your Quest system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`,
+        { permanent: true }
+      );
     }
     migrations.migrateWorld();
   }
@@ -113,14 +122,16 @@ Hooks.once("ready", function () {
 });
 
 Hooks.once("preCreateActor", (createData) => {
-  mergeObject(createData, {
-    "token.bar1": { attribute: "hitpoints" },
-    "token.bar2": { attribute: "actionpoints" },
-    "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-    "token.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-    "token.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-    "token.name": createData.name,
-  });
+  if (createData.type == "character") {
+    mergeObject(createData, {
+      "token.bar1": { attribute: "hitpoints" },
+      "token.bar2": { attribute: "actionpoints" },
+      "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      "token.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      "token.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+      "token.name": createData.name,
+    });
+  }
 
   if (createData.type == "character") {
     createData.token.vision = true;

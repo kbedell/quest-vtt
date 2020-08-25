@@ -86,6 +86,12 @@
       ],
       "abilities": [],
       "quirks": []
+    },
+    "npc": {
+      "hitpoints": 0,
+      "attack": 0,
+      "traits": [],
+      "notes": ""
     }
   },
   "Item": {

@@ -467,3 +467,101 @@
     align-items: center;
   }
 }
+
+/* ----------------------------------------- */
+/*  NPC Styles                               */
+/* ----------------------------------------- */
+.quest.npc {
+  min-width: 700px;
+  min-height: 400px;
+
+  .window-content {
+    padding: 0px;
+  }
+
+  .npc-form {
+    background-color: $lightGrey;
+    font-family: $fontFamily;
+    color: $darkGrey;
+    font-size: 1.1rem;
+    font-weight: 500;
+
+    .details {
+      text-align: center;
+      margin: 0px 1rem 0.5rem 1rem;
+      flex: 0 1 auto;
+    }
+
+    img.npc-image {
+      flex: 0 1 150px;
+      max-width: 150px;
+      height: 150px;
+      border-radius: 150px;
+      border: 1px solid $borderGrey;
+      margin-right: 0.5rem;
+    }
+
+    .header {
+      background: $npcRed;
+      padding: 0.4rem;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      flex: 0 1 auto;
+      justify-items: space-between;
+    }
+
+    .header-name {
+      border-bottom: 2px solid $npcRed;
+    }
+
+    .npc-name {
+      width: 80%;
+      height: 2rem;
+    }
+
+    .npc-label,
+    .hitpoints {
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-right: 0.2rem;
+      color: $white;
+      text-align: left;
+    }
+
+    .roll-generic {
+      color: $white;
+      text-align: center;
+    }
+
+    .attack {
+      color: $white;
+      text-align: right;
+    }
+
+    .hp,
+    .ar {
+      min-width: 20px;
+      max-width: 10rem;
+      border: 1px solid #7a7971;
+      border-radius: 0.3rem;
+      font-size: 1.1rem;
+      padding-left: 0.3rem;
+    }
+
+    .roll-generic {
+      :hover {
+        color: $darkGrey;
+      }
+    }
+
+    .section {
+      margin: 0px 1rem;
+      flex: 0 1 auto;
+
+      .npc-label {
+        color: $darkGrey;
+      }
+    }
+  }
+}
