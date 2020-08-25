@@ -398,6 +398,73 @@
     align-items: center; }
 
 /* ----------------------------------------- */
+/*  NPC Styles                               */
+/* ----------------------------------------- */
+.quest.npc {
+  min-width: 700px;
+  min-height: 400px; }
+  .quest.npc .window-content {
+    padding: 0px; }
+  .quest.npc .npc-form {
+    background-color: #eeeeee;
+    font-family: "Ovo", sans-serif;
+    color: #222831;
+    font-size: 1.1rem;
+    font-weight: 500; }
+    .quest.npc .npc-form .details {
+      text-align: center;
+      margin: 0px 1rem 0.5rem 1rem;
+      flex: 0 1 auto; }
+    .quest.npc .npc-form img.npc-image {
+      flex: 0 1 150px;
+      max-width: 150px;
+      height: 150px;
+      border-radius: 150px;
+      border: 1px solid #adb5bd;
+      margin-right: 0.5rem; }
+    .quest.npc .npc-form .header {
+      background: #be3521;
+      padding: 0.4rem;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      flex: 0 1 auto;
+      justify-items: space-between; }
+    .quest.npc .npc-form .header-name {
+      border-bottom: 2px solid #be3521; }
+    .quest.npc .npc-form .npc-name {
+      width: 80%;
+      height: 2rem; }
+    .quest.npc .npc-form .npc-label,
+    .quest.npc .npc-form .hitpoints {
+      font-family: "Alegreya Sans", sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-right: 0.2rem;
+      color: #fff;
+      text-align: left; }
+    .quest.npc .npc-form .roll-generic {
+      color: #fff;
+      text-align: center; }
+    .quest.npc .npc-form .attack {
+      color: #fff;
+      text-align: right; }
+    .quest.npc .npc-form .hp,
+    .quest.npc .npc-form .ar {
+      min-width: 20px;
+      max-width: 10rem;
+      border: 1px solid #7a7971;
+      border-radius: 0.3rem;
+      font-size: 1.1rem;
+      padding-left: 0.3rem; }
+    .quest.npc .npc-form .roll-generic :hover {
+      color: #222831; }
+    .quest.npc .npc-form .section {
+      margin: 0px 1rem;
+      flex: 0 1 auto; }
+      .quest.npc .npc-form .section .npc-label {
+        color: #222831; }
+
+/* ----------------------------------------- */
 /*  Item Styles                              */
 /* ----------------------------------------- */
 /* ----------------------------------------- */

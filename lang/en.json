@@ -16,6 +16,7 @@
     "QUEST.Character.Name": "Name",
     "QUEST.Inventory": "Inventory",
     "QUEST.Abilities": "Abilities",
+    "QUEST.NPCName": "NPC Name",
 
     "QUEST.EffectName": "Effect Name (Required)",
     "QUEST.FilterPaths": "Filter Paths",
