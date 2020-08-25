@@ -9,7 +9,7 @@ Our current release includes:
 * HP and Adventure Point trackers
 * A sortable 12-slot inventory system
 * A flexible Roles and Abilities system for your characters
-* When paired with the upcoming compendium module (based on content from the [Quest Creators Resource](https://www.adventure.game/creators-license)),
+* When paired with the upcoming compendium module (based on content from the [Quest Creators Resource](https://www.adventure.game/creators-license)):
     * _Limited descriptions_ for roles, learning paths, and abilities from the base game
 
 Full descriptions and content from the Quest Game Book are **not included** (see the FAQ below for more details).  Please support The Adventure Guild and consider [purchasing a copy of Quest](https://www.adventure.game/digital-edition) if you like what you see!
