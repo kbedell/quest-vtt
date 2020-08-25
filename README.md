@@ -45,7 +45,7 @@ If you would like to create your own Foundry compendium for **personal use**, I 
 - muscle-up.png (Ability Icon) created by [Lorc](http://lorcblog.blogspot.com/) under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
 - dice-fire.png (Macro Icon) created by [Delapouite](http://delapouite.com/) under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
 
-##Legal
+## Legal
 Quest was created by The Adventure Guild LLC.
 Quest is copyrighted (©) to The Adventure Guild LLC, 2019. All rights reserved.
 
