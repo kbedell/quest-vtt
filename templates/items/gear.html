@@ -11,27 +11,36 @@
 
     {{!-- Body --}}
     <div class="section flexcol">
-        <div class="field-group">
-            <label class="item-label" for="data.rarity">Rarity</label>
-            {{#each rarities.choices as |rarity|}}
-            <input type="radio" id="{{rarity.value}}" name="data.rarity.value" value="{{rarity.value}}"
-                {{#if rarity.selected}}checked{{/if}}>
-            <label for="{{rarity.value}}">{{rarity.display}}</label><br>
-            {{/each}}
-            <div class="custom flexrow">
-                <label for="data.rarity.custom">Custom Rarity</label><br>
-                <input type="text" name="custom" value="{{data.rarity.custom}}" data-dtype="String" />
+        <h1 class="section-header">Gear Basics</h1>
+        <div class="field-group flexcol">
+            <div class="rarity-selector flexrow">
+                <label class="item-label" for="data.rarity">Rarity</label>
+                <select name="data.rarity.value" id="rarity-select">
+                    <option class="rarity-option" value=""></option>
+                    {{#each rarities.choices as |rarity|}}
+                    <option class="rarity-option" value="{{rarity.value}}" {{#if rarity.selected}}selected=true{{/if}}>
+                        {{rarity.display}}</option>
+                    {{/each}}
+                </select>
             </div>
+        </div>
+        <div class="field-group flexrow">
+            <label class="item-label" for="data.rarity.custom">Custom Rarity</label><br>
+            <input type="text" name="data.rarity.custom" value="{{data.rarity.custom}}" data-dtype="String" placeholder="{{localize 'QUEST.CustomRarity'}}"/>
         </div>
         <div class="field-group">
             <label class="item-label" for="data.damage">Damage</label>
-            <input type="number" class="damage" me="data.damage" data-dtype="Number" value="{{data.damage}}">
+            <input type="number" class="damage" name="data.damage" data-dtype="Number" value="{{data.damage}}">
         </div>
         <div class="field-group">
             <label class="item-label" for="data.activationcost">Activation Cost</label>
-            <input type="number" class="itemcost" me="data.activationcost" data-dtype="Number"
+            <input type="number" class="itemcost" name="data.activationcost" data-dtype="Number"
                 value="{{data.activationcost}}">
         </div>
+    </div>
+
+    <div class="section">
+        <h1 class="section-header">Descriptions</h1>
         <div class="field-group">
             <label class="item-label" for="data.description.full">Description</label>
             <textarea name="data.description.full" class="full"
@@ -42,10 +51,11 @@
             <textarea name="data.description.chat" class="chat"
                 placeholder="Chat Text">{{data.description.chat}}</textarea>
         </div>
-        <div class="field-group">
-            <label class="item-label" for="data.notes">Notes</label>
-            <textarea name="data.notes" class="chat" placeholder="Notes">{{data.notes}}</textarea>
-        </div>
+    </div>
+
+    <div class="section">
+        <h1 class="section-header">Notes</h1>
+        <textarea name="data.notes" class="chat" placeholder="Notes">{{data.notes}}</textarea>
     </div>
 
     {{!-- Body End --}}

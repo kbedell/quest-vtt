@@ -30,32 +30,13 @@ export class GearSheetQuest extends ItemSheetQuest {
 
   /* -------------------------------------------- */
 
-  /** @override */
-  _updateObject(event, formData) {
-    const updateData = {};
-
-    const chosen = "";
-
-    for (let [k, v] of Object.entries(formData) ) {
-      if ((k !== "custom") && v) {
-        updateData[`data.rarities.value`] = v;
-      } else {
-        updateData[`data.rarities.custom`] = v;
-      }
-    }
-
-    this.object.update(updateData);
-  }
-
-  /* -------------------------------------------- */
-
   _getItemRarities(rarity) {
     const rarities = CONFIG.QUEST.rarities;
     let display = [];
 
     for (let [k, v] of Object.entries(rarities)) {
       display.push({
-        selected: rarity ? rarity.value === v : false,
+        selected: rarity ? rarity.value === k : false,
         value: k,
         display: v,
       });

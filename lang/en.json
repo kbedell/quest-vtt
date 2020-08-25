@@ -30,6 +30,8 @@
     "QUEST.RarityRare": "Rare",
     "QUEST.RarityLegendary": "Legendary",
     "QUEST.RaritySupreme": "Supreme",
+    "QUEST.RarityCustom": "Custom",
+    "QUEST.CustomRarity": "Custom Rarity",
 
     "QUEST.Save": "Save",
     "QUEST.Cancel": "Cancel"

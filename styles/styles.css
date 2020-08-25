@@ -220,20 +220,27 @@
         width: 1.8rem;
         text-align: center;
         line-height: 1.8rem; }
-      .quest.character .character-form .inventory-slot > .inventory-item :before {
-        content: counter(item);
-        font-family: "Alegreya Sans", sans-serif;
-        font-weight: 700; }
+        .quest.character .character-form .inventory-slot > .inventory-item .counter :before {
+          content: counter(item);
+          font-family: "Alegreya Sans", sans-serif;
+          font-weight: 700; }
       .quest.character .character-form .inventory-slot > .inventory-item .inventory-item-value {
-        flex: 0 1 82%; }
+        margin-right: 0.3rem; }
     .quest.character .character-form .inventory-slot > .item-delete {
       flex: 0 1 auto; }
     .quest.character .character-form .sort {
       text-align: center; }
-    .quest.character .character-form .inventory-delete {
+    .quest.character .character-form .options {
       flex: 0 1 auto; }
-      .quest.character .character-form .inventory-delete :hover {
-        color: #f04828; }
+      .quest.character .character-form .options .inventory-delete {
+        flex: 0 1 auto; }
+        .quest.character .character-form .options .inventory-delete :hover {
+          color: #f04828; }
+      .quest.character .character-form .options .adder-gear {
+        flex: 0 1 auto;
+        margin-right: 0.3rem; }
+        .quest.character .character-form .options .adder-gear :hover {
+          color: #f04828; }
     .quest.character .character-form .inventory-sort {
       margin-top: 0.3rem;
       color: #fff;
@@ -867,6 +874,21 @@
     text-align: center;
     border-bottom: 2px solid #9b1d68;
     margin-top: 0.5rem; }
+
+.quest.sheet.item.gear .section h1.section-header {
+  text-align: center;
+  border-bottom: 2px solid #9b1d68;
+  margin-top: 0.5rem; }
+
+.quest.sheet.item.gear .section .item-label {
+  flex: 0 1 auto;
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-right: 0.2rem; }
+
+.quest.sheet.item.gear .section .field-group {
+  margin-bottom: 0.4rem; }
 
 /* ----------------------------------------- */
 /*  Sheet Styles                             */

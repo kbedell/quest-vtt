@@ -19,6 +19,11 @@ export async function getItem(itemId, type) {
         "world.paths"
     ];
 
+    const gearCompendiums = [
+        "quest-basic.gear",
+        "world.gear"
+    ];
+
     switch (type) {
         case "ability":
             compendiums = abilitiesCompendiums;
@@ -36,6 +41,12 @@ export async function getItem(itemId, type) {
             compendiums = rolesCompendiums;
             if (customCompendium !== "") {
                 compendiums.push(customCompendium + ".roles");
+            }
+            break;
+        case "gear":
+            compendiums = rolesCompendiums;
+            if (customCompendium !== "") {
+                compendiums.push(customCompendium + ".gear");
             }
             break;
     }
@@ -84,6 +95,11 @@ export async function getAllItems(type) {
         "world.paths"
     ];
 
+    const gearCompendiums = [
+        "quest-basic.gear",
+        "world.gear"
+    ];
+
     switch (type) {
         case "ability":
             compendiums = abilitiesCompendiums;
@@ -101,6 +117,12 @@ export async function getAllItems(type) {
             compendiums = rolesCompendiums;
             if (customCompendium !== "") {
                 compendiums.push(customCompendium + ".roles");
+            }
+            break;
+        case "gear":
+            compendiums = rolesCompendiums;
+            if (customCompendium !== "") {
+                compendiums.push(customCompendium + ".gear");
             }
             break;
     }

@@ -199,16 +199,15 @@
         width: 1.8rem;
         text-align: center;
         line-height: 1.8rem;
-      }
 
-      :before {
-        content: counter(item);
-        font-family: $fontEmphasis;
-        font-weight: 700;
+        :before {
+          content: counter(item);
+          font-family: $fontEmphasis;
+          font-weight: 700;
+        }  
       }
-
       .inventory-item-value {
-        flex: 0 1 82%;
+        margin-right: 0.3rem;
       }
     }
 
@@ -220,11 +219,24 @@
       text-align: center;
     }
 
-    .inventory-delete {
+    .options {
       flex: 0 1 auto;
 
-      :hover {
-        color: $highlightRed;
+      .inventory-delete {
+        flex: 0 1 auto;
+  
+        :hover {
+          color: $highlightRed;
+        }
+      }
+
+      .adder-gear {
+        flex: 0 1 auto;
+        margin-right: 0.3rem;
+
+        :hover {
+          color: $highlightRed;
+        }
       }
     }
 

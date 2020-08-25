@@ -9,5 +9,6 @@ QUEST.rarities = {
     "uncommon": "QUEST.RarityUncommon",
     "rare": "QUEST.RarityRare",
     "legendary": "QUEST.RarityLegendary",
-    "supreme": "QUEST.RaritySupreme"
+    "supreme": "QUEST.RaritySupreme",
+    "custom": "QUEST.RarityCustom"
 };

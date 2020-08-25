@@ -5,6 +5,7 @@ import { getItem } from "../../quest-helpers.js";
 import { getAllItems } from "../../quest-helpers.js";
 import { AbilityInfo } from "../../apps/ability-info.js";
 import { FullAbilitySelector } from "../../apps/full-ability-selector.js";
+import { GearAdder } from "../../apps/gear-adder.js";
 
 /**
  * An Actor sheet for player character type actors in the Quest system.
@@ -35,6 +36,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     sheetdata.displayAbilities = await this._getAbilities(
       sheetdata.data.abilities
     );
+    sheetdata.displayInventory = await this._getInventory(sheetdata.data.inventory);
 
     return sheetdata;
   }
@@ -96,6 +98,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     if (!this.options.editable) return;
     if (this.actor.owner) {
       html.find(".inventory-delete").click(this._onInventoryDelete.bind(this));
+      html.find(".adder-gear").click(this._onAddItem.bind(this));
       html
         .find(".inventory-item-value")
         .keyup(this._updateInventoryCheck.bind(this));
@@ -436,6 +439,29 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     return abilityData;
   }
 
+  async _getInventory(inventory) {
+    let display = [];
+
+    for (let i = 0; i < inventory.length; i++) {
+      if (inventory[i].association) {
+        let item = this.actor.getOwnedItem(inventory[i].value);
+
+        display.push({
+          name: item.name,
+          association: true,
+          id: items._id
+        });
+      } else {
+        display.push({
+          name: inventory[i].value,
+          association: false
+        });
+      }
+    }
+
+    return display;
+  }
+
   async _displayAbilityInfo(event) {
     event.preventDefault();
     let options = {};
@@ -625,6 +651,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
         for (let i = 0; i < items.length; i++) {
           newInventory.push({
             value: items[i],
+            association: false
           });
         }
 
@@ -656,6 +683,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     for (let i = 0; i < items.length; i++) {
       newInventory.push({
         value: items[i],
+        assocation: false
       });
     }
 
@@ -677,5 +705,22 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       comparison = -1;
     }
     return comparison;
+  }
+
+  async _onAddItem(event) {
+    event.preventDefault();
+    let index = event.currentTarget.dataset.index;
+
+    const gear = await getAllItems("gear");
+
+    let options = {
+      name: "add-gear",
+      title: "Add Gear",
+      choices: gear,
+      index: index,
+      actor: this.actor._id
+    };
+
+    new GearAdder(this.actor, options).render(true);
   }
 }

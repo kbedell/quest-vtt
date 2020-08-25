@@ -474,4 +474,24 @@
       margin-top: 0.5rem;
     }
   }
+
+  .section {
+    h1.section-header {
+      text-align: center;
+      border-bottom: 2px solid $gearMagenta;
+      margin-top: 0.5rem;
+    }
+
+    .item-label {
+      flex: 0 1 auto;
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-right: 0.2rem;
+    }
+
+    .field-group {
+      margin-bottom: 0.4rem;
+    }
+  }
 }
