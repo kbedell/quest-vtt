@@ -203,8 +203,8 @@ export class AbilitySelector extends FormApplication {
       "ability"
     );
 
-    if (ability.data.data.effects.length > 0) {
-      let effects = ability.data.data.effects;
+    if (ability.data.effects.length > 0) {
+      let effects = ability.data.effects;
       let effectsText = [];
 
       for (let e = 0; e < effects.length; e++) {
