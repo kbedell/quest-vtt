@@ -122,7 +122,7 @@ export class RoleSelector extends FormApplication {
       name: role.data.name,
       id: role.data._id,
       description: TextEditor.decodeHTML(
-        role.data.data.description.full
+        role.data.description.full
       )
     };
 
