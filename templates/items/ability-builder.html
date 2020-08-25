@@ -27,7 +27,7 @@
                                 Is this ability legendary?
                             </span>
                         </div>
-                        <input type="checkbox" name="legendary" value="true" {{#if data.data.legendary}}checked=""
+                        <input type="checkbox" name="legendary" value="true" {{#if data.legendary}}checked=""
                             {{/if}}>
                     </div>
                 </div>
@@ -45,12 +45,12 @@
                     <div class="field-group">
                         <label class="item-label" for="full">Full Description</label>
                         <textarea name="full" class="description"
-                            placeholder="Description">{{data.data.description.full}}</textarea>
+                            placeholder="Description">{{data.description.full}}</textarea>
                     </div>
                     <div class="field-group">
                         <label class="item-label" for="chat">Chat Description</label>
                         <textarea name="chat" class="description"
-                            placeholder="Chat Description">{{data.data.description.chat}}</textarea>
+                            placeholder="Chat Description">{{data.description.chat}}</textarea>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                 </div>
 
                 <ul class="effect-list">
-                    {{#each data.data.effects as | effect index |}}
+                    {{#each data.effects as | effect index |}}
                     <li class="effect item flexrow" data-index="{{index}}">
                         {{effect.name}}
                         <div class="options flexrow">

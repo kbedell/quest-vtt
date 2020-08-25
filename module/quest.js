@@ -102,10 +102,9 @@ Hooks.once("setup", function () {
  */
 Hooks.once("ready", function () {
   const currentVersion = game.settings.get("quest", "systemMigrationVersion");
-  const NEEDS_MIGRATION_VERSION = 1.0;
-  const COMPATIBLE_MIGRATION_VERSION = 1.0;
-  let needMigration =
-    currentVersion < NEEDS_MIGRATION_VERSION || currentVersion === null;
+  const NEEDS_MIGRATION_VERSION = 1.3;
+  const COMPATIBLE_MIGRATION_VERSION = 1.2;
+  let needMigration = (currentVersion < NEEDS_MIGRATION_VERSION) || (currentVersion === null);
   const canMigrate = currentVersion >= COMPATIBLE_MIGRATION_VERSION;
 
   if (needMigration && game.user.isGM) {

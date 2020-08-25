@@ -194,7 +194,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       if (roles) {
         for (let i = 0; i < roles.length; i++) {
           let role = await getItem(roles[i], "role");
-          let availablePaths = role.data.data.paths;
+          let availablePaths = role.data.paths;
 
           if (!availablePaths) return;
 
@@ -202,17 +202,17 @@ export class CharacterSheetQuest extends ActorSheetQuest {
             let path = await getItem(availablePaths[p], "path");
             let abilities = [];
 
-            for (let a = 0; a < path.data.data.abilities.length; a++) {
+            for (let a = 0; a < path.data.abilities.length; a++) {
               let abilityData = await getItem(
-                path.data.data.abilities[a],
+                path.data.abilities[a],
                 "ability"
               );
 
               let abilityOption = {
-                name: abilityData.data.name,
-                id: abilityData.data._id,
+                name: abilityData.name,
+                id: abilityData._id,
                 order: a,
-                effects: abilityData.data.data.effects,
+                effects: abilityData.data.effects,
               };
 
               abilities.push(abilityOption);
@@ -226,17 +226,17 @@ export class CharacterSheetQuest extends ActorSheetQuest {
           }
 
           // Can't forget about legendaries
-          let legendaries = role.data.data.legendaries;
+          let legendaries = role.data.legendaries;
           let legendaryOptions = [];
 
           for (let a = 0; a < legendaries.length; a++) {
             let abilityData = await getItem(legendaries[a], "ability");
 
             let abilityOption = {
-              name: abilityData.data.name,
-              id: abilityData.data._id,
+              name: abilityData.name,
+              id: abilityData._id,
               order: a,
-              effects: abilityData.data.data.effects,
+              effects: abilityData.data.effects,
             };
 
             legendaryOptions.push(abilityOption);
@@ -274,23 +274,23 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       if (!roles) return false;
 
       for (let r = 0; r < roles.length; r++) {
-        let paths = roles[r].data.data.paths;
+        let paths = roles[r].data.paths;
         let pathData = [];
 
         for (let p = 0; p < paths.length; p++) {
           let path = await getItem(paths[p], "path");
 
-          let abilityList = path.data.data.abilities;
+          let abilityList = path.data.abilities;
           let abilities = [];
 
           for (let a = 0; a < abilityList.length; a++) {
             let abilityData = await getItem(abilityList[a], "ability");
 
             abilities.push({
-              name: abilityData.data.name,
-              id: abilityData.data._id,
+              name: abilityData.name,
+              id: abilityData._id,
               order: a,
-              effects: abilityData.data.data.effects,
+              effects: abilityData.data.effects,
             });
           }
 
@@ -301,17 +301,17 @@ export class CharacterSheetQuest extends ActorSheetQuest {
           });
         }
 
-        let legendaries = roles[r].data.data.legendaries;
+        let legendaries = roles[r].data.legendaries;
         let legendaryOptions = [];
 
         for (let l = 0; l < legendaries.length; l++) {
           let legendaryData = await getItem(legendaries[l], "ability");
 
           legendaryOptions.push({
-            name: legendaryData.data.name,
-            id: legendaryData.data._id,
+            name: legendaryData.name,
+            id: legendaryData._id,
             order: l,
-            effects: legendaryData.data.data.effects,
+            effects: legendaryData.data.effects,
           });
         }
 
@@ -347,7 +347,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       if (!role) continue;
 
       roleData.push({
-        name: role.data.name,
+        name: role.name,
         id: role._id,
       });
     }
@@ -369,12 +369,12 @@ export class CharacterSheetQuest extends ActorSheetQuest {
 
       ability = await getItem(abilityId, "ability");
 
-      let effects = ability.data.data.effects;
+      let effects = ability.data.effects;
       let effectData = [];
 
       if (effects.length === 0) {
         effectData.push({
-          name: ability.data.name,
+          name: ability.name,
           id: null,
           roll: false,
           cost: "0",
@@ -423,7 +423,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       }
 
       abilityData.push({
-        name: ability.data.name,
+        name: ability.name,
         id: ability._id,
         cost: cost,
         multi: multi,
@@ -446,8 +446,8 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       "ability"
     );
 
-    if (ability.data.data.effects.length > 0) {
-      let effects = ability.data.data.effects;
+    if (ability.data.effects.length > 0) {
+      let effects = ability.data.effects;
 
       for (let e = 0; e < effects.length; e++) {
         let rangeText = [];
@@ -489,7 +489,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       name: ability.data.name,
       id: ability.data._id,
       legendary: ability.data.legendary,
-      description: TextEditor.decodeHTML(ability.data.data.description.full),
+      description: TextEditor.decodeHTML(ability.data.description.full),
       effects: effectsText,
     };
 

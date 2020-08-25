@@ -138,13 +138,13 @@ export class ItemQuest extends Item {
 
       if (type === "ability") {
         displayItems.push({
-          name: item.data.name,
+          name: item.name,
           id: item._id,
           order: i +1
         });
       } else {
         displayItems.push({
-          name: item.data.name,
+          name: item.name,
           id: item._id,
         });
       }
