@@ -12,6 +12,8 @@
     "SETTINGS.QuirkLimitHint": "How many quirk abilities a player is allowed to have. (Only works if Quirk ability selection type is enabled.)",
     "SETTINGS.CustomCompendium": "Custom Compendium Module Name",
     "SETTINGS.CustomCompendiumHint": "The name of the module for your custom compendium. E.g. 'quest-compendium'",
+    "SETTINGS.InventorySize": "Inventory Size Limit",
+    "SETTINGS.InventorySizeHint": "Maximum numnber of items an inventory is allowed to have",
     
     "QUEST.Character.Name": "Name",
     "QUEST.Inventory": "Inventory",
@@ -23,6 +25,11 @@
     "QUEST.FilterLegendaries": "Filter Abilities",
     "QUEST.FilterAbilities": "Filter Abilities",
     "QUEST.PathName": "Learning Path Name",
+
+    "QUEST.RarityUncommon": "Uncommon",
+    "QUEST.RarityRare": "Rare",
+    "QUEST.RarityLegendary": "Legendary",
+    "QUEST.RaritySupreme": "Supreme",
 
     "QUEST.Save": "Save",
     "QUEST.Cancel": "Cancel"

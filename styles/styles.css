@@ -29,13 +29,8 @@
   font-weight: 700;
   background: #eeeeee;
   line-height: 1.2rem;
-  border: 1px solid #adb5bd; }
-  .quest input :focus,
-  .quest input[type="number"] :focus,
-  .quest input[type="text"] :focus,
-  .quest textarea :focus {
-    box-shadow: 0px;
-    outline: 1px solid #f04828; }
+  border: 1px solid #adb5bd;
+  border-radius: 3px; }
 
 .quest input::placeholder, .quest textarea::placeholder {
   opacity: 0.6; }
@@ -423,14 +418,14 @@
       border: 1px solid #adb5bd;
       margin-right: 0.5rem; }
     .quest.npc .npc-form .header {
-      background: #be3521;
+      background: #6e552a;
       padding: 0.4rem;
       align-items: center;
       margin-bottom: 0.8rem;
       flex: 0 1 auto;
       justify-items: space-between; }
     .quest.npc .npc-form .header-name {
-      border-bottom: 2px solid #be3521; }
+      border-bottom: 2px solid #6e552a; }
     .quest.npc .npc-form .npc-name {
       width: 80%;
       height: 2rem; }
@@ -457,7 +452,7 @@
       font-size: 1.1rem;
       padding-left: 0.3rem; }
     .quest.npc .npc-form .roll-generic :hover {
-      color: #222831; }
+      color: #f04828; }
     .quest.npc .npc-form .section {
       margin: 0px 1rem;
       flex: 0 1 auto; }
@@ -484,13 +479,8 @@
   font-weight: 700;
   background: #eeeeee;
   line-height: 1.2rem;
-  border: 1px solid #adb5bd; }
-  .quest input :focus,
-  .quest input[type="number"] :focus,
-  .quest input[type="text"] :focus,
-  .quest textarea :focus {
-    box-shadow: 0px;
-    outline: 1px solid #f04828; }
+  border: 1px solid #adb5bd;
+  border-radius: 3px; }
 
 .quest input::placeholder, .quest textarea::placeholder {
   opacity: 0.6; }
@@ -855,6 +845,30 @@
           margin-right: 0.2rem; }
 
 /* ----------------------------------------- */
+/*  Gear Styles                              */
+/* ----------------------------------------- */
+.quest.sheet.item.gear .window-content {
+  background-color: #eeeeee;
+  background-image: none; }
+
+.quest.sheet.item.gear img {
+  flex: 0 1 100px;
+  max-width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border: 1px solid #adb5bd; }
+
+.quest.sheet.item.gear .item-header {
+  align-content: center; }
+  .quest.sheet.item.gear .item-header .item-image,
+  .quest.sheet.item.gear .item-header .header {
+    align-self: center; }
+  .quest.sheet.item.gear .item-header h1.header {
+    text-align: center;
+    border-bottom: 2px solid #9b1d68;
+    margin-top: 0.5rem; }
+
+/* ----------------------------------------- */
 /*  Sheet Styles                             */
 /* ----------------------------------------- */
 /* Colors */
@@ -871,13 +885,8 @@
   font-weight: 700;
   background: #eeeeee;
   line-height: 1.2rem;
-  border: 1px solid #adb5bd; }
-  .quest input :focus,
-  .quest input[type="number"] :focus,
-  .quest input[type="text"] :focus,
-  .quest textarea :focus {
-    box-shadow: 0px;
-    outline: 1px solid #f04828; }
+  border: 1px solid #adb5bd;
+  border-radius: 3px; }
 
 .quest input::placeholder, .quest textarea::placeholder {
   opacity: 0.6; }
@@ -1067,13 +1076,8 @@
   font-weight: 700;
   background: #eeeeee;
   line-height: 1.2rem;
-  border: 1px solid #adb5bd; }
-  .quest input :focus,
-  .quest input[type="number"] :focus,
-  .quest input[type="text"] :focus,
-  .quest textarea :focus {
-    box-shadow: 0px;
-    outline: 1px solid #f04828; }
+  border: 1px solid #adb5bd;
+  border-radius: 3px; }
 
 .quest input::placeholder, .quest textarea::placeholder {
   opacity: 0.6; }

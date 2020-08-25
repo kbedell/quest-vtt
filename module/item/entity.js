@@ -140,7 +140,7 @@ export class ItemQuest extends Item {
         displayItems.push({
           name: item.data.name,
           id: item._id,
-          order: i +1
+          order: i + 1
         });
       } else {
         displayItems.push({

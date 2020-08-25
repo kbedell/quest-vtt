@@ -441,3 +441,37 @@
     }
   }
 }
+
+/* ----------------------------------------- */
+/*  Gear Styles                              */
+/* ----------------------------------------- */
+
+.quest.sheet.item.gear {
+  .window-content {
+    background-color: $lightGrey;
+    background-image: none;
+  }
+
+  img {
+    flex: 0 1 100px;
+    max-width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    border: 1px solid $borderGrey;
+  }
+
+  .item-header {
+    align-content: center;
+
+    .item-image,
+    .header {
+      align-self: center;
+    }
+
+    h1.header {
+      text-align: center;
+      border-bottom: 2px solid $gearMagenta;
+      margin-top: 0.5rem;
+    }
+  }
+}

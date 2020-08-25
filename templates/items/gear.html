@@ -1,0 +1,52 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+    {{!-- Header --}}
+    <header class="item-header flexcol">
+        <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+        <h1 class="header flexrow">
+            <input name="name" class="item-name" type="text" value="{{item.name}}"
+                placeholder="{{localize 'QUEST.ItemName'}}" />
+        </h1>
+    </header>
+    {{!-- Header End --}}
+
+    {{!-- Body --}}
+    <div class="section flexcol">
+        <div class="field-group">
+            <label class="item-label" for="data.rarity">Rarity</label>
+            {{#each rarities.choices as |rarity|}}
+            <input type="radio" id="{{rarity.value}}" name="data.rarity.value" value="{{rarity.value}}"
+                {{#if rarity.selected}}checked{{/if}}>
+            <label for="{{rarity.value}}">{{rarity.display}}</label><br>
+            {{/each}}
+            <div class="custom flexrow">
+                <label for="data.rarity.custom">Custom Rarity</label><br>
+                <input type="text" name="custom" value="{{data.rarity.custom}}" data-dtype="String" />
+            </div>
+        </div>
+        <div class="field-group">
+            <label class="item-label" for="data.damage">Damage</label>
+            <input type="number" class="damage" me="data.damage" data-dtype="Number" value="{{data.damage}}">
+        </div>
+        <div class="field-group">
+            <label class="item-label" for="data.activationcost">Activation Cost</label>
+            <input type="number" class="itemcost" me="data.activationcost" data-dtype="Number"
+                value="{{data.activationcost}}">
+        </div>
+        <div class="field-group">
+            <label class="item-label" for="data.description.full">Description</label>
+            <textarea name="data.description.full" class="full"
+                placeholder="Description">{{data.description.full}}</textarea>
+        </div>
+        <div class="field-group">
+            <label class="item-label" for="data.description.chat">Chat Text</label>
+            <textarea name="data.description.chat" class="chat"
+                placeholder="Chat Text">{{data.description.chat}}</textarea>
+        </div>
+        <div class="field-group">
+            <label class="item-label" for="data.notes">Notes</label>
+            <textarea name="data.notes" class="chat" placeholder="Notes">{{data.notes}}</textarea>
+        </div>
+    </div>
+
+    {{!-- Body End --}}
+</form>

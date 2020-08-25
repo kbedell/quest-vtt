@@ -502,7 +502,7 @@
     }
 
     .header {
-      background: $npcRed;
+      background: $npcBrown;
       padding: 0.4rem;
       align-items: center;
       margin-bottom: 0.8rem;
@@ -511,7 +511,7 @@
     }
 
     .header-name {
-      border-bottom: 2px solid $npcRed;
+      border-bottom: 2px solid $npcBrown;
     }
 
     .npc-name {
@@ -551,7 +551,7 @@
 
     .roll-generic {
       :hover {
-        color: $darkGrey;
+        color: $highlightRed;
       }
     }
 

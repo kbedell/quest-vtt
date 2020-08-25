@@ -48,6 +48,22 @@ export const registerSystemSettings = function () {
     CONFIG.quirkLimit = limit;
   }
 
+  game.settings.register("quest", "inventorySize", {
+    name: game.i18n.localize('SETTINGS.InventorySize'),
+    hint: game.i18n.localize('SETTINGS.InventorySizeHint'),
+    scope: "world",
+    config: true,
+    default: 12,
+    type: Number,
+    onChange: rule => _setInvetorySize(rule)
+  });
+
+  _setInventorySize(game.settings.get("quest", "inventorySize"));
+
+  function _setInventorySize(size) {
+    CONFIG.inventorySize = size;
+  }
+
   game.settings.register("quest", "customCompendium", {
     name: game.i18n.localize('SETTINGS.CustomCompendium'),
     hint: game.i18n.localize('SETTINGS.CustomCompendiumHint'),
