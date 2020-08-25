@@ -2,9 +2,8 @@
 **A CC BY 4.0 implementation of the Quest roleplaying system for Foundry Virtual Tabletop**
 
 ## What is this?
-Quest-VTT is an implementation of The Adventure Guild's [Quest roleplaying system](https://adventure.game/) for Foundry Virtual Tabletop!
+Quest-VTT is an implementation of The Adventure Guild's [Quest roleplaying system](https://adventure.game/) for Foundry Virtual Tabletop! Our current release includes:
 
-Our current release includes:
 * Fill-in-the-blank character profiles with built-in d20 rolling (that posts annotated results to chat!)
 * HP and Adventure Point trackers
 * A sortable 12-slot inventory system
