@@ -59,19 +59,17 @@ export async function getItem(itemId, type) {
 
             if (!item) continue;
 
-            return item;
+            return item.data;
         }
     }
 
     if (!item || typeof item === "undefined") {
         item = game.items.get(itemId);
-    }
 
-    if (!item || typeof item === "undefined") {
-        // Error handling
+        // TODO: Add error handling if item not found at all.
+
+        return item.data;
     }
-    
-    return item;
 }
 
 export async function getAllItems(type) {
@@ -136,7 +134,7 @@ export async function getAllItems(type) {
                 let item = await pack.getEntity(packData.index[i]._id);
 
                 if (!items.find((i) => i.name === item.name)) {
-                    items.push(item);
+                    items.push(item.data);
                 }
             }
         }
