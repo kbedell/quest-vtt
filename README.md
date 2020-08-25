@@ -55,6 +55,6 @@ Additional information regarding the Quest Creators' License can be found here:
 ### Extended Attribution
 This work uses material from the Quest Creators Resource. The Quest Creators Resource by The Adventure Guild, LLC is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). For more information about Quest, please visit [https://www.adventure.game](https://www.adventure.game). Additionally, please read [Quest’s Community Guidelines](https://www.adventure.game/community-code) to help create experiences that are positive and fun!
 
-#### Disclaimer of Warranties
+### Disclaimer of Warranties
 The Licensed Material (IE Quest) is provided as-is and as-available. 
 The content of this game system for Foundry VTT is also provided as-is and as-available.
