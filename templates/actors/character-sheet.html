@@ -2,12 +2,12 @@
     {{!-- Character Header --}}
     <div class="header flexrow">
         <div class="hitpoints">
-            <label class="character-label" for="data.hitpoints.value">HP</label>
+            <label class="character-label" for="data.hitpoints.value">{{localize 'QUEST.HP'}}</label>
             <input type="number" class="hp" name="data.hitpoints.value" data-dtype="Number" value="{{data.hitpoints.value}}"> / {{ data.hitpoints.max }}
         </div>
         <div class="roll-generic"><i class="fas fa-dice-d20 fa-2x"></i></div>
         <div class="actionpoints">
-            <label class="character-label" for="data.actionpoints">AP</label>
+            <label class="character-label" for="data.actionpoints">{{localize 'QUEST.AP'}}</label>
             <input type="number" class="ap" name="data.actionpoints" data-dtype="Number" value="{{data.actionpoints}}">
         </div>
     </div>

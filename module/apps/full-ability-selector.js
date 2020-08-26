@@ -11,7 +11,7 @@ export class FullAbilitySelector extends FormApplication {
     return mergeObject(super.defaultOptions, {
       id: "full-ability-selector",
       classes: ["quest", "app", "full-ability-selector"],
-      title: "Full Ability Selection",
+      title: game.i18n.localize('QUEST.AbilitySelector'),
       template: "systems/quest/templates/apps/full-ability-selector.html",
       width: 320,
       height: 400,

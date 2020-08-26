@@ -13,6 +13,9 @@ Quest-VTT is an implementation of The Adventure Guild's [Quest roleplaying syste
 
 Full descriptions and content from the Quest Game Book are **not included** (see the FAQ below for more details).  Please support The Adventure Guild and consider [purchasing a copy of Quest](https://www.adventure.game/digital-edition) if you like what you see!
 
+## Installation Instructions
+Installation instructions can be found here: [https://github.com/kbedell/quest-vtt/wiki/Installation-Instructions](https://github.com/kbedell/quest-vtt/wiki/Installation-Instructions)
+
 ## Creating custom compendiums
 If you would like to create your own Foundry compendium for **personal use**, I would recommend doing the following:
 1. Create your new compendiums. In order all Quest sheets to find your compendiums, please name them the following:

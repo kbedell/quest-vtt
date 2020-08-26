@@ -8,7 +8,7 @@ export class PathAdder extends FormApplication {
     return mergeObject(super.defaultOptions, {
       id: "path-adder",
       classes: ["quest", "app", "path-adder"],
-      title: "Add Learning Path",
+      title: game.i18n.localize('QUEST.AddLearningPaths'),
       template: "systems/quest/templates/apps/path-adder.html",
       width: 350,
       height: 400,
