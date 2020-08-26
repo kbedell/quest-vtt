@@ -188,6 +188,7 @@
 
     .inventory-slot > .inventory-item {
       margin-bottom: 0.5rem;
+      align-items: center;
 
       .counter {
         flex: 0 1 auto;
@@ -199,15 +200,21 @@
         width: 1.8rem;
         text-align: center;
         line-height: 1.8rem;
-
-        :before {
-          content: counter(item);
-          font-family: $fontEmphasis;
-          font-weight: 700;
-        }  
       }
+
       .inventory-item-value {
         margin-right: 0.3rem;
+      }
+
+      .counter:before {
+        content: counter(item);
+        font-family: $fontEmphasis;
+        font-weight: 700;
+      }
+
+      .gear-name {
+        font-family: $fontEmphasis;
+        font-weight: 700;
       }
     }
 
@@ -224,7 +231,7 @@
 
       .inventory-delete {
         flex: 0 1 auto;
-  
+
         :hover {
           color: $highlightRed;
         }
@@ -233,6 +240,15 @@
       .adder-gear {
         flex: 0 1 auto;
         margin-right: 0.3rem;
+
+        :hover {
+          color: $highlightRed;
+        }
+      }
+
+      .edit-gear {
+        margin-right: 0.3rem;
+        flex: 0 1 auto;
 
         :hover {
           color: $highlightRed;
@@ -443,7 +459,8 @@
     }
   }
 
-  .ap-display, .hp-display {
+  .ap-display,
+  .hp-display {
     font-family: $fontEmphasis;
     font-weight: 700;
     color: $white;
@@ -455,7 +472,8 @@
     color: $white;
   }
 
-  .actionpoints, .hitpoints {
+  .actionpoints,
+  .hitpoints {
     flex: 0 1 auto;
   }
 

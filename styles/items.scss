@@ -447,6 +447,8 @@
 /* ----------------------------------------- */
 
 .quest.sheet.item.gear {
+  min-width: 400px;
+
   .window-content {
     background-color: $lightGrey;
     background-image: none;
@@ -492,6 +494,10 @@
 
     .field-group {
       margin-bottom: 0.4rem;
+    }
+
+    .rarity-select {
+      flex: 0 1 50%;
     }
   }
 }

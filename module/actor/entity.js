@@ -43,6 +43,9 @@ export class ActorQuest extends Actor {
       case "no-roles":
         data.norole = true;
         break;
+      case "no-masters":
+        data.norole = true;
+        break;
       default:
         data.charroles = true;
         break;

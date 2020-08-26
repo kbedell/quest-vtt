@@ -125,6 +125,8 @@
       },
       "damage": 0,
       "activationcost": 0,
+      "gmonly": false,
+      "ranges": [],
       "notes": ""
     }
   }

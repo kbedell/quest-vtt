@@ -5,30 +5,32 @@ import { compareLabels, getItem } from "../quest-helpers.js";
  * @extends {FormApplication}
  */
 export class GearAdder extends FormApplication {
-    /** @override */
-    static get defaultOptions() {
-      return mergeObject(super.defaultOptions, {
-        id: "gear-adder",
-        classes: ["quest", "app", "gear-adder"],
-        title: "Add Gear",
-        template: "systems/quest/templates/apps/gear-adder.html",
-        width: 500,
-        height: "auto",
-        resizable: true,
-        minimum: 0,
-        maximum: 1,
-        data: {},
-      });
-    }
+  /** @override */
+  static get defaultOptions() {
+    return mergeObject(super.defaultOptions, {
+      id: "gear-adder",
+      classes: ["quest", "app", "gear-adder"],
+      title: "Add Gear",
+      template: "systems/quest/templates/apps/gear-adder.html",
+      width: 400,
+      height: "auto",
+      resizable: true,
+      minimum: 0,
+      maximum: 1,
+      data: {},
+    });
+  }
 
-      /** @override */
+  /* -------------------------------------------- */
+  
+  /** @override */
   getData() {
     const choices = duplicate(this.options.choices);
 
     for (let [k, v] of Object.entries(choices)) {
       choices[k] = {
         label: v.name,
-        id: v._id
+        id: v._id,
       };
     }
 
@@ -57,18 +59,20 @@ export class GearAdder extends FormApplication {
       }
     }
 
-    let newItem = await this.object.createEmbeddedEntity("OwnedItem", gear, {temporary: false});
+    let newItem = await this.object.createEmbeddedEntity("OwnedItem", gear, {
+      temporary: false,
+    });
 
     for (let i = 0; i < inventory.data.inventory.length; i++) {
       if (i === index) {
         newInventory.push({
           value: newItem._id,
-          association: true
+          association: true,
         });
       } else {
         newInventory.push({
           value: inventory.data.inventory[i].value,
-          association: inventory.data.inventory[i].association
+          association: inventory.data.inventory[i].association,
         });
       }
     }
@@ -104,13 +108,13 @@ export class GearAdder extends FormApplication {
     let choices = document.getElementsByClassName("gearchoice");
 
     for (let i = 0; i < choices.length; i++) {
-        let text = choices[i].children[0].innerText.trim();
+      let text = choices[i].children[0].innerText.trim();
 
-        if (text.toLowerCase().indexOf(filter) > -1) {
-            choices[i].style.display = "";
-        } else {
-            choices[i].style.display = "none";
-        }
+      if (text.toLowerCase().indexOf(filter) > -1) {
+        choices[i].style.display = "";
+      } else {
+        choices[i].style.display = "none";
+      }
     }
   }
 }

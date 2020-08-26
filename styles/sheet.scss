@@ -63,6 +63,11 @@ $gearMagenta: #9b1d68;
     outline: 2px solid $highlightRed;
   }
 
+  select:focus {
+    box-shadow: none;
+    outline: 2px solid $highlightRed;
+  }
+
   .hide {
     display: none;
   }

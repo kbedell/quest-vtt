@@ -1,6 +1,4 @@
 import { ItemSheetQuest } from "./base.js";
-import { getAllItems } from "../../quest-helpers.js";
-import { QUEST } from "../../config.js";
 
 /**
  * An Item sheet for option type items in the Quest system.
@@ -11,11 +9,23 @@ export class GearSheetQuest extends ItemSheetQuest {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      width: 550,
+      width: 450,
       height: "auto",
       classes: ["quest", "sheet", "item", "gear"],
       resizable: false,
     });
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Get the correct HTML template path to use for rendering this particular sheet
+   * @type {String}
+   */
+  get template() {
+    if (!game.user.isGM)
+      return "systems/quest/templates/items/gear-limited.html";
+    return "systems/quest/templates/items/gear.html";
   }
 
   /* -------------------------------------------- */

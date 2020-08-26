@@ -21,7 +21,8 @@ export const registerSystemSettings = function () {
       "single-role": "SETTINGS.Roles",
       "quirks": "SETTINGS.Quirks",
       "dual-roles": "SETTINGS.DualRoles",
-      "no-roles": "SETTINGS.NoRoles"
+      "no-roles": "SETTINGS.NoRoles",
+      "no-masters":"SETTINGS.NoMasters"
     },
     onChange: rule => _setAbilityMode(rule)
   });
