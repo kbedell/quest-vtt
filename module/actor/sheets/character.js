@@ -96,6 +96,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     html.find(".ability-info").click(this._displayAbilityInfo.bind(this));
 
     if (!this.options.editable) return;
+
     if (this.actor.owner) {
       html.find(".inventory-delete").click(this._onInventoryDelete.bind(this));
       html.find(".edit-gear").click(this._onEditGear.bind(this));
@@ -512,8 +513,8 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     }
 
     options = {
-      name: ability.data.name,
-      id: ability.data._id,
+      name: ability.name,
+      id: ability._id,
       legendary: ability.data.legendary,
       description: TextEditor.decodeHTML(ability.data.description.full),
       effects: effectsText,
@@ -582,18 +583,18 @@ export class CharacterSheetQuest extends ActorSheetQuest {
   async _onInventoryDelete(event) {
     event.preventDefault();
     let index = event.currentTarget.dataset.index;
-    let updateData = duplicate(this.actor);
 
-    if (updateData.data.inventory[index].association) {
-      await this.actor.deleteEmbeddedEntity("OwnedItem", updateData.data.inventory[index].value);
+    if (this.actor.data.data.inventory[index].association) {
+      await this.actor.deleteEmbeddedEntity("OwnedItem", this.actor.data.data.inventory[index].value);
     }
+
+    let updateData = duplicate(this.actor);
 
     updateData.data.inventory[index].value = "";
     updateData.data.inventory[index].association = false;
 
     await this.actor.update(updateData);
-
-    this.render(true);
+    
     return false;
   }
 

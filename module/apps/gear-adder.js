@@ -36,7 +36,6 @@ export class GearAdder extends FormApplication {
 
     choices.sort(compareLabels);
 
-    // Return data
     return {
       choices: choices,
     };
@@ -82,6 +81,8 @@ export class GearAdder extends FormApplication {
     updateData.data.inventory = newInventory;
 
     await this.object.update(updateData);
+
+    this.render(true);
 
     return false;
   }

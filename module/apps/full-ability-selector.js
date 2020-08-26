@@ -212,10 +212,10 @@ export class FullAbilitySelector extends FormApplication {
       }
 
       options = {
-        name: ability.data.name,
-        id: ability.data._id,
+        name: ability.name,
+        id: ability._id,
         legendary: ability.data.legendary,
-        description: ability.data.data.description.full,
+        description: ability.data.description.full,
         effects: effectsText,
       };
     }

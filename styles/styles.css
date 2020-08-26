@@ -1060,6 +1060,14 @@
   font-family: "Alegreya Sans", sans-serif;
   font-weight: 700; }
 
+.chat.ability-card .ability-effect {
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.3rem;
+  border-bottom: 2px solid #3D8F57; }
+
+.chat.ability-card .ability-effect:last-child {
+  border-bottom: none; }
+
 .chat.ability-card .ability-info-ranges {
   border-bottom: 1px solid #000; }
 

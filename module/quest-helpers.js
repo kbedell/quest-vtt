@@ -44,7 +44,7 @@ export async function getItem(itemId, type) {
             }
             break;
         case "gear":
-            compendiums = rolesCompendiums;
+            compendiums = gearCompendiums;
             if (customCompendium !== "") {
                 compendiums.push(customCompendium + ".gear");
             }
@@ -118,7 +118,7 @@ export async function getAllItems(type) {
             }
             break;
         case "gear":
-            compendiums = rolesCompendiums;
+            compendiums = gearCompendiums;
             if (customCompendium !== "") {
                 compendiums.push(customCompendium + ".gear");
             }
