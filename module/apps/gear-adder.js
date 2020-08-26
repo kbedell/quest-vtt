@@ -10,7 +10,7 @@ export class GearAdder extends FormApplication {
     return mergeObject(super.defaultOptions, {
       id: "gear-adder",
       classes: ["quest", "app", "gear-adder"],
-      title: "Add Gear",
+      title: game.i18n.localize('QUEST.AddGear'),
       template: "systems/quest/templates/apps/gear-adder.html",
       width: 400,
       height: "auto",

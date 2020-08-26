@@ -40,14 +40,4 @@ export class DiceQuest {
 
        return _roll(event);
    }
-
-   static async renderRollCard(chatOptions, rollData) {
-       let displayData = {
-           title: chatOptions.title,
-           rollData: rollData
-       };
-
-       chatOptions["flags.data"] = {
-       }
-   }
 }

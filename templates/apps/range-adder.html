@@ -3,7 +3,7 @@
     <header class="item-header flexrow">
         <h1 class="header">
             <input name="name" class="item-name" type="text" value="{{data.name}}"
-                placeholder="{{localize QUEST.RangeName}}" />
+                placeholder="{{localize 'QUEST.RangeName'}}" />
         </h1>
     </header>
     {{!-- Header End --}}
@@ -11,35 +11,35 @@
     {{!-- Body --}}
     <div class="section">
         <h1 class="section-header">
-           Descriptions
+            {{localize 'QUEST.FullDescription'}}
         </h1>
         <div class="field-group">
             <label class="item-label" for="full">Full Description</label>
             <textarea name="full" class="description"
-            placeholder="Description">{{data.description.full}}</textarea>
+            placeholder="{{localize 'QUEST.PlaceholderFullDescription'}}">{{data.description.full}}</textarea>
         </div>
         <div class="field-group">
-            <label class="item-label" for="chat">Chat Description</label>
+            <label class="item-label" for="chat">{{localize 'QUEST.ChatDescription'}}</label>
             <textarea name="chat" class="description"
-            placeholder="Chat Description">{{data.description.chat}}</textarea>
+            placeholder="{{localize 'QUEST.PlaceholderChatDescription'}}">{{data.description.chat}}</textarea>
         </div>
     </div>
 
     <div class="section">
         <h1 class="section-header">
-            Roll Ranges
+            {{localize 'QUEST.RollRanges'}}
         </h1>
 
         <div class="min-max flexrow">
             <div class="field-group flexrow">
-                <label class="item-label" for="min">Min</label>
+                <label class="item-label" for="min">{{localize 'QUEST.Min'}}</label>
                 <input name="min" type="number" class="minimum" max="20" min="0" placeholder="0" value="{{data.min}}">
             </div>
       
-            <div class="seperator">TO</div>
+            <div class="seperator">{{localize 'QUEST.Seperator'}}</div>
     
             <div class="field-group flexrow">
-                <label class="item-label" for="data.max">Max</label>
+                <label class="item-label" for="data.max">{{localize 'QUEST.Max'}}</label>
                 <input name="max" type="number" class="maximum" max="20" min="0" placeholder="0" value="{{data.max}}">
             </div>
         </div>

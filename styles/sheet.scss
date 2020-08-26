@@ -59,6 +59,10 @@ $gearMagenta: #9b1d68;
     outline: 2px solid $highlightRed;
   }
 
+  textarea {
+    color: $darkGrey;
+  }
+
   textarea:focus {
     outline: 2px solid $highlightRed;
   }

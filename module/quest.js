@@ -107,7 +107,7 @@ Hooks.once("setup", function () {
  */
 Hooks.once("ready", function () {
   ui.notifications.info(
-    "<div style='text-align:center;'><h2>Welcome to the Quest system for Foundry VTT.</h2><p>Quest was created by The Adventure Guild (https://adventure.game.)<p><p>This system was created by Easternwind.</p></div>"
+    "<div style='text-align:center;'><h2>Welcome to the Quest system for Foundry VTT.</h2><p>Quest was created by The Adventure Guild (https://adventure.game.)<p></div>"
   );
 
   const currentVersion = game.settings.get("quest", "systemMigrationVersion");
@@ -118,7 +118,7 @@ Hooks.once("ready", function () {
   const canMigrate = currentVersion >= COMPATIBLE_MIGRATION_VERSION;
 
   if (needMigration && game.user.isGM) {
-    if (currentVersion && currentVersion < COMPATIBLE_MIGRATION_VERSION) {
+    if (currentVersion && currentVersion < COMPATIBLE_MIGRATION_VERSION && canMigrate) {
       ui.notifications.error(
         `Your Quest system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`,
         { permanent: true }

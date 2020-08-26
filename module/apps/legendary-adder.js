@@ -10,7 +10,7 @@ export class LegendaryAdder extends FormApplication {
     return mergeObject(super.defaultOptions, {
       id: "legendary-adder",
       classes: ["quest", "app", "legendary-adder"],
-      title: "Add Legendary Abilities",
+      title: game.i18n.localize('QUEST.AddLegendaryAbilities'),
       template: "systems/quest/templates/apps/legendary-adder.html",
       width: 350,
       height: 400,

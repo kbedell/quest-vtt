@@ -26,7 +26,7 @@ export class RoleSelector extends FormApplication {
     return mergeObject(super.defaultOptions, {
       id: "role-selector",
       classes: ["quest", "app", "role-selector"],
-      title: "Role Selection",
+      title: game.i18n.localize('QUEST.RoleSelector'),
       template: "systems/quest/templates/apps/role-selector.html",
       width: 320,
       height: "auto",

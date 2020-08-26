@@ -12,21 +12,21 @@
     {{!-- Body --}}
     <div class="section flexcol">
         <h1 class="section-header">
-            Descriptions
+            {{localize 'QUEST.Descriptions'}}
         </h1>
         <div class="field-group">
-            <label class="item-label" for="data.description.full">Description</label>
-            <textarea name="data.description.full" class="full" placeholder="Description">{{data.description.full}}</textarea>
+            <label class="item-label" for="data.description.full">{{localize 'QUEST.FullDescription'}}</label>
+            <textarea name="data.description.full" class="full" placeholder="{{localize 'QUEST.PlaceholderFullDescription'}}">{{data.description.full}}</textarea>
         </div>
-        <label class="item-label" for="data.description.chat">Chat Text</label>
-        <textarea name="data.description.chat" class="chat" placeholder="Chat Text">{{data.description.chat}}</textarea>
+        <label class="item-label" for="data.description.chat">{{localize 'QUEST.ChatDescription'}}</label>
+        <textarea name="data.description.chat" class="chat" placeholder="{{localize 'QUEST.ChatDescription'}}">{{data.description.chat}}</textarea>
     </div>
 
     <div class="section flexcol">
         <h1 class="section-header">
-            Learning Paths
+            {{localize 'QUEST.LearningPaths'}}
         </h1>
-        <div class="adder-paths" id="paths"><i class="fas fa-plus"></i> Add Learning Paths</div>
+        <div class="adder-paths" id="paths"><i class="fas fa-plus"></i> {{localize 'QUEST.AddLearningPaths'}}</div>
 
         <ul class="path-list">
             {{#each displayPaths as | path index |}}
@@ -40,9 +40,9 @@
     </div>
     <div class="section flexcol">
         <h1 class="section-header">
-            Legendary Abilities
+            {{localize 'QUEST.LegendaryAbilities'}}
         </h1>
-        <div class="adder-legendaries" id="legendaries"><i class="fas fa-plus"></i> Add Legendary Ability</div>
+        <div class="adder-legendaries" id="legendaries"><i class="fas fa-plus"></i> {{localize 'QUEST.AddLegendaryAbilities'}}</div>
         <ul class="legendary-list">
             {{#each displayAbilities as | ability index |}}
             <li class="legendary item flexrow" data-type-delete="ability" data-item-id="{{index}}">{{ability.name}}

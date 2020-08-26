@@ -45,6 +45,9 @@
   box-shadow: none;
   outline: 2px solid #f04828; }
 
+.quest textarea {
+  color: #222831; }
+
 .quest textarea:focus {
   outline: 2px solid #f04828; }
 
@@ -517,6 +520,9 @@
   box-shadow: none;
   outline: 2px solid #f04828; }
 
+.quest textarea {
+  color: #222831; }
+
 .quest textarea:focus {
   outline: 2px solid #f04828; }
 
@@ -941,6 +947,9 @@
   box-shadow: none;
   outline: 2px solid #f04828; }
 
+.quest textarea {
+  color: #222831; }
+
 .quest textarea:focus {
   outline: 2px solid #f04828; }
 
@@ -1143,6 +1152,9 @@
 .quest input[type="number"]:focus {
   box-shadow: none;
   outline: 2px solid #f04828; }
+
+.quest textarea {
+  color: #222831; }
 
 .quest textarea:focus {
   outline: 2px solid #f04828; }
