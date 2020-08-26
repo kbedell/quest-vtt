@@ -86,10 +86,16 @@
       ],
       "abilities": [],
       "quirks": []
+    },
+    "npc": {
+      "hitpoints": 0,
+      "attack": 0,
+      "traits": [],
+      "notes": ""
     }
   },
   "Item": {
-    "types": ["role", "path", "ability"],
+    "types": ["role", "path", "ability", "gear"],
     "templates": {
       "itemDescription": {
         "description": {
@@ -110,6 +116,18 @@
     },
     "path": {
       "abilities": []
+    },
+    "gear": {
+      "templates": ["itemDescription"],
+      "rarity": {
+        "value": "",
+        "custom": ""
+      },
+      "damage": 0,
+      "activationcost": 0,
+      "gmonly": false,
+      "ranges": [],
+      "notes": ""
     }
   }
 }

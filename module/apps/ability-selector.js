@@ -203,8 +203,8 @@ export class AbilitySelector extends FormApplication {
       "ability"
     );
 
-    if (ability.data.data.effects.length > 0) {
-      let effects = ability.data.data.effects;
+    if (ability.data.effects.length > 0) {
+      let effects = ability.data.effects;
       let effectsText = [];
 
       for (let e = 0; e < effects.length; e++) {
@@ -243,10 +243,10 @@ export class AbilitySelector extends FormApplication {
       }
 
       options = {
-        name: ability.data.name,
-        id: ability.data._id,
+        name: ability.name,
+        id: ability._id,
         legendary: ability.data.legendary,
-        description: ability.data.data.description.full,
+        description: ability.data.description.full,
         effects: effectsText,
       };
     }

@@ -4,7 +4,7 @@
         <img class="item-image" src="{{img}}" title="{{name}}" data-edit="img" />
         <h1 class="header flexrow">
             <input name="name" class="item-name" type="text" value="{{name}}"
-                placeholder="{{localize 'QUEST.Role Name'}}" />
+                placeholder="{{localize 'QUEST.RoleName'}}" />
         </h1>
     </header>
     {{!-- Header End --}}
@@ -15,10 +15,10 @@
             Descriptions
         </h1>
         <div class="field-group">
-            <label class="item-label" for="data.full">Description</label>
+            <label class="item-label" for="data.description.full">Description</label>
             <textarea name="data.description.full" class="full" placeholder="Description">{{data.description.full}}</textarea>
         </div>
-        <label class="item-label" for="chat">Chat Text</label>
+        <label class="item-label" for="data.description.chat">Chat Text</label>
         <textarea name="data.description.chat" class="chat" placeholder="Chat Text">{{data.description.chat}}</textarea>
     </div>
 
@@ -53,5 +53,5 @@
             {{/each}}
         </ul>
     </div>
-    {{!-- Body --}}
+    {{!-- Body End --}}
 </form>

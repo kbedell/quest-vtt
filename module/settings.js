@@ -21,7 +21,8 @@ export const registerSystemSettings = function () {
       "single-role": "SETTINGS.Roles",
       "quirks": "SETTINGS.Quirks",
       "dual-roles": "SETTINGS.DualRoles",
-      "no-roles": "SETTINGS.NoRoles"
+      "no-roles": "SETTINGS.NoRoles",
+      "no-masters":"SETTINGS.NoMasters"
     },
     onChange: rule => _setAbilityMode(rule)
   });
@@ -46,6 +47,22 @@ export const registerSystemSettings = function () {
 
   function _setQuirkLimit(limit) {
     CONFIG.quirkLimit = limit;
+  }
+
+  game.settings.register("quest", "inventorySize", {
+    name: game.i18n.localize('SETTINGS.InventorySize'),
+    hint: game.i18n.localize('SETTINGS.InventorySizeHint'),
+    scope: "world",
+    config: true,
+    default: 12,
+    type: Number,
+    onChange: rule => _setInvetorySize(rule)
+  });
+
+  _setInventorySize(game.settings.get("quest", "inventorySize"));
+
+  function _setInventorySize(size) {
+    CONFIG.inventorySize = size;
   }
 
   game.settings.register("quest", "customCompendium", {

@@ -5,6 +5,7 @@ import { getItem } from "../../quest-helpers.js";
 import { getAllItems } from "../../quest-helpers.js";
 import { AbilityInfo } from "../../apps/ability-info.js";
 import { FullAbilitySelector } from "../../apps/full-ability-selector.js";
+import { GearAdder } from "../../apps/gear-adder.js";
 
 /**
  * An Actor sheet for player character type actors in the Quest system.
@@ -35,6 +36,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     sheetdata.displayAbilities = await this._getAbilities(
       sheetdata.data.abilities
     );
+    sheetdata.displayInventory = await this._getInventory(sheetdata.data.inventory);
 
     return sheetdata;
   }
@@ -94,8 +96,11 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     html.find(".ability-info").click(this._displayAbilityInfo.bind(this));
 
     if (!this.options.editable) return;
+
     if (this.actor.owner) {
       html.find(".inventory-delete").click(this._onInventoryDelete.bind(this));
+      html.find(".edit-gear").click(this._onEditGear.bind(this));
+      html.find(".adder-gear").click(this._onAddItem.bind(this));
       html
         .find(".inventory-item-value")
         .keyup(this._updateInventoryCheck.bind(this));
@@ -194,7 +199,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       if (roles) {
         for (let i = 0; i < roles.length; i++) {
           let role = await getItem(roles[i], "role");
-          let availablePaths = role.data.data.paths;
+          let availablePaths = role.data.paths;
 
           if (!availablePaths) return;
 
@@ -202,17 +207,17 @@ export class CharacterSheetQuest extends ActorSheetQuest {
             let path = await getItem(availablePaths[p], "path");
             let abilities = [];
 
-            for (let a = 0; a < path.data.data.abilities.length; a++) {
+            for (let a = 0; a < path.data.abilities.length; a++) {
               let abilityData = await getItem(
-                path.data.data.abilities[a],
+                path.data.abilities[a],
                 "ability"
               );
 
               let abilityOption = {
-                name: abilityData.data.name,
-                id: abilityData.data._id,
+                name: abilityData.name,
+                id: abilityData._id,
                 order: a,
-                effects: abilityData.data.data.effects,
+                effects: abilityData.data.effects,
               };
 
               abilities.push(abilityOption);
@@ -226,17 +231,17 @@ export class CharacterSheetQuest extends ActorSheetQuest {
           }
 
           // Can't forget about legendaries
-          let legendaries = role.data.data.legendaries;
+          let legendaries = role.data.legendaries;
           let legendaryOptions = [];
 
           for (let a = 0; a < legendaries.length; a++) {
             let abilityData = await getItem(legendaries[a], "ability");
 
             let abilityOption = {
-              name: abilityData.data.name,
-              id: abilityData.data._id,
+              name: abilityData.name,
+              id: abilityData._id,
               order: a,
-              effects: abilityData.data.data.effects,
+              effects: abilityData.data.effects,
             };
 
             legendaryOptions.push(abilityOption);
@@ -266,58 +271,57 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     event.preventDefault();
     let choices = [];
     const abilityMode = game.settings.get("quest", "abilityMode");
-    let mode = abilityMode === "quirks" ? "quirks" : "full";
 
-    if (abilityMode === "quirks" || abilityMode === "no-roles") {
+    if (abilityMode === "quirks" || abilityMode === "no-roles" || abilityMode === "no-masters" ) {
       const roles = await getAllItems("role");
 
       if (!roles) return false;
 
       for (let r = 0; r < roles.length; r++) {
-        let paths = roles[r].data.data.paths;
+        let paths = roles[r].data.paths;
         let pathData = [];
 
         for (let p = 0; p < paths.length; p++) {
           let path = await getItem(paths[p], "path");
 
-          let abilityList = path.data.data.abilities;
+          let abilityList = path.data.abilities;
           let abilities = [];
 
           for (let a = 0; a < abilityList.length; a++) {
             let abilityData = await getItem(abilityList[a], "ability");
 
             abilities.push({
-              name: abilityData.data.name,
-              id: abilityData.data._id,
+              name: abilityData.name,
+              id: abilityData._id,
               order: a,
-              effects: abilityData.data.data.effects,
+              effects: abilityData.data.effects,
             });
           }
 
           pathData.push({
-            name: path.data.name,
+            name: path.name,
             id: path._id,
             abilities: abilities,
           });
         }
 
-        let legendaries = roles[r].data.data.legendaries;
+        let legendaries = roles[r].data.legendaries;
         let legendaryOptions = [];
 
         for (let l = 0; l < legendaries.length; l++) {
           let legendaryData = await getItem(legendaries[l], "ability");
 
           legendaryOptions.push({
-            name: legendaryData.data.name,
-            id: legendaryData.data._id,
+            name: legendaryData.name,
+            id: legendaryData._id,
             order: l,
-            effects: legendaryData.data.data.effects,
+            effects: legendaryData.data.effects,
           });
         }
 
         choices.push({
-          role: roles[r].data.name,
-          id: roles[r].data._id,
+          role: roles[r].name,
+          id: roles[r]._id,
           paths: pathData,
           legendaries: legendaryOptions,
         });
@@ -328,7 +332,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       name: "abilities",
       title: "Abilities",
       roles: true,
-      mode: mode,
+      mode: abilityMode,
       choices: choices,
     };
 
@@ -347,7 +351,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       if (!role) continue;
 
       roleData.push({
-        name: role.data.name,
+        name: role.name,
         id: role._id,
       });
     }
@@ -369,12 +373,12 @@ export class CharacterSheetQuest extends ActorSheetQuest {
 
       ability = await getItem(abilityId, "ability");
 
-      let effects = ability.data.data.effects;
+      let effects = ability.data.effects;
       let effectData = [];
 
       if (effects.length === 0) {
         effectData.push({
-          name: ability.data.name,
+          name: ability.name,
           id: null,
           roll: false,
           cost: "0",
@@ -423,7 +427,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       }
 
       abilityData.push({
-        name: ability.data.name,
+        name: ability.name,
         id: ability._id,
         cost: cost,
         multi: multi,
@@ -436,6 +440,29 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     return abilityData;
   }
 
+  async _getInventory(inventory) {
+    let display = [];
+
+    for (let i = 0; i < inventory.length; i++) {
+      if (inventory[i].association) {
+        let item = this.actor.getEmbeddedEntity("OwnedItem", inventory[i].value, true);
+
+        display.push({
+          name: item.name,
+          association: true,
+          id: item._id
+        });
+      } else {
+        display.push({
+          name: inventory[i].value,
+          association: false
+        });
+      }
+    }
+
+    return display;
+  }
+
   async _displayAbilityInfo(event) {
     event.preventDefault();
     let options = {};
@@ -446,8 +473,8 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       "ability"
     );
 
-    if (ability.data.data.effects.length > 0) {
-      let effects = ability.data.data.effects;
+    if (ability.data.effects.length > 0) {
+      let effects = ability.data.effects;
 
       for (let e = 0; e < effects.length; e++) {
         let rangeText = [];
@@ -486,10 +513,10 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     }
 
     options = {
-      name: ability.data.name,
-      id: ability.data._id,
+      name: ability.name,
+      id: ability._id,
       legendary: ability.data.legendary,
-      description: TextEditor.decodeHTML(ability.data.data.description.full),
+      description: TextEditor.decodeHTML(ability.data.description.full),
       effects: effectsText,
     };
 
@@ -556,13 +583,18 @@ export class CharacterSheetQuest extends ActorSheetQuest {
   async _onInventoryDelete(event) {
     event.preventDefault();
     let index = event.currentTarget.dataset.index;
+
+    if (this.actor.data.data.inventory[index].association) {
+      await this.actor.deleteEmbeddedEntity("OwnedItem", this.actor.data.data.inventory[index].value);
+    }
+
     let updateData = duplicate(this.actor);
 
     updateData.data.inventory[index].value = "";
+    updateData.data.inventory[index].association = false;
 
     await this.actor.update(updateData);
-
-    this.render(true);
+    
     return false;
   }
 
@@ -570,26 +602,42 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     event.preventDefault();
     let updateData = duplicate(this.actor);
     let inventory = updateData.data.inventory;
+    const limit = game.settings.get("quest", "inventorySize");
     let unsorted = [];
     let newInventory = [];
 
     for (let e = 0; e < inventory.length; e++) {
-      if (inventory[e].value !== "") {
-        unsorted.push(inventory[e].value);
+      if (inventory[e].association) {
+        let gear = this.actor.getEmbeddedEntity("OwnedItem", inventory[e].value, true);
+        unsorted.push(gear.name);
+      } else {
+        if (inventory[e].value !== "") {
+          unsorted.push(inventory[e].value);
+        }
       }
     }
 
     unsorted.sort();
 
-    for (let s = 0; s < 12; s++) {
-      if (unsorted[s]) {
-        newInventory.push({
-          value: unsorted[s],
-        });
+    for (let s = 0; s < limit; s++) {
+      let entry = inventory.find((item) => item.value === unsorted[s]);
+
+      if (entry) {
+        newInventory.push(duplicate(entry));
       } else {
-        newInventory.push({
-          value: "",
-        });
+        entry = this.actor.items.find((i) => i.data.name === unsorted[s]);
+
+        if (entry) {
+          newInventory.push({
+            value: entry.data._id,
+            association: true
+          });
+        } else {
+          newInventory.push({
+            value: "",
+            association: false
+          });
+        }
       }
     }
 
@@ -613,19 +661,21 @@ export class CharacterSheetQuest extends ActorSheetQuest {
         const entries = Object.entries(formData);
 
         let updateData = duplicate(actor);
-        let items = [];
         let newInventory = [];
 
-        for (let e = 0; e < entries.length; e++) {
-          if (entries[e][0].indexOf("inventory") > -1) {
-            items.push(entries[e][1]);
+        for (let g = 0; g < updateData.data.inventory.length; g++) {
+          if (updateData.data.inventory[g].association) {
+            newInventory.push({
+              value: updateData.data.inventory[g].value,
+              association: updateData.data.inventory[g].association,
+            });
+          } else {
+            let entry = entries.find((item) => item[0] === `inventory-${g}`);
+              newInventory.push({
+                value: entry[1],
+                association: false
+            });
           }
-        }
-
-        for (let i = 0; i < items.length; i++) {
-          newInventory.push({
-            value: items[i],
-          });
         }
 
         updateData.data.inventory = newInventory;
@@ -644,19 +694,21 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     const entries = Object.entries(formData);
 
     let updateData = duplicate(this.actor);
-    let items = [];
     let newInventory = [];
 
-    for (let e = 0; e < entries.length; e++) {
-      if (entries[e][0].indexOf("inventory") > -1) {
-        items.push(entries[e][1]);
+    for (let g = 0; g < updateData.data.inventory.length; g++) {
+      if (updateData.data.inventory[g].association) {
+        newInventory.push({
+          value: updateData.data.inventory[g].value,
+          association: updateData.data.inventory[g].association,
+        });
+      } else {
+        let entry = entries.find((item) => item[0] === `inventory-${g}`);
+          newInventory.push({
+            value: entry[1],
+            association: false
+        });
       }
-    }
-
-    for (let i = 0; i < items.length; i++) {
-      newInventory.push({
-        value: items[i],
-      });
     }
 
     updateData.data.inventory = newInventory;
@@ -677,5 +729,33 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       comparison = -1;
     }
     return comparison;
+  }
+
+  async _onAddItem(event) {
+    event.preventDefault();
+    let index = event.currentTarget.dataset.index;
+
+    const gear = await getAllItems("gear");
+    const filtered = gear.filter((item) => !item.data.gmonly);
+
+    let options = {
+      name: "add-gear",
+      title: "Add Gear",
+      choices: filtered,
+      index: index
+    };
+
+    new GearAdder(this.actor, options).render(true);
+  }
+
+  _onEditGear(event) {
+    event.preventDefault();
+    const index = event.currentTarget.dataset.index;
+    const id = this.actor.data.data.inventory[index].value;
+    const gear = this.actor.items.find((i) => i.data._id == id);
+
+    if (!gear) return;
+
+    gear.sheet.render(true);
   }
 }

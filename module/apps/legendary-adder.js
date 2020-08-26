@@ -19,6 +19,8 @@ export class LegendaryAdder extends FormApplication {
     });
   }
 
+  /* -------------------------------------------- */
+
   /** @override */
   getData() {
     // Get current values
@@ -53,7 +55,7 @@ export class LegendaryAdder extends FormApplication {
     // Obtain choices
     const chosen = [];
     for (let [k, v] of Object.entries(formData)) {
-      if (k !== "filter" && v) {
+      if (k !== "filter" && k !== "submit" && v) {
         chosen.push(k);
       }
     }

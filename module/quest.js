@@ -2,7 +2,7 @@
  * The Quest game system for Foundry Virtual Tabletop
  * Author: Easternwind
  * Software License: Creative Commons Attribution 4.0 International License
- *
+ * Content Licesend:
  * Repository:
  * Issue Tracker:
  */
@@ -13,9 +13,11 @@ import { registerSystemSettings } from "./settings.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { ActorQuest } from "./actor/entity.js";
 import { CharacterSheetQuest } from "./actor/sheets/character.js";
+import { NPCSheetQuest } from "./actor/sheets/npc.js";
 import { ItemQuest } from "./item/entity.js";
 import { PathSheetQuest } from "./item/sheets/path.js";
 import { RoleSheetQuest } from "./item/sheets/role.js";
+import { GearSheetQuest } from "./item/sheets/gear.js";
 import { AbilityBuilderQuest } from "./item/sheets/ability-builder.js";
 import * as migrations from "./migration.js";
 
@@ -47,6 +49,10 @@ Hooks.once("init", function () {
     types: ["character"],
     makeDefault: true,
   });
+  Actors.registerSheet("quest", NPCSheetQuest, {
+    types: ["npc"],
+    makeDefault: true,
+  });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("quest", AbilityBuilderQuest, {
     types: ["ability"],
@@ -58,6 +64,10 @@ Hooks.once("init", function () {
   });
   Items.registerSheet("quest", PathSheetQuest, {
     types: ["path"],
+    makeDefault: true,
+  });
+  Items.registerSheet("quest", GearSheetQuest, {
+    types: ["gear"],
     makeDefault: true,
   });
 
@@ -80,7 +90,7 @@ Hooks.once("init", function () {
  */
 Hooks.once("setup", function () {
   // Localize CONFIG objects once up-front
-  const toLocalize = [];
+  const toLocalize = ["rarities"];
   for (let o of toLocalize) {
     CONFIG.QUEST[o] = Object.entries(CONFIG.QUEST[o]).reduce((obj, e) => {
       obj[e[0]] = game.i18n.localize(e[1]);
@@ -96,15 +106,23 @@ Hooks.once("setup", function () {
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
 Hooks.once("ready", function () {
+  ui.notifications.info(
+    "<div style='text-align:center;'><h2>Welcome to the Quest system for Foundry VTT.</h2><p>Quest was created by The Adventure Guild (https://adventure.game.)<p><p>This system was created by Easternwind.</p></div>"
+  );
+
   const currentVersion = game.settings.get("quest", "systemMigrationVersion");
-  const NEEDS_MIGRATION_VERSION = 1.0;
+  const NEEDS_MIGRATION_VERSION = 1.4;
   const COMPATIBLE_MIGRATION_VERSION = 1.0;
-  let needMigration = (currentVersion < NEEDS_MIGRATION_VERSION) || (currentVersion === null);
+  let needMigration =
+    currentVersion < NEEDS_MIGRATION_VERSION || currentVersion === null;
   const canMigrate = currentVersion >= COMPATIBLE_MIGRATION_VERSION;
 
-  if ( needMigration && game.user.isGM ) {
-    if ( currentVersion && (currentVersion < COMPATIBLE_MIGRATION_VERSION) ) {
-      ui.notifications.error(`Your Quest system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`, {permanent: true});
+  if (needMigration && game.user.isGM) {
+    if (currentVersion && currentVersion < COMPATIBLE_MIGRATION_VERSION) {
+      ui.notifications.error(
+        `Your Quest system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`,
+        { permanent: true }
+      );
     }
     migrations.migrateWorld();
   }
@@ -113,18 +131,27 @@ Hooks.once("ready", function () {
 });
 
 Hooks.once("preCreateActor", (createData) => {
-  mergeObject(createData, {
-    "token.bar1": { attribute: "hitpoints" },
-    "token.bar2": { attribute: "actionpoints" },
-    "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-    "token.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-    "token.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-    "token.name": createData.name,
-  });
-
   if (createData.type == "character") {
+    mergeObject(createData, {
+      "token.bar1": { attribute: "hitpoints" },
+      "token.bar2": { attribute: "actionpoints" },
+      "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      "token.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      "token.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+      "token.name": createData.name,
+    });
+
     createData.token.vision = true;
     createData.token.actorLink = true;
+  } else if (createData.type == "npc") {
+    mergeObject(createData, {
+      "token.bar1": { attribute: "hitpoints" },
+      "token.bar2": { attribute: "attack" },
+      "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      "token.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      "token.disposition": CONST.TOKEN_DISPOSITIONS.NEUTRAL,
+      "token.name": createData.name,
+    });
   }
 });
 

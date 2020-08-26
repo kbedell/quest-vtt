@@ -1,0 +1,34 @@
+<form class="{{cssClass}} npc-form flexcol" autocomplete="off">
+    {{!-- NPC Header --}}
+    <div class="header flexrow">
+        <div class="hitpoints">
+            <label class="npc-label" for="data.hitpoints">HP</label>
+            <input type="number" class="hp" name="data.hitpoints" data-dtype="Number" value="{{data.hitpoints}}">
+        </div>
+        <div class="roll-generic"><i class="fas fa-dice-d20 fa-2x"></i></div>
+        <div class="attack">
+            <label class="npc-label" for="data.attack">Attack</label>
+            <input type="number" class="ar" name="data.attack" data-dtype="Number" value="{{data.attack}}">
+        </div>
+    </div>
+    {{!-- NPC Header End --}}
+
+    {{!-- NPC Body --}}
+    <div class="details flexrow flex2">
+        <div class="npc-image">
+            <img class="npc-image" src="{{actor.img}}" title="{{actor.name}}" data-edit="img" />
+            <h1 class="header-name">
+                <input name="name" class="npc-name" type="text" value="{{actor.name}}"
+                    placeholder="{{localize 'QUEST.NPCName'}}" />
+            </h1>
+        </div>
+    </div>
+    <div class="section">
+        <div class="field-group">
+            <label class="npc-label" for="data.notes">Notes</label>
+            <textarea name="data.notes" class="description"
+                placeholder="Notes">{{data.notes}}</textarea>
+        </div>
+    </div>
+    {{!-- NPC Body End--}}
+</form>

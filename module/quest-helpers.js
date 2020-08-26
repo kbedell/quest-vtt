@@ -19,6 +19,11 @@ export async function getItem(itemId, type) {
         "world.paths"
     ];
 
+    const gearCompendiums = [
+        "quest-basic.gear",
+        "world.gear"
+    ];
+
     switch (type) {
         case "ability":
             compendiums = abilitiesCompendiums;
@@ -38,6 +43,12 @@ export async function getItem(itemId, type) {
                 compendiums.push(customCompendium + ".roles");
             }
             break;
+        case "gear":
+            compendiums = gearCompendiums;
+            if (customCompendium !== "") {
+                compendiums.push(customCompendium + ".gear");
+            }
+            break;
     }
 
     for (let c = 0; c < compendiums.length; c++) {
@@ -48,19 +59,17 @@ export async function getItem(itemId, type) {
 
             if (!item) continue;
 
-            return item;
+            return item.data;
         }
     }
 
     if (!item || typeof item === "undefined") {
         item = game.items.get(itemId);
-    }
 
-    if (!item || typeof item === "undefined") {
-        // Error handling
+        // TODO: Add error handling if item not found at all.
+
+        return item.data;
     }
-    
-    return item;
 }
 
 export async function getAllItems(type) {
@@ -84,6 +93,11 @@ export async function getAllItems(type) {
         "world.paths"
     ];
 
+    const gearCompendiums = [
+        "quest-basic.gear",
+        "world.gear"
+    ];
+
     switch (type) {
         case "ability":
             compendiums = abilitiesCompendiums;
@@ -103,6 +117,12 @@ export async function getAllItems(type) {
                 compendiums.push(customCompendium + ".roles");
             }
             break;
+        case "gear":
+            compendiums = gearCompendiums;
+            if (customCompendium !== "") {
+                compendiums.push(customCompendium + ".gear");
+            }
+            break;
     }
 
     for (let c = 0; c < compendiums.length; c++) {
@@ -114,7 +134,7 @@ export async function getAllItems(type) {
                 let item = await pack.getEntity(packData.index[i]._id);
 
                 if (!items.find((i) => i.name === item.name)) {
-                    items.push(item);
+                    items.push(item.data);
                 }
             }
         }

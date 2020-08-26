@@ -1,20 +1,24 @@
 <div class="chat ability-card">
     <div class="ability-description">
-        <div class="ability-name">{{data.name}}</div>
+        <div class="ability-name">{{name}}</div>
     </div>
-    {{#if data.data.legendary}}
+    {{#if data.legendary}}
     <div class="ability-legendary">
         <div class="legendary"><img src="systems/quest/icons/legendary.gif" alt="legendary"></div>
     </div>
     {{/if}}
     <div class="ability-description">
-        {{breaklines data.data.description.full}}
+        {{breaklines data.description.full}}
     </div>
-    {{#each data.data.effects as |effect| }}
+    {{#each data.effects as |effect| }}
     <div class="ability-effect flexcol">
         <div class="flexcol">
             <div class="flexrow">
+                {{#if effect.variablecost}}
+                <div class="cost">x</div>
+                {{else}}
                 <div class="cost">{{effect.spellcost}}</div>
+                {{/if}}
                 <div class="effect-description">
                     {{breaklines effect.description.full}}
                 </div>
