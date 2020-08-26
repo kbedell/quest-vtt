@@ -11,14 +11,15 @@
 
     {{!-- Body --}}
     <div class="section flexcol">
-        <h1 class="section-header">Basics</h1>
+        <h1 class="section-header">{{localize 'QUEST.Basics'}}</h1>
         <div class="field-group flexrow">
-            <label class="item-label" for="data.gmonly">Visible to GM Only?</label>
-            <input type="checkbox" class="gmonly" name="data.gmonly" data-dtype="Boolean" value="true" {{#if data.gmonly}}checked{{/if}}>
+            <label class="item-label" for="data.gmonly">{{localize 'QUEST.GMOnly'}}</label>
+            <input type="checkbox" class="gmonly" name="data.gmonly" data-dtype="Boolean" value="true"
+                {{#if data.gmonly}}checked{{/if}}>
         </div>
         <div class="field-group flexcol">
             <div class="rarity-selector flexrow">
-                <label class="item-label" for="data.rarity">Rarity</label>
+                <label class="item-label" for="data.rarity">{{localize 'QUEST.Rarity'}}</label>
                 <select name="data.rarity.value" id="rarity-select">
                     <option class="rarity-option" value=""></option>
                     {{#each rarities.choices as |rarity|}}
@@ -29,31 +30,29 @@
             </div>
         </div>
         <div class="field-group flexrow">
-            <label class="item-label" for="data.rarity.custom">Custom Rarity</label><br>
-            <input type="text" name="data.rarity.custom" value="{{data.rarity.custom}}" data-dtype="String" placeholder="{{localize 'QUEST.CustomRarity'}}"/>
+            <label class="item-label" for="data.rarity.custom">{{localize 'QUEST.CustomRarity'}}</label><br>
+            <input type="text" name="data.rarity.custom" value="{{data.rarity.custom}}" data-dtype="String"
+                placeholder="{{localize 'QUEST.PlaceholderCustomRarity'}}" />
         </div>
         <div class="field-group">
-            <label class="item-label" for="data.damage">Damage</label>
+            <label class="item-label" for="data.damage">{{localize 'QUEST.Damage'}}</label>
             <input type="number" class="damage" name="data.damage" data-dtype="Number" value="{{data.damage}}">
         </div>
         <div class="field-group">
-            <label class="item-label" for="data.activationcost">Activation Cost</label>
+            <label class="item-label" for="data.activationcost">{{localize 'QUEST.ActivationCost'}}</label>
             <input type="number" class="itemcost" name="data.activationcost" data-dtype="Number"
                 value="{{data.activationcost}}">
         </div>
     </div>
 
     <div class="section">
-        <h1 class="section-header">Descriptions</h1>
-        <div class="field-group">
-            <label class="item-label" for="data.description.full">Description</label>
-            <textarea name="data.description.full" class="full"
-                placeholder="Description">{{data.description.full}}</textarea>
-        </div>
+        <h1 class="section-header">{{localize 'QUEST.Descriptions'}}</h1>
+        <textarea name="data.description.full" class="full"
+            placeholder="{{localize 'QUEST.PlaceholderDescription'}}">{{data.description.full}}</textarea>
     </div>
     <div class="section">
-        <h1 class="section-header">Notes</h1>
-        <textarea name="data.notes" class="chat" placeholder="Notes">{{data.notes}}</textarea>
+        <h1 class="section-header">{{localize 'QUEST.Notes'}}</h1>
+        <textarea name="data.notes" class="chat" placeholder="{{localize 'QUEST.PlaceholderNotes'}}"">{{data.notes}}</textarea>
     </div>
 
     {{!-- Body End --}}

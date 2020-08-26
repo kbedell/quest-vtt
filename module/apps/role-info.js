@@ -10,7 +10,7 @@ export class RoleInfo extends FormApplication {
       return mergeObject(super.defaultOptions, {
         id: "role-info",
         classes: ["quest", "app", "role-info"],
-        title: "Role Information",
+        title: game.i18n.localize('QUEST.RoleInfo'),
         template: "systems/quest/templates/apps/role-info.html",
         width: 400,
         height: "auto"

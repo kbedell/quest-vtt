@@ -16,15 +16,15 @@
             {{!-- Step 1 --}}
             <div class="step flexcol" data-step="1">
                 <h1 class="progress-header">
-                    General
+                    {{localize 'QUEST.General'}}
                 </h1>
                 <div class="section">
                     <div class="field-group flexrow">
-                        <label for="legendary" class="item-label">Legendary</label>
+                        <label for="legendary" class="item-label">{{localize 'QUEST.Legendary'}}</label>
                         <div class="tooltip">
                             <i class="far fa-question-circle"></i>
                             <span class="tooltiptext">
-                                Is this ability legendary?
+                                {{localize 'QUEST.LegendaryToolTip'}}
                             </span>
                         </div>
                         <input type="checkbox" name="legendary" value="true" {{#if data.legendary}}checked=""
@@ -35,22 +35,19 @@
             {{!-- Step 1 End --}}
             {{!-- Step 2 --}}
             <div class="step flexcol" data-step="1">
-                <h1 class="progress-header">
-                    General
-                </h1>
                 <div class="section">
-                    <h1 class="section-header">
-                        Descriptions
+                    <h1 class="progress-header">
+                        {{localize 'QUEST.Descriptions'}}
                     </h1>
                     <div class="field-group">
-                        <label class="item-label" for="full">Full Description</label>
+                        <label class="item-label" for="full">{{localize 'QUEST.FullDescription'}}</label>
                         <textarea name="full" class="description"
-                            placeholder="Description">{{data.description.full}}</textarea>
+                            placeholder="{{localize 'QUEST.PlaceholderFullDescription'}}">{{data.description.full}}</textarea>
                     </div>
                     <div class="field-group">
-                        <label class="item-label" for="chat">Chat Description</label>
+                        <label class="item-label" for="chat">{{localize 'QUEST.ChatDescription'}}</label>
                         <textarea name="chat" class="description"
-                            placeholder="Chat Description">{{data.description.chat}}</textarea>
+                            placeholder="{{localize 'QUEST.PlaceholderChatDescription'}}">{{data.description.chat}}</textarea>
                     </div>
                 </div>
             </div>
@@ -58,15 +55,15 @@
             {{!-- Step 3 --}}
             <div class="step flexcol" data-step="2">
                 <h1 class="progress-header">
-                    Effects
+                    {{localize 'QUEST.Effects'}}
                 </h1>
 
                 <div class="adder-effect">
-                    + Add Effect
+                    <i class="fas fa-plus"></i> {{localize 'QUEST.AddEffect'}}
                 </div>
 
                 <ul class="effect-list">
-                    {{#each data.effects as | effect index |}}
+                    {{#each data.data.effects as | effect index |}}
                     <li class="effect item flexrow" data-index="{{index}}">
                         {{effect.name}}
                         <div class="options flexrow">

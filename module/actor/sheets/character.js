@@ -170,7 +170,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
 
     let options = {
       name: "roles",
-      title: "Role(s)",
+      title: game.i18n.localize('QUEST.Roles'),
       choices: roles,
     };
 
@@ -259,7 +259,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
 
     let options = {
       name: "abilities",
-      title: "Abilities",
+      title: game.i18n.localize('QUEST.Abilities'),
       roles: false,
       choices: choices,
     };
@@ -330,7 +330,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
 
     let options = {
       name: "abilities",
-      title: "Abilities",
+      title: game.i18n.localize('QUEST.Abilities'),
       roles: true,
       mode: abilityMode,
       choices: choices,
@@ -740,7 +740,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
 
     let options = {
       name: "add-gear",
-      title: "Add Gear",
+      title: game.i18n.localize('QUEST.AddGear'),
       choices: filtered,
       index: index
     };

@@ -10,7 +10,7 @@ export class AbilityInfo extends FormApplication {
     return mergeObject(super.defaultOptions, {
       id: "ability-info",
       classes: ["quest", "app", "ability-info"],
-      title: "Ability Info",
+      title: game.i18n.localize('QUEST.AbilityInfo'),
       template: "systems/quest/templates/apps/ability-info.html",
       width: 400,
       height: "auto",

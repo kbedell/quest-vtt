@@ -8,7 +8,7 @@ export class RangeAdder extends FormApplication {
     return mergeObject(super.defaultOptions, {
       id: "range-adder",
       classes: ["quest", "app", "range-adder"],
-      title: "Add Range",
+      title: game.i18n.localize('QUEST.AddRange'),
       template: "systems/quest/templates/apps/range-adder.html",
       width: 450,
       height: "auto",

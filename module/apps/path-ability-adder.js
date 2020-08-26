@@ -10,7 +10,7 @@ export class PathAbilityAdder extends FormApplication {
       return mergeObject(super.defaultOptions, {
         id: "ability-ability-adder",
         classes: ["quest", "app", "path-ability-adder"],
-        title: "Add Path Abilities",
+        title: game.i18n.localize('QUEST.AddAbilities'),
         template: "systems/quest/templates/apps/path-ability-adder.html",
         width: 350,
         height: 400,

@@ -10,7 +10,7 @@ export class EffectAdder extends FormApplication {
     return mergeObject(super.defaultOptions, {
       id: "effect-adder",
       classes: ["quest", "app", "effect-adder"],
-      title: "Add Effect",
+      title: game.i18n.localize('QUEST.AddEffect'),
       template: "systems/quest/templates/apps/effect-adder.html",
       width: 500,
       height: "auto",

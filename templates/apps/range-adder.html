@@ -3,7 +3,7 @@
     <header class="item-header flexrow">
         <h1 class="header">
             <input name="name" class="item-name" type="text" value="{{data.name}}"
-                placeholder="{{localize QUEST.RangeName}}" />
+                placeholder="{{localize 'QUEST.RangeName'}}" />
         </h1>
     </header>
     {{!-- Header End --}}
@@ -36,7 +36,7 @@
                 <input name="min" type="number" class="minimum" max="20" min="0" placeholder="0" value="{{data.min}}">
             </div>
       
-            <div class="seperator">TO</div>
+            <div class="seperator">{{localize 'QUEST.Seperator'}}</div>
     
             <div class="field-group flexrow">
                 <label class="item-label" for="data.max">{{localize 'QUEST.Max'}}</label>
