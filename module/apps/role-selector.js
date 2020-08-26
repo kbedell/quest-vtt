@@ -119,8 +119,8 @@ export class RoleSelector extends FormApplication {
     );
 
     options = {
-      name: role.data.name,
-      id: role.data._id,
+      name: role.name,
+      id: role._id,
       description: TextEditor.decodeHTML(
         role.data.description.full
       )

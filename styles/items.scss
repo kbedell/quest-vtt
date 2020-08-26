@@ -441,3 +441,63 @@
     }
   }
 }
+
+/* ----------------------------------------- */
+/*  Gear Styles                              */
+/* ----------------------------------------- */
+
+.quest.sheet.item.gear {
+  min-width: 400px;
+
+  .window-content {
+    background-color: $lightGrey;
+    background-image: none;
+  }
+
+  img {
+    flex: 0 1 100px;
+    max-width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    border: 1px solid $borderGrey;
+  }
+
+  .item-header {
+    align-content: center;
+
+    .item-image,
+    .header {
+      align-self: center;
+    }
+
+    h1.header {
+      text-align: center;
+      border-bottom: 2px solid $gearMagenta;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .section {
+    h1.section-header {
+      text-align: center;
+      border-bottom: 2px solid $gearMagenta;
+      margin-top: 0.5rem;
+    }
+
+    .item-label {
+      flex: 0 1 auto;
+      font-family: $fontEmphasis;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-right: 0.2rem;
+    }
+
+    .field-group {
+      margin-bottom: 0.4rem;
+    }
+
+    .rarity-select {
+      flex: 0 1 50%;
+    }
+  }
+}

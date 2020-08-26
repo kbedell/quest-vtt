@@ -43,6 +43,9 @@ export class ActorQuest extends Actor {
       case "no-roles":
         data.norole = true;
         break;
+      case "no-masters":
+        data.norole = true;
+        break;
       default:
         data.charroles = true;
         break;
@@ -167,7 +170,7 @@ export class ActorQuest extends Actor {
 
   async rollAbility(options = {}) {
     const ability = await getItem(options.abilityId, "ability");
-    const effect = ability.data.data.effects[options.effectId];
+    const effect = ability.data.effects[options.effectId];
     let isTriumph = false;
     let isSuccess = false;
     let isToughChoice = false;
@@ -219,7 +222,7 @@ export class ActorQuest extends Actor {
     const rollData = {
       actor: options.actor,
       roll: roll,
-      legendary: ability.data.data.legendary,
+      legendary: ability.data.legendary,
       resultFlavor: resultFlavor,
       abilityName: ability.name,
       isTriumph: isTriumph,

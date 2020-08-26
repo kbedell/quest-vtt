@@ -29,13 +29,8 @@
   font-weight: 700;
   background: #eeeeee;
   line-height: 1.2rem;
-  border: 1px solid #adb5bd; }
-  .quest input :focus,
-  .quest input[type="number"] :focus,
-  .quest input[type="text"] :focus,
-  .quest textarea :focus {
-    box-shadow: 0px;
-    outline: 1px solid #f04828; }
+  border: 1px solid #adb5bd;
+  border-radius: 3px; }
 
 .quest input::placeholder, .quest textarea::placeholder {
   opacity: 0.6; }
@@ -51,6 +46,10 @@
   outline: 2px solid #f04828; }
 
 .quest textarea:focus {
+  outline: 2px solid #f04828; }
+
+.quest select:focus {
+  box-shadow: none;
   outline: 2px solid #f04828; }
 
 .quest .hide {
@@ -214,7 +213,8 @@
       .quest.character .character-form .inventory-slot :last-child {
         margin-bottom: 0px; }
     .quest.character .character-form .inventory-slot > .inventory-item {
-      margin-bottom: 0.5rem; }
+      margin-bottom: 0.5rem;
+      align-items: center; }
       .quest.character .character-form .inventory-slot > .inventory-item .counter {
         flex: 0 1 auto;
         margin-right: 0.5rem;
@@ -225,20 +225,35 @@
         width: 1.8rem;
         text-align: center;
         line-height: 1.8rem; }
-      .quest.character .character-form .inventory-slot > .inventory-item :before {
+      .quest.character .character-form .inventory-slot > .inventory-item .inventory-item-value {
+        margin-right: 0.3rem; }
+      .quest.character .character-form .inventory-slot > .inventory-item .counter:before {
         content: counter(item);
         font-family: "Alegreya Sans", sans-serif;
         font-weight: 700; }
-      .quest.character .character-form .inventory-slot > .inventory-item .inventory-item-value {
-        flex: 0 1 82%; }
+      .quest.character .character-form .inventory-slot > .inventory-item .gear-name {
+        font-family: "Alegreya Sans", sans-serif;
+        font-weight: 700; }
     .quest.character .character-form .inventory-slot > .item-delete {
       flex: 0 1 auto; }
     .quest.character .character-form .sort {
       text-align: center; }
-    .quest.character .character-form .inventory-delete {
+    .quest.character .character-form .options {
       flex: 0 1 auto; }
-      .quest.character .character-form .inventory-delete :hover {
-        color: #f04828; }
+      .quest.character .character-form .options .inventory-delete {
+        flex: 0 1 auto; }
+        .quest.character .character-form .options .inventory-delete :hover {
+          color: #f04828; }
+      .quest.character .character-form .options .adder-gear {
+        flex: 0 1 auto;
+        margin-right: 0.3rem; }
+        .quest.character .character-form .options .adder-gear :hover {
+          color: #f04828; }
+      .quest.character .character-form .options .edit-gear {
+        margin-right: 0.3rem;
+        flex: 0 1 auto; }
+        .quest.character .character-form .options .edit-gear :hover {
+          color: #f04828; }
     .quest.character .character-form .inventory-sort {
       margin-top: 0.3rem;
       color: #fff;
@@ -374,7 +389,8 @@
       line-height: 1.8rem; }
     .quest.character.limited li.inventory-slot-display > .inventory-item-display .counter:before {
       content: counter(item); }
-  .quest.character.limited .ap-display, .quest.character.limited .hp-display {
+  .quest.character.limited .ap-display,
+  .quest.character.limited .hp-display {
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 700;
     color: #fff;
@@ -382,7 +398,8 @@
   .quest.character.limited .roll-generic-display {
     flex: 0 1 auto;
     color: #fff; }
-  .quest.character.limited .actionpoints, .quest.character.limited .hitpoints {
+  .quest.character.limited .actionpoints,
+  .quest.character.limited .hitpoints {
     flex: 0 1 auto; }
   .quest.character.limited .character-label-display {
     font-family: "Alegreya Sans", sans-serif;
@@ -423,14 +440,14 @@
       border: 1px solid #adb5bd;
       margin-right: 0.5rem; }
     .quest.npc .npc-form .header {
-      background: #be3521;
+      background: #6e552a;
       padding: 0.4rem;
       align-items: center;
       margin-bottom: 0.8rem;
       flex: 0 1 auto;
       justify-items: space-between; }
     .quest.npc .npc-form .header-name {
-      border-bottom: 2px solid #be3521; }
+      border-bottom: 2px solid #6e552a; }
     .quest.npc .npc-form .npc-name {
       width: 80%;
       height: 2rem; }
@@ -457,7 +474,7 @@
       font-size: 1.1rem;
       padding-left: 0.3rem; }
     .quest.npc .npc-form .roll-generic :hover {
-      color: #222831; }
+      color: #f04828; }
     .quest.npc .npc-form .section {
       margin: 0px 1rem;
       flex: 0 1 auto; }
@@ -484,13 +501,8 @@
   font-weight: 700;
   background: #eeeeee;
   line-height: 1.2rem;
-  border: 1px solid #adb5bd; }
-  .quest input :focus,
-  .quest input[type="number"] :focus,
-  .quest input[type="text"] :focus,
-  .quest textarea :focus {
-    box-shadow: 0px;
-    outline: 1px solid #f04828; }
+  border: 1px solid #adb5bd;
+  border-radius: 3px; }
 
 .quest input::placeholder, .quest textarea::placeholder {
   opacity: 0.6; }
@@ -506,6 +518,10 @@
   outline: 2px solid #f04828; }
 
 .quest textarea:focus {
+  outline: 2px solid #f04828; }
+
+.quest select:focus {
+  box-shadow: none;
   outline: 2px solid #f04828; }
 
 .quest .hide {
@@ -855,6 +871,44 @@
           margin-right: 0.2rem; }
 
 /* ----------------------------------------- */
+/*  Gear Styles                              */
+/* ----------------------------------------- */
+.quest.sheet.item.gear {
+  min-width: 400px; }
+  .quest.sheet.item.gear .window-content {
+    background-color: #eeeeee;
+    background-image: none; }
+  .quest.sheet.item.gear img {
+    flex: 0 1 100px;
+    max-width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    border: 1px solid #adb5bd; }
+  .quest.sheet.item.gear .item-header {
+    align-content: center; }
+    .quest.sheet.item.gear .item-header .item-image,
+    .quest.sheet.item.gear .item-header .header {
+      align-self: center; }
+    .quest.sheet.item.gear .item-header h1.header {
+      text-align: center;
+      border-bottom: 2px solid #9b1d68;
+      margin-top: 0.5rem; }
+  .quest.sheet.item.gear .section h1.section-header {
+    text-align: center;
+    border-bottom: 2px solid #9b1d68;
+    margin-top: 0.5rem; }
+  .quest.sheet.item.gear .section .item-label {
+    flex: 0 1 auto;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-right: 0.2rem; }
+  .quest.sheet.item.gear .section .field-group {
+    margin-bottom: 0.4rem; }
+  .quest.sheet.item.gear .section .rarity-select {
+    flex: 0 1 50%; }
+
+/* ----------------------------------------- */
 /*  Sheet Styles                             */
 /* ----------------------------------------- */
 /* Colors */
@@ -871,13 +925,8 @@
   font-weight: 700;
   background: #eeeeee;
   line-height: 1.2rem;
-  border: 1px solid #adb5bd; }
-  .quest input :focus,
-  .quest input[type="number"] :focus,
-  .quest input[type="text"] :focus,
-  .quest textarea :focus {
-    box-shadow: 0px;
-    outline: 1px solid #f04828; }
+  border: 1px solid #adb5bd;
+  border-radius: 3px; }
 
 .quest input::placeholder, .quest textarea::placeholder {
   opacity: 0.6; }
@@ -893,6 +942,10 @@
   outline: 2px solid #f04828; }
 
 .quest textarea:focus {
+  outline: 2px solid #f04828; }
+
+.quest select:focus {
+  box-shadow: none;
   outline: 2px solid #f04828; }
 
 .quest .hide {
@@ -1007,6 +1060,14 @@
   font-family: "Alegreya Sans", sans-serif;
   font-weight: 700; }
 
+.chat.ability-card .ability-effect {
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.3rem;
+  border-bottom: 2px solid #3D8F57; }
+
+.chat.ability-card .ability-effect:last-child {
+  border-bottom: none; }
+
 .chat.ability-card .ability-info-ranges {
   border-bottom: 1px solid #000; }
 
@@ -1067,13 +1128,8 @@
   font-weight: 700;
   background: #eeeeee;
   line-height: 1.2rem;
-  border: 1px solid #adb5bd; }
-  .quest input :focus,
-  .quest input[type="number"] :focus,
-  .quest input[type="text"] :focus,
-  .quest textarea :focus {
-    box-shadow: 0px;
-    outline: 1px solid #f04828; }
+  border: 1px solid #adb5bd;
+  border-radius: 3px; }
 
 .quest input::placeholder, .quest textarea::placeholder {
   opacity: 0.6; }
@@ -1089,6 +1145,10 @@
   outline: 2px solid #f04828; }
 
 .quest textarea:focus {
+  outline: 2px solid #f04828; }
+
+.quest select:focus {
+  box-shadow: none;
   outline: 2px solid #f04828; }
 
 .quest .hide {
@@ -1647,3 +1707,37 @@
   margin-top: 0.4rem; }
   .quest.ability-info .ability-effect .ability {
     margin-bottom: 0.3rem; }
+
+/* ----------------------------------------- */
+/*  Gear Adder Styles                        */
+/* ----------------------------------------- */
+.quest.gear-adder .window-content {
+  background-color: #eeeeee;
+  background-image: none; }
+
+.quest.gear-adder .submit,
+.quest.gear-adder .cancel {
+  margin-top: 0.3rem;
+  color: #fff;
+  background-color: #9b1d68;
+  border: 1px solid #9b1d68; }
+
+.quest.gear-adder .submit:hover,
+.quest.gear-adder .cancel:hover {
+  background-color: #f04828;
+  border: 1px solid #f04828; }
+
+.quest.gear-adder .section-header {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  border-bottom: 2px solid #9b1d68;
+  text-align: center; }
+
+.quest.gear-adder .gear-list {
+  list-style: none;
+  padding: 0px; }
+  .quest.gear-adder .gear-list .item-label {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1rem; }

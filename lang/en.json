@@ -3,15 +3,18 @@
     "QUEST.System.Description": "A system for playing Quest the roleplaying game in the Foundry VTT environment.",
 
     "SETTINGS.AbilitySelection": "Ability Selection Type",
-    "SETTINGS.AbilitySelectionHint": "Change how players can select abilities. Single Role is the default mode, allowing for each player to have one role. Quirks allows for a single role, as well as one ability from any other role. Dual Roles allow for the selection of two roles, and No Roles means players can select from any ability path. (No Roles still requires players to select abilities in the correct path order.",
+    "SETTINGS.AbilitySelectionHint": "Change how players can select abilities. Single Role is the default mode, allowing for each player to have one role. Quirks allows for a single role, as well as one ability from any other role. Dual Roles allow for the selection of two roles, and No Roles means players can select from any ability path. (No Roles still requires players to select abilities in the correct path order.) No gods, no masters means a player can select any ability in any order.",
     "SETTINGS.Roles": "Single Role",
     "SETTINGS.Quirks": "Quirks",
     "SETTINGS.DualRoles": "Dual Roles",
     "SETTINGS.NoRoles": "No Roles",
+    "SETTINGS.NoMasters": "No Gods, No Masters",
     "SETTINGS.QuirkLimit": "Quirk Ability Limit",
     "SETTINGS.QuirkLimitHint": "How many quirk abilities a player is allowed to have. (Only works if Quirk ability selection type is enabled.)",
     "SETTINGS.CustomCompendium": "Custom Compendium Module Name",
     "SETTINGS.CustomCompendiumHint": "The name of the module for your custom compendium. E.g. 'quest-compendium'",
+    "SETTINGS.InventorySize": "Inventory Size Limit",
+    "SETTINGS.InventorySizeHint": "Maximum numnber of items an inventory is allowed to have",
     
     "QUEST.Character.Name": "Name",
     "QUEST.Inventory": "Inventory",
@@ -23,6 +26,14 @@
     "QUEST.FilterLegendaries": "Filter Abilities",
     "QUEST.FilterAbilities": "Filter Abilities",
     "QUEST.PathName": "Learning Path Name",
+    "QUEST.FilterGear": "Filter Gear",
+
+    "QUEST.RarityUncommon": "Uncommon",
+    "QUEST.RarityRare": "Rare",
+    "QUEST.RarityLegendary": "Legendary",
+    "QUEST.RaritySupreme": "Supreme",
+    "QUEST.RarityCustom": "Custom",
+    "QUEST.CustomRarity": "Custom Rarity",
 
     "QUEST.Save": "Save",
     "QUEST.Cancel": "Cancel"
