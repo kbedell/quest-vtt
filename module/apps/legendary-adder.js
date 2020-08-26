@@ -19,6 +19,8 @@ export class LegendaryAdder extends FormApplication {
     });
   }
 
+  /* -------------------------------------------- */
+
   /** @override */
   getData() {
     // Get current values

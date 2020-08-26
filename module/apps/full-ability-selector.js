@@ -29,7 +29,7 @@ export class FullAbilitySelector extends FormApplication {
 
     if (mode === "quirks") {
       limit = game.settings.get("quest", "quirkLimit");
-    } else if (mode === "full") {
+    } else if (mode === "no-roles" || mode === "no-masters") {
       limit = null;
     }
 
@@ -79,6 +79,10 @@ export class FullAbilitySelector extends FormApplication {
             available = true;
           }
 
+          if (mode === "quirks" || mode === "no-masters") {
+              available = true;
+          }
+
           abilityData.push({
             label: path.abilities[a].name,
             id: path.abilities[a].id,
@@ -120,7 +124,7 @@ export class FullAbilitySelector extends FormApplication {
     // Obtain choices
     const chosen = [];
     for (let [k, v] of Object.entries(formData)) {
-      if (v) {
+      if (k !== "submit" && v) {
         ability = await getItem(k, "ability");
         chosen.push(ability._id);
       }
@@ -208,10 +212,10 @@ export class FullAbilitySelector extends FormApplication {
       }
 
       options = {
-        name: ability.data.name,
-        id: ability.data._id,
+        name: ability.name,
+        id: ability._id,
         legendary: ability.data.legendary,
-        description: ability.data.data.description.full,
+        description: ability.data.description.full,
         effects: effectsText,
       };
     }

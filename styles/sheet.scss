@@ -19,8 +19,8 @@ $effectPurple: #804D7F;
 $rangeGold: #e99d36;
 $roleGrey: #454f4e;
 $pathPink: #EE5874;
-$legendary: #ffcc00;
-$npcRed: #be3521;
+$npcBrown: #6e552a;
+$gearMagenta: #9b1d68;
 
 .sheet.actor.character {
   .window-content {
@@ -40,11 +40,7 @@ $npcRed: #be3521;
     background: $lightGrey;
     line-height: 1.2rem;
     border: 1px solid $borderGrey;
-
-    :focus {
-      box-shadow: 0px;
-      outline: 1px solid $highlightRed;
-    }
+    border-radius: 3px;
   }
 
   input::placeholder, textarea::placeholder {
@@ -64,6 +60,11 @@ $npcRed: #be3521;
   }
 
   textarea:focus {
+    outline: 2px solid $highlightRed;
+  }
+
+  select:focus {
+    box-shadow: none;
     outline: 2px solid $highlightRed;
   }
 
