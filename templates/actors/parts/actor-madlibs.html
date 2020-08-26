@@ -5,14 +5,14 @@
 
         <div class="profile-section flexcol">
             <div class="descriptor-section">
-                Hi, my name is <input name="name" type="text" value="{{actor.name}}" class="name" placeholder="Name"/> <br/> (<input name="data.description.pronouns" type="text" class="pronouns" value="{{data.description.pronouns}}" placeholder="Pronouns" />).
+                Hi, my name is <input name="name" type="text" value="{{actor.name}}" class="name" placeholder="Name"/> <br/> (<input name="data.description.pronouns" type="text" class="pronouns" value="{{data.description.pronouns}}" placeholder="{{localize 'QUEST.Pronouns'}}" />).
             </div>
             <div class="descriptor-section">
-                I'm <input name="data.description.age" type="text" class="age" value="{{data.description.age}}" placeholder="Age" /> years old and stand <input name="data.description.height" type="text" class="height" value="{{data.description.height}}" placeholder="height" /> tall.
+                I'm <input name="data.description.age" type="text" class="age" value="{{data.description.age}}" placeholder="{{localize 'QUEST.Age'}}" /> years old and stand <input name="data.description.height" type="text" class="height" value="{{data.description.height}}" placeholder="{{localize 'QUEST.Height'}}" /> tall.
             </div>
             <div class="descriptor-section">
                 I'm the party's
-                <input name="data.description.role" type="text" class="role" value="{{data.description.role}}" placeholder="Role" />.
+                <input name="data.description.role" type="text" class="role" value="{{data.description.role}}" placeholder="{{localize 'QUEST.Role'}}" />.
             </div>
         </div>
     </div>
@@ -22,41 +22,41 @@
     <div class="biography-section-lower">
         <div class="descriptor-section-lower">
             When people see me they first notice my
-            <input name="data.description.feature-1" type="text" class="feature" value="{{data.description.feature-1}}" placeholder="Feature" />,
-            <input name="data.description.feature-2" type="text" class="feature" value="{{data.description.feature-2}}" placeholder="Feature" />,
+            <input name="data.description.feature-1" type="text" class="feature" value="{{data.description.feature-1}}" placeholder="{{localize 'QUEST.Body'}}" />,
+            <input name="data.description.feature-2" type="text" class="feature" value="{{data.description.feature-2}}" placeholder="{{localize 'QUEST.Face'}}" />,
             and
-            <input name="data.description.feature-3" type="text" class="feature" value="{{data.description.feature-3}}" placeholder="Feature" />.
+            <input name="data.description.feature-3" type="text" class="feature" value="{{data.description.feature-3}}" placeholder="{{localize 'QUEST.Vibe'}}" />.
         </div>
     
         <div class="descriptor-section-lower">
             I wear
             <input name="data.description.style-1" type="text" class="style" value="{{data.description.style-1}}"
-                placeholder="Style" />,
+                placeholder="{{localize 'QUEST.Outfit'}}" />,
             <input name="data.description.style-2" type="text" class="style" value="{{data.description.style-2}}"
-                placeholder="Style" />, and move with
+                placeholder="{{localize 'QUEST.Outfit'}}" />, and move with
             <input name="data.description.movement" type="text" class="movement" value="{{data.description.movement}}"
-                placeholder="Movement" />.
+                placeholder="{{localize 'QUEST.Movement'}}" />.
         </div>
     
         <div class="descriptor-section-lower">
             I'm from
-            <input name="data.description.home" type="text" class="home" value="{{data.description.home}}" placeholder="Home" />
+            <input name="data.description.home" type="text" class="home" value="{{data.description.home}}" placeholder="{{localize 'QUEST.Location'}}" />
             where my people are known for
             <input name="data.description.community" type="text" class="community" value="{{data.description.community}}"
-                placeholder="Community" />.
+                placeholder="{{localize 'QUEST.Legacy'}}" />.
         </div>
     
         <div class="descriptor-section-lower">
             I believe in
-            <input name="data.description.ideal" type="text" class="ideal" value="{{data.description.ideal}}" placeholder="Ideal" />,
+            <input name="data.description.ideal" type="text" class="ideal" value="{{data.description.ideal}}" placeholder="{{localize 'QUEST.Ideal'}}" />,
             but my
-            <input name="data.description.flaw" type="text" class="flaw" value="{{data.description.flaw}}" placeholder="Flaw" />
+            <input name="data.description.flaw" type="text" class="flaw" value="{{data.description.flaw}}" placeholder="{{localize 'QUEST.Flaw'}}" />
             side can get in my way.
         </div>
     
         <div class="descriptor-section-lower">
             I dream of
-            <textarea name="data.description.dream" class="dream" placeholder="Dream">{{data.description.dream}}</textarea>
+            <textarea name="data.description.dream" class="dream" placeholder="{{localize 'QUEST.Dream'}}">{{data.description.dream}}</textarea>
         </div>
     </div>
     {{!-- Biography Lower End --}}

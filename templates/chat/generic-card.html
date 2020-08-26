@@ -4,27 +4,27 @@
     </div>
    
     {{#if isTriumph}}
-    <div class="status triumph">TRIUMPH</div>
-    <div class="flavor">{{actor.name}} is triumphant!</div>
+    <div class="status triumph">{{localize 'QUEST.Triumph'}}</div>
+    <div class="flavor">{{actor.name}} {{localize 'QUEST.TriumphFlavor'}}</div>
     {{/if}}
 
     {{#if isSuccess}}
-    <div class="status success">SUCCESS</div>
-    <div class="flavor">{{actor.name}} is successful.</div>
+    <div class="status success">{{localize 'QUEST.Success'}}</div>
+    <div class="flavor">{{actor.name}} {{localize 'QUEST.SuccessFlavor'}}</div>
     {{/if}}
 
     {{#if isToughChoice}}
-    <div class="status tough-choice">TOUGH CHOICE</div>
-    <div class="flavor">{{actor.name}} must face a tough choice.</div>
+    <div class="status tough-choice">{{localize 'QUEST.ToughChoice'}}</div>
+    <div class="flavor">{{actor.name}} {{localize 'QUEST.ToughChoiceFlavor'}}</div>
     {{/if}}
 
     {{#if isFailure}}
-    <div class="status tough-choice">FAILURE</div>
-    <div class="flavor">{{actor.name}} has failed.</div>
+    <div class="status tough-choice">{{localize 'QUEST.Failure'}}</div>
+    <div class="flavor">{{actor.name}} {{localize 'QUEST.FailureFlavor'}}</div>
     {{/if}}
 
     {{#if isCatastrophe}}
-    <div class="status catastrophe">CATASTROPHE</div>
-    <div class="flavor">{{actor.name}} faces a catastrophe!</div>
+    <div class="status catastrophe">{{localize 'QUEST.Catastrophe'}}</div>
+    <div class="flavor">{{actor.name}} {{localize 'QUEST.CatastropheFlavor'}}</div>
     {{/if}}
 </div>

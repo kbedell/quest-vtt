@@ -9,7 +9,7 @@
     </div>
     <div class="section">
         {{#if ability.legendary}}
-        <div class="legendary">LEGENDARY</div>
+        <div class="legendary">{{localize 'QUEST.Lengedary'}}</div>
         {{/if}}
         <div class="description">{{breaklines ability.description}}</div>
         {{#each ability.effects as |effect| }}
@@ -26,7 +26,7 @@
                 </div>
                 {{#if effect.roll}}
                 <div class="effects">
-                    <div class="row-header">Roll the Die</div>
+                    <div class="row-header">{{localize 'QUEST.RollTheDie'}}</div>
                     <div class="effect-ranges">
                         {{#each effect.ranges as |range| }}
                         <div class="ability-info-ranges flexrow">
