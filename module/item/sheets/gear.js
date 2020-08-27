@@ -33,6 +33,10 @@ export class GearSheetQuest extends ItemSheetQuest {
   /** @override */
   getData() {
     const data = super.getData();
+    if (data.item.img === "icons/svg/mystery-man.svg") {
+      data.item.img = "systems/quest/icons/potion-ball.png"
+    }
+
     data.config = CONFIG.QUEST;
     data.rarities = this._getItemRarities(data.item.data.rarity);
     return data;

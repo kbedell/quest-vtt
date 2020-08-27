@@ -102,8 +102,6 @@ export class ActorQuest extends Actor {
     } else if (attribute === "actionpoints") {
       const current = att;
 
-      let dap = delta - current;
-
       return this.update({
         "data.actionpoints": Math.clamped(att.value + dhp, 0, max),
       });
