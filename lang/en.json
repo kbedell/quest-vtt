@@ -68,7 +68,7 @@
     "QUEST.PathName": "Learning Path Name",
     "QUEST.FilterGear": "Filter Gear",
 
-    "QUEST.EffectCost" : "Action Point Cost",
+    "QUEST.EffectCost" : "Adventure Point Cost",
     "QUEST.VariableCost" : "Variable Cost?",
     "QUEST.SpellCost" : "AP Cost",
     "QUEST.Ranges" : "Roll Ranges",
@@ -91,6 +91,8 @@
     "QUEST.AvailableLearningPaths" : "Available Learning Paths",
     "QUEST.AvailableLegendaries" : "Available Legendary Abilities",
     "QUEST.AddAbilities": "Add Abilities",
+    "QUEST.RoleInfo": "Role Information",
+    "QUEST.AbilityInfo": "Ability Information",
 
     "QUEST.RarityUncommon": "Uncommon",
     "QUEST.RarityRare": "Rare",
@@ -98,6 +100,20 @@
     "QUEST.RaritySupreme": "Supreme",
     "QUEST.RarityCustom": "Custom",
     "QUEST.CustomRarity": "Custom Rarity",
+
+    "QUEST.Triumph" : "TRIUMPH",
+    "QUEST.TriumphFlavor" : " is triumphant!",
+    "QUEST.Success" : "SUCCESS",
+    "QUEST.SuccessFlavor" : " is successful!",
+    "QUEST.ToughChoice" : "TOUGH CHOICE",
+    "QUEST.ToughChoiceFlavor" : " must face a tough choice!",
+    "QUEST.Failure" : "FAILURE",
+    "QUEST.FailureFlavor" : " has failed!",
+    "QUEST.Catastrophe": "CATASTROPHE",
+    "QUEST.CatastropheFlavor": " faces a catatrophe",
+    "QUEST.Attack": "Attack",
+    "QUEST.RollTheDie": "Roll the Die",
+
 
     "QUEST.Save": "Save",
     "QUEST.Cancel": "Cancel"

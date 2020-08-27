@@ -105,8 +105,7 @@ export class GearAdder extends FormApplication {
 
     let input = event.currentTarget.value;
     let filter = input.toLowerCase();
-    let list = document.getElementById("gearlist");
-    let choices = document.getElementsByClassName("gearchoice");
+    let choices = document.getElementsByClassName("gear-choice");
 
     for (let i = 0; i < choices.length; i++) {
       let text = choices[i].children[0].innerText.trim();

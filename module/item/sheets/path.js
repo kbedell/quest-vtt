@@ -165,7 +165,7 @@ export class PathSheetQuest extends ItemSheetQuest {
   async _onAbilityAdder(event) {
     event.preventDefault();
 
-    const abilities = await getAllItems("ability");
+    const abilities = await getAllItems("ability", false);
 
     let options = {
       choices: abilities

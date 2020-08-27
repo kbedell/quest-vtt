@@ -41,11 +41,18 @@ If you would like to create your own Foundry compendium for **personal use**, I 
    > Quest's [Creators License](https://www.adventure.game/creators-license) allows for the basic descriptions provided. If you wish to expand upon what is available for your own personal use, I would highly recommend supporting The Adventure Guild, and purchasing a copy of Quest from their [online store](https://www.adventure.game/store). As of August 2020, The Adventure Guild is currently sold out of physical books, but there's [digital edition](https://www.adventure.game/digital-edition) available in PDF.
 
 ## Credits
+I couldn't have done this project alone. A big thank you to all the people who have contributed to this project!
+
+## Languages
+- French translation by [Krisdoc](https://github.com/krisdoc)
+
+### Icons
 - upgrade.png (Role Icon) created by [Delapouite](http://delapouite.com/) under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
 - skills.png (Path Icon) created by [Delapouite](http://delapouite.com/) under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
 - aura.png (Effect Icon) created by [Lorc](http://lorcblog.blogspot.com/) under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
 - muscle-up.png (Ability Icon) created by [Lorc](http://lorcblog.blogspot.com/) under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
 - dice-fire.png (Macro Icon) created by [Delapouite](http://delapouite.com/) under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
+- potiona-ball.png (Gear Icon) created by [Lorc](http://lorcblog.blogspot.com/) under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
 
 ## Legal
 Quest was created by The Adventure Guild LLC.
