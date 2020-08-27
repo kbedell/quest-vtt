@@ -1,7 +1,7 @@
 import { ItemSheetQuest } from "./base.js";
 import { PathAdder } from "../../apps/path-adder.js"
 import { LegendaryAdder } from "../../apps/legendary-adder.js"
-import { getAllItems } from "../../quest-helpers.js";
+import { getAllItems, getItem } from "../../quest-helpers.js";
 
 /**
  * An Item sheet for option type items in the Quest system.
@@ -60,7 +60,7 @@ export class RoleSheetQuest extends ItemSheetQuest {
   async _onPathAdder(event) {
     event.preventDefault();
 
-    const paths = await getAllItems("path");
+    const paths = await getAllItems("path", false);
 
     let options = {
       choices: paths
@@ -72,14 +72,8 @@ export class RoleSheetQuest extends ItemSheetQuest {
   async _onLegendaryAdder(event) {
     event.preventDefault();
 
-    const abilities = await getAllItems("ability");
-    let legendaries = [];
-
-    for (let a = 0; a < abilities.length; a++) {
-      if (abilities[a].data && abilities[a].data.legendary) {
-        legendaries.push(abilities[a]);
-      }
-    }
+    const abilities = await getAllItems("ability", true);
+    const legendaries = abilities.filter((ability) => ability.data.legendary);
 
     let options = {
       choices: legendaries

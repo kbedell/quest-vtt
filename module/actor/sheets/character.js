@@ -166,7 +166,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
    */
   async _onRolesSelector(event) {
     event.preventDefault();
-    const roles = await getAllItems("role");
+    const roles = await getAllItems("role", false);
 
     let options = {
       name: "roles",
@@ -273,7 +273,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     const abilityMode = game.settings.get("quest", "abilityMode");
 
     if (abilityMode === "quirks" || abilityMode === "no-roles" || abilityMode === "no-masters" ) {
-      const roles = await getAllItems("role");
+      const roles = await getAllItems("role", false);
 
       if (!roles) return false;
 
@@ -734,8 +734,10 @@ export class CharacterSheetQuest extends ActorSheetQuest {
   async _onAddItem(event) {
     event.preventDefault();
     let index = event.currentTarget.dataset.index;
+    let unfiltered = [];
 
-    const gear = await getAllItems("gear");
+    const gear = await getAllItems("gear", true);
+
     const filtered = gear.filter((item) => !item.data.gmonly);
 
     let options = {
