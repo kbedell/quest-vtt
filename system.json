@@ -2,7 +2,7 @@
   "name": "quest",
   "title": "Quest",
   "description": "A game system for running Quest in the Foundry Virtual Tabletop environment.",
-  "version": 1.7,
+  "version": 1.8,
   "minimumCoreVersion": "0.5.6",
   "compatibleCoreVersion": "0.7.2",
   "templateVersion": 2,
@@ -18,8 +18,8 @@
       "path": "lang/en.json"
     },
     {
-      "lang": "fre",
-      "name": "French",
+      "lang": "fr",
+      "name": "Français (French)",
       "path": "lang/fr.json"
     }
   ],
@@ -28,6 +28,6 @@
   "secondaryTokenAttribute": "actionpoints",
   "url": "https://github.com/kbedell/quest-vtt",
   "manifest": "https://raw.githubusercontent.com/kbedell/quest-vtt/stable/system.json",
-  "download": "https://github.com/kbedell/quest-vtt/releases/download/v1.7/quest.zip",
+  "download": "https://github.com/kbedell/quest-vtt/releases/download/v1.8/quest.zip",
   "license": "LICENSE"
 }
