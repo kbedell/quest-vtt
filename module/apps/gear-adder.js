@@ -13,7 +13,7 @@ export class GearAdder extends FormApplication {
       title: game.i18n.localize('QUEST.AddGear'),
       template: "systems/quest/templates/apps/gear-adder.html",
       width: 400,
-      height: "auto",
+      height: 600,
       resizable: true,
       minimum: 0,
       maximum: 1,

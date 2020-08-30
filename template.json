@@ -85,12 +85,14 @@
         }
       ],
       "abilities": [],
-      "quirks": []
+      "quirks": [],
+      "notes": ""
     },
     "npc": {
       "hitpoints": 0,
       "attack": 0,
       "traits": [],
+      "abilities": [],
       "notes": ""
     }
   },
@@ -125,8 +127,13 @@
       },
       "damage": 0,
       "activationcost": 0,
+      "variablecost": false,
       "gmonly": false,
-      "ranges": [],
+      "ranges": {
+        "_depreciated": true
+      },
+      "effects": [],
+      "abilities": [],
       "notes": ""
     }
   }

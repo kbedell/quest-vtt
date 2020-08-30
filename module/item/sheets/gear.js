@@ -10,9 +10,9 @@ export class GearSheetQuest extends ItemSheetQuest {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       width: 450,
-      height: "auto",
+      height: 690,
       classes: ["quest", "sheet", "item", "gear"],
-      resizable: false,
+      resizable: true,
     });
   }
 
