@@ -22,7 +22,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       classes: ["quest", "sheet", "actor", "character"],
       width: 830,
       height: 690,
-      resize: true
+      resize: true,
     });
   }
 
@@ -36,7 +36,9 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     sheetdata.displayAbilities = await this._getAbilities(
       sheetdata.data.abilities
     );
-    sheetdata.displayInventory = await this._getInventory(sheetdata.data.inventory);
+    sheetdata.displayInventory = await this._getInventory(
+      sheetdata.data.inventory
+    );
 
     return sheetdata;
   }
@@ -50,7 +52,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
    * @type {String}
    */
   get template() {
-    if (!game.user.isGM && this.actor.limited){
+    if (!game.user.isGM && this.actor.limited) {
       this.options.classes.push("limited");
       this.options.width = 750;
       this.options.height = 590;
@@ -63,6 +65,8 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       return "systems/quest/templates/actors/character-sheet.html";
     }
   }
+
+  /* -------------------------------------------- */
 
   async _render(force, options) {
     await super._render(force, options);
@@ -79,6 +83,61 @@ export class CharacterSheetQuest extends ActorSheetQuest {
   }
 
   /* -------------------------------------------- */
+
+  async _onDrop(event) {
+    event.preventDefault();
+
+    if (event.target.classList == "inventory-item-value") {
+      let index = Number(event.target.dataset.index);
+      const inventory = this.actor.data;
+      let newInventory = [];
+      let gear = {};
+
+      let data;
+      try {
+        data = JSON.parse(event.dataTransfer.getData("text/plain"));
+      } catch (err) {
+        return false;
+      }
+
+      gear = await getItem(data.id, "gear");
+
+      let newItem = await this.actor.createEmbeddedEntity("OwnedItem", gear, {
+        temporary: false,
+      });
+
+      for (let i = 0; i < inventory.data.inventory.length; i++) {
+        if (i === index) {
+          if (inventory.data.inventory[i].value) {
+            await this.actor.deleteEmbeddedEntity(
+              "OwnedItem",
+              this.actor.data.data.inventory[index].value
+            );
+          }
+
+          newInventory.push({
+            value: newItem._id,
+            association: true,
+          });
+        } else {
+          newInventory.push({
+            value: inventory.data.inventory[i].value,
+            association: inventory.data.inventory[i].association,
+          });
+        }
+      }
+
+      const updateData = duplicate(this.object.data);
+
+      updateData.data.inventory = newInventory;
+
+      await this.object.update(updateData);
+
+      this.render();
+    }
+
+    return false;
+  }
 
   /* -------------------------------------------- */
   /*  Event Listeners and Handlers
@@ -110,7 +169,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
       html.find(".inventory-sort").click(this._onSort.bind(this));
       html.find(".roll-generic").click(this._rollGeneric.bind(this));
       html.find(".role-selector").click(this._onRolesSelector.bind(this));
-       html.find(".ability-selector").click(this._onAbilitySelector.bind(this));
+      html.find(".ability-selector").click(this._onAbilitySelector.bind(this));
       html
         .find(".ability-selector-quirk")
         .click(this._onAllAbilitiesSelector.bind(this));
@@ -170,7 +229,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
 
     let options = {
       name: "roles",
-      title: game.i18n.localize('QUEST.Roles'),
+      title: game.i18n.localize("QUEST.Roles"),
       choices: roles,
     };
 
@@ -259,7 +318,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
 
     let options = {
       name: "abilities",
-      title: game.i18n.localize('QUEST.Abilities'),
+      title: game.i18n.localize("QUEST.Abilities"),
       roles: false,
       choices: choices,
     };
@@ -272,7 +331,11 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     let choices = [];
     const abilityMode = game.settings.get("quest", "abilityMode");
 
-    if (abilityMode === "quirks" || abilityMode === "no-roles" || abilityMode === "no-masters" ) {
+    if (
+      abilityMode === "quirks" ||
+      abilityMode === "no-roles" ||
+      abilityMode === "no-masters"
+    ) {
       const roles = await getAllItems("role", false);
 
       if (!roles) return false;
@@ -330,7 +393,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
 
     let options = {
       name: "abilities",
-      title: game.i18n.localize('QUEST.Abilities'),
+      title: game.i18n.localize("QUEST.Abilities"),
       roles: true,
       mode: abilityMode,
       choices: choices,
@@ -398,7 +461,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
           } else {
             spellcost = effect.spellcost;
           }
-  
+
           effectData.push({
             name: effect.name,
             id: e,
@@ -407,9 +470,9 @@ export class CharacterSheetQuest extends ActorSheetQuest {
             variablecost: Boolean(effect.variablecost),
           });
         }
-  
+
         if (!ability) continue;
-  
+
         if (effectData.length > 1) {
           cost = "x";
           multi = true;
@@ -445,17 +508,21 @@ export class CharacterSheetQuest extends ActorSheetQuest {
 
     for (let i = 0; i < inventory.length; i++) {
       if (inventory[i].association) {
-        let item = this.actor.getEmbeddedEntity("OwnedItem", inventory[i].value, true);
+        let item = this.actor.getEmbeddedEntity(
+          "OwnedItem",
+          inventory[i].value,
+          true
+        );
 
         display.push({
           name: item.name,
           association: true,
-          id: item._id
+          id: item._id,
         });
       } else {
         display.push({
           name: inventory[i].value,
-          association: false
+          association: false,
         });
       }
     }
@@ -585,7 +652,10 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     let index = event.currentTarget.dataset.index;
 
     if (this.actor.data.data.inventory[index].association) {
-      await this.actor.deleteEmbeddedEntity("OwnedItem", this.actor.data.data.inventory[index].value);
+      await this.actor.deleteEmbeddedEntity(
+        "OwnedItem",
+        this.actor.data.data.inventory[index].value
+      );
     }
 
     let updateData = duplicate(this.actor);
@@ -594,7 +664,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     updateData.data.inventory[index].association = false;
 
     await this.actor.update(updateData);
-    
+
     return false;
   }
 
@@ -608,7 +678,11 @@ export class CharacterSheetQuest extends ActorSheetQuest {
 
     for (let e = 0; e < inventory.length; e++) {
       if (inventory[e].association) {
-        let gear = this.actor.getEmbeddedEntity("OwnedItem", inventory[e].value, true);
+        let gear = this.actor.getEmbeddedEntity(
+          "OwnedItem",
+          inventory[e].value,
+          true
+        );
         unsorted.push(gear.name);
       } else {
         if (inventory[e].value !== "") {
@@ -630,12 +704,12 @@ export class CharacterSheetQuest extends ActorSheetQuest {
         if (entry) {
           newInventory.push({
             value: entry.data._id,
-            association: true
+            association: true,
           });
         } else {
           newInventory.push({
             value: "",
-            association: false
+            association: false,
           });
         }
       }
@@ -671,9 +745,9 @@ export class CharacterSheetQuest extends ActorSheetQuest {
             });
           } else {
             let entry = entries.find((item) => item[0] === `inventory-${g}`);
-              newInventory.push({
-                value: entry[1],
-                association: false
+            newInventory.push({
+              value: entry[1],
+              association: false,
             });
           }
         }
@@ -704,9 +778,9 @@ export class CharacterSheetQuest extends ActorSheetQuest {
         });
       } else {
         let entry = entries.find((item) => item[0] === `inventory-${g}`);
-          newInventory.push({
-            value: entry[1],
-            association: false
+        newInventory.push({
+          value: entry[1],
+          association: false,
         });
       }
     }
@@ -721,7 +795,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
   compareAbilityNames(a, b) {
     const objectA = a.name.toLowerCase();
     const objectB = b.name.toLowerCase();
-  
+
     let comparison = 0;
     if (objectA > objectB) {
       comparison = 1;
@@ -734,7 +808,6 @@ export class CharacterSheetQuest extends ActorSheetQuest {
   async _onAddItem(event) {
     event.preventDefault();
     let index = event.currentTarget.dataset.index;
-    let unfiltered = [];
 
     const gear = await getAllItems("gear", true);
 
@@ -742,9 +815,9 @@ export class CharacterSheetQuest extends ActorSheetQuest {
 
     let options = {
       name: "add-gear",
-      title: game.i18n.localize('QUEST.AddGear'),
+      title: game.i18n.localize("QUEST.AddGear"),
       choices: filtered,
-      index: index
+      index: index,
     };
 
     new GearAdder(this.actor, options).render(true);
