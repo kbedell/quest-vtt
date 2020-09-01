@@ -82,7 +82,7 @@ export class GearAdder extends FormApplication {
 
     await this.object.update(updateData);
 
-    this.render(true);
+    this.render();
 
     return false;
   }

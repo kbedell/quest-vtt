@@ -264,6 +264,13 @@
       border: 1px solid #004576; }
       .quest.character .character-form .inventory-sort :hover {
         color: #f04828; }
+    .quest.character .character-form .inventory-custom {
+      margin-top: 0.3rem;
+      color: #fff;
+      background-color: #004576;
+      border: 1px solid #004576; }
+      .quest.character .character-form .inventory-custom :hover {
+        color: #f04828; }
     .quest.character .character-form .abilities-section .ability-info,
     .quest.character .character-form .abilities-section .roll-ability,
     .quest.character .character-form .abilities-section .send-to-chat-default {

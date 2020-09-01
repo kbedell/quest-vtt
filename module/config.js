@@ -6,6 +6,7 @@ export const QUEST = {};
  * @type {Object}
  */
 QUEST.rarities = {
+    "common": "QUEST.RarityCommon",
     "uncommon": "QUEST.RarityUncommon",
     "rare": "QUEST.RarityRare",
     "legendary": "QUEST.RarityLegendary",

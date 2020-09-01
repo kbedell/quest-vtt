@@ -167,6 +167,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
         .find(".inventory-item-value")
         .change(this._updateInventory.bind(this));
       html.find(".inventory-sort").click(this._onSort.bind(this));
+      html.find(".inventory-custom").click(this._onCustomItem.bind(this));
       html.find(".roll-generic").click(this._rollGeneric.bind(this));
       html.find(".role-selector").click(this._onRolesSelector.bind(this));
       html.find(".ability-selector").click(this._onAbilitySelector.bind(this));
@@ -832,5 +833,57 @@ export class CharacterSheetQuest extends ActorSheetQuest {
     if (!gear) return;
 
     gear.sheet.render(true);
+  }
+
+  async _onCustomItem(event) {
+    event.preventDefault();
+    let inventory = this.actor.data.data.inventory;
+    let index = -1;
+    let newInventory = [];
+
+    for(let e = 0; e < inventory.length; e++) {
+      if (!inventory[e].association && (!inventory[e].value || inventory[e].value === "")) {
+        index = e;
+        break;
+      }
+    }
+
+    if (index === -1) {
+      ui.notifications.error(
+        `Sorry, there is no room in your inventory for a new item.`,
+        { permanent: false }
+      );
+      return false;
+    }
+
+    let itemData = {
+      name: "New Custom Item",
+      type: "gear",
+    };
+
+    let ownedItem = await this.actor.createEmbeddedEntity("OwnedItem", itemData, {temporary: false});
+    let updateData = duplicate(this.actor.data);
+    let owned = this.actor.items.find((i) => i.data._id === ownedItem._id);
+
+    for (let i = 0; i < inventory.length; i++) {
+      if (i === index) {
+        newInventory.push({
+          value: ownedItem._id,
+          association: true,
+        });
+      } else {
+        newInventory.push({
+          value: inventory[i].value,
+          association: inventory[i].association,
+        });
+      }
+    }
+
+    updateData.data.inventory = newInventory;
+
+    this.actor.update(updateData);
+
+    owned.sheet.render(true);
+    return false;
   }
 }
