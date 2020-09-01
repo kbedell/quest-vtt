@@ -94,6 +94,8 @@
     "QUEST.RoleInfo": "Role Information",
     "QUEST.AbilityInfo": "Ability Information",
 
+    "QUEST.ItemName": "Item Name (Required)",
+    "QUEST.RarityCommon": "Common",
     "QUEST.RarityUncommon": "Uncommon",
     "QUEST.RarityRare": "Rare",
     "QUEST.RarityLegendary": "Legendary",
