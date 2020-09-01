@@ -267,6 +267,17 @@
       }
     }
 
+    .inventory-custom {
+      margin-top: 0.3rem;
+      color: $white;
+      background-color: $charHeaderBlue;
+      border: 1px solid $charHeaderBlue;
+
+      :hover {
+        color: $highlightRed;
+      }
+    }
+
     /* ----------------------------------------- */
     /*  Ability Styles                           */
     /* ----------------------------------------- */
