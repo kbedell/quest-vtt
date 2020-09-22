@@ -2,7 +2,7 @@
   "name": "quest",
   "title": "Quest",
   "description": "A game system for running Quest in the Foundry Virtual Tabletop environment.",
-  "version": 1.10.2,
+  "version": "1.10.2",
   "minimumCoreVersion": "0.5.6",
   "compatibleCoreVersion": "0.7.2",
   "templateVersion": 2,
