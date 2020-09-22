@@ -91,7 +91,8 @@ export class AbilityBuilderQuest extends ItemSheetQuest {
   activateListeners(html) {
     super.activateListeners(html);
     
-    if (!game.user.isGM) return;
+    // Everything below here is only needed if the sheet is editable
+    if (!this.options.editable) return;
 
     html.find(".adder-effect").click(this._onEffectAdder.bind(this));
     html.find(".config").click(this._onEffectOpen.bind(this));
