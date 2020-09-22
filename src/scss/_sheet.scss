@@ -1,0 +1,64 @@
+/* ----------------------------------------- */
+/*  Sheet Styles                             */
+/* ----------------------------------------- */
+@import url('https://fonts.googleapis.com/css?family=Ovo:400');
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:400,700');
+@import url('https://fonts.googleapis.com/css2?family=Mirza:wght@400;500;600;700');
+@font-face {
+  font-family: 'Bluu Next';
+  src: url('/systems/quest/fonts/BluuNext-Titling.otf');
+}
+
+$paragraph: 'Mirza';
+$header: 'Bluu Next';
+$body: 'Alegreya Sans';
+
+/* ----------------------------------------- */
+/*  Colors                                   */
+/* ----------------------------------------- */
+$background: #c0e0d6;
+$darkTeal: #6eb8a1;
+$active: #ff8308;
+$interactable: #00394e;
+$lightTealButton: #7dd1b7;
+$tealInput: #bcebdc;
+$black: #000;
+
+/* ----------------------------------------- */
+/*  Gradients                                */
+/* ----------------------------------------- */
+$charHeader0: #ff8308;
+$charHeader001: #fe5b02;
+$charHeader100: #fbde2f;
+$linearCharacter: linear-gradient(90deg, $charHeader0 0%, $charHeader001 0.01%, $charHeader100 100%);
+
+$itemBody0: #80c4af;
+$itemBody5104: #6eb8a1;
+$itemBody100: #5eab93;
+$linearItem: linear-gradient(90.58deg, $itemBody0 0%, $itemBody5104 51.04%, $itemBody100 100%);
+
+$itemListItem0: #bbeadb;
+$itemListItem100: rgba(187, 234, 219, 0);
+$linearListItem: linear-gradient(90deg, $itemListItem0 0%, $itemListItem100 100%);
+
+/* ----------------------------------------- */
+/*  Shadows                                  */
+/* ----------------------------------------- */
+$boxshadow: rgba(0, 0, 0, 0.4);
+$navshadow: rgba(0, 0, 0, 0.86);
+
+/* Colors */
+$white: #fff;
+$black: #000;
+$darkGrey: #222831;
+$lightGrey: #eeeeee;
+$highlightRed: #f04828;
+$charHeaderBlue: #004576;
+$borderGrey: #adb5bd;
+$builderHighlightGreen: #3d8f57;
+$effectPurple: #804d7f;
+$rangeGold: #e99d36;
+$roleGrey: #454f4e;
+$pathPink: #ee5874;
+$npcBrown: #6e552a;
+$gearMagenta: #9b1d68;

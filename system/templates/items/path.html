@@ -1,0 +1,35 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+    {{!-- Header --}}
+    <header class="item-header flexcol">
+        <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+        <h1 class="header flexrow">
+            <input name="name" class="item-name" type="text" value="{{item.name}}"
+                placeholder="{{localize 'QUEST.PathName'}}" />
+        </h1>
+    </header>
+    {{!-- Header End --}}
+    {{!-- Body --}}
+    <div class="section flexcol">
+        <h1 class="section-header">
+            {{localize 'QUEST.Abilities'}}
+        </h1>
+        <div class="filter-ability" id="filter-ability">
+            <div id="autocomplete"></div>
+            <input type="text" autofocus="true" name="filter" placeholder="{{localize 'QUEST.SearchAbilities'}}"
+                class="ability-filter" id="filter"></input>
+        </div>
+        <ul class="abilities-list" id="abilities-list">
+            {{#each abilities as | ability |}}
+            <li class="ability item flexrow" data-index="{{@index}}" data-id="{{@ability._id}}">
+                <div class="drag-bars">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="index">{{ ability.order }}</div> {{ability.name}} <div class="options flexrow">
+                    <div class="delete-ability"><i class="fas fa-trash-alt item-delete"></i></div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    {{!-- Body End--}}
+</form>

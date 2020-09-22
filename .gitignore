@@ -1,3 +1,10 @@
-#ide
+#IDE
 .idea/
 .vscode/
+.prettierrc
+
+#Reference Files
+node_modules
+
+#Generated Files
+dist

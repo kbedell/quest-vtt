@@ -1,0 +1,52 @@
+<form class="app-ranges" autocomplete="off" onsubmit="event.preventDefault();">
+    {{!-- Header --}}
+    <header class="item-header flexrow">
+        <div class="item-wrapper">
+            <input name="name" class="name" type="text" value="{{name}}" placeholder="{{localize 'QUEST.RangeName'}}" />
+        </div>
+    </header>
+    {{!-- Header End --}}
+
+    {{!-- Body --}}
+    <div class="item-body flexcol">
+        <div class="item-section flexcol">
+            <div class="section-wrapper">
+                <div class="section-header">{{localize 'QUEST.Descriptions'}}</div>
+                <div class="field-group">
+                    <div class="item-label">Full Description</div>
+                    <textarea name="description.full" class="description"
+                        placeholder="{{localize 'QUEST.PlaceholderFullDescription'}}">{{data.description.full}}</textarea>
+                </div>
+                <div class="field-group">
+                    <div class="item-label">{{localize 'QUEST.ChatDescription'}}</div>
+                    <textarea name="description.chat" class="description"
+                        placeholder="{{localize 'QUEST.PlaceholderChatDescription'}}">{{data.description.chat}}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="item-section flexcol">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    {{localize 'QUEST.RollRanges'}}
+                </div>
+
+                <div class="min-max flexrow">
+                    <div class="field-group min flexrow">
+                        <div class="item-label" id="minlabel">{{localize 'QUEST.Min'}}</div>
+                        <input name="min" type="number" class="minimum" max="20" min="0" placeholder="0"
+                            value="{{data.min}}">
+                    </div>
+
+                    <div class="seperator"></div>
+
+                    <div class="field-group max flexrow">
+                        <div class="item-label" id="maxlabel">{{localize 'QUEST.Max'}}</div>
+                        <input name="max" type="number" class="maximum" max="20" min="0" placeholder="0"
+                            value="{{data.max}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{!-- Body End --}}
+</form>

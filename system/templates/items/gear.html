@@ -1,0 +1,123 @@
+<form class="{{cssClass}} form-gear flexcol" autocomplete="off">
+    {{!-- Header --}}
+    <header class="item-header flexcol">
+        <div class="item-wrapper">
+            <img class="image" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+        </div>
+
+        <div class="item-wrapper">
+            <div class="name-wrapper">
+                <input name="name" class="name" type="text" value="{{item.name}}"
+                    placeholder="{{localize 'QUEST.AbilityName'}}" />
+            </div>
+        </div>
+    </header>
+    {{!-- Header End --}}
+
+    {{!-- Body --}}
+    <div class="item-body flexcol">
+        {{!-- General Start --}}
+        <div class="item-section flexcol">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    {{localize 'QUEST.General'}}
+                </div>
+                <div class="section-body">
+                    <div class="field-group flexrow">
+                        <div class="item-label">{{localize 'QUEST.GMOnly'}}</div>
+                        <input type="checkbox" name="data.gmonly" id="data.gmonly" class="quest-input"
+                            data-dtype="Boolean" value="true" {{#if data.gmonly}}checked=true{{/if}}>
+                        <label for="data.gmonly"></label>
+                    </div>
+                    <div class="field-group flexrow">
+                        <div class="rarity-selector flexrow">
+                            <label class="item-label" for="data.rarity.value">{{localize 'QUEST.Rarity'}}</label>
+                            <div class="quest-select">
+                                <div class="quest-selector">
+                                    <div class="selector-items hide">
+                                        {{#each rarities.choices as |rarity|}}
+                                        <div class="selector-item">{{rarity.display}}</div>
+                                        {{/each}}
+                                    </div>
+                                </div>
+                                <select class='quest-select-hide' name="data.rarity.value" id="rarity-select">
+                                    <option class="rarity-option" value=""></option>
+                                    {{#each rarities.choices as |rarity|}}
+                                    <option class="rarity-option" value="{{rarity.value}}"
+                                        {{#if rarity.selected}}selected=true{{/if}}>
+                                        {{rarity.display}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field-group flexrow">
+                        <label class="item-label" for="data.rarity.custom">{{localize 'QUEST.CustomRarity'}}</label><br>
+                        <input type="text" name="data.rarity.custom" value="{{data.rarity.custom}}" data-dtype="String"
+                            placeholder="{{localize 'QUEST.PlaceholderCustomRarity'}}" />
+                    </div>
+                    <div class="field-group flexrow">
+                        <label class="item-label" for="data.damage">{{localize 'QUEST.Damage'}}</label>
+                        <input type="number" class="damage" name="data.damage" data-dtype="Number"
+                            value="{{data.damage}}">
+                    </div>
+                    <div class="field-group flexrow">
+                        <label class="item-label" for="data.activationcost">{{localize 'QUEST.ActivationCost'}}</label>
+                        <input type="number" class="activationcost" name="data.activationcost" data-dtype="Number"
+                            value="{{data.activationcost}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- General End --}}
+        {{!-- Descriptions Start --}}
+        <div class="item-section flexcol">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    {{localize 'QUEST.Descriptions'}}
+                </div>
+                <div class="section-body" id="descriptions">
+                    <div class="field-group">
+                        <div class="item-label">{{localize 'QUEST.FullDescription'}}</div>
+                        <textarea name="data.description.full" class="description"
+                            placeholder="{{localize 'QUEST.PlaceholderFullDescription'}}">{{data.description.full}}</textarea>
+                    </div>
+                    <div class="field-group">
+                        <div class="item-label">{{localize 'QUEST.ChatDescription'}}</div>
+                        <textarea name="data.description.chat" class="description"
+                            placeholder="{{localize 'QUEST.PlaceholderChatDescription'}}">{{data.description.chat}}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- Descriptions End --}}
+        {{!--Effects Start  --}}
+        <div class=" item-section flexcol">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    {{localize 'QUEST.Effects'}}
+                </div>
+                <div class="section-body flexcol" id="effects">
+                    <ul class="effect-list">
+                        {{#each data.effects as | effect index |}}
+                        <li class="effect item flexrow" data-index="{{index}}">
+                            {{effect.name}}
+                            <div class="options flexrow">
+                                <div class="editor-effect"></div>
+                                <div class="delete-effect"></div>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
+                    <div class="field-group" id="adder-effect">
+                        <div class="adder-effect">
+                            <i class="fas fa-plus"></i> {{localize 'QUEST.AddEffect'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- Effects End --}}
+    </div>
+    {{!-- Body End --}}
+</form>

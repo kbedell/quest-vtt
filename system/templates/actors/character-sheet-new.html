@@ -1,0 +1,51 @@
+<form class="{{cssClass}} character-form flexcol" autocomplete="off">
+    {{!-- Character Header --}}
+    <div class="header flexrow">
+        <div class="hitpoints">
+            <div class="character-label">{{localize 'QUEST.HP'}}</div>
+            {{#each displayHealth as | pip |}}
+            <div class="pip {{#if pip.checked}}filled{{/if}}"></div>
+            {{/each}}
+        </div>
+        <div class="roll-generic"></div>
+        <div class="actionpoints">
+            <label class="character-label" for="data.actionpoints">{{localize 'QUEST.AP'}}</label>
+            <input type="number" class="ap" name="data.actionpoints" data-dtype="Number" value="{{data.actionpoints}}">
+        </div>
+    </div>
+    {{!-- Character Header End --}}
+
+    {{!-- Character Body --}}
+    <div class="details flexrow flex3">
+        {{!-- Biography --}}
+        {{> "systems/quest/templates/actors/parts/actor-madlibs.html" }}
+        {{!-- Biography End --}}
+        {{!-- Inventory/Spells --}}
+        <div class="inventory-abilities flexcol flex1">
+            {{!-- NPC Sheet Navigation --}}
+            <nav class="sheet-navigation tabs" data-group="primary">
+                <a class="item active" id="inventory" data-tab="inventory">
+                    <div class="nav-link">{{localize 'QUEST.Inventory'}}</div>
+                </a>
+                <a class="item" id="abilities" data-tab="abilities">
+                    <div class="nav-link">{{localize 'QUEST.Abilities'}}</div>
+                </a>
+                <a class="item" id="notes" data-tab="notes">
+                    <div class="nav-link">{{localize 'QUEST.Notes'}}</div>
+                </a>
+            </nav>
+            <section class="content">
+                <div class="tab inventory flexcol" data-group="primary" data-tab="inventory">
+                    {{> "systems/quest/templates/actors/parts/actor-inventory.html" }}
+                </div>
+                <div class="tab abilities flexcol" data-group="primary" data-tab="abilities">
+                    {{> "systems/quest/templates/actors/parts/actor-abilities.html" }}
+                </div>
+                <div class="tab notes flexcol" data-group="primary" data-tab="notes">
+                    {{> "systems/quest/templates/actors/parts/actor-notes.html" }}
+                </div>
+            </section>
+        </div>
+    </div>
+    {{!-- Character Body End--}}
+</form>

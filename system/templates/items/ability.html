@@ -1,0 +1,92 @@
+<form class="{{cssClass}} form-ability flexcol" autocomplete="off" onsubmit="event.preventDefault();">
+    {{!-- Header --}}
+    <header class="item-header flexcol">
+        <div class="item-wrapper">
+            <img class="image" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+        </div>
+
+        <div class="item-wrapper">
+            <div class="name-wrapper">
+                <input name="name" class="name" type="text" value="{{item.name}}"
+                    placeholder="{{localize 'QUEST.AbilityName'}}" />
+            </div>
+        </div>
+    </header>
+    {{!-- Header End --}}
+
+    {{!-- Body --}}
+    <div class="item-body flexcol">
+        {{!-- General Start --}}
+        <div class="item-section flexcol">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    {{localize 'QUEST.General'}}
+                </div>
+                <div class="section-body" id="legendary">
+                    <div class="field-group flexrow">
+                        <div class="item-label">{{localize 'QUEST.Legendary'}}</div>
+                        <div class="tooltip">
+                            <i class="far fa-question-circle"></i>
+                            <span class="tooltiptext">
+                                {{localize 'QUEST.LegendaryToolTip'}}
+                            </span>
+                        </div>
+                        <input type="checkbox" name="data.legendary" id="data.legendary" value="true"
+                            {{#if data.legendary}}checked=true{{/if}}>
+                        <label for="data.legendary"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- General End --}}
+        {{!-- Descriptions Start --}}
+        <div class="item-section flexcol">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    {{localize 'QUEST.Descriptions'}}
+                </div>
+                <div class="section-body" id="descriptions">
+                    <div class="field-group">
+                        <div class="item-label">{{localize 'QUEST.FullDescription'}}</div>
+                        <textarea name="data.description.full" class="description"
+                            placeholder="{{localize 'QUEST.PlaceholderFullDescription'}}">{{data.description.full}}</textarea>
+                    </div>
+                    <div class="field-group">
+                        <div class="item-label">{{localize 'QUEST.ChatDescription'}}</div>
+                        <textarea name="data.description.chat" class="description"
+                            placeholder="{{localize 'QUEST.PlaceholderChatDescription'}}">{{data.description.chat}}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- Descriptions End --}}
+        {{!--Effects Start  --}}
+        <div class="item-section flexcol">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    {{localize 'QUEST.Effects'}}
+                </div>
+                <div class="section-body flexcol" id="effects">
+                    <ul class="effect-list">
+                        {{#each data.effects as | effect index |}}
+                        <li class="effect item flexrow" data-index="{{index}}">
+                            {{effect.name}}
+                            <div class="options flexrow">
+                                <div class="editor-effect"></div>
+                                <div class="delete-effect"></div>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
+                    <div class="field-group" id="adder-effect">
+                        <div class="adder-effect">
+                            <i class="fas fa-plus"></i> {{localize 'QUEST.AddEffect'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- Effects End --}}
+    </div>
+    {{!-- Body End --}}
+</form>

@@ -1,0 +1,390 @@
+/* ----------------------------------------- */
+/*  Actor Styles                             */
+/* ----------------------------------------- */
+@import '_sheet.scss';
+
+/* ----------------------------------------- */
+/*  Character Styles                         */
+/* ----------------------------------------- */
+.quest.character {
+  min-width: 848px;
+  min-height: 664px;
+
+  .window-content {
+    margin: 0px;
+    padding: 0px;
+    background: linear-gradient(to top, $background 97%, $black 3%);
+  }
+
+  .character-form {
+    flex: 0 0 auto;
+    font-size: 16px;
+
+    .header {
+      height: 48px;
+      background: $linearCharacter;
+      border-radius: 20px;
+      flex: 0 0 auto;
+
+      .character-label {
+        font-family: $body;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 19px;
+      }
+
+      .hitpoints {
+        flex: 0 0 auto;
+        margin: 14px 0px 8px 31px;
+      }
+
+      .roll-generic {
+        flex: 0 0 auto;
+        height: 36px;
+        width: 36px;
+        background: url('/systems/quest/images/icons/icon_d20big.svg') no-repeat;
+
+        img {
+          border: none;
+        }
+      }
+
+      .roll-generic:hover,
+      .roll-generic:active {
+        background: url('/systems/quest/images/icons/icon_d20big_hover.svg') no-repeat;
+      }
+    }
+
+    .details {
+      padding: 16px 16px 0px 16px;
+
+      .profile {
+        height: 144px;
+        width: 144px;
+        border: 2px solid $darkTeal;
+        border-radius: 144px;
+        flex: 0 0 auto;
+        margin-right: 16px;
+      }
+
+      .biography {
+        flex: 0 0 auto;
+        width: 500px;
+        height: 530px;
+        font-family: $paragraph;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 28px;
+        margin-right: 12px;
+
+        .descriptor-section {
+          padding-bottom: 8px;
+
+          .name {
+            width: 216px;
+            flex: 0 0 auto;
+          }
+
+          .pronouns {
+            width: 216px;
+            flex: 0 0 auto;
+          }
+
+          .age {
+            width: 135px;
+            flex: 0 0 auto;
+          }
+
+          .height {
+            width: 137px;
+            flex: 0 0 auto;
+          }
+
+          .role {
+            width: 221px;
+            flex: 0 0 auto;
+          }
+        }
+
+        .descriptor-section-lower {
+          padding-bottom: 8px;
+
+          .feature,
+          .style {
+            width: 198px;
+            flex: 0 0 auto;
+          }
+
+          .movement,
+          .community {
+            width: 324px;
+            flex: 0 0 auto;
+          }
+
+          .home {
+            width: 273px;
+            flex: 0 0 auto;
+          }
+
+          .ideal {
+            width: 401px;
+            flex: 0 0 auto;
+          }
+
+          .flaw {
+            width: 326px;
+            flex: 0 0 auto;
+          }
+
+          .dream {
+            width: 500px;
+            flex: 0 0 auto;
+          }
+        }
+      }
+    }
+
+    .inventory-abilities {
+      height: 584px;
+      width: 304px;
+      flex: 0 0 auto;
+      margin-top: -20px;
+
+      .tabs {
+        flex: 0 0 auto;
+        margin: 0;
+        overflow: hidden;
+        padding: 10px 0px 10px 10px;
+        margin: 0px -10px -10px -10px;
+        height: 59px;
+      }
+
+      .tabs .item,
+      .tabs .item .nav-item {
+        line-height: 22px;
+        font-family: $header;
+        font-weight: 600;
+      }
+
+      .item {
+        padding: 10px 0px 10px 10px;
+        overflow: hidden;
+        margin: 0px -10px -10px -10px;
+        height: 57px;
+      }
+
+      .item .nav-link {
+        height: 39px;
+        color: $interactable;
+        margin: 0;
+        padding-top: 7px;
+      }
+
+      .item .nav-link:hover {
+        color: $active;
+        text-shadow: none;
+      }
+
+      .tabs .item.active {
+        text-shadow: none;
+      }
+
+      .tabs .item.active .nav-link {
+        background: url('/systems/quest/images/character-background.png') no-repeat;
+        line-height: 22px;
+        font-family: $header;
+        font-weight: 600;
+        color: $black;
+        position: relative;
+        -webkit-border-top-left-radius: 8px;
+        -webkit-border-top-right-radius: 8px;
+        -moz-border-radius-topleft: 8px;
+        -moz-border-radius-topright: 8px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        -webkit-box-shadow: -2px -2px 10px -3px $boxshadow;
+        -moz-box-shadow: -2px -2px 10px -3px $boxshadow;
+        box-shadow: -2px -2px 10px -3px $boxshadow;
+        z-index: 2;
+      }
+
+      .tabs .item.active#abilities {
+        height: 39px;
+      }
+
+      .tabs .item.active#notes {
+        margin: 0px 0px -10px 0px;
+        padding: 10px 10px 0px 0px;
+
+        .nav-link {
+          -webkit-box-shadow: 2px -2px 10px -6px $navshadow;
+          -moz-box-shadow: 2px -2px 10px -6px $navshadow;
+          box-shadow: 2px -2px 10px -6px $navshadow;
+        }
+      }
+
+      .item#abilities > .nav-link {
+        background-position: -101.33333px 0;
+      }
+
+      .item#notes > .nav-link {
+        background-position: -195.6666px 0;
+      }
+
+      .tab {
+        min-height: 525px;
+        min-width: 304px;
+        background: url('/systems/quest/images/character-background.png') no-repeat 0 -40px;
+        -webkit-border-bottom-left-radius: 8px;
+        -webkit-border-bottom-right-radius: 8px;
+        -moz-border-radius-bottomleft: 8px;
+        -moz-border-radius-bottomright: 8px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        -webkit-box-shadow: 0px 4px 10px $boxshadow;
+        -moz-box-shadow: 0px 4px 10px $boxshadow;
+        box-shadow: 0px 4px 10px $boxshadow;
+        padding: 27px 16px 0px 8px;
+      }
+
+      .tab.inventory {
+        -webkit-border-top-right-radius: 8px;
+        -moz-border-radius-topright: 8px;
+        border-top-right-radius: 8px;
+      }
+
+      .tab.abilities {
+        -webkit-border-top-left-radius: 8px;
+        -webkit-border-top-right-radius: 8px;
+        -moz-border-radius-topleft: 8px;
+        -moz-border-radius-topright: 8px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+
+      .tab.notes {
+        -webkit-border-top-left-radius: 8px;
+        -moz-border-radius-topleft: 8px;
+        border-top-left-radius: 8px;
+      }
+
+      /* ----------------------------------------- */
+      /*  Inventory Styles                         */
+      /* ----------------------------------------- */
+
+      ol#inventory-list {
+        padding: 0 0 0 8px;
+        margin: 0;
+        counter-reset: item;
+        flex: 0 0 auto;
+      }
+
+      .inventory-slot {
+        counter-increment: item;
+        flex: 0 0 auto;
+
+        :last-child {
+          margin-bottom: 0px;
+        }
+      }
+
+      .inventory-slot > .inventory-item {
+        flex: 0 0 auto;
+
+        .counter {
+          flex: 0 0 auto;
+          background: url('/systems/quest/images/icons/numbers.svg');
+          width: 24px;
+          height: 24px;
+          font-family: $body;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 16px;
+          line-height: 22px;
+          text-align: center;
+          margin-right: 12px;
+        }
+
+        .inventory-item-value {
+          flex: 0 0 auto;
+          width: 183px;
+          height: 24px;
+          background: $tealInput;
+          border: 0.75px solid $interactable;
+          margin: 0 9px 12px 0;
+        }
+
+        .counter:before {
+          content: counter(item);
+        }
+      }
+
+      .inventory-slot > .item-delete {
+        flex: 0 1 auto;
+      }
+
+      .sort {
+        text-align: center;
+      }
+
+      .options {
+        flex: 0 1 auto;
+
+        .inventory-delete {
+          flex: 0 1 auto;
+
+          &:hover {
+            color: $highlightRed;
+          }
+        }
+
+        .adder-gear {
+          flex: 0 0 auto;
+
+          .plus {
+            background: url('/systems/quest/images/icons/icon_plus.svg') no-repeat;
+            height: 25px;
+            width: 25px;
+            margin-top: -2px;
+
+            &:hover,
+            &:active {
+              background: url('/systems/quest/images/icons/icon_plus_hover.svg') no-repeat;
+              height: 27px;
+              width: 27px;
+              margin-left: -2px;
+            }
+          }
+        }
+
+        .edit-gear {
+          margin-right: 0.3rem;
+          flex: 0 1 auto;
+
+          &:hover,
+          &:active {
+            color: $highlightRed;
+          }
+        }
+      }
+
+      .inventory-sort {
+        flex: 0 0 auto;
+        width: 286px;
+        height: 40px;
+        text-align: center;
+        border: none;
+        line-height: 40px;
+        margin: 14px 0px 0px 2px;
+        cursor: pointer;
+        background: url('/systems/quest/images/icons/teal_button.svg') no-repeat;
+
+        &:hover,
+        &:active {
+          background: url('/systems/quest/images/icons/teal_button_hover.svg') no-repeat;
+        }
+      }
+    }
+  }
+}

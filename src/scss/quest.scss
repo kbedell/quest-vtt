@@ -1,0 +1,183 @@
+/* ----------------------------------------- */
+/*  Sheet Styles                             */
+/* ----------------------------------------- */
+@import '_actors';
+@import '_items';
+@import '_chat';
+@import '_apps';
+
+/* ----------------------------------------- */
+/*  All Sheet Styles                         */
+/* ----------------------------------------- */
+.quest {
+  input,
+  input[type='number'],
+  input[type='text'],
+  .quest-selector,
+  textarea {
+    background: rgba(240, 255, 246, 0.6);
+    border: 0.75px solid $darkTeal;
+    font-family: $body;
+    font-style: normal;
+    font-weight: bold;
+    border-radius: 8px;
+    height: 24px;
+    padding-left: 12px;
+
+    &::placeholder {
+      font-family: $body;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 22px;
+      opacity: 0.6;
+    }
+
+    &:focus {
+      box-shadow: none;
+      border-radius: 8px;
+      border: 2.5px solid $active;
+      outline: none;
+    }
+  }
+
+  textarea::placeholder {
+    padding-left: 12px;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  input[type='checkbox'],
+  .quest-select-hide {
+    position: absolute;
+    left: -9999px;
+  }
+
+  input[type='checkbox'] + label {
+    height: 19px;
+    width: 19px;
+    background-image: url('/systems/quest/assets/icons/icon_check_empty.svg');
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  input[type='checkbox'] + label:hover {
+    height: 19px;
+    width: 19px;
+    background-image: url('/systems/quest/assets/icons/icon_check_hover.svg');
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  input[type='checkbox']:checked + label {
+    height: 19px;
+    width: 19px;
+    background-image: url('/systems/quest/assets/icons/icon_check.svg');
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  .quest-select {
+    position: relative;
+  }
+
+  .quest-selector {
+    position: relative;
+
+    &:after {
+      position: absolute;
+      content: '';
+      background-image: url('/systems/quest/assets/icons/icon_angle_down.svg');
+      background-repeat: no-repeat;
+      top: 14px;
+      right: 10px;
+      width: 0;
+      height: 0;
+    }
+
+    .select-arrow-active:after {
+      background-image: url('/systems/quest/assets/icons/icon_angle_up.svg');
+      background-repeat: no-repeat;
+      top: 7px;
+    }
+  }
+
+  .selector-items div,
+  .quest-selector {
+    cursor: pointer;
+  }
+
+  .selector-items {
+    position: absolute;
+    background-color: DodgerBlue;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
+
+  .selector-items div:hover,
+  .same-as-selected {
+    // background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .quest-select select {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .tooltip {
+    position: relative;
+
+    .tooltiptext {
+      visibility: hidden;
+      width: 12rem;
+      background-color: $darkGrey;
+      color: $white;
+      text-align: center;
+      border-radius: 0.3rem;
+      position: absolute;
+      z-index: 99999;
+      margin-left: 0.4rem;
+      top: -1.6rem;
+      padding: 0.2rem;
+    }
+
+    .tooltiptext::after {
+      content: ' ';
+      position: absolute;
+      top: 50%;
+      right: 100%;
+      margin-top: -0.4rem;
+      border-width: 0.4rem;
+      border-style: solid;
+      border-color: transparent $darkGrey transparent transparent;
+    }
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  button:hover {
+    box-shadow: none;
+  }
+
+  form .notes {
+    margin: 0;
+  }
+}

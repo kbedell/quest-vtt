@@ -1,0 +1,65 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+    {{!-- Header --}}
+    <header class="item-header flexcol">
+        <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+        <h1 class="header flexrow">
+            <input name="name" class="item-name" type="text" value="{{item.name}}"
+                placeholder="{{localize 'QUEST.RoleName'}}" />
+        </h1>
+    </header>
+    {{!-- Header End --}}
+
+    {{!-- Body --}}
+    <div class="section flexcol">
+        <h1 class="section-header">
+            {{localize 'QUEST.Descriptions'}}
+        </h1>
+        <div class="field-group">
+            <label class="item-label" for="data.description.full">{{localize 'QUEST.FullDescription'}}</label>
+            <textarea name="data.description.full" class="full"
+                placeholder="{{localize 'QUEST.PlaceholderFullDescription'}}">{{data.description.full}}</textarea>
+        </div>
+        <label class="item-label" for="data.description.chat">{{localize 'QUEST.ChatDescription'}}</label>
+        <textarea name="data.description.chat" class="chat"
+            placeholder="{{localize 'QUEST.ChatDescription'}}">{{data.description.chat}}</textarea>
+    </div>
+
+    <div class="section flexcol">
+        <h1 class="section-header">
+            {{localize 'QUEST.LearningPaths'}}
+        </h1>
+        <div class="filter-paths">
+            <div id="autocomplete-paths"></div>
+            <input type="text" autofocus="true" name="filter" placeholder="{{localize 'QUEST.SearchPaths'}}"
+                class="path-filter" id="filter-paths"></input>
+        </div>
+        <ul class="path-list">
+            {{#each paths as | path index |}}
+            <li class="path item flexrow" data-index="{{index}}">{{path.name}} <div class="options flexrow">
+                    <div class="delete-path"><i class="fas fa-trash-alt item-delete"></i></div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    <div class="section flexcol">
+        <h1 class="section-header">
+            {{localize 'QUEST.LegendaryAbilities'}}
+        </h1>
+        <div class="filter-ability">
+            <div id="autocomplete-abilities"></div>
+            <input type="text" autofocus="true" name="filter" placeholder="{{localize 'QUEST.SearchLegendaries'}}"
+                class="ability-filter" id="filter-abilities"></input>
+        </div>
+        <ul class="legendary-list">
+            {{#each legendaries as | ability index |}}
+            <li class="legendary item flexrow" data-index="{{index}}">{{ability.name}}
+                <div class="options flexrow">
+                    <div class="delete-ability"><i class="fas fa-trash-alt item-delete"></i></div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    {{!-- Body End --}}
+</form>

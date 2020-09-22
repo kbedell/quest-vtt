@@ -1,0 +1,33 @@
+{
+  "name": "quest",
+  "title": "Quest",
+  "description": "A game system for running Quest in the Foundry Virtual Tabletop environment.",
+  "version": "2.0.0",
+  "minimumCoreVersion": "0.5.6",
+  "compatibleCoreVersion": "0.7.2",
+  "templateVersion": 2,
+  "author": "Easternwind",
+  "scripts": [],
+  "esmodules": ["quest.js"],
+  "styles": ["quest.css"],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français (French)",
+      "path": "lang/fr.json"
+    }
+  ],
+  "socket": true,
+  "primaryTokenAttribute": "hitpoints",
+  "secondaryTokenAttribute": "actionpoints",
+  "url": "https://github.com/kbedell/quest-vtt",
+  "manifest": "https://raw.githubusercontent.com/kbedell/quest-vtt/stable/system.json",
+  "download": "https://github.com/kbedell/quest-vtt/releases/download/v1.11.0/quest.zip",
+  "license": "LICENSE"
+}

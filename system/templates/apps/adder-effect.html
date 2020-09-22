@@ -1,0 +1,80 @@
+<form class="{{cssClass}} app-effects flexcol" autocomplete="off" onsubmit="event.preventDefault();">
+    {{!-- Header --}}
+    <header class="item-header flexcol">
+        <div class="item-wrapper">
+            <img class="image" src="{{img}}" title="{{name}}" data-edit="img" />
+            <input type="hidden" name="img" class="image-url quest-input" id="image-value" value="{{img}}">
+        </div>
+        <div class="item-wrapper">
+            <div class="name-wrapper">
+                <input name="name" class="name quest-input" type="text" value="{{name}}"
+                    placeholder="{{localize 'QUEST.EffectName'}}" />
+            </div>
+        </div>
+    </header>
+    {{!-- Header End --}}
+
+    {{!-- Body --}}
+    <div class="item-body flexcol">
+        <div class="item-section flexcol">
+            <div class="section-wrapper">
+                <div class="section-header">{{localize 'QUEST.EffectCost'}}</div>
+                <div class="field-group flexrow" id="variablecost">
+                    <div class="item-label">{{localize 'QUEST.VariableCost'}}</div>
+                    <input type="checkbox" name="variablecost" id="data.variablecost" class="quest-input" value="true"
+                        {{#if data.variablecost}}checked=true{{/if}}>
+                    <label for="data.variablecost"></label>
+                </div>
+                <div class="field-group" id="spellcost">
+                    <label class="item-label" for="spellcost">{{localize 'QUEST.SpellCost'}}</label>
+                    <input name="spellcost" type="number" class="spellcost quest-input" placeholder="0"
+                        value="{{data.spellcost}}">
+                </div>
+            </div>
+        </div>
+        <div class="item-section flexcol">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    Descriptions
+                </div>
+                <div class="field-group">
+                    <div class="item-label">{{localize 'QUEST.FullDescription'}}</div>
+                    <textarea name="description.full" class="description quest-input"
+                        placeholder="{{localize 'QUEST.PlaceholderFullDescription'}}">{{data.description.full}}</textarea>
+                </div>
+                <div class="field-group">
+                    <div class="item-label">{{localize 'QUEST.ChatDescription'}}</div>
+                    <textarea name="description.chat" class="description quest-input"
+                        placeholder="{{localize 'QUEST.PlaceholderChatDescription'}}">{{data.description.chat}}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="item-section flexcol">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    {{localize 'QUEST.RollRanges'}}
+                </div>
+                <div class="section-body flexcol" id="ranges">
+                    <ul class="range-list">
+                        {{#each data.ranges as | range index |}}
+                        <li class="range item flexrow" data-index="{{index}}" data-effect="{{effect}}">
+                            {{range.name}}
+                            <div class="options flexrow">
+                                <div class="editor-range"></div>
+                                <div class="delete-range"></div>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
+
+                    <div class="field-group" id="adder-range">
+                        <div class="adder-range">
+                            <i class="fas fa-plus"></i> {{localize 'QUEST.AddRange'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- Body End --}}
+</form>

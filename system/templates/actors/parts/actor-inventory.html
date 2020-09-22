@@ -1,0 +1,34 @@
+<ol id="inventory-list">
+    {{#each displayInventory as | item | }}
+    <li class="inventory-slot flexrow">
+        {{#if item.association}}
+        <div class="inventory-item flexrow">
+            <div class="counter"></div>
+            <div class="gear-name">{{item.name}}</div>
+            <div class="options flexrow">
+                <div class="edit-gear" data-index="{{@index}}"><i class="fas fa-cog"></i></div>
+                <div class="inventory-delete" data-index="{{@index}}"><i class="fas fa-trash-alt"></i></div>
+            </div>
+        </div>
+        {{else}}
+        <div class="inventory-item flexrow">
+            <div class="counter"></div>
+            <input list="gear-list" name="inventory-{{@index}}" class="inventory-item-value" data-index="{{@index}}"
+                value="{{item.name}}" />
+        </div>
+        <div class="options flexrow">
+            <div class="adder-gear" data-index="{{@index}}">
+                <div class="plus"></div>
+            </div>
+        </div>
+        {{/if}}
+    </li>
+    {{/each}}
+</ol>
+<div class="inventory-sort"><i class="fas fa-sort"></i>
+    Sort</div>
+<datalist id="gear-list">
+    {{#each gearList as | gear | }}
+    <option value="{{gear.name}}">
+        {{/each}}
+</datalist>
