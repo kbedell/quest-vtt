@@ -99,7 +99,7 @@ export class EffectAdder extends FormApplication {
    * @param html {HTML}   The prepared HTML object ready to be rendered into the DOM
    */
   activateListeners(html) {
-    if (!game.user.isGM) return;
+    if (!this.options.editable) return;
 
     html.find(".adder-range").click(this._onRangeAdder.bind(this));
     html.find(".submit").click(this._updateAbility.bind(this));

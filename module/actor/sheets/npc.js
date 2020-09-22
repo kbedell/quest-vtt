@@ -28,7 +28,7 @@ export class NPCSheetQuest extends ActorSheetQuest {
    * @type {String}
    */
   get template() {
-    if (game.user.isGM && this.actor.owner) {
+    if (game.user.isGM || this.actor.owner) {
       return "systems/quest/templates/actors/npc-sheet.html";
     }
   }
