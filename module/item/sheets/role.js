@@ -49,7 +49,6 @@ export class RoleSheetQuest extends ItemSheetQuest {
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
-    if (!game.user.isGM) return;
 
     html.find(".item-delete").click(this._onDeletePathAbility.bind(this));
     html.find(".adder-paths").click(this._onPathAdder.bind(this));
