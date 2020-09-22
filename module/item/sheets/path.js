@@ -46,7 +46,6 @@ export class PathSheetQuest extends ItemSheetQuest {
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
-    if (!game.user.isGM) return;
 
     html.find(".delete").click(this._onDeleteAbility.bind(this));
     html.find(".adder-abilities").click(this._onAbilityAdder.bind(this));
