@@ -87,7 +87,7 @@ export class RangeAdder extends FormApplication {
    * @param html {HTML}   The prepared HTML object ready to be rendered into the DOM
    */
   activateListeners(html) {
-    if (!game.user.isGM) return;
+    if (!this.options.editable) return;
 
     html.find(".submit").click(this._updateEvent.bind(this));
     html.find(".cancel").click(this._cancelRangeCreation.bind(this));
