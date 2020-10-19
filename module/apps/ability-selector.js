@@ -69,6 +69,8 @@ export class AbilitySelector extends FormApplication {
               abilities.includes(path.abilities[previous].id)
             ) {
               available = true;
+            } else if (path === 'legendaries') {
+              available = true;
             }
 
             abilityData.push({
@@ -128,6 +130,8 @@ export class AbilitySelector extends FormApplication {
             abilities &&
             abilities.includes(options[h].abilities[previous].id)
           ) {
+            available = true;
+          } else if (options[h].id === "legendaries") {
             available = true;
           }
 
