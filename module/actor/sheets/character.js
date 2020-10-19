@@ -277,6 +277,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
                 name: abilityData.name,
                 id: abilityData._id,
                 order: a,
+                legendary: false,
                 effects: abilityData.data.effects,
               };
 
@@ -301,6 +302,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
               name: abilityData.name,
               id: abilityData._id,
               order: a,
+              legendary: true,
               effects: abilityData.data.effects,
             };
 
@@ -310,6 +312,7 @@ export class CharacterSheetQuest extends ActorSheetQuest {
           if (legendaryOptions.length > 0) {
             choices.push({
               name: "Legendaries",
+              id: "legendaries",
               abilities: legendaryOptions,
             });
           }

@@ -69,6 +69,8 @@ export class AbilitySelector extends FormApplication {
               abilities.includes(path.abilities[previous].id)
             ) {
               available = true;
+            } else if (path === 'legendaries') {
+              available = true;
             }
 
             abilityData.push({
@@ -128,6 +130,8 @@ export class AbilitySelector extends FormApplication {
             abilities &&
             abilities.includes(options[h].abilities[previous].id)
           ) {
+            available = true;
+          } else if (options[h].id === "legendaries") {
             available = true;
           }
 
@@ -276,22 +280,24 @@ export class AbilitySelector extends FormApplication {
     const index = event.currentTarget.dataset.index;
     const pathId = event.currentTarget.dataset.pathId;
 
-    let checks = document.querySelectorAll(".ability-check-" + pathId);
-    let checked = event.currentTarget.checked;
+    if (pathId != "legendaries") {
+      let checks = document.querySelectorAll(".ability-check-" + pathId);
+      let checked = event.currentTarget.checked;
 
-    if (!checked) {
-      for (let i = checks.length; i > 0; i--) {
-        if (i - 1 >= index && i - 1 !== 0) {
-          checks[i - 1].checked = false;
-          checks[i - 1].disabled = true;
-          checks[i - 1].parentNode.classList.add("disabled");
+      if (!checked) {
+        for (let i = checks.length; i > 0; i--) {
+          if (i - 1 >= index && i - 1 !== 0) {
+            checks[i - 1].checked = false;
+            checks[i - 1].disabled = true;
+            checks[i - 1].parentNode.classList.add("disabled");
+          }
         }
-      }
-    } else {
-      let next = parseInt(index) + 1;
-      if (checks[next]) {
-        checks[next].disabled = false;
-        checks[next].parentNode.classList.remove("disabled");
+      } else {
+        let next = parseInt(index) + 1;
+        if (checks[next]) {
+          checks[next].disabled = false;
+          checks[next].parentNode.classList.remove("disabled");
+        }
       }
     }
   }
