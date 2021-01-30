@@ -70,6 +70,8 @@
   "QUEST.FilterGear": "Filter Gear",
 
   "QUEST.EffectCost": "Adventure Point Cost",
+  "QUEST.EffectDamage": "Damage",
+  "QUEST.DamageMultiplier": "Damage Multiplier",
   "QUEST.VariableCost": "Variable Cost?",
   "QUEST.SpellCost": "AP Cost",
   "QUEST.Ranges": "Roll Ranges",

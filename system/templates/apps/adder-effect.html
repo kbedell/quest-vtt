@@ -34,6 +34,21 @@
         </div>
         <div class="item-section flexcol">
             <div class="section-wrapper">
+                <div class="section-header">{{localize 'QUEST.Damage'}}</div>
+                <div class="field-group" id="damage">
+                    <label class="item-label" for="damage">{{localize 'QUEST.Damage'}}</label>
+                    <input name="damage" type="number" class="damage quest-input" placeholder="0"
+                        value="{{data.damage}}">
+                </div>
+                <div class="field-group" id="damagemultiplier">
+                    <label class="item-label" for="damagemultiplier">{{localize 'QUEST.DamageMultiplier'}}</label>
+                    <input name="damagemultiplier" type="number" class="damagemultiplier quest-input" placeholder="0"
+                        value="{{data.damagemultiplier}}">
+                </div>
+            </div>
+        </div>
+        <div class="item-section flexcol">
+            <div class="section-wrapper">
                 <div class="section-header">
                     Descriptions
                 </div>
@@ -69,9 +84,9 @@
                     </ul>
 
                     <div class="field-group" id="adder-range">
-                        <div class="adder-range">
+                        <button class="adder-range">
                             <i class="fas fa-plus"></i> {{localize 'QUEST.AddRange'}}
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -31,8 +31,8 @@
                                 {{localize 'QUEST.LegendaryToolTip'}}
                             </span>
                         </div>
-                        <input type="checkbox" name="data.legendary" id="data.legendary" value="true"
-                            {{#if data.legendary}}checked=true{{/if}}>
+                        <input type="checkbox" name="data.legendary" id="data.legendary" value="true" {{#if
+                            data.legendary}}checked=true{{/if}}>
                         <label for="data.legendary"></label>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
             </div>
         </div>
         {{!-- Descriptions End --}}
-        {{!--Effects Start  --}}
+        {{!--Effects Start --}}
         <div class="item-section flexcol">
             <div class="section-wrapper">
                 <div class="section-header">
@@ -79,9 +79,9 @@
                         {{/each}}
                     </ul>
                     <div class="field-group" id="adder-effect">
-                        <div class="adder-effect">
+                        <button class="adder-effect">
                             <i class="fas fa-plus"></i> {{localize 'QUEST.AddEffect'}}
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>

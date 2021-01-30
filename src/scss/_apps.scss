@@ -19,7 +19,7 @@
 
     &::before {
       content: '';
-      background-image: url('/systems/quest/assets/icons/symbol_effect.svg');
+      background-image: url('/systems/quest/assets/symbols/symbol_effect.svg');
       background-repeat: no-repeat;
       background-size: 236.18px 244px;
       opacity: 0.5;
@@ -113,11 +113,15 @@
               line-height: 28px;
             }
 
-            #spellcost {
+            #spellcost,
+            #damage,
+            #damagemultiplier {
               text-align: left;
             }
 
-            .spellcost {
+            .spellcost,
+            .damage,
+            .damagemultiplier {
               width: 80px;
             }
 
@@ -191,7 +195,6 @@
               text-align: center;
               border: none;
               line-height: 39px;
-              cursor: pointer;
               background: url('/systems/quest/assets/icons/teal_button_small.svg') no-repeat;
 
               &:hover,
@@ -222,7 +225,7 @@
 
     &::before {
       content: '';
-      background-image: url('/systems/quest/assets/icons/symbol_range.svg');
+      background-image: url('/systems/quest/assets/symbols/symbol_range.svg');
       background-repeat: no-repeat;
       background-size: 236.18px 244px;
       opacity: 0.5;

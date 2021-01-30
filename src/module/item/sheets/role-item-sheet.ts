@@ -32,7 +32,6 @@ export class RoleItemSheet extends ItemSheetQuest {
     super.activateListeners(html);
 
     if (!this.options.editable) return;
-    if (!game.user.isGM) return;
 
     const paths = await getAllItems('path', false);
     let optionsPaths = {

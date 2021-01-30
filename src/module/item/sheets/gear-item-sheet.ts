@@ -2,7 +2,7 @@ import { ItemSheetQuest } from './item-sheet-quest';
 import { GearData, rarity } from '../gear-item';
 import { AdderEffect } from '../../apps/adder-effect';
 import { EffectData, EffectItem, isEffect } from '../effect-item';
-import { ShowCloseSelector, UpdateSelector } from '../../helper/custom-selector-helper';
+import { CloseSelector, ShowCloseSelector, UpdateSelector } from '../../helper/custom-selector-helper';
 
 export class GearItemSheet extends ItemSheetQuest {
   static get defaultOptions() {
@@ -19,6 +19,7 @@ export class GearItemSheet extends ItemSheetQuest {
     let data = super.getData() as GearSheetData;
 
     data.rarities = this._getRarities(data.data.rarity) as Rarities;
+    data.selected = this._getSelectedRarity(data.rarities);
 
     return data;
   }
@@ -26,13 +27,14 @@ export class GearItemSheet extends ItemSheetQuest {
   activateListeners(html: JQuery): void {
     super.activateListeners(html);
 
-    if (!game.user.isGM) return;
+    if (!this.options.editable) return;
 
     html.find('.adder-effect').on('click', this._onAdderEffect.bind(this));
     html.find('.editor-effect').on('click', this._onEditorEffect.bind(this));
     html.find('.delete-effect').on('click', this._onDeleteEffect.bind(this));
-    html.find('.quest-selector').on('click', ShowCloseSelector.bind(this));
+    html.find('.selector-selected').on('click', ShowCloseSelector.bind(this));
     html.find('.selector-item').on('click', UpdateSelector.bind(this));
+    html.on('click', CloseSelector.bind(this));
   }
 
   _getRarities(rarity: rarity) {
@@ -53,6 +55,18 @@ export class GearItemSheet extends ItemSheetQuest {
     };
   }
 
+  _getSelectedRarity(rarities: Rarities) {
+    if (rarities.custom != '') {
+      return rarities.custom;
+    }
+
+    for (let c = 0; c < rarities.choices.length; c++) {
+      if (rarities.choices[c].selected) {
+        return rarities.choices[c].display;
+      }
+    }
+  }
+
   async _onAdderEffect(event: JQuery.ClickEvent): Promise<void> {
     event.preventDefault();
 
@@ -62,13 +76,13 @@ export class GearItemSheet extends ItemSheetQuest {
     let data = {
       _id: randomID(),
       name: 'New Effect',
-      img: 'systems/quest/assets/icons/symbol_effect_small.svg',
+      img: 'systems/quest/assets/symbols/symbol_effect_small.svg',
       data: {
         description: {
-          full: '',
-          chat: ''
+          full: null,
+          chat: null
         },
-        spellcost: 0,
+        spellcost: null,
         variablecost: false,
         ranges: []
       },
@@ -171,6 +185,7 @@ export class GearItemSheet extends ItemSheetQuest {
 
 interface GearSheetData extends ItemSheetData {
   rarities?: Rarities;
+  selected?: string;
 }
 
 interface Rarities {

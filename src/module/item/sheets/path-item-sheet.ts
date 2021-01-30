@@ -1,5 +1,5 @@
 import { ItemSheetQuest } from './item-sheet-quest';
-import { getItem, getAllItems } from '../../helper/item-helpers';
+import { getItem, getAllItems, getItemByName } from '../../helper/item-helpers';
 import { autocomplete } from '../../helper/autocomplete-helper';
 import { AbilityItem } from '../ability-item';
 
@@ -28,19 +28,21 @@ export class PathItemSheet extends ItemSheetQuest {
   async activateListeners(html: JQuery): Promise<void> {
     super.activateListeners(html);
 
-    if (!game.user.isGM) return;
+    if (!this.options.editable) return;
+
     const data = await getAllItems('ability', false);
     let options = {
       data: data,
       input: document.getElementById('filter'),
       autocomplete: document.getElementById('autocomplete'),
+      button: document.getElementById('adder-ability'),
       type: 'ability',
       object: this.object
     };
 
-    autocomplete(options);
+    await autocomplete(options);
 
-    html.find('.delete-ability').click(this._onDeleteAbility.bind(this));
+    html.find('.delete-ability').on('click', this._onDeleteAbility.bind(this));
     html.find('li.ability').each((i, li) => {
       li.setAttribute('draggable', 'true');
       li.addEventListener('dragstart', this._onReorderDragStart.bind(this), false);

@@ -19,7 +19,7 @@
 
     &::before {
       content: '';
-      background-image: url('/systems/quest/assets/icons/symbol_ability.svg');
+      background-image: url('/systems/quest/assets/symbols/symbol_ability.svg');
       background-repeat: no-repeat;
       background-size: 236.18px 244px;
       opacity: 0.5;
@@ -223,7 +223,7 @@
 
     &::before {
       content: '';
-      background-image: url('/systems/quest/assets/icons/symbol_gear.svg');
+      background-image: url('/systems/quest/assets/symbols/symbol_gear.svg');
       background-repeat: no-repeat;
       background-size: 236.18px 244px;
       opacity: 0.5;
@@ -337,6 +337,10 @@
               align-items: center;
             }
 
+            .rarity-selector {
+              align-items: center;
+            }
+
             .damage,
             .activationcost {
               flex: 0 0 auto;
@@ -415,6 +419,457 @@
               &:hover,
               &:active {
                 background: url('/systems/quest/assets/icons/teal_button_small_hover.svg') no-repeat;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ----------------------------------------- */
+/*  Path Styles                              */
+/* ----------------------------------------- */
+.quest.item.path {
+  min-width: 496px;
+  min-height: 568px;
+
+  .window-content {
+    position: relative;
+    border-radius: 8px;
+    background-color: $background;
+    background-image: none;
+    padding: 16px;
+
+    &::before {
+      content: '';
+      background-image: url('/systems/quest/assets/symbols/symbol_path.svg');
+      background-repeat: no-repeat;
+      background-size: 236.18px 244px;
+      opacity: 0.5;
+      position: absolute;
+      top: 184px;
+      right: 0px;
+      bottom: 0px;
+      left: 128px;
+      max-height: 560px;
+    }
+
+    .form-path {
+      .item-header {
+        text-align: center;
+        flex: 0 0 auto;
+        margin-bottom: 19px;
+
+        .item-wrapper {
+          .image {
+            height: 96px;
+            width: 96px;
+            border: 2px solid $darkTeal;
+            margin-bottom: 8px;
+            border-radius: 96px;
+          }
+
+          .name-wrapper {
+            height: 37px;
+            width: 320px;
+            margin: 0px auto;
+            border-bottom: 3px solid $active;
+          }
+
+          .name {
+            height: 32px;
+            font-family: $header;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 22px;
+            text-align: center;
+          }
+        }
+      }
+
+      .item-body {
+        color: $black;
+
+        .item-section {
+          text-align: center;
+          width: 464px;
+          flex: 0 0 auto;
+          padding: 0px 16px 16px 16px;
+          border-radius: 8px;
+          position: relative;
+          margin-bottom: 16px;
+
+          &::before {
+            background: $linearItem;
+            opacity: 0.5;
+            content: '';
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            border-radius: 8px;
+            max-height: 600px;
+          }
+
+          &:last-child {
+            margin-bottom: 0px;
+          }
+
+          .section-wrapper {
+            position: relative;
+
+            .section-header {
+              font-family: $body;
+              font-style: normal;
+              font-weight: bold;
+              font-size: 18px;
+              line-height: 22px;
+            }
+
+            .section-body {
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+
+            .item-label {
+              flex: 0 0 auto;
+              margin-right: 10px;
+              text-align: left;
+            }
+
+            .tooltip {
+              flex: 0 0 auto;
+              margin-right: 10px;
+            }
+
+            input[type='checkbox'] + label {
+              flex: 0 0 auto;
+              margin-top: -3px;
+            }
+
+            .field-group {
+              text-align: left;
+              margin-bottom: 4px;
+              align-items: center;
+            }
+
+            .filter-ability {
+              position: relative;
+              flex: 0 0 auto;
+              margin-bottom: 16px;
+
+              #autocomplete {
+                position: absolute;
+                color: rgba(0, 0, 0);
+                border: 0.75px solid transparent;
+                font-family: $body;
+                font-style: normal;
+                font-weight: bold;
+                height: 24px;
+                padding-left: 12px;
+                z-index: 1;
+                top: 0.21em;
+                left: 0.1em;
+              }
+
+              #autocomplete + .ability-filter:focus {
+                border: 2.5px solid $active;
+              }
+
+              .ability-filter {
+                position: relative;
+                text-align: left;
+                z-index: 2;
+              }
+            }
+
+            .drag-bars {
+              flex: 0 0 auto;
+              background: url('/systems/quest/assets/icons/icon_move.svg') no-repeat;
+              height: 25px;
+              width: 25px;
+              margin-top: -4px;
+              margin-left: -8px;
+
+              &:hover {
+                background: url('/systems/quest/assets/icons/icon_move_hover.svg') no-repeat;
+                margin-left: -9px;
+                height: 25px;
+                width: 25px;
+              }
+
+              &:active {
+                background: url('/systems/quest/assets/icons/icon_move_press.svg') no-repeat;
+                margin-left: -9px;
+                height: 25px;
+                width: 25px;
+              }
+            }
+
+            .plus {
+              margin-left: 8px;
+            }
+
+            .abilities-list {
+              margin: 0px;
+              padding: 0px;
+
+              .ability.item {
+                flex: 0 0 auto;
+                background: $linearListItem;
+                height: 16px;
+                font-family: $body;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 19px;
+                margin-bottom: 8px;
+                text-align: center;
+              }
+
+              .ability-name {
+                flex: 0 0 auto;
+                margin-left: 23px;
+              }
+
+              .options {
+                justify-content: flex-end;
+                margin-top: -4px;
+
+                .delete-ability {
+                  flex: 0 0 auto;
+                  background: url('/systems/quest/assets/icons/icon_trash.svg') no-repeat;
+                  height: 26px;
+                  width: 28px;
+                  margin-top: -2px;
+
+                  &:hover,
+                  &:active {
+                    background: url('/systems/quest/assets/icons/icon_trash_hover.svg') no-repeat;
+                    height: 26px;
+                    width: 28px;
+                    margin-left: -8px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ----------------------------------------- */
+/*  Role Styles                              */
+/* ----------------------------------------- */
+.quest.item.role {
+  min-width: 496px;
+  min-height: 568px;
+
+  .window-content {
+    position: relative;
+    border-radius: 8px;
+    background-color: $background;
+    background-image: none;
+    padding: 16px;
+
+    &::before {
+      content: '';
+      background-image: url('/systems/quest/assets/symbols/symbol_role.svg');
+      background-repeat: no-repeat;
+      background-size: 236.18px 244px;
+      opacity: 0.5;
+      position: absolute;
+      top: 184px;
+      right: 0px;
+      bottom: 0px;
+      left: 128px;
+      max-height: 560px;
+    }
+
+    .form-path {
+      .item-header {
+        text-align: center;
+        flex: 0 0 auto;
+        margin-bottom: 19px;
+
+        .item-wrapper {
+          .image {
+            height: 96px;
+            width: 96px;
+            border: 2px solid $darkTeal;
+            margin-bottom: 8px;
+            border-radius: 96px;
+          }
+
+          .name-wrapper {
+            height: 37px;
+            width: 320px;
+            margin: 0px auto;
+            border-bottom: 3px solid $active;
+          }
+
+          .name {
+            height: 32px;
+            font-family: $header;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 22px;
+            text-align: center;
+          }
+        }
+      }
+
+      .item-body {
+        color: $black;
+
+        .item-section {
+          text-align: center;
+          width: 464px;
+          flex: 0 0 auto;
+          padding: 0px 16px 16px 16px;
+          border-radius: 8px;
+          position: relative;
+          margin-bottom: 16px;
+
+          &::before {
+            background: $linearItem;
+            opacity: 0.5;
+            content: '';
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            border-radius: 8px;
+            max-height: 600px;
+          }
+
+          &:last-child {
+            margin-bottom: 0px;
+          }
+
+          .section-wrapper {
+            position: relative;
+
+            .section-header {
+              font-family: $body;
+              font-style: normal;
+              font-weight: bold;
+              font-size: 18px;
+              line-height: 22px;
+            }
+
+            .section-body {
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+
+            .item-label {
+              flex: 0 0 auto;
+              margin-right: 10px;
+              text-align: left;
+            }
+
+            .tooltip {
+              flex: 0 0 auto;
+              margin-right: 10px;
+            }
+
+            input[type='checkbox'] + label {
+              flex: 0 0 auto;
+              margin-top: -3px;
+            }
+
+            .field-group {
+              text-align: left;
+              margin-bottom: 4px;
+              align-items: center;
+            }
+
+            .filter-ability {
+              position: relative;
+              flex: 0 0 auto;
+              margin-bottom: 16px;
+
+              #autocomplete {
+                position: absolute;
+                color: rgba(0, 0, 0);
+                border: 0.75px solid transparent;
+                font-family: $body;
+                font-style: normal;
+                font-weight: bold;
+                height: 24px;
+                padding-left: 12px;
+                z-index: 1;
+                top: 0.21em;
+                left: 0.1em;
+              }
+
+              #autocomplete + .ability-filter:focus {
+                border: 2.5px solid $active;
+              }
+
+              .ability-filter {
+                position: relative;
+                text-align: left;
+                z-index: 2;
+              }
+            }
+
+            .plus {
+              margin-left: 8px;
+            }
+
+            .abilities-list {
+              margin: 0px;
+              padding: 0px;
+
+              .ability.item {
+                flex: 0 0 auto;
+                background: $linearListItem;
+                height: 16px;
+                font-family: $body;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 19px;
+                margin-bottom: 8px;
+                text-align: center;
+              }
+
+              .ability-name {
+                flex: 0 0 auto;
+                margin-left: 23px;
+              }
+
+              .options {
+                justify-content: flex-end;
+                margin-top: -4px;
+
+                .delete-ability {
+                  flex: 0 0 auto;
+                  background: url('/systems/quest/assets/icons/icon_trash.svg') no-repeat;
+                  height: 26px;
+                  width: 28px;
+                  margin-top: -2px;
+
+                  &:hover,
+                  &:active {
+                    background: url('/systems/quest/assets/icons/icon_trash_hover.svg') no-repeat;
+                    height: 26px;
+                    width: 28px;
+                    margin-left: -8px;
+                  }
+                }
               }
             }
           }

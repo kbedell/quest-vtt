@@ -21,6 +21,8 @@ export interface EffectData extends ItemData {
   description: QuestDescription;
   spellcost: number;
   variablecost: boolean;
+  damage: number;
+  damagemultiplier: number;
   ranges: Array<RangeItem>;
 }
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { AbilityData, AbilityItem } from '../item/ability-item';
 import { EffectItem, EffectData } from '../item/effect-item';
 import { GearItem } from '../item/gear-item';
@@ -55,9 +56,11 @@ export class AdderEffect extends FormApplication {
         updateData.name = formData.name;
         updateData.img = formData.img;
         updateData.data.spellcost = Number(formData.spellcost);
-        updateData.data.variablecost = formData.variablecost;
+        updateData.data.variablecost = formData.variablecost ? false : formData.variablecost;
         updateData.data.description.full = formData['description.full'];
         updateData.data.description.chat = formData['description.chat'];
+        updateData.data.damage = formData.damage;
+        updateData.data.damagemultiplier = formData.damagemultiplier;
         updateData.data.ranges = updateData.data.ranges;
         if (parentData.data.effects) {
           mergeObject(this.object.data, updateData);
@@ -78,7 +81,15 @@ export class AdderEffect extends FormApplication {
 
   async _onAdderRange(event: JQuery.ClickEvent): Promise<void> {
     event.preventDefault();
-    this._updateObject(event, validateForm(this.form));
+
+    let forms = document.getElementsByClassName('form-ability');
+    if (forms.length > 0) {
+      let form = forms[0];
+      let fd: FormDataExtended = new FormDataExtended(form);
+      let formData = fd.toObject();
+      console.log(formData);
+      this._updateObject(event, formData);
+    }
 
     let range: number = -1;
 
@@ -87,17 +98,19 @@ export class AdderEffect extends FormApplication {
       name: 'New Range',
       data: {
         description: {
-          full: '',
-          chat: ''
+          full: null,
+          chat: null
         },
-        min: 0,
-        max: 0
+        min: null,
+        max: null
       },
       type: 'range',
       flags: []
     } as RangeData;
 
     const stub = new RangeItem(data, {});
+
+    await this._updateObject(event, this.form);
 
     let updateData: ItemData<AbilityData> = duplicate(this.parent.data);
 
@@ -138,7 +151,7 @@ export class AdderEffect extends FormApplication {
       if (app) {
         const data = await app.getData();
 
-        if (data._id === effectItem.data.ranges[this.options.range]._id) {
+        if (data._id === effectItem.data.ranges[range]._id) {
           return;
         }
       }
@@ -179,7 +192,7 @@ export class AdderEffect extends FormApplication {
 
     const temporaryRange = new RangeItem(data, { temporary: true });
 
-    ui.windows[this.options.abilityAppId].render(false, {});
+    ui.windows[this.options.parentApp].render(false, {});
     ui.windows[this.appId].render(false, {});
 
     new AdderRange(temporaryRange, options).render(true);

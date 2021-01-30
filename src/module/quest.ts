@@ -6,7 +6,6 @@
  * Repository: https://github.com/kbedell/quest-vtt
  * Issue Tracker: https://github.com/kbedell/quest-vtt/issues
  */
-
 import { QUEST } from './config';
 import { registerSystemSettings } from './settings';
 import { preloadHandlebarsTemplates } from './templates';
@@ -88,16 +87,16 @@ Hooks.once('preCreateItem', function (data: any, options: any) {
         data.img = 'systems/quest/assets/icons/upgrade.png';
         break;
       case 'path':
-        data.img = 'systems/quest/assets/icons/skills.png';
+        data.img = 'systems/quest/assets/symbols/symbol_path_small.svg';
         break;
       case 'ability':
-        data.img = 'systems/quest/assets/icons/symbol_ability_small_white.svg';
+        data.img = 'systems/quest/assets/symbols/symbol_ability_small.svg';
         break;
       case 'effect':
-        data.img = 'systems/quest/assets/icons/symbol_effect_small_white.svg';
+        data.img = 'systems/quest/assets/symbols/symbol_effect_small.svg';
         break;
       case 'gear':
-        data.img = 'systems/quest/assets/icons/symbol_gear_small_white.svg';
+        data.img = 'systems/quest/assets/symbols/symbol_gear_small.svg';
         break;
     }
   }

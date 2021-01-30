@@ -3,6 +3,7 @@ import { getItemByName } from './item-helpers';
 export async function autocomplete(options: any) {
   const input: HTMLInputElement = options.input as HTMLInputElement,
     autocomplete: HTMLElement = options.autocomplete as HTMLElement,
+    button: HTMLElement = options.button as HTMLElement,
     object = options.object,
     data = options.data,
     handlers: { [index: string]: Function } = {
@@ -10,6 +11,7 @@ export async function autocomplete(options: any) {
         e.preventDefault();
         let suggestion = getSuggestion(input.value);
         input.value = suggestion;
+        clear(e);
       },
       input: function (e: any) {
         autocomplete.innerHTML = input.value;
@@ -75,6 +77,14 @@ export async function autocomplete(options: any) {
     return method ? handlers[method](event) : clear(event);
   }
 
+  async function clickHandler(event: any) {
+    return await handlers['enter'](event);
+  }
+
+  function mouseDownIgnore(event: any) {
+    event.preventDefault();
+  }
+
   function clear(event: any) {
     if ((input.value.length <= 1 && event.keyCode === 8) || input.value === '') {
       autocomplete.innerHTML = '';
@@ -83,4 +93,6 @@ export async function autocomplete(options: any) {
 
   input.addEventListener('keyup', keyHandler);
   input.addEventListener('keydown', keyHandler);
+  button.addEventListener('mouseup', clickHandler);
+  button.addEventListener('mousedown', mouseDownIgnore);
 }

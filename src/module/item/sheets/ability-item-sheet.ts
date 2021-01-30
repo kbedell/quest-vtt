@@ -2,6 +2,7 @@ import { ItemSheetQuest } from './item-sheet-quest';
 import { AbilityData } from '../ability-item';
 import { EffectData, EffectItem, isEffect } from '../effect-item';
 import { AdderEffect } from '../../apps/adder-effect';
+import { forEachChild } from 'typescript';
 
 export class AbilityItemSheet extends ItemSheetQuest {
   static get defaultOptions(): FormApplicationOptions {
@@ -27,7 +28,7 @@ export class AbilityItemSheet extends ItemSheetQuest {
   activateListeners(html: JQuery): void {
     super.activateListeners(html);
 
-    if (!game.user.isGM) return;
+    if (!this.options.editable) return;
 
     html.find('.adder-effect').on('click', this._onAdderEffect.bind(this));
     html.find('.editor-effect').on('click', this._onEditorEffect.bind(this));
@@ -36,6 +37,7 @@ export class AbilityItemSheet extends ItemSheetQuest {
 
   async _onAdderEffect(event: JQuery.ClickEvent): Promise<void> {
     event.preventDefault();
+    console.log('Fired!');
 
     const ability: ItemData<AbilityData> = this.item.data;
     let effect: number = -1;
@@ -43,14 +45,16 @@ export class AbilityItemSheet extends ItemSheetQuest {
     let data = {
       _id: randomID(),
       name: 'New Effect',
-      img: 'systems/quest/assets/icons/symbol_effect_small.svg',
+      img: 'systems/quest/assets/symbols/symbol_effect_small.svg',
       data: {
         description: {
-          full: '',
-          chat: ''
+          full: null,
+          chat: null
         },
-        spellcost: 0,
+        spellcost: null,
         variablecost: false,
+        damage: null,
+        damagemultiplier: null,
         ranges: []
       },
       type: 'effect',
@@ -127,6 +131,7 @@ export class AbilityItemSheet extends ItemSheetQuest {
 
   async _onDeleteEffect(event: JQuery.ClickEvent) {
     event.preventDefault();
+
     const effect: number = Number(event.currentTarget.closest('.effect').dataset.index);
     let updateData: ItemData<AbilityData> = duplicate(this.item.data);
 

@@ -32,14 +32,7 @@
                     <div class="field-group flexrow">
                         <div class="rarity-selector flexrow">
                             <label class="item-label" for="data.rarity.value">{{localize 'QUEST.Rarity'}}</label>
-                            <div class="quest-select">
-                                <div class="quest-selector">
-                                    <div class="selector-items hide">
-                                        {{#each rarities.choices as |rarity|}}
-                                        <div class="selector-item">{{rarity.display}}</div>
-                                        {{/each}}
-                                    </div>
-                                </div>
+                            <div class="quest-selector">
                                 <select class='quest-select-hide' name="data.rarity.value" id="rarity-select">
                                     <option class="rarity-option" value=""></option>
                                     {{#each rarities.choices as |rarity|}}
@@ -48,6 +41,13 @@
                                         {{rarity.display}}</option>
                                     {{/each}}
                                 </select>
+                                <div class="selector-selected">{{selected}}</div>
+                                <div class="selector-items hide">
+                                    <div class="selector-item"></div>
+                                    {{#each rarities.choices as |rarity|}}
+                                    <div class="selector-item">{{rarity.display}}</div>
+                                    {{/each}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                         <input type="text" name="data.rarity.custom" value="{{data.rarity.custom}}" data-dtype="String"
                             placeholder="{{localize 'QUEST.PlaceholderCustomRarity'}}" />
                     </div>
-                    <div class="field-group flexrow">
+                    <!-- <div class="field-group flexrow">
                         <label class="item-label" for="data.damage">{{localize 'QUEST.Damage'}}</label>
                         <input type="number" class="damage" name="data.damage" data-dtype="Number"
                             value="{{data.damage}}">
@@ -65,7 +65,7 @@
                         <label class="item-label" for="data.activationcost">{{localize 'QUEST.ActivationCost'}}</label>
                         <input type="number" class="activationcost" name="data.activationcost" data-dtype="Number"
                             value="{{data.activationcost}}">
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -82,15 +82,29 @@
                         <textarea name="data.description.full" class="description"
                             placeholder="{{localize 'QUEST.PlaceholderFullDescription'}}">{{data.description.full}}</textarea>
                     </div>
-                    <div class="field-group">
+                    <!-- <div class="field-group">
                         <div class="item-label">{{localize 'QUEST.ChatDescription'}}</div>
                         <textarea name="data.description.chat" class="description"
                             placeholder="{{localize 'QUEST.PlaceholderChatDescription'}}">{{data.description.chat}}</textarea>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
         {{!-- Descriptions End --}}
+        <!-- {{!-- Notes Start --}}
+        <div class="item-section flexcol">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    {{localize 'QUEST.Notes'}}
+                </div>
+                <div class="section-body">
+                    <div class="field-group">
+                        <textarea name="data.notes" class="description" placeholder="Notes">{{data.notes}}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- Notes End --}} -->
         {{!--Effects Start  --}}
         <div class=" item-section flexcol">
             <div class="section-wrapper">

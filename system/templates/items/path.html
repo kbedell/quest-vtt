@@ -1,35 +1,46 @@
-<form class="{{cssClass}} flexcol" autocomplete="off">
+<form class="{{cssClass}} form-path flexcol" autocomplete="off">
     {{!-- Header --}}
     <header class="item-header flexcol">
-        <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
-        <h1 class="header flexrow">
-            <input name="name" class="item-name" type="text" value="{{item.name}}"
-                placeholder="{{localize 'QUEST.PathName'}}" />
-        </h1>
+        <div class="item-wrapper">
+            <img class="image" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+        </div>
+
+        <div class="item-wrapper">
+            <div class="name-wrapper">
+                <input name="name" class="name" type="text" value="{{item.name}}"
+                    placeholder="{{localize 'QUEST.PathName'}}" />
+            </div>
+        </div>
     </header>
     {{!-- Header End --}}
-    {{!-- Body --}}
-    <div class="section flexcol">
-        <h1 class="section-header">
-            {{localize 'QUEST.Abilities'}}
-        </h1>
-        <div class="filter-ability" id="filter-ability">
-            <div id="autocomplete"></div>
-            <input type="text" autofocus="true" name="filter" placeholder="{{localize 'QUEST.SearchAbilities'}}"
-                class="ability-filter" id="filter"></input>
+    {{!-- Body Start--}}
+    <div class="item-body flexcol">
+        {{!-- General Start --}}
+        <div class="item-section flexcol" id="abilities">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    {{localize 'QUEST.Abilities'}}
+                </div>
+                <div class="filter-ability flexrow" id="filter-ability">
+                    <div id="autocomplete"></div>
+                    <input type="text" autofocus="true" name="filter" placeholder="{{localize 'QUEST.SearchAbilities'}}"
+                        class="ability-filter" id="filter"></input>
+                    <div class="plus" id="adder-ability"></div>
+                </div>
+                <ul class="abilities-list flexcol" id="abilities-list">
+                    {{#each abilities as | ability |}}
+                    <li class="ability item flexrow" data-index="{{@index}}" data-id="{{@ability._id}}">
+                        <div class="drag-bars">
+                        </div>
+                        <div class="ability-name">{{ability.name}}</div>
+                        <div class="options flexrow">
+                            <div class="delete-ability"></div>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
         </div>
-        <ul class="abilities-list" id="abilities-list">
-            {{#each abilities as | ability |}}
-            <li class="ability item flexrow" data-index="{{@index}}" data-id="{{@ability._id}}">
-                <div class="drag-bars">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <div class="index">{{ ability.order }}</div> {{ability.name}} <div class="options flexrow">
-                    <div class="delete-ability"><i class="fas fa-trash-alt item-delete"></i></div>
-                </div>
-            </li>
-            {{/each}}
-        </ul>
     </div>
     {{!-- Body End--}}
 </form>

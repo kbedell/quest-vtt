@@ -87,55 +87,77 @@
     cursor: pointer;
   }
 
-  .quest-select {
-    position: relative;
-  }
-
   .quest-selector {
     position: relative;
 
-    &:after {
-      position: absolute;
-      content: '';
-      background-image: url('/systems/quest/assets/icons/icon_angle_down.svg');
-      background-repeat: no-repeat;
-      top: 14px;
-      right: 10px;
-      width: 0;
-      height: 0;
-    }
+    .selector-selected {
+      height: 24px;
+      line-height: 24px;
 
-    .select-arrow-active:after {
-      background-image: url('/systems/quest/assets/icons/icon_angle_up.svg');
-      background-repeat: no-repeat;
-      top: 7px;
+      &:after {
+        position: absolute;
+        content: '';
+        background-image: url('/systems/quest/assets/icons/icon_angle_down.svg');
+        background-repeat: no-repeat;
+        top: 7px;
+        right: 8px;
+        width: 9px;
+        height: 14px;
+      }
+
+      .select-arrow-active:after {
+        background-image: url('/systems/quest/assets/icons/icon_angle_up.svg');
+        background-repeat: no-repeat;
+        top: 7px;
+        right: 8px;
+        width: 9px;
+        height: 14px;
+      }
     }
   }
 
   .selector-items div,
-  .quest-selector {
+  .selector-selected {
     cursor: pointer;
+    margin-bottom: 4px;
   }
 
   .selector-items {
     position: absolute;
-    background-color: DodgerBlue;
+    background: rgba(240, 255, 246, 1);
+    padding-left: 12px;
+    border: 0.75px solid $darkTeal;
+    border-radius: 8px;
     top: 100%;
     left: 0;
     right: 0;
     z-index: 99;
   }
 
-  .selector-items div:hover,
+  .selector-items .selector-item:hover,
   .same-as-selected {
-    // background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
   }
 
-  .quest-select select {
+  .quest-selector select {
     position: absolute;
     left: -9999px;
   }
 
+  .plus {
+    flex: 0 0 auto;
+    background: url('/systems/quest/assets/icons/icon_plus.svg') no-repeat;
+    height: 27px;
+    width: 27px;
+    margin-top: -2px;
+
+    &:hover,
+    &:active {
+      background: url('/systems/quest/assets/icons/icon_plus_hover.svg') no-repeat;
+      height: 27px;
+      width: 27px;
+    }
+  }
   .hide {
     display: none;
   }
