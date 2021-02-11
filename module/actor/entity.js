@@ -161,7 +161,31 @@ export class ActorQuest extends Actor {
       chatData["whisper"] = ChatMessage.getWhisperIDs("GM");
     if (rollMode === "blindroll") chatData["blind"] = true;
 
-    return ChatMessage.create(chatData);
+    let showRoll = game.settings.get("quest", "showRoll");
+
+    if (showRoll === "roll-only" || showRoll === "roll-both") {
+      const dice = {
+        throws:[{
+            dice:[
+                {
+                    result:roll.total,
+                    resultLabel:roll.total,
+                    type: "d20",
+                    vectors:[],
+                    options:{}
+                }
+            ]
+        }]
+    };
+    
+      game.dice3d.show(dice);
+    }
+
+    if (showRoll === "chat-only" || showRoll === "roll-both") {
+      return ChatMessage.create(chatData);
+    } else {
+      return ;
+    }
   }
 
   /* -------------------------------------------- */

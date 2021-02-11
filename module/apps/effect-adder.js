@@ -64,8 +64,8 @@ export class EffectAdder extends FormApplication {
       if (ability.data.effects.length > 0) {
         effect.ranges = ability.data.effects[index].ranges;
       }
-      ability.data.effects.push(effect);
       
+      ability.data.effects.push(effect);
     } else {
       ability.data.effects[index] = {
         name: effectData.name,
@@ -78,6 +78,14 @@ export class EffectAdder extends FormApplication {
         img: effectData.img,
         ranges: ability.data.effects[index].ranges
       };
+    }
+
+    for (let e = 0; e < ability.data.effects.length; e++) {
+      let effect = ability.data.effects[e];
+
+      if (effect.name === "" || !effect.name) {
+        ability.data.effects.splice(e, 1);
+      }
     }
 
     await this.object.update(ability);
