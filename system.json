@@ -28,6 +28,6 @@
   "secondaryTokenAttribute": "actionpoints",
   "url": "https://github.com/kbedell/quest-vtt",
   "manifest": "https://raw.githubusercontent.com/kbedell/quest-vtt/stable/system.json",
-  "download": "https://github.com/kbedell/quest-vtt/releases/download/v1.10.4/quest.zip",
+  "download": "https://github.com/kbedell/quest-vtt/releases/download/v1.11.0/quest.zip",
   "license": "LICENSE"
 }
