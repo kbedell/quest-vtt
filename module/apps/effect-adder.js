@@ -45,24 +45,27 @@ export class EffectAdder extends FormApplication {
     const effectData = Object.fromEntries(formData);
     const index = this.options.effectIndex;
     const ability = duplicate(this.object);
+    let effect = {
+      name: effectData.name,
+      description: {
+        full: effectData.full,
+        chat: effectData.chat,
+      },
+      spellcost: effectData.spellcost,
+      variablecost: effectData.variablecost,
+      img: effectData.img,
+      ranges: []
+    };
 
     if (
       !ability.data.effects[index] ||
       ability.data.effects[index].name === ""
     ) {
-      let effect = {
-        name: effectData.name,
-        description: {
-          full: effectData.full,
-          chat: effectData.chat,
-        },
-        spellcost: effectData.spellcost,
-        variablecost: effectData.variablecost,
-        img: effectData.img,
-        ranges: ability.data.effects[index].ranges
-      };
-
+      if (ability.data.effects.length > 0) {
+        effect.ranges = ability.data.effects[index].ranges;
+      }
       ability.data.effects.push(effect);
+      
     } else {
       ability.data.effects[index] = {
         name: effectData.name,

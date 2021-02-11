@@ -20,11 +20,11 @@ export class AbilityBuilderQuest extends ItemSheetQuest {
 
   /** @override */
   async getData() {
-    const data = duplicate(this.item);
+    const data = super.getData();
     const effects = data.data.effects;
 
-    if (data.img === "icons/svg/mystery-man.svg") {
-      data.img = "systems/quest/icons/muscle-up.png"
+    if (data.item.img === "icons/svg/mystery-man.svg") {
+      data.item.img = "systems/quest/icons/muscle-up.png"
     }
 
     for (let e = 0; e < effects.length; e++) {
@@ -114,7 +114,7 @@ export class AbilityBuilderQuest extends ItemSheetQuest {
     return false;
   }
 
-  _onEffectAdder(event) {
+  async _onEffectAdder(event) {
     event.preventDefault();
 
     let effectStub = {
@@ -127,10 +127,12 @@ export class AbilityBuilderQuest extends ItemSheetQuest {
       ranges: []
     };
 
-    this.object.data.data.effects.push(effectStub);
-    
+    let updateData = duplicate(this.item.data);
+    updateData.data.effects.push(effectStub);
+    await this.item.update(updateData)
+
     let options = {
-      effectIndex: this.object.data.data.effects.length - 1,
+      effectIndex: updateData.data.effects.length - 1,
       abilityAppId: this.appId
     };
 
