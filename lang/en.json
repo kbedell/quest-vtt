@@ -15,7 +15,12 @@
     "SETTINGS.CustomCompendiumHint": "The name of the module for your custom compendium. E.g. 'quest-compendium'",
     "SETTINGS.InventorySize": "Inventory Size Limit",
     "SETTINGS.InventorySizeHint": "Maximum numnber of items an inventory is allowed to have",
-    
+    "SETTINGS.ShowRoll": "Show Rolls",
+    "SETTINGS.ShowRollHint": "Shows rolling animation using Dice So Nice Module.",
+    "SETTINGS.RollChatOnly": "Chat Only - No Dice Animations",
+    "SETTINGS.RollOnly": "Dice Animations Only",
+    "SETTINGS.RollBoth": "Chat & Dice Animations",
+
     "QUEST.Character.Name": "Name",
     "QUEST.Inventory": "Inventory",
     "QUEST.Abilities": "Abilities",

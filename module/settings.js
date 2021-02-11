@@ -80,4 +80,25 @@ export const registerSystemSettings = function () {
   function _setCustomCompendium(customCompendium) {
     CONFIG.customCompendium = customCompendium;
   }
+
+  game.settings.register("quest", "showRoll", {
+    name: game.i18n.localize('SETTINGS.ShowRoll'),
+    hint: game.i18n.localize('SETTINGS.ShowRollHint'),
+    scope: "world",
+    config: true,
+    default: "chat-only",
+    type: String,
+    choices: {
+      "chat-only": "SETTINGS.RollChatOnly",
+      "roll-only": "SETTINGS.RollOnly",
+      "roll-both": "SETTINGS.RollBoth"
+    },
+    onChange: rule => _setShowRoll(rule)
+  });
+
+  _setShowRoll(game.settings.get("quest", "showRoll"));
+
+  function _setShowRoll(showRoll) {
+    CONFIG.showRoll = showRoll;
+  }
 }

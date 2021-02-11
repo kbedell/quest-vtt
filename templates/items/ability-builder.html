@@ -1,9 +1,9 @@
 <form class="{{cssClass}} ability-builder flexcol" autocomplete="off" onsubmit="event.preventDefault();">
     {{!-- Header --}}
     <header class="item-header flexcol">
-        <img class="item-image" src="{{data.img}}" title="{{data.name}}" data-edit="img" />
+        <img class="item-image" src="{{data.item.img}}" title="{{data.item.name}}" data-edit="img" />
         <h1 class="header">
-            <input name="name" class="item-name" type="text" value="{{data.name}}"
+            <input name="name" class="item-name" type="text" value="{{data.item.name}}"
                 placeholder="{{localize 'QUEST.AbilityName'}}" />
         </h1>
     </header>
