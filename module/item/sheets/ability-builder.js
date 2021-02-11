@@ -129,7 +129,7 @@ export class AbilityBuilderQuest extends ItemSheetQuest {
 
     let updateData = duplicate(this.item.data);
     updateData.data.effects.push(effectStub);
-    await this.item.update(updateData)
+    await this.item.update(updateData);
 
     let options = {
       effectIndex: updateData.data.effects.length - 1,

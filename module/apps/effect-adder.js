@@ -80,6 +80,14 @@ export class EffectAdder extends FormApplication {
       };
     }
 
+    for (let e = 0; e < ability.data.effects.length; e++) {
+      let effect = ability.data.effects[e];
+
+      if (effect.name === "" || !effect.name) {
+        ability.data.effects.splice(e, 1);
+      }
+    }
+
     await this.object.update(ability);
 
     await this.close();
