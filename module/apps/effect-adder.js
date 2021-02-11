@@ -64,8 +64,8 @@ export class EffectAdder extends FormApplication {
       if (ability.data.effects.length > 0) {
         effect.ranges = ability.data.effects[index].ranges;
       }
-      
       ability.data.effects.push(effect);
+      
     } else {
       ability.data.effects[index] = {
         name: effectData.name,
